@@ -1,39 +1,36 @@
-'include "cpu_types_pkg.vh"
-'include "register_file_if.vh"
+
+`include "cpu_types_pkg.vh"
+`include "register_file_if.vh"
 
 module register_file
 import cpu_types_pkg::*;
-import register_file_if::*;
+//import register_file_if::*;
 (
   input logic CLK, nRST, 
-  register_file_if.rf myif
+  register_file_if.rf rfif
 );
 
-  logic [31:0] reg [31:0];
-  logic [31:0] nreg [31:0];
+  word_t [31:0] register;
 
   always_ff @(posedge CLK, negedge nRST)
   begin
     if(!nRST)
     begin
-      reg <= '0;
+      register <= '0;
     end
-    else
-    begin
-      reg <= nreg;
+    else begin
+      if(rfif.wsel != 0 && rfif.WEN)begin
+        register[rfif.wsel] <= rfif.wdat;
+      end
     end
+    register[0] <= '0;
   end
 
-  always_comb 
-  begin
-    if(myif.WEN)
-    begin 
-      nreg[myif.wsel] = myif.wdat; 
-    end
+  //0th location consant value of 0
+  //assign register[0] = '0;
 
-    myif.rdat1 = reg[myif.rsel1];
-    myif.rdat2 = reg[myif.rsel2];
+  //read ports
+  assign rfif.rdat1 = register[rfif.rsel1];
+  assign rfif.rdat2 = register[rfif.rsel2];
 
-
-  end
 endmodule
