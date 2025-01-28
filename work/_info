@@ -1,0 +1,230 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+!s11f vlog 2021.4 2021.10, Oct 13 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 d/home/ecegridfs/a/437mg005/ece437/processors
+T_opt
+!s110 1738038819
+V_f7WdRz46olVDj?=nGKbA1
+Z2 04 17 4 work memory_control_tb fast 0
+=1-b49691d91a8d-67985e23-6d417-3bdc1f
+Z3 !s124 OEM100
+Z4 o-quiet -auto_acc_if_foreign -work work -L altera_mf_ver -L altera_ver -L cycloneive_ver -suppress 12110,7061
+Z5 tCvgOpt 0
+n@_opt
+Z6 OL;O;2021.4;73
+R1
+T_opt1
+!s110 1738074548
+Ve5jIi4K^@m_?`^kj3GTNX1
+R2
+=1-f48e388b9398-6798e9b4-4c1a0-2672c
+R3
+R4
+R5
+n@_opt1
+R6
+Ycache_control_if
+Z7 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z8 DXx4 work 13 cpu_types_pkg 0 22 Q[WfjTGF18EDo`D=Gh>BY2
+Z9 !s110 1738074547
+!i10b 1
+!s100 M1H;m[X0PmEHzh>>0Uk]L1
+I9Gg2H[65KFcQPgmPEiDa@3
+S1
+R1
+Z10 w1737499715
+8include/cache_control_if.vh
+Finclude/cache_control_if.vh
+!i122 24
+L0 25 0
+Z11 VDg1SIo80bB@j0V0VzS_@n1
+Z12 OL;L;2021.4;73
+r1
+!s85 0
+31
+Z13 !s108 1738074547.000000
+Z14 !s107 include/caches_if.vh|include/cache_control_if.vh|include/cpu_types_pkg.vh|include/cpu_ram_if.vh|testbench/memory_control_tb.sv|
+Z15 !s90 +acc|-sv12compat|-mfcu|-lint|+incdir+include|-suppress|12110|-suppress|7061|testbench/memory_control_tb.sv|
+!i113 0
+Z16 o-suppress 12110 -suppress 7061 +acc -sv12compat -mfcu -lint -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+Z17 !s92 -suppress 12110 -suppress 7061 +acc -sv12compat -mfcu -lint +incdir+include -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+Z18 tShow_source 1 ScalarOpts 1 Show_Lint 1 Show_BadOptionWarning 1 Coverage 63 Svlog 1 CoverExcludeDefault 1 CoverOpt 1 CoverShortCircuit 0 FsmImplicitTrans 1 CvgOpt 0
+Ycaches_if
+R7
+R8
+R9
+!i10b 1
+!s100 96N5>UkK>COP_]2X>SoIi2
+IM5V[oCE3lQbK]1I3^9;4n2
+S1
+R1
+w1737842703
+8include/caches_if.vh
+Finclude/caches_if.vh
+!i122 24
+L0 18 0
+R11
+R12
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 0
+R16
+R17
+R18
+Ycpu_ram_if
+R7
+R8
+R9
+!i10b 1
+!s100 kG_HWRI]@N7nS0E58Dc_T1
+IaP7b8jCFNi8Aam0V2Cl=U3
+S1
+R1
+R10
+8include/cpu_ram_if.vh
+Finclude/cpu_ram_if.vh
+!i122 24
+L0 14 0
+R11
+R12
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 0
+R16
+R17
+R18
+Xcpu_types_pkg
+R7
+R9
+!i10b 1
+!s100 OBTW6;6123VKTZ7_?dBOz0
+IQ[WfjTGF18EDo`D=Gh>BY2
+S1
+R1
+w1736864537
+8include/cpu_types_pkg.vh
+Finclude/cpu_types_pkg.vh
+!i122 24
+L0 19 0
+VQ[WfjTGF18EDo`D=Gh>BY2
+R12
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 0
+R16
+R17
+R18
+vmemory_control
+R7
+Z19 DXx4 work 13 cpu_types_pkg 0 22 nVe:F2T>B[UYj0J];CG8g3
+!s110 1738073774
+!i10b 1
+!s100 :KjHnOYHc7`FZl36[j<Ck2
+I;EAXM7Q7BUMl>2<M5]@GN2
+S1
+R1
+w1738073766
+8source/memory_control.sv
+Fsource/memory_control.sv
+!i122 21
+L0 15 25
+R11
+R12
+r1
+!s85 0
+31
+!s108 1738073773.000000
+!s107 include/caches_if.vh|include/cpu_types_pkg.vh|include/cache_control_if.vh|source/memory_control.sv|
+!s90 +acc|-sv12compat|-mfcu|-lint|+incdir+include|-suppress|12110|-suppress|7061|source/memory_control.sv|
+!i113 0
+R16
+R17
+R18
+vmemory_control_tb
+R7
+R8
+R9
+!i10b 1
+!s100 UhhgYjB[LMO8AI5V5>oNm0
+IUoQ>8PKbWI=a?TBRbb[@02
+S1
+R1
+w1738074537
+8testbench/memory_control_tb.sv
+Ftestbench/memory_control_tb.sv
+!i122 24
+L0 12 213
+R11
+R12
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 0
+R16
+R17
+R18
+vram
+R7
+R19
+!s110 1738037976
+!i10b 1
+!s100 SQ=MFTJCG@McmPX1K:bEa1
+IF0a`92@CW[oIV0@FhMWYH0
+S1
+R1
+R10
+8source/ram.sv
+Fsource/ram.sv
+!i122 5
+L0 13 95
+R11
+R12
+r1
+!s85 0
+31
+!s108 1738037976.000000
+!s107 include/cpu_types_pkg.vh|include/cpu_ram_if.vh|source/ram.sv|
+!s90 +acc|-sv12compat|-mfcu|-lint|+incdir+include|-suppress|12110|-suppress|7061|source/ram.sv|
+!i113 0
+R16
+R17
+R18
