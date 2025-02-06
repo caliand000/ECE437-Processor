@@ -83,9 +83,20 @@ module control_unit (
           ORI:cuif.Aluop = ALU_OR;
           ANDI:cuif.Aluop = ALU_AND;
           SLLI:cuif.Aluop = ALU_SLL;
-          SRLI_SRAI:cuif.Aluop = ALU_SRA;           //Not sure how to tell this difference
+          SRLI_SRAI: begin
+            if(itype.imm[11:5] == 7'h00) begin
+              cuif.Aluop = ALU_SRL;
+            end
+            else if(itype.imm[11:5] == 7'h20) begin
+              cuif.Aluop = ALU_SRA;
+            end
+            // cuif.Aluop = ALU_SRA;
+          end          
           SLTI:cuif.Aluop = ALU_SLT;
-          SLTIU:cuif.Aluop = ALU_SLTU;
+          SLTIU:begin 
+            cuif.Aluop = ALU_SLTU;
+            cuif.Imm = {{20{1'b0}},itype.imm};    //sign extend the immediate field
+          end
         endcase 
       end
 
