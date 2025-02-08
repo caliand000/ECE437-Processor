@@ -37,53 +37,48 @@ module system_tb;
   system                              DUT (CLK,nRST,syif);
 
   // CPU Tracker. Uncomment and change signal names to enable.
+  // NOTE: All of these signals MUST be passed all the way through
+  // to the write back stage and sampled in the WRITEBACK stage.
+  // This means more signals that would normally be necessary
+  // for correct execution must be passed along to help with debugging.
   /*
-  cpu_tracker_singlecycle cpu_track0 (
+  cpu_tracker_pipeline cpu_track0 (
     // CLK in datapath
     .CLK(DUT.CPU.DP0.CLK),
-    // signal which enables PC to go to next instruction
-    .enable_pc(DUT.CPU.DP0.dpif.ihit),
-    // dhit from dpif
-    .dhit(DUT.CPU.DP0.dpif.dhit),
-    // funct3 bits
-    .funct3(DUT.CPU.DP0.funct3),
-    // funct7 bits
-    .funct7(DUT.CPU.DP0.funct7),
-    // opcode bits
-    .opcode(opcode_t'(DUT.CPU.DP0.opcode)),
-    // rsel1 bits
-    .rsel1(DUT.CPU.DP0.rs1),
-    // rsel2 bits
-    .rsel2(DUT.CPU.DP0.rs2),
-    // wsel bits
-    .wsel(DUT.CPU.DP0.rd),
-    // 32-bit instruction
-    .instr(DUT.CPU.DP0.instr),
-    // PC for this instruction
-    .pc(DUT.CPU.DP0.PC),
-    // next PC to go to after this instruction
-    .next_pc(DUT.CPU.DP0.nPC),
-    // target PC for this instruction. Branches and JAL: PC + imm32; JALR: R[rs] + imm32
-    .branch_jump_target_pc(DUT.CPU.DP0.branch_PC),
-    // 32-bit decoded immediate
-    .imm32(DUT.CPU.DP0.imm),
-    // upper 20 bits as used by U-Type instructions (LUI, AUIPC). Can be the upper 20 bits of your decoded imm32 if your datapath does this already.
-    .utype_upper20(DUT.CPU.DP0.imm[31:12]),
+    // MEMWB latch stall signal (or ~enable)
+    .memwb_latch_stall(~DUT.CPU.DP0.enable_MEM_WB),
+    // funct3 bits, brought to WB stage
+    .funct3(DUT.CPU.DP0.funct3_WB),
+    // funct7 bits, brought to WB stage
+    .funct7(DUT.CPU.DP0.funct7_WB),
+    // opcode bits, brought to WB stage
+    .opcode(opcode_t'(DUT.CPU.DP0.opcode_WB)),
+    // rsel1 bits, brought to WB stage
+    .rsel1(DUT.CPU.DP0.rs1_WB),
+    // rsel2 bits, brought to WB stage
+    .rsel2(DUT.CPU.DP0.rs2_WB),
+    // wsel bits, brought to WB stage
+    .wsel(DUT.CPU.DP0.rd_WB),
+    // 32-bit instruction, brought to WB stage
+    .instr(DUT.CPU.DP0.instr_WB),
+    // PC for this instruction, brought to WB stage
+    .pc(DUT.CPU.DP0.PC_WB),
+    // next PC to go to after this instruction, brought to WB stage
+    .next_pc(DUT.CPU.DP0.nPC_WB),
+    // target PC for this instruction. Branches and JAL: PC + imm32; JALR: R[rs] + imm32, brought to WB stage
+    .branch_jump_target_pc(DUT.CPU.DP0.branch_PC_WB),
+    // 32-bit decoded immediate, brought to WB stage
+    .imm32(DUT.CPU.DP0.imm_WB),
+    // upper 20 bits as used by U-Type instructions (LUI, AUIPC), brought to WB stage. Can be the upper 20 bits of your decoded imm32 if your pipeline does this already.
+    .utype_upper20(DUT.CPU.DP0.imm_WB[31:12]),
     // 32-bit wdat to register file
     .reg_file_wdat(DUT.CPU.DP0.rfif.wdat),
-    // 1-bit dmemREN from dpif
-    .data_mem_read(DUT.CPU.DP0.dpif.dmemREN),
-    // 1-bit dmemWEN from dpif
-    .data_mem_write(DUT.CPU.DP0.dpif.dmemWEN),
-    // 32-bit dmemaddr from dpif
-    .data_mem_addr(DUT.CPU.DP0.dpif.dmemaddr),
-    // 32-bit dmemload from dpif
-    .data_mem_load(DUT.CPU.DP0.dpif.dmemload),
-    // 32-bit dmemstore from dpif
-    .data_mem_store(DUT.CPU.DP0.dpif.dmemstore)
+    // 32-bit data memory address, brought to WB stage
+    .data_mem_addr(DUT.CPU.DP0.dmemaddr_WB),
+    // 32-bit data memory store value, brought to WB stage
+    .data_mem_store(DUT.CPU.DP0.dmemstore_WB)
   );
   */
-
 `else
   system                              DUT (,,,,//for altera debug ports
     CLK,

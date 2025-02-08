@@ -1,5 +1,5 @@
 /*
-	Filename:     cpu_tracker_singlecycle.sv
+	Filename:     cpu_tracker_pipeline.sv
 
 	Created by:     Zach Lagpacan
 	Email:          zlagpaca@purdue.edu
@@ -11,8 +11,8 @@
 
 		Designed to diff easily against the output from "sim -t".
 
-		This is the singlecycle version.
-			For pipeline designs, use cpu_tracker_pipeline.sv
+		This is the pipeline version.
+			For singlecycle designs, use cpu_tracker_singlecycle.sv
 
 		Credit to Jacob R. Stevens (steven69@purdue.edu) for the original cpu_tracker for the MIPS ISA.
 		This new version targets the RISC-V ISA and adapts exactly to "sim -t" output.
@@ -22,36 +22,29 @@
 `include "cpu_types_pkg.vh"
 import cpu_types_pkg::*;
 
-module cpu_tracker_singlecycle (
+module cpu_tracker_pipeline (
 	input logic CLK,                    // CLK in datapath
-	input logic enable_pc,              // signal which enables PC to go to next instruction
-	input logic dhit,										// dhit from dpif
-	input logic [FUNC3_W-1:0] funct3,   // funct3 bits
-	input logic [FUNC7_W-1:0] funct7,   // funct7 bits
-	input opcode_t opcode,              // opcode bits
-	input regbits_t rsel1,              // rsel1 bits
-	input regbits_t rsel2,              // rsel2 bits
-	input regbits_t wsel,               // wsel bits
-	input word_t instr,                 // 32-bit instruction
-	input word_t pc,                    // PC for this instruction
-	input word_t next_pc,               // next PC to go to after this instruction
-	input word_t branch_jump_target_pc, // target PC for this instruction. Branches and JAL: PC + imm32; JALR: R[rs] + imm32
-	input word_t imm32,                 // 32-bit decoded immediate
-	input logic [19:0] utype_upper20,  	// upper 20 bits as used by U-Type instructions (LUI, AUIPC). Can be the upper 20 bits of your decoded imm32 if your datapath does this already.
+	input logic memwb_latch_stall,      // MEMWB latch stall signal (or ~enable)
+	input logic [FUNC3_W-1:0] funct3,   // funct3 bits, brought to WB stage
+	input logic [FUNC7_W-1:0] funct7,   // funct7 bits, brought to WB stage
+	input opcode_t opcode,              // opcode bits, brought to WB stage
+	input regbits_t rsel1,              // rsel1 bits, brought to WB stage
+	input regbits_t rsel2,              // rsel2 bits, brought to WB stage
+	input regbits_t wsel,               // wsel bits, brought to WB stage
+	input word_t instr,                 // 32-bit instruction, brought to WB stage
+	input word_t pc,                    // PC for this instruction, brought to WB stage
+	input word_t next_pc,               // next PC to go to after this instruction, brought to WB stage
+	input word_t branch_jump_target_pc, // target PC for this instruction. Branches and JAL: PC + imm32; JALR: R[rs] + imm32, brought to WB stage
+	input word_t imm32,                 // 32-bit decoded immediate, brought to WB stage
+	input logic [19:0] utype_upper20,  	// upper 20 bits as used by U-Type instructions (LUI, AUIPC), brought to WB stage. Can be the upper 20 bits of your decoded imm32 if your pipeline does this already.
 	input word_t reg_file_wdat,         // 32-bit wdat to register file
-	input logic data_mem_read,					// 1-bit dmemREN from dpif
-	input logic data_mem_write, 				// 1-bit dmemWEN from dpif
-	input word_t data_mem_addr,         // 32-bit dmemaddr from dpif
-	input word_t data_mem_load,					// 32-bit dmemload from dpif
-	input word_t data_mem_store         // 32-bit dmemstore from dpif
+	input word_t data_mem_addr,         // 32-bit data memory address, brought to WB stage
+	input word_t data_mem_store         // 32-bit data memory store value, brought to WB stage
 );
 
 	parameter CPUID = 1;
 
 	word_t presumed_reserve_addr;
-	opcode_t last_opcode;
-	logic valid_instr;
-	word_t saved_pc;
 
 	int fp;
 
@@ -212,45 +205,10 @@ module cpu_tracker_singlecycle (
 
 	always @ (posedge CLK) begin
 
-		if (enable_pc) begin
-			last_opcode <= opcode;
-		end
-
-		if (enable_pc) begin
-			saved_pc <= pc;
-		end
-
-		if (dhit && last_opcode == STYPE) begin
-      $sformat(temp_str, "%s(Core %0d): %s", uppercase(saved_pc, 32), CPUID, uppercase(instr, 32));
-      $sformat(temp_str, "%s %s %s\n", temp_str, instr_mnemonic, operands);
-      $sformat(temp_str, "%s\tPC <-- %s\n", temp_str, uppercase(next_pc, 32));
-			$sformat(temp_str,"%s\t[%s]",temp_str, uppercase({16'h0, data_mem_addr[15:0]}, 32));
-			$sformat(temp_str, "%s <-- %s\n", temp_str, uppercase(data_mem_store, 32));
-			$sformat(output_str, "%s\n", temp_str);
-			$fwrite(fp, output_str);
-		end
-
-		if (dhit && last_opcode == ITYPE_LW) begin
-			$sformat(temp_str, "%s(Core %0d): %s", uppercase(saved_pc, 32), CPUID, uppercase(instr, 32));
-      $sformat(temp_str, "%s %s %s\n", temp_str, instr_mnemonic, operands);
-      $sformat(temp_str, "%s\tPC <-- %s\n", temp_str, uppercase(next_pc, 32));
-			$sformat(ram_str, "\t[word read");
-			$sformat(ram_str, "%s from %s]\n", ram_str, uppercase({16'h0, data_mem_addr[15:0]}, 32));
-			$sformat(ram_str, "%s\t%s", ram_str, wsel_str);
-			$sformat(ram_str, "%s <-- %s\n", ram_str, uppercase(data_mem_load, 32));
-			$sformat(output_str, "%s%s\n", temp_str, ram_str);
-			$fwrite(fp, output_str);
-    end
-	end
-    
-	always @ (posedge CLK) begin
-
-		valid_instr = 1'b1;
-
 		// check for:
 				// MEMWB stall -> not committing this cycle
 				// instr == NOP && pc == 0 -> inserted NOP/bubble
-		if (enable_pc && !((instr == 32'h00000000 || instr == 32'h00000013) && pc == 32'h0)) begin
+		if (!memwb_latch_stall && !((instr == 32'h00000000 || instr == 32'h00000013) && pc == 32'h0)) begin
       $sformat(temp_str, "%s(Core %0d): %s", uppercase(pc, 32), CPUID, uppercase(instr, 32));
       $sformat(temp_str, "%s %s %s\n", temp_str, instr_mnemonic, operands);
       $sformat(temp_str, "%s\tPC <-- %s\n", temp_str, uppercase(next_pc, 32));
@@ -270,18 +228,49 @@ module cpu_tracker_singlecycle (
           // pass
         end
         JAL, JALR: $sformat(temp_str, "%s\t%s <-- %s\n", temp_str, wsel_str, uppercase(reg_file_wdat, 32));
-        LUI: $sformat(temp_str, "%s\t%s <-- %s\n", temp_str, wsel_str, uppercase(reg_file_wdat, 32));
-        AUIPC: $sformat(temp_str, "%s\t%s <-- %s\n", temp_str, wsel_str, uppercase(reg_file_wdat, 32));
-        default: begin
-					$sformat(temp_str, "");
-					valid_instr = 1'b0;
-				end
+        LUI:  $sformat(temp_str, "%s\t%s <-- %s\n", temp_str, wsel_str, uppercase(reg_file_wdat, 32));
+        AUIPC:  $sformat(temp_str, "%s\t%s <-- %s\n", temp_str, wsel_str, uppercase(reg_file_wdat, 32));
+        STYPE: begin
+              $sformat(temp_str,"%s\t[%s]",temp_str, uppercase({16'h0, data_mem_addr[15:0]}, 32));
+              $sformat(temp_str, "%s <-- %s\n", temp_str, uppercase(data_mem_store, 32));
+        end
+        ITYPE_LW:
+        begin
+          $sformat(ram_str, "\t[word read");
+          $sformat(ram_str, "%s from %s]\n", ram_str, uppercase({16'h0, data_mem_addr[15:0]}, 32));
+          $sformat(ram_str, "%s\t%s", ram_str, wsel_str);
+          $sformat(ram_str, "%s <-- %s\n", ram_str, uppercase(reg_file_wdat, 32));
+          $sformat(temp_str, "%s%s", temp_str, ram_str);
+        end
+        LR_SC:
+        begin
+          case(funct5_atomic_t'(funct7[6:2]))
+            LR: begin
+              $sformat(ram_str, "\t[word read");
+              $sformat(ram_str, "%s from %s]\n", ram_str, uppercase({16'h0, data_mem_addr[15:0]}, 32));
+              $sformat(ram_str, "%s\t%s", ram_str, wsel_str);
+              $sformat(ram_str, "%s <-- %s\n", ram_str, uppercase(reg_file_wdat, 32));
+              presumed_reserve_addr <= {data_mem_addr[31:1], 1'b0};
+              $sformat(ram_str, "%s\tRMW <-- %s\n", ram_str, uppercase({16'h0, data_mem_addr[15:0]}, 32));
+              $sformat(temp_str, "%s%s", temp_str, ram_str);
+            end
+            SC: begin
+              if (reg_file_wdat == 0) begin
+                $sformat(temp_str,"%s\t[%s]",temp_str,uppercase({16'h0, data_mem_addr[15:0]}, 32));
+                $sformat(temp_str, "%s <-- %s\n", temp_str, uppercase(data_mem_store, 32));
+              end
+              $sformat(temp_str, "%s\t%s <-- %s\n", temp_str, wsel_str, uppercase(reg_file_wdat, 32));
+              if (reg_file_wdat == 0) begin
+                $sformat(temp_str, "%s\tRMW <-- %s\n", temp_str, uppercase(presumed_reserve_addr + 32'h1, 32));
+              end
+            end
+          endcase
+        end
+        default: $sformat(temp_str, "");
       endcase
       $sformat(output_str, "%s\n", temp_str);
-      if (valid_instr) begin
-				$fwrite(fp, output_str);
-			end
-		end
+      $fwrite(fp, output_str);
+    end
 	end
 
 	final begin: CLOSE_FILE
