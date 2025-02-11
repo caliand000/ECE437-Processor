@@ -12,6 +12,7 @@
 
 // alu op, mips op, and instruction type
 `include "cpu_types_pkg.vh"
+`include "pipeline_types_pkg.vh"
 
 module datapath (
   input logic CLK, nRST,
@@ -19,18 +20,24 @@ module datapath (
 );
   // import types
   import cpu_types_pkg::*;
+  import pipeline_types_pkg::*;
 
   //interface
   control_request_unit_if cruif();
   register_file_if rfif();
-
-  //internal signals
 
   // pc init
   parameter PC_INIT = 0;
 
   //internal signals
   word_t iaddr, Aluout, outdata, next, Alu_b;
+
+  //internal pipelined signals
+  IF_ID if_id_in;
+  IF_ID if_id_out;
+
+  ID_EX id_ex_in;
+  ID_EX id_ex_out;
 
   //instance of control unit and request unit
   control_unit      CONTROL(CLK, nRST, cruif);
@@ -101,14 +108,21 @@ module datapath (
       case (cruif.PCSrc)
         2'b00: iaddr += 4;
         2'b01: iaddr += cruif.Imm;
-        2'b10: iaddr = cruif.Imm + rfif.rdat1;//cruif.Rs1;
+        2'b10: iaddr = cruif.Imm + rfif.rdat1;
       endcase
     end
     else if(cruif.pchalt) iaddr = '0;
   end
 
 
+  //assigning piplined signals for IF_ID_in
+  assign if_id_in.instruction = dpif.imemload;
+  assign if_id_in.pc = dpif.imemaddr;
 
+  //assigning pipelined signals for ID_EX_in
+  assign id_ex_in.instruction = if_id_out.instruction;
+  assign id_ex_in.pc = if_id_out.pc;
 
-
+  assign id_ex_in.pchalt = dpif.halt;
+  assign id_ex_in.MemtoReg = 
 endmodule
