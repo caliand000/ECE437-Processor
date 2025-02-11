@@ -9,6 +9,7 @@
 // data path interface
 `include "datapath_cache_if.vh"
 `include "control_request_unit_if.vh"
+`include "extender_if.vh"
 
 // alu op, mips op, and instruction type
 `include "cpu_types_pkg.vh"
@@ -25,12 +26,13 @@ module datapath (
   //interface
   control_request_unit_if cruif();
   register_file_if rfif();
+  extender_if exif();
 
   // pc init
   parameter PC_INIT = 0;
 
   //internal signals
-  word_t iaddr, Aluout, outdata, next, Alu_b;
+  word_t iaddr, Aluout, outdata, Alu_b;
 
   //internal pipelined signals
   IF_ID if_id_in;
@@ -48,14 +50,14 @@ module datapath (
   alu               ALU(.A(id_ex_out.rdat1), .B(Alu_b), .opcode(cruif.Aluop), .out(Aluout), .zero(cruif.zero), .negative(cruif.neg), .overflow(cruif.overflow));
 
   //interface/signal connections
-
-  assign outdata = (cruif.MemtoReg)? dpif.dmemload: Aluout;   //might need to connect to request unit dmemload signal
+  assign outdata = (cruif.MemtoReg)? dpif.dmemload: Aluout; 
 
   //ALU
   assign Alu_b = (cruif.AluSrc)? cruif.Imm: id_ex_out.rdat2;
 
+  //Immediate Generator(extender)
+  assign exif.imemload = if_id_out.instruction;
 
-  assign next = dpif.imemaddr + 4;
 
   //register file
   // assign rfif.wsel = cruif.Rd;
@@ -70,7 +72,7 @@ module datapath (
   always_comb begin
     case(cruif.jumpsel) 
       2'b00:rfif.wdat = outdata;
-      2'b01:rfif.wdat = next;
+      2'b01:rfif.wdat = dpif.imemaddr + 4;
       2'b10:rfif.wdat = cruif.Imm;
       2'b11:rfif.wdat = cruif.Imm + dpif.imemaddr;
     endcase
@@ -91,7 +93,6 @@ module datapath (
   //control unit
   assign cruif.imemload = dpif.imemload;  
 
-
   always_ff @(posedge CLK, negedge nRST) begin
     if(!nRST) begin
       dpif.imemaddr <= '0;
@@ -107,7 +108,7 @@ module datapath (
     iaddr = dpif.imemaddr;
 
     if(cruif.pchalt) iaddr = '0;
-    else if(dpif.ihit) begin
+    else if(dpif.ihit) begin // && !(memREN  || memWEN) && !dhit)
       case (cruif.PCSrc)
         2'b00: iaddr += 4;
         2'b01: iaddr += cruif.Imm;
@@ -135,28 +136,21 @@ module datapath (
   // assign id_ex_in.branch
 
   assign id_ex_in.rdat1 = rfif.rdat1; 
-  //need to update input to ALU to be registered output of rdat1 and rdat2
   assign id_ex_in.rdat2 = rfif.rdat2;
-  //assign id_ex_in.immediate = 
+  assign id_ex_in.immediate = exif.extended_im;
   //output of the immediate generator
 
   //IF_ID
   always_ff @(posedge CLK, negedge nRST) begin
     if(!nRST) begin
       if_id_out <= '0;
-    end
-    else begin
-      if_id_out <= if_id_in;
-    end
-  end
-
-    //ID_EX
-  always_ff @(posedge CLK, negedge nRST) begin
-    if(!nRST) begin
       id_ex_out <= '0;
     end
     else begin
+      if_id_out <= if_id_in;
       id_ex_out <= id_ex_in;
     end
   end
+
+
 endmodule

@@ -23,19 +23,41 @@ package pipeline_types_pkg;
   } IF_ID;
 
     typedef struct packed {
-    word_t instruction;
     word_t pc;
-    //control signals
     logic pchalt;
     logic MemtoReg;
     logic AluSrc;
     logic [4:0] Aluop;
-    logic [2:0] MemWr;
+    logic MemWr;
     logic RegWr;
-    logic [5:0] branch;
-    //register file signals
+    logic [7:0] branch;
     word_t rdat1;
     word_t rdat2;
-    //immediate generator
     word_t immediate;
+    logic [4:0] rd;
+    logic [1:0] jumpsel;
     } ID_EX;
+
+
+  typedef struct packed {
+    logic pchalt;
+    logic MemtoReg;
+    logic MemWr;
+    logic [1:0] PCSrc;
+    logic RegWr;
+    word_t AdderOut;
+    word_t AluOut;
+    word_t rdat2;
+    logic [4:0] rd;
+    logic [1:0] jumpsel;
+  } EX_MEM;
+
+    typedef struct packed {
+    logic pchalt;
+    logic MemtoReg;
+    logic RegWr;
+    word_t AluOut;
+    word_t read_data;
+    logic [4:0] rd;
+    logic [1:0] jumpsel;
+  } MEM_WB;
