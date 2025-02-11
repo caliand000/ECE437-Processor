@@ -22,7 +22,7 @@ interface control_request_unit_if;
           dhit, ihit, imemREN, dmemREN, dmemWEN;
 
   logic [4:0] Rd, Rs1, Rs2;
-
+  logic [7:0] typ;
   word_t Imm, rdat2, Aluout, imemaddr, imemload, dmemstore, dmemaddr, dmemload;
 
   logic [1:0] PCSrc, MemWr, jumpsel;
@@ -31,7 +31,7 @@ interface control_request_unit_if;
   modport cu (
     input   zero, neg, overflow, imemload,
     output  MemtoReg, MemWr, Aluop, AluSrc, RegWr, Rd, Rs1, Rs2, 
-            Imm, PCSrc, jumpsel, pchalt
+            Imm, PCSrc, jumpsel, pchalt,typ
   );
 
     // request unit ports

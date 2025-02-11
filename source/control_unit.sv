@@ -27,10 +27,18 @@ module control_unit (
   s_t stype;
   b_t btype;
   u_t utype;
-
+  logic beq,bne,bge,blt,bgeu,bltu,jal,jalr;
+  assign cuif.typ={beq,bne,bge,blt,bgeu,bltu,jal,jalr};
 
   always_comb begin
-
+    beq=0;
+    bne=0;
+    bge=0;
+    blt=0;
+    bgeu=0;
+    bltu=0;
+    jal=0;
+    jalr=0;
     rtype = cuif.imemload;
     itype = cuif.imemload;
     jtype = cuif.imemload;
@@ -111,7 +119,8 @@ module control_unit (
         cuif.Imm = {{20{itype.imm[11]}},itype.imm};   //sign extend the immediate field
       end
 
-      JALR: begin                                     //R[rd] <= PC + 4; PC <= R[rs1] + imm
+      JALR: begin         
+        jalr=1;                            //R[rd] <= PC + 4; PC <= R[rs1] + imm
         cuif.RegWr = 1;                               //writing to rd  
         cuif.jumpsel = 2'b11;                             //writing PC + 4 to rd
         cuif.PCSrc = 2'b10;                           //writing PC to rs1 + imm
@@ -142,34 +151,41 @@ module control_unit (
 
         case(btype.funct3)                              //branch type it is to update PCSrc, is it ok to do that here or will that delay?
           BEQ: begin
+            beq=1;
             cuif.Aluop = ALU_SUB;
             cuif.PCSrc = (cuif.zero)? 2'b01:'0;
           end
           BNE: begin
+            bne=1;
             cuif.Aluop = ALU_SUB;
             cuif.PCSrc = (!cuif.zero)? 2'b01: '0;
           end
           BLT: begin
+            blt=1;
             cuif.Aluop = ALU_SUB;
             cuif.PCSrc = (cuif.neg)? 2'b01: '0;
           end
           BGE: begin
+            bge=1;
             cuif.Aluop = ALU_SUB;
             cuif.PCSrc = (!cuif.neg || cuif.zero)? 2'b01: '0;
           end
           BLTU: begin
+            bltu=1;
             cuif.Imm = {{20{1'b0}},cuif.Imm[11:0]};        //unsigned
             cuif.Aluop = ALU_SUB;
             cuif.PCSrc = (cuif.neg)? 2'b01: '0;
           end
           BGEU: begin
+            bgeu=1;
             cuif.Imm = {{20{1'b0}},cuif.Imm[11:0]};        //unsigned
             cuif.Aluop = ALU_SUB;
             cuif.PCSrc = (!cuif.neg || cuif.zero)? 2'b01: '0;
           end
         endcase
       end
-      JAL: begin                                        //R[rd] <= PC+4; PC <= PC+imm
+      JAL: begin        
+        jal=1;                                //R[rd] <= PC+4; PC <= PC+imm
         cuif.RegWr = 1;
         cuif.jumpsel = 1;
         cuif.PCSrc = 2'b01;
