@@ -45,24 +45,27 @@ module datapath (
 
   //need to create instance of ALU, and register file?
   register_file     REG_FILE(CLK, nRST, rfif);
-  alu               ALU(.A(rfif.rdat1), .B(Alu_b), .opcode(cruif.Aluop), .out(Aluout),
-                          .zero(cruif.zero), .negative(cruif.neg), .overflow(cruif.overflow));
+  alu               ALU(.A(id_ex_out.rdat1), .B(Alu_b), .opcode(cruif.Aluop), .out(Aluout), .zero(cruif.zero), .negative(cruif.neg), .overflow(cruif.overflow));
 
   //interface/signal connections
 
   assign outdata = (cruif.MemtoReg)? dpif.dmemload: Aluout;   //might need to connect to request unit dmemload signal
 
   //ALU
-  assign Alu_b = (cruif.AluSrc)? cruif.Imm: rfif.rdat2;
+  assign Alu_b = (cruif.AluSrc)? cruif.Imm: id_ex_out.rdat2;
 
 
   assign next = dpif.imemaddr + 4;
 
   //register file
-  assign rfif.wsel = cruif.Rd;
-  assign rfif.rsel1 = cruif.Rs1;
-  assign rfif.rsel2 = cruif.Rs2;
-  assign rfif.WEN = cruif.RegWr && (dpif.ihit || dpif.dhit);
+  // assign rfif.wsel = cruif.Rd;
+  // assign rfif.rsel1 = cruif.Rs1;
+  // assign rfif.rsel2 = cruif.Rs2;
+  // assign rfif.WEN = cruif.RegWr && (dpif.ihit || dpif.dhit);
+  assign rfif.rsel1 = if_id_out.instruction[19:15];
+  assign rfif.rsel2 = if_id_out.instruction[24:20];
+  assign rfif.wsel = if_id_out.instruction[11:7];
+  assign rfif.WEN = if_id_out.RegWr && (dpif.ihit || dpif.dhit);
 
   always_comb begin
     case(cruif.jumpsel) 
@@ -124,5 +127,36 @@ module datapath (
   assign id_ex_in.pc = if_id_out.pc;
 
   assign id_ex_in.pchalt = dpif.halt;
-  assign id_ex_in.MemtoReg = 
+  assign id_ex_in.MemtoReg = cruif.MemtoReg;
+  assign id_ex_in.AluSrc = cruif.AluSrc;
+  assign id_ex_in.Aluop = cruif.Aluop;
+  assign id_ex_in.MemWr = cruif.MemWr;
+  assign id_ex_in.RegWr = cruif.RegWr;
+  // assign id_ex_in.branch
+
+  assign id_ex_in.rdat1 = rfif.rdat1; 
+  //need to update input to ALU to be registered output of rdat1 and rdat2
+  assign id_ex_in.rdat2 = rfif.rdat2;
+  //assign id_ex_in.immediate = 
+  //output of the immediate generator
+
+  //IF_ID
+  always_ff @(posedge CLK, negedge nRST) begin
+    if(!nRST) begin
+      if_id_out <= '0;
+    end
+    else begin
+      if_id_out <= if_id_in;
+    end
+  end
+
+    //ID_EX
+  always_ff @(posedge CLK, negedge nRST) begin
+    if(!nRST) begin
+      id_ex_out <= '0;
+    end
+    else begin
+      id_ex_out <= id_ex_in;
+    end
+  end
 endmodule
