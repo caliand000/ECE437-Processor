@@ -2,7 +2,7 @@
 # Calculate Days Since 2000
 #----------------------------------------------------------
   org 0x0000
-#hello world hello world
+
 calc_days:
 
   addi $17, $0, 21
