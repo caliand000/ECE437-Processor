@@ -14,5 +14,5 @@ assign blt=deif.typ[3];
 assign bltu=deif.typ[2];
 assign jal=deif.typ[1];
 assign jalr=deif.typ[0];
-assign deif.PCsrc=(beq&&deif.Zero||bne&&!deif.Zero||bgt&&!deif.Negative||blt&&deif.Negative||jal||jalr||bltu&&!deif.Zero||bgtu&&deif.Zero);
+assign deif.PCsrc=(beq&&deif.Zero||bne&&!deif.Zero||bgt&&!deif.Negative||blt&&deif.Negative||bltu&&!deif.Zero||bgtu&&deif.Zero||jal)?2'b01:(jalr?:2'b10:'0);
 endmodule

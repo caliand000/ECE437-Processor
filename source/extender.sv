@@ -80,7 +80,7 @@ always_comb begin:extender_block
     end
   
     else begin
-        exif.extended_im={exif.imemload[31:12]};
+        exif.extended_im={exif.imemload[31:12],12'h0};
     end
 end
 
