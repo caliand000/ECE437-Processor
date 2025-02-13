@@ -27,7 +27,7 @@ package pipeline_types_pkg;
     logic MemtoReg;
     logic AluSrc;
     logic [4:0] Aluop;
-    logic MemWr;
+    logic [1:0] MemWr;
     logic RegWr;
     logic [7:0] branch;
     word_t rdat1;
@@ -41,7 +41,7 @@ package pipeline_types_pkg;
   typedef struct packed {
     logic pchalt;
     logic MemtoReg;
-    logic MemWr;
+    logic [1:0] MemWr;
     logic [1:0] PCSrc;
     logic RegWr;
     word_t AdderOut;

@@ -111,8 +111,8 @@ module datapath(
   assign ex_mem_in.PCSrc = deif.PCsrc;
   assign ex_mem_in.RegWr = id_ex_out.RegWr;
   assign ex_mem_in.jumpsel = id_ex_out.jumpsel;
-
-
+  assign ex_mem_in.AluOut = Aluout;
+  assign ex_mem_in.AdderOut=id_ex_out.pc+id_ex_out.immediate;
   assign ex_mem_in.immediate = id_ex_out.immediate;
   assign ex_mem_in.rdat2 = id_ex_out.rdat2;
   assign ex_mem_in.rd = id_ex_out.rd;
@@ -126,26 +126,32 @@ module datapath(
   assign mem_wb_in.rd=ex_mem_out.rd;
   assign mem_wb_in.AluOut=ex_mem_out.AluOut;
   assign mem_wb_in.AdderOut=ex_mem_out.AdderOut;
+  assign mem_wb_in.read_data=dpif.dmemload;
+
 
   //assigning internal signals
   assign deif.typ=id_ex_out.branch;
-  assign ex_mem_in.AdderOut=id_ex_out.pc+id_ex_out.immediate;
-  assign mem_wb_in.read_data=dpif.dmemload;
-
-  //*=========================================
-  //need to fix these request unit signals connecting to memory controller
-
-  //request unit
-  assign cruif.dhit = dpif.dhit;
-  assign cruif.ihit = dpif.ihit;
-  assign ex_mem_in.AluOut = Aluout;
-  assign cruif.rdat2 = rfif.rdat2;
+  
+ 
   
   assign dpif.imemREN = 1;
-  assign dpif.dmemREN = ex_mem_out.MemtoReg;
-  assign dpif.dmemWEN = ex_mem_out.MemWr;
   assign dpif.dmemstore = ex_mem_out.rdat2;
   assign dpif.dmemaddr = ex_mem_out.AluOut;
+
+  always_ff @(posedge CLK, negedge nRST) begin
+    if(!nRST) begin
+      dpif.dmemREN <= 0;
+      dpif.dmemWEN <= 0;
+    end
+    else begin
+      if(dpif.dhit) begin
+        dpif.dmemREN <= 0;
+        dpif.dmemWEN <= 0;
+      end
+      else if(ex_mem_out.MemWr == 2'b01 && dpif.ihit) dpif.dmemWEN <= 1;
+      else if(ex_mem_out.MemWr == 2'b10 && dpif.ihit) dpif.dmemREN <= 0;
+    end
+  end
 
   //control unit
   assign cruif.imemload = dpif.imemload;  
@@ -171,7 +177,7 @@ module datapath(
         2'b10: iaddr = id_ex_out.pc+id_ex_out.immediate;
       endcase
     end
-    else if(mem_wb_out.pchalt) iaddr = '0;
+    // else if(mem_wb_out.pchalt) iaddr = '0;
   end
   
   //output of the immediate generator
@@ -197,10 +203,10 @@ module datapath(
     end
     else begin
       if(dpif.ihit) begin
-        if_id_out <= if_id_nxt;
-        id_ex_out <= id_ex_nxt;
-        ex_mem_out<= ex_mem_nxt;
-        mem_wb_out<= mem_wb_nxt;
+        if_id_out <= if_id_in;
+        id_ex_out <= id_ex_in;
+        ex_mem_out<= ex_mem_in;
+        mem_wb_out<= mem_wb_in;
       end
     end
   end

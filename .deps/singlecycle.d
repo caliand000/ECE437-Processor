@@ -1,1 +1,0 @@
-singlecycle: alu.svo cache_control_if.vho caches.svo caches_if.vho control_request_unit_if.vho control_unit.svo cpu_types_pkg.vho datapath.svo datapath_cache_if.vho decider.svo decider_if.vho extender_if.vho memory_control.svo pipeline_types_pkg.vho register_file.svo register_file_if.vho singlecycle.svo
