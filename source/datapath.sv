@@ -9,13 +9,13 @@
 // data path interface
 `include "datapath_cache_if.vh"
 `include "control_request_unit_if.vh"
-`include "extender_if.vh"cruif
-
+`include "extender_if.vh"
+`include "decider_if.vh"
 // alu op, mips op, and instruction type
 `include "cpu_types_pkg.vh"
 `include "pipeline_types_pkg.vh"
 
-module datapath (
+module datapath(
   input logic CLK, nRST,
   datapath_cache_if.dp dpif
 );
@@ -52,8 +52,8 @@ module datapath (
   MEM_WB mem_wb_nxt;
   //instance of control unit and request unit
   control_unit      CONTROL(CLK, nRST, cruif);
-  request_unit      REQUEST(CLK, nRST, cruif);
-  decider           Branch(deif.de);
+  
+  decider           Branch(deif);
   //need to create instance of ALU, and register file?
   register_file     REG_FILE(CLK, nRST, rfif);
   alu               ALU(.A(id_ex_out.rdat1), .B(Alu_b), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
@@ -77,7 +77,7 @@ module datapath (
     case(mem_wb_out.jumpsel) 
       2'b00:rfif.wdat = outdata;
       2'b01:rfif.wdat = mem_wb_out.AdderOut-mem_wb_out.immediate +4;
-      2'b10:rfif.wdat = mem_wb_out.immediate
+      2'b10:rfif.wdat = mem_wb_out.immediate;
       2'b11:rfif.wdat = mem_wb_out.AdderOut;
     endcase
   end
@@ -91,13 +91,13 @@ module datapath (
 
   //ifid -> idex
   assign id_ex_in.pc = if_id_out.pc;
-  assign id_ex_in.pchalt = dpif.halt;
+  assign id_ex_in.pchalt = cruif.pchalt;
   assign id_ex_in.MemtoReg = cruif.MemtoReg;
   assign id_ex_in.AluSrc = cruif.AluSrc;
   assign id_ex_in.Aluop = cruif.Aluop;
   assign id_ex_in.MemWr = cruif.MemWr;
   assign id_ex_in.RegWr = cruif.RegWr;
-  assign id_ex_in.branch = cruif.branch;
+  assign id_ex_in.branch = cruif.typ;
   assign id_ex_in.rdat1 = rfif.rdat1; 
   assign id_ex_in.rdat2 = rfif.rdat2;
   assign id_ex_in.immediate = exif.extended_im;
@@ -107,12 +107,12 @@ module datapath (
   //idex -> exmem
   assign ex_mem_in.pchalt = id_ex_out.pchalt;
   assign ex_mem_in.MemtoReg = id_ex_out.MemtoReg;
-  assign ex_mem_in.Memwr = id_ex_out.MemWr;
+  assign ex_mem_in.MemWr = id_ex_out.MemWr;
   assign ex_mem_in.PCSrc = deif.PCsrc;
   assign ex_mem_in.RegWr = id_ex_out.RegWr;
   assign ex_mem_in.jumpsel = id_ex_out.jumpsel;
-  assign ex_mem_in.AdderOut = id_ex_out.pc + id_ex_out.immediate;
-  assign ex_mem_in.AluOut = Aluout;
+
+
   assign ex_mem_in.immediate = id_ex_out.immediate;
   assign ex_mem_in.rdat2 = id_ex_out.rdat2;
   assign ex_mem_in.rd = id_ex_out.rd;
@@ -141,7 +141,7 @@ module datapath (
   assign ex_mem_in.AluOut = Aluout;
   assign cruif.rdat2 = rfif.rdat2;
   
-  assign dpif.imemREN = cruif.imemREN;
+  assign dpif.imemREN = 1;
   assign dpif.dmemREN = ex_mem_out.MemtoReg;
   assign dpif.dmemWEN = ex_mem_out.MemWr;
   assign dpif.dmemstore = ex_mem_out.rdat2;
@@ -165,8 +165,8 @@ module datapath (
     iaddr = dpif.imemaddr;
     if(mem_wb_out.pchalt) iaddr = '0;
     else if(dpif.ihit) begin // && !(memREN  || memWEN) && !dhit)
-      case (deif.PCSrc)
-        2'b00: iaddr += 4;
+      case (deif.PCsrc)
+        2'b00: iaddr =dpif.imemaddr+ 4;
         2'b01: iaddr = Aluout;
         2'b10: iaddr = id_ex_out.pc+id_ex_out.immediate;
       endcase

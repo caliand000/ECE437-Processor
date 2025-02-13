@@ -1,1 +1,1 @@
-pipeline_types_pkg:  pipeline_types_pkg.vho
+pipeline_types_pkg: cpu_types_pkg.vho pipeline_types_pkg.vho

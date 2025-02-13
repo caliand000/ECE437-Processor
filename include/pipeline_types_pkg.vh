@@ -6,10 +6,12 @@
 `ifndef PIPELINE_TYPES_PKG_VH
 `define PIPELINE_TYPES_PKG_VH
 
-package pipeline_types_pkg;
 
+`include "cpu_types_pkg.vh"
+package pipeline_types_pkg;
+  import cpu_types_pkg::*;
   // word_t
-  typedef logic [WORD_W-1:0] word_t;
+
 
 
 
@@ -54,8 +56,12 @@ package pipeline_types_pkg;
     logic pchalt;
     logic MemtoReg;
     logic RegWr;
+    word_t AdderOut;
     word_t AluOut;
+    word_t immediate;
     word_t read_data;
     logic [4:0] rd;
     logic [1:0] jumpsel;
   } MEM_WB;
+endpackage
+`endif 

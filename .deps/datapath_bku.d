@@ -1,1 +1,0 @@
-datapath_bku: alu.svo control_request_unit_if.vho control_unit.svo cpu_types_pkg.vho datapath_cache_if.vho decider.svo decider_if.vho extender_if.vho pipeline_types_pkg.vho register_file.svo register_file_if.vho request_unit.svo datapath_bku.svo
