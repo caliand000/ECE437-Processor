@@ -26,7 +26,7 @@ module datapath(
   //interface
   control_request_unit_if cruif();
   register_file_if rfif();
-  extender_if exif();
+  extender_if exif_in();
   decider_if deif();
   // pc init
   parameter PC_INIT = 0;
@@ -57,7 +57,7 @@ module datapath(
   //need to create instance of ALU, and register file?
   register_file     REG_FILE(CLK, nRST, rfif);
   alu               ALU(.A(id_ex_out.rdat1), .B(Alu_b), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
-
+  extender          EX(exif_in);
   //interface/signal connections
   assign outdata = (mem_wb_out.MemtoReg)? mem_wb_out.read_data: mem_wb_out.AluOut; 
 
@@ -65,7 +65,7 @@ module datapath(
   assign Alu_b = (id_ex_out.AluSrc)? id_ex_out.immediate: id_ex_out.rdat2;
 
   //Immediate Generator(extender)
-  assign exif.imemload = if_id_out.instruction;
+  assign exif_in.imemload = if_id_out.instruction;
 
 
   //register file
@@ -100,10 +100,10 @@ module datapath(
   assign id_ex_in.branch = cruif.typ;
   assign id_ex_in.rdat1 = rfif.rdat1; 
   assign id_ex_in.rdat2 = rfif.rdat2;
-  assign id_ex_in.immediate = exif.extended_im;
+  assign id_ex_in.immediate = exif_in.extended_im;
   assign id_ex_in.rd = if_id_out.instruction[11:7];
   assign id_ex_in.jumpsel = cruif.jumpsel;
-
+ 
   //idex -> exmem
   assign ex_mem_in.pchalt = id_ex_out.pchalt;
   assign ex_mem_in.MemtoReg = id_ex_out.MemtoReg;
@@ -154,7 +154,7 @@ module datapath(
   end
 
   //control unit
-  assign cruif.imemload = dpif.imemload;  
+  assign cruif.imemload = if_id_out.instruction;  
 
   always_ff @(posedge CLK, negedge nRST) begin
     if(!nRST) begin
