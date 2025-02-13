@@ -69,28 +69,54 @@ module datapath (
 
 
   //register file
-  // assign rfif.wsel = cruif.Rd;
-  // assign rfif.rsel1 = cruif.Rs1;
-  // assign rfif.rsel2 = cruif.Rs2;
-  // assign rfif.WEN = cruif.RegWr && (dpif.ihit || dpif.dhit);
   assign rfif.rsel1 = if_id_out.instruction[19:15];
   assign rfif.rsel2 = if_id_out.instruction[24:20];
   assign rfif.wsel = mem_wb_out.rd;
   assign rfif.WEN = mem_wb_out.RegWr && (dpif.ihit || dpif.dhit);
-
+    always_comb begin
+    case(mem_wb_out.jumpsel) 
+      2'b00:rfif.wdat = outdata;
+      2'b01:rfif.wdat = mem_wb_out.AdderOut-mem_wb_out.immediate +4;
+      2'b10:rfif.wdat = mem_wb_out.immediate
+      2'b11:rfif.wdat = mem_wb_out.AdderOut;
+    endcase
+  end
 
 
   //assigning values for latches propagation
+
+  //ifid
+  assign if_id_in.instruction = dpif.imemload;
+  assign if_id_in.pc = dpif.imemaddr;
+
+  //ifid -> idex
+  assign id_ex_in.pc = if_id_out.pc;
+  assign id_ex_in.pchalt = dpif.halt;
+  assign id_ex_in.MemtoReg = cruif.MemtoReg;
+  assign id_ex_in.AluSrc = cruif.AluSrc;
+  assign id_ex_in.Aluop = cruif.Aluop;
+  assign id_ex_in.MemWr = cruif.MemWr;
+  assign id_ex_in.RegWr = cruif.RegWr;
+  assign id_ex_in.branch = cruif.branch;
+  assign id_ex_in.rdat1 = rfif.rdat1; 
+  assign id_ex_in.rdat2 = rfif.rdat2;
+  assign id_ex_in.immediate = exif.extended_im;
+  assign id_ex_in.rd = if_id_out.instruction[11:7];
+  assign id_ex_in.jumpsel = cruif.jumpsel;
+
   //idex -> exmem
-  assign ex_mem_in.pchalt=id_ex_out.pchalt;
-  assign ex_mem_in.RegWr=id_ex_out.RegWr;
-  assign ex_mem_in.Memwr=id_ex_out.MemWr;
-  assign ex_mem_in.immediate=id_ex_out.immediate;
-  assign ex_mem_in.pchalt=id_ex_out.pchalt;
-  assign ex_mem_in.rd=id_ex_out.rd;
-  assign ex_mem_in.jumpsel=id_ex_out.jumpsel;
-  assign ex_mem_in.rdat2=id_ex_out.rdat2;
-  assign ex_mem_in.rd=id_ex_out.rd;
+  assign ex_mem_in.pchalt = id_ex_out.pchalt;
+  assign ex_mem_in.MemtoReg = id_ex_out.MemtoReg;
+  assign ex_mem_in.Memwr = id_ex_out.MemWr;
+  assign ex_mem_in.PCSrc = deif.PCsrc;
+  assign ex_mem_in.RegWr = id_ex_out.RegWr;
+  assign ex_mem_in.jumpsel = id_ex_out.jumpsel;
+  assign ex_mem_in.AdderOut = id_ex_out.pc + id_ex_out.immediate;
+  assign ex_mem_in.AluOut = Aluout;
+  assign ex_mem_in.immediate = id_ex_out.immediate;
+  assign ex_mem_in.rdat2 = id_ex_out.rdat2;
+  assign ex_mem_in.rd = id_ex_out.rd;
+  
   //exmem -> memwb
   assign mem_wb_in.pchalt=ex_mem_out.pchalt;
   assign mem_wb_in.MemtoReg=ex_mem_out.MemtoReg;
@@ -103,17 +129,11 @@ module datapath (
 
   //assigning internal signals
   assign deif.typ=id_ex_out.branch;
-  assign 
   assign ex_mem_in.AdderOut=id_ex_out.pc+id_ex_out.immediate;
   assign mem_wb_in.read_data=dpif.dmemload;
-  always_comb begin
-    case(mem_wb_out.jumpsel) 
-      2'b00:rfif.wdat = outdata;
-      2'b01:rfif.wdat = mem_wb_out.AdderOut-mem_wb_out.immediate +4;
-      2'b10:rfif.wdat = mem_wb_out.immediate
-      2'b11:rfif.wdat = mem_wb_out.AdderOut;
-    endcase
-  end
+
+  //*=========================================
+  //need to fix these request unit signals connecting to memory controller
 
   //request unit
   assign cruif.dhit = dpif.dhit;
@@ -143,7 +163,6 @@ module datapath (
 
   always_comb begin
     iaddr = dpif.imemaddr;
-
     if(mem_wb_out.pchalt) iaddr = '0;
     else if(dpif.ihit) begin // && !(memREN  || memWEN) && !dhit)
       case (deif.PCSrc)
@@ -154,41 +173,21 @@ module datapath (
     end
     else if(mem_wb_out.pchalt) iaddr = '0;
   end
-
-
-  //assigning piplined signals for IF_ID_in
-  assign if_id_in.instruction = dpif.imemload;
-  assign if_id_in.pc = dpif.imemaddr;
-
-  //assigning pipelined signals for ID_EX_in
-  assign id_ex_in.instruction = if_id_out.instruction;
-  assign id_ex_in.pc = if_id_out.pc;
-
-  assign id_ex_in.pchalt = dpif.halt;
-  assign id_ex_in.MemtoReg = cruif.MemtoReg;
-  assign id_ex_in.AluSrc = cruif.AluSrc;
-  assign id_ex_in.Aluop = cruif.Aluop;
-  assign id_ex_in.MemWr = cruif.MemWr;
-  assign id_ex_in.RegWr = cruif.RegWr;
-  // assign id_ex_in.branch
-
-  assign id_ex_in.rdat1 = rfif.rdat1; 
-  assign id_ex_in.rdat2 = rfif.rdat2;
-  assign id_ex_in.immediate = exif.extended_im;
+  
   //output of the immediate generator
-  always_comb begin
-  if_id_nxt=if_id_out;
-  id_ex_nxt=id_ex_out;
-  ex_mem_nxt=ex_mem_out;
-  mem_wb_nxt=mem_wb_out;
-  if(dpif.ihit) begin
-  if_id_nxt=if_id_in;
-  id_ex_nxt=id_ex_in;
-  ex_mem_nxt=ex_mem_in;
-  mem_wb_nxt=mem_wb_in;
-  end
-  end
-  //IF_ID
+  // always_comb begin
+  //   if_id_nxt = if_id_out;
+  //   id_ex_nxt = id_ex_out;
+  //   ex_mem_nxt = ex_mem_out;
+  //   mem_wb_nxt = mem_wb_out;
+  //   if(dpif.ihit) begin
+  //     if_id_nxt = if_id_in;
+  //     id_ex_nxt = id_ex_in;
+  //     ex_mem_nxt = ex_mem_in;
+  //     mem_wb_nxt = mem_wb_in;
+  //   end
+  // end
+
   always_ff @(posedge CLK, negedge nRST) begin
     if(!nRST) begin
       if_id_out <= '0;
@@ -197,10 +196,12 @@ module datapath (
       mem_wb_out<= '0;
     end
     else begin
-      if_id_out <= if_id_nxt;
-      id_ex_out <= id_ex_nxt;
-      ex_mem_out<= ex_mem_nxt;
-      mem_wb_out<= mem_wb_nxt;
+      if(dpif.ihit) begin
+        if_id_out <= if_id_nxt;
+        id_ex_out <= id_ex_nxt;
+        ex_mem_out<= ex_mem_nxt;
+        mem_wb_out<= mem_wb_nxt;
+      end
     end
   end
 
