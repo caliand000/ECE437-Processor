@@ -15,11 +15,6 @@ interface decider_if;
   import cpu_types_pkg::*;
 
   logic     Zero,Negative;
-<<<<<<< HEAD
-  
-=======
-  logic [1:0] PCsrc;
->>>>>>> 0d7ec67ac6435c4f999f8535675111fffcd68007
   
   logic [7:0] typ;
   logic [1:0] PCsrc;

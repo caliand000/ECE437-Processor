@@ -8,9 +8,6 @@
 
 package pipeline_types_pkg;
 
-
-
-
   // word_t
   typedef logic [WORD_W-1:0] word_t;
 
@@ -49,6 +46,7 @@ package pipeline_types_pkg;
     word_t AluOut;
     word_t rdat2;
     logic [4:0] rd;
+    word_t immediate;
     logic [1:0] jumpsel;
   } EX_MEM;
 
