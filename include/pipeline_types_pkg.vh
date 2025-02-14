@@ -50,6 +50,7 @@ package pipeline_types_pkg;
     logic [4:0] rd;
     word_t immediate;
     logic [1:0] jumpsel;
+    word_t read_data;
   } EX_MEM;
 
     typedef struct packed {

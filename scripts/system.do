@@ -9,14 +9,13 @@ add wave -noupdate /system_tb/DUT/CPU/DP/iaddr
 add wave -noupdate -color White /system_tb/DUT/CPU/dcif/imemload
 add wave -noupdate -color White /system_tb/DUT/CPU/dcif/ihit
 add wave -noupdate -divider {Data Signals}
+add wave -noupdate /system_tb/DUT/CPU/dcif/dhit
+add wave -noupdate /system_tb/DUT/CPU/dcif/dmemload
 add wave -noupdate /system_tb/DUT/CPU/dcif/dmemREN
 add wave -noupdate /system_tb/DUT/CPU/dcif/dmemWEN
-add wave -noupdate /system_tb/DUT/CPU/dcif/dmemload
 add wave -noupdate /system_tb/DUT/CPU/dcif/dmemstore
 add wave -noupdate /system_tb/DUT/CPU/dcif/dmemaddr
-add wave -noupdate /system_tb/DUT/CPU/dcif/dhit
 add wave -noupdate -divider {Datapath Internal}
-add wave -noupdate -color Salmon /system_tb/DUT/CPU/DP/next
 add wave -noupdate -color Salmon /system_tb/DUT/CPU/DP/Alu_b
 add wave -noupdate -color Salmon /system_tb/DUT/CPU/DP/Aluout
 add wave -noupdate -color Salmon /system_tb/DUT/CPU/DP/outdata
@@ -28,13 +27,6 @@ add wave -noupdate /system_tb/DUT/CPU/DP/rfif/rsel2
 add wave -noupdate /system_tb/DUT/CPU/DP/rfif/wdat
 add wave -noupdate /system_tb/DUT/CPU/DP/rfif/rdat1
 add wave -noupdate /system_tb/DUT/CPU/DP/rfif/rdat2
-add wave -noupdate -divider {Request Unit}
-add wave -noupdate -color Gold /system_tb/DUT/CPU/DP/rfif/rdat2
-add wave -noupdate -color Gold /system_tb/DUT/CPU/DP/Aluout
-add wave -noupdate -color Gold /system_tb/DUT/CPU/DP/cruif/MemWr
-add wave -noupdate -color Gold /system_tb/DUT/CPU/DP/dpif/dhit
-add wave -noupdate -color Gold /system_tb/DUT/CPU/DP/REQUEST/ruif/dmemload
-add wave -noupdate /system_tb/DUT/CPU/DP/cruif/dmemaddr
 add wave -noupdate -divider {Ram Signals}
 add wave -noupdate /system_tb/DUT/prif/ramstate
 add wave -noupdate /system_tb/DUT/prif/ramREN
@@ -93,10 +85,15 @@ add wave -noupdate /system_tb/DUT/CPU/DP/REG_FILE/register
 add wave -noupdate -radix decimal /system_tb/DUT/CPU/DP/cruif/Imm
 add wave -noupdate /system_tb/DUT/CPU/DP/cruif/Rs1
 add wave -noupdate /system_tb/DUT/CPU/DP/cruif/Imm
+add wave -noupdate -divider {Pipeline Latch Signals}
+add wave -noupdate /system_tb/DUT/CPU/DP/if_id_out
+add wave -noupdate /system_tb/DUT/CPU/DP/id_ex_out
+add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out
+add wave -noupdate /system_tb/DUT/CPU/DP/mem_wb_out
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {2961475077 ps} 0}
+WaveRestoreCursors {{Cursor 1} {475768 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 270
+configure wave -namecolwidth 258
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1
@@ -110,4 +107,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {2961386550 ps} {2961537550 ps}
+WaveRestoreZoom {342900 ps} {688690 ps}

@@ -72,7 +72,7 @@ module datapath(
   assign rfif.rsel1 = if_id_out.instruction[19:15];
   assign rfif.rsel2 = if_id_out.instruction[24:20];
   assign rfif.wsel = mem_wb_out.rd;
-  assign rfif.WEN = mem_wb_out.RegWr && (dpif.ihit || dpif.dhit);
+  assign rfif.WEN = mem_wb_out.RegWr; //&& (dpif.ihit ||t dpif.dhi);
     always_comb begin
     case(mem_wb_out.jumpsel) 
       2'b00:rfif.wdat = outdata;
@@ -116,6 +116,7 @@ module datapath(
   assign ex_mem_in.immediate = id_ex_out.immediate;
   assign ex_mem_in.rdat2 = id_ex_out.rdat2;
   assign ex_mem_in.rd = id_ex_out.rd;
+  assign ex_mem_in.read_data =dpif.dhit ? dpif.dmemload : ex_mem_out.read_data;
   
   //exmem -> memwb
   assign mem_wb_in.pchalt=ex_mem_out.pchalt;
@@ -126,7 +127,7 @@ module datapath(
   assign mem_wb_in.rd=ex_mem_out.rd;
   assign mem_wb_in.AluOut=ex_mem_out.AluOut;
   assign mem_wb_in.AdderOut=ex_mem_out.AdderOut;
-  assign mem_wb_in.read_data=dpif.dmemload;
+  assign mem_wb_in.read_data= ex_mem_out.read_data;
 
 
   //assigning internal signals
@@ -148,8 +149,8 @@ module datapath(
         dpif.dmemREN <= 0;
         dpif.dmemWEN <= 0;
       end
-      else if(ex_mem_out.MemWr == 2'b01 && dpif.ihit) dpif.dmemWEN <= 1;
-      else if(ex_mem_out.MemWr == 2'b10 && dpif.ihit) dpif.dmemREN <= 0;
+      else if(id_ex_out.MemWr == 2'b01 && dpif.ihit) dpif.dmemWEN <= 1;
+      else if(id_ex_out.MemWr == 2'b10 && dpif.ihit) dpif.dmemREN <= 1;
     end
   end
 
@@ -207,6 +208,9 @@ module datapath(
         id_ex_out <= id_ex_in;
         ex_mem_out<= ex_mem_in;
         mem_wb_out<= mem_wb_in;
+      end
+      else if(dpif.dhit) begin
+        ex_mem_out.read_data<= ex_mem_in.read_data;
       end
     end
   end
