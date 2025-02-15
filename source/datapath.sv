@@ -50,29 +50,29 @@ module datapath(
   MEM_WB mem_wb_in;
   MEM_WB mem_wb_out;
   MEM_WB mem_wb_nxt;
-  //instance of control unit and request unit
+
+
+  //================Instances================
   control_unit      CONTROL(CLK, nRST, cruif);
-  
   decider           Branch(deif);
-  //need to create instance of ALU, and register file?
   register_file     REG_FILE(CLK, nRST, rfif);
   alu               ALU(.A(id_ex_out.rdat1), .B(Alu_b), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
   extender          EX(exif_in);
+
   //interface/signal connections
   assign outdata = (mem_wb_out.MemtoReg)? mem_wb_out.read_data: mem_wb_out.AluOut; 
 
-  //ALU
+  //================ALU================
   assign Alu_b = (id_ex_out.AluSrc)? id_ex_out.immediate: id_ex_out.rdat2;
 
-  //Immediate Generator(extender)
+  //================Immediate Generator(Extender)================
   assign exif_in.imemload = if_id_out.instruction;
 
-
-  //register file
+  //================Register File================
   assign rfif.rsel1 = if_id_out.instruction[19:15];
   assign rfif.rsel2 = if_id_out.instruction[24:20];
   assign rfif.wsel = mem_wb_out.rd;
-  assign rfif.WEN = mem_wb_out.RegWr; //&& (dpif.ihit ||t dpif.dhi);
+  assign rfif.WEN = mem_wb_out.RegWr;
     always_comb begin
     case(mem_wb_out.jumpsel) 
       2'b00:rfif.wdat = outdata;
@@ -82,14 +82,11 @@ module datapath(
     endcase
   end
 
-
-  //assigning values for latches propagation
-
-  //ifid
+  //================IF/ID================
   assign if_id_in.instruction = dpif.imemload;
   assign if_id_in.pc = dpif.imemaddr;
 
-  //ifid -> idex
+  //================IF/ID -> ID/EX================
   assign id_ex_in.pc = if_id_out.pc;
   assign id_ex_in.pchalt = cruif.pchalt;
   assign id_ex_in.MemtoReg = cruif.MemtoReg;
@@ -104,7 +101,7 @@ module datapath(
   assign id_ex_in.rd = if_id_out.instruction[11:7];
   assign id_ex_in.jumpsel = cruif.jumpsel;
  
-  //idex -> exmem
+  //================ID/EX -> EX/MEM================
   assign ex_mem_in.pchalt = id_ex_out.pchalt;
   assign ex_mem_in.MemtoReg = id_ex_out.MemtoReg;
   assign ex_mem_in.MemWr = id_ex_out.MemWr;
@@ -118,7 +115,7 @@ module datapath(
   assign ex_mem_in.rd = id_ex_out.rd;
   assign ex_mem_in.read_data =dpif.dhit ? dpif.dmemload : ex_mem_out.read_data;
   
-  //exmem -> memwb
+  //================EX/MEM -> MEM/WB================
   assign mem_wb_in.pchalt=ex_mem_out.pchalt;
   assign mem_wb_in.MemtoReg=ex_mem_out.MemtoReg;
   assign mem_wb_in.RegWr=ex_mem_out.RegWr;
@@ -129,16 +126,13 @@ module datapath(
   assign mem_wb_in.AdderOut=ex_mem_out.AdderOut;
   assign mem_wb_in.read_data= ex_mem_out.read_data;
 
-
   //assigning internal signals
-  assign deif.typ=id_ex_out.branch;
-  
- 
-  
+  assign deif.typ=id_ex_out.branch; 
   assign dpif.imemREN = 1;
   assign dpif.dmemstore = ex_mem_out.rdat2;
   assign dpif.dmemaddr = ex_mem_out.AluOut;
 
+  //================Connections to Data Memory/Memory Controller================
   always_ff @(posedge CLK, negedge nRST) begin
     if(!nRST) begin
       dpif.dmemREN <= 0;
@@ -154,9 +148,10 @@ module datapath(
     end
   end
 
-  //control unit
+  //================control unit================
   assign cruif.imemload = if_id_out.instruction;  
 
+  //================Program Count Logic================
   always_ff @(posedge CLK, negedge nRST) begin
     if(!nRST) begin
       dpif.imemaddr <= '0;
@@ -171,30 +166,16 @@ module datapath(
   always_comb begin
     iaddr = dpif.imemaddr;
     if(mem_wb_out.pchalt) iaddr = '0;
-    else if(dpif.ihit) begin // && !(memREN  || memWEN) && !dhit)
+    else if(dpif.ihit) begin
       case (deif.PCsrc)
         2'b00: iaddr =dpif.imemaddr+ 4;
         2'b01: iaddr = Aluout;
         2'b10: iaddr = id_ex_out.pc+id_ex_out.immediate;
       endcase
     end
-    // else if(mem_wb_out.pchalt) iaddr = '0;
   end
-  
-  //output of the immediate generator
-  // always_comb begin
-  //   if_id_nxt = if_id_out;
-  //   id_ex_nxt = id_ex_out;
-  //   ex_mem_nxt = ex_mem_out;
-  //   mem_wb_nxt = mem_wb_out;
-  //   if(dpif.ihit) begin
-  //     if_id_nxt = if_id_in;
-  //     id_ex_nxt = id_ex_in;
-  //     ex_mem_nxt = ex_mem_in;
-  //     mem_wb_nxt = mem_wb_in;
-  //   end
-  // end
 
+  //================Latch Logic================
   always_ff @(posedge CLK, negedge nRST) begin
     if(!nRST) begin
       if_id_out <= '0;
@@ -214,6 +195,4 @@ module datapath(
       end
     end
   end
-
-
 endmodule
