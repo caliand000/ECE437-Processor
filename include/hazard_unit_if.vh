@@ -4,26 +4,26 @@
 
   holds control and request unit interface signals
 */
-`ifndef FORWARD_UNIT_IF_VH
-`define FORWARD_UNIT_IF_VH
+`ifndef HAZARD_UNIT_IF_VH
+`define HAZARD_UNIT_IF_VH
 
 
 // types
 `include "cpu_types_pkg.vh"
 
-interface forward_unit_if;
+interface hazard_unit_if;
   // import types
   import cpu_types_pkg::*;
 
   //signals
     regbits_t rs1, rs2;
-    regbits_t Rd_Mem, Rd_WB, RegWR_mem, RegWR_WB;
-    logic [1:0] Alu_in1, Alu_in2;
+    regbits_t Rd;
+    logic Flush,Zero_controls,Halt,latch_en,Pcsrc,Memtoreg; 
 
   // control unit ports
-  modport fu (
-    input  rs1, rs2, Rd_Mem, RegWR_mem, RegWR_WB, Rd_WB,
-    output Alu_in1, Alu_in2
+  modport hu (
+    input  rs1, rs2, Rd,Pcsrc,Memtoreg,
+    output Flush,Zero_controls,Halt,latch_en;
   );
 
 
