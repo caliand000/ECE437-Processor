@@ -23,6 +23,8 @@ package pipeline_types_pkg;
 
     typedef struct packed {
     word_t pc;
+    regbits_t rs1;
+    regbits_t rs2;
     logic pchalt;
     logic MemtoReg;
     logic AluSrc;

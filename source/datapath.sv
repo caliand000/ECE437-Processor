@@ -11,6 +11,8 @@
 `include "control_request_unit_if.vh"
 `include "extender_if.vh"
 `include "decider_if.vh"
+`include "hazard_unit_if.vh"
+`include "forward_unit_if.vh"
 // alu op, mips op, and instruction type
 `include "cpu_types_pkg.vh"
 `include "pipeline_types_pkg.vh"
@@ -28,11 +30,14 @@ module datapath(
   register_file_if rfif();
   extender_if exif_in();
   decider_if deif();
+  hazard_unit_if huif();
+  forward_unit_if fuif();
   // pc init
   parameter PC_INIT = 0;
 
   //internal signals
-  word_t iaddr, Aluout, outdata, Alu_b;
+  word_t iaddr, Aluout, outdata, Alu_a, Alu_b, Alu_c;
+  logic [1:0] alu_a_sel, alu_b_sel;
 
   //internal pipelined signals
   IF_ID if_id_in;
@@ -56,14 +61,31 @@ module datapath(
   control_unit      CONTROL(CLK, nRST, cruif);
   decider           Branch(deif);
   register_file     REG_FILE(CLK, nRST, rfif);
-  alu               ALU(.A(id_ex_out.rdat1), .B(Alu_b), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
+  alu               ALU(.A(alu_a), .B(Alu_b), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
   extender          EX(exif_in);
+  hazard_unit       HAZARD(huif);
+  forward_unit      FORWARD(fuif);
 
   //interface/signal connections
   assign outdata = (mem_wb_out.MemtoReg)? mem_wb_out.read_data: mem_wb_out.AluOut; 
 
   //================ALU================
-  assign Alu_b = (id_ex_out.AluSrc)? id_ex_out.immediate: id_ex_out.rdat2;
+  always_comb begin
+    case(alu_a_sel)
+      2'b00:alu_a = id_ex_out.rdat1;
+      2'b01:alu_a = rfif.wdat;
+      2'b10:alu_a = ex_mem_out.AluOut;
+    endcase
+
+    case(alu_b_sel)
+      2'b00:alu_b = id_ex_out.rdat2;
+      2'b01:alu_b = rfif.wdat;
+      2'b10:alu_b = ex_mem_out.AluOut;
+    endcase
+  end
+
+
+  assign Alu_c = (id_ex_out.AluSrc)? id_ex_out.immediate: id_ex_out.rdat2;
 
   //================Immediate Generator(Extender)================
   assign exif_in.imemload = if_id_out.instruction;
@@ -149,7 +171,15 @@ module datapath(
   end
 
   //================control unit================
-  assign cruif.imemload = if_id_out.instruction;  
+  assign cruif.imemload = if_id_out.instruction;
+
+  //================Forward unit================  
+  assign fuif.rs1 = id_ex_out.rs1;
+  assign fuif.rs2 = id_ex_out.rs2;
+  assign fuif.Rd_Mem = ex_mem_out.rd;
+  assign fuif.Rd_WB = mem_wb_out.rd;
+  assign fuif.RegWR_mem = ex_mem_out.RegWr;
+  assign fuif.RegWR_WB = mem_wb_out.RegWr;
 
   //================Program Count Logic================
   always_ff @(posedge CLK, negedge nRST) begin
