@@ -4,8 +4,8 @@
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf hazard_unit_tb.wlf work.hazard_unit_tb 
-# Start time: 17:21:44 on Feb 17,2025
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf forward_unit_tb.wlf work.forward_unit_tb 
+# Start time: 17:42:12 on Feb 17,2025
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # //  Questa Sim-64
 # //  Version 2021.4 linux_x86_64 Oct 13 2021
@@ -23,9 +23,9 @@
 # //
 # Loading sv_std.std
 # Loading work.cpu_types_pkg(fast)
-# Loading work.hazard_unit_tb(fast)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.hazard_unit(fast)
+# Loading work.forward_unit_tb(fast)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.forward_unit(fast)
 # run -all
-# End time: 17:21:45 on Feb 17,2025, Elapsed time: 0:00:01
+# End time: 17:42:13 on Feb 17,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

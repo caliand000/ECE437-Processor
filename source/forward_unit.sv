@@ -26,17 +26,17 @@ module forward_unit (
     fuif.Alu_in1 = 2'b00;
     fuif.Alu_in2 = 2'b00;
 
-    if((fuif.rs1 == fuif.Rd_Mem) && (fuif.RegWR_mem)) begin
+    if((fuif.rs1 == fuif.Rd_Mem && (fuif.Rd_Mem != 0)) && (fuif.RegWR_mem)) begin
         fuif.Alu_in1 = 2'b10; 
     end
-    else if((fuif.rs1 == fuif.Rd_WB) && (fuif.RegWR_WB)) begin
+    else if((fuif.rs1 == fuif.Rd_WB && (fuif.Rd_WB != 0)) && (fuif.RegWR_WB)) begin
         fuif.Alu_in1 = 2'b01;
     end
 
-    if((fuif.rs2 == fuif.Rd_Mem) && (fuif.RegWR_mem)) begin
+    if((fuif.rs2 == fuif.Rd_Mem && (fuif.Rd_Mem != 0)) && (fuif.RegWR_mem)) begin
         fuif.Alu_in2 = 2'b10; 
     end
-    else if((fuif.rs2 == fuif.Rd_WB) && (fuif.RegWR_WB)) begin
+    else if((fuif.rs2 == fuif.Rd_WB && (fuif.Rd_WB != 0)) && (fuif.RegWR_WB)) begin
         fuif.Alu_in2 = 2'b01;
     end
   end
