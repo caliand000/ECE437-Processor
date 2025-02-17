@@ -1,7 +1,12 @@
-# 
-# 
-# 
-# 
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf hazard_unit_tb.wlf work.hazard_unit_tb 
+# Start time: 17:21:44 on Feb 17,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # //  Questa Sim-64
 # //  Version 2021.4 linux_x86_64 Oct 13 2021
 # //
@@ -16,25 +21,11 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -do "view objects; do scripts/forward_unit.do; run -all;" -onfinish stop -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf forward_unit_tb.wlf work.forward_unit_tb 
-# Start time: 14:30:02 on Feb 17,2025
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # Loading sv_std.std
 # Loading work.cpu_types_pkg(fast)
-# Loading work.forward_unit_tb(fast)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.forward_unit(fast)
-# view objects
-# .main_pane.objects.interior.cs.body.tree
-#  do scripts/forward_unit.do
-#  run -all
-# Break in Module forward_unit_tb at testbench/forward_unit_tb.sv line 83
-# 
-# End time: 14:30:17 on Feb 17,2025, Elapsed time: 0:00:15
+# Loading work.hazard_unit_tb(fast)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.hazard_unit(fast)
+# run -all
+# End time: 17:21:45 on Feb 17,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

@@ -23,7 +23,7 @@ interface hazard_unit_if;
   // control unit ports
   modport hu (
     input  rs1, rs2, Rd,Pcsrc,Memtoreg,
-    output Flush,Zero_controls,Halt,latch_en;
+    output Flush,Zero_controls,Halt,latch_en
   );
 
 

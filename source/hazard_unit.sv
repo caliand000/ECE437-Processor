@@ -24,10 +24,8 @@ module hazard_unit (
   huif.Halt=0;
   huif.Zero_controls=0;
   end
-  end
 
-  always_comb begin
-  if(huif.PCsrc) begin
+  if(huif.Pcsrc) begin
   huif.latch_en=0;
   huif.Halt=1;
   huif.Zero_controls=1;
