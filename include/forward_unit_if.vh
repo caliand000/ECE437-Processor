@@ -18,12 +18,13 @@ interface forward_unit_if;
   //signals
     regbits_t rs1, rs2;
     regbits_t Rd_Mem, Rd_WB, RegWR_mem, RegWR_WB;
-    logic [1:0] Alu_in1, Alu_in2;
+    logic [1:0] Alu_in1, Alu_in2, jumpsel;
+    logic imm_sel;
 
   // control unit ports
   modport fu (
-    input  rs1, rs2, Rd_Mem, RegWR_mem, RegWR_WB, Rd_WB,
-    output Alu_in1, Alu_in2
+    input  rs1, rs2, Rd_Mem, RegWR_mem, RegWR_WB, Rd_WB, jumpsel,
+    output Alu_in1, Alu_in2, imm_sel
   );
 
 

@@ -1,7 +1,7 @@
-processing file asmFiles/test.ldst2.asm (1 of 1)
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+processing file asmFiles/test.beqtaken.asm (1 of 1)
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -20,10 +20,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/alu.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:52 on Feb 13,2025
+Start time: 12:26:35 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/alu.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling module alu
@@ -31,11 +31,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	alu
-End time: 19:19:52 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:35 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -54,10 +54,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/cache_control_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:52 on Feb 13,2025
+Start time: 12:26:35 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/cache_control_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface caches_if
@@ -66,11 +66,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 19:19:52 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:36 on Feb 18,2025, Elapsed time: 0:00:01
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -89,20 +89,20 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/caches.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:52 on Feb 13,2025
+Start time: 12:26:36 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/caches.sv 
 -- Compiling module caches
 
 Top level modules:
 	caches
-End time: 19:19:52 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:36 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -121,10 +121,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/caches_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:52 on Feb 13,2025
+Start time: 12:26:36 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/caches_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface caches_if
@@ -132,11 +132,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 19:19:53 on Feb 13,2025, Elapsed time: 0:00:01
+End time: 12:26:36 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -155,10 +155,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/control_request_unit_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:53 on Feb 13,2025
+Start time: 12:26:36 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/control_request_unit_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface control_request_unit_if
@@ -166,11 +166,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 19:19:53 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:36 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -189,10 +189,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/control_unit.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:53 on Feb 13,2025
+Start time: 12:26:36 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/control_unit.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface control_request_unit_if
@@ -201,11 +201,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	control_unit
-End time: 19:19:53 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:36 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -224,10 +224,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/cpu_ram_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:53 on Feb 13,2025
+Start time: 12:26:36 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/cpu_ram_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface cpu_ram_if
@@ -235,11 +235,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 19:19:53 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:36 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -258,20 +258,20 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/cpu_types_pkg.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:53 on Feb 13,2025
+Start time: 12:26:37 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/cpu_types_pkg.vh 
 -- Compiling package cpu_types_pkg
 
 Top level modules:
 	--none--
-End time: 19:19:53 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:37 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -290,10 +290,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/datapath.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:53 on Feb 13,2025
+Start time: 12:26:37 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/datapath.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface datapath_cache_if
@@ -301,17 +301,19 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 -- Compiling interface control_request_unit_if
 -- Compiling interface extender_if
 -- Compiling interface decider_if
+-- Compiling interface hazard_unit_if
+-- Compiling interface forward_unit_if
 -- Compiling package pipeline_types_pkg
 -- Compiling module datapath
 -- Importing package pipeline_types_pkg
 
 Top level modules:
 	datapath
-End time: 19:19:53 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:37 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -330,10 +332,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/datapath_cache_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:53 on Feb 13,2025
+Start time: 12:26:37 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/datapath_cache_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface datapath_cache_if
@@ -341,11 +343,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 19:19:54 on Feb 13,2025, Elapsed time: 0:00:01
+End time: 12:26:37 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -364,10 +366,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/decider.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:54 on Feb 13,2025
+Start time: 12:26:37 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/decider.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface decider_if
@@ -378,11 +380,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	decider
-End time: 19:19:54 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:37 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -401,10 +403,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/decider_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:54 on Feb 13,2025
+Start time: 12:26:37 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/decider_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface decider_if
@@ -412,11 +414,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 19:19:54 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:37 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -435,10 +437,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/extender.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:54 on Feb 13,2025
+Start time: 12:26:37 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/extender.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface extender_if
@@ -457,11 +459,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	extender
-End time: 19:19:54 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:37 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 4
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -480,10 +482,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/extender_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:54 on Feb 13,2025
+Start time: 12:26:37 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/extender_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface extender_if
@@ -491,11 +493,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 19:19:54 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:38 on Feb 18,2025, Elapsed time: 0:00:01
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -514,10 +516,148 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/forward_unit.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 12:26:38 on Feb 18,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/forward_unit.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling interface forward_unit_if
+-- Importing package cpu_types_pkg
+-- Compiling module forward_unit
+
+Top level modules:
+	forward_unit
+End time: 12:26:38 on Feb 18,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
+
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/forward_unit_if.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 12:26:38 on Feb 18,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/forward_unit_if.vh 
+-- Compiling package cpu_types_pkg
+-- Compiling interface forward_unit_if
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	--none--
+End time: 12:26:38 on Feb 18,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
+
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/hazard_unit.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 12:26:38 on Feb 18,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/hazard_unit.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling interface hazard_unit_if
+-- Importing package cpu_types_pkg
+-- Compiling module hazard_unit
+
+Top level modules:
+	hazard_unit
+End time: 12:26:38 on Feb 18,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
+
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/hazard_unit_if.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 12:26:38 on Feb 18,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/hazard_unit_if.vh 
+-- Compiling package cpu_types_pkg
+-- Compiling interface hazard_unit_if
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	--none--
+End time: 12:26:38 on Feb 18,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
+
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/memory_control.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:54 on Feb 13,2025
+Start time: 12:26:38 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/memory_control.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface caches_if
@@ -527,11 +667,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	memory_control
-End time: 19:19:54 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:38 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -550,20 +690,20 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/pipeline.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:54 on Feb 13,2025
+Start time: 12:26:38 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/pipeline.sv 
 -- Compiling module pipeline
 
 Top level modules:
 	pipeline
-End time: 19:19:55 on Feb 13,2025, Elapsed time: 0:00:01
+End time: 12:26:39 on Feb 18,2025, Elapsed time: 0:00:01
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -582,10 +722,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/pipeline_types_pkg.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:55 on Feb 13,2025
+Start time: 12:26:39 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/pipeline_types_pkg.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling package pipeline_types_pkg
@@ -593,11 +733,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 19:19:55 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:39 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -616,10 +756,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/ram.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:55 on Feb 13,2025
+Start time: 12:26:39 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/ram.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface cpu_ram_if
@@ -628,11 +768,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	ram
-End time: 19:19:55 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:39 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0, Suppressed Errors: 1
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -651,10 +791,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/register_file.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:55 on Feb 13,2025
+Start time: 12:26:39 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/register_file.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface register_file_if
@@ -663,11 +803,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	register_file
-End time: 19:19:55 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:39 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -686,10 +826,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/register_file_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:55 on Feb 13,2025
+Start time: 12:26:39 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/register_file_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface register_file_if
@@ -697,11 +837,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 19:19:55 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:39 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -720,10 +860,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/system.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:55 on Feb 13,2025
+Start time: 12:26:39 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/system.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface system_if
@@ -732,11 +872,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	system
-End time: 19:19:55 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:39 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -755,10 +895,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/system_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:55 on Feb 13,2025
+Start time: 12:26:39 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/system_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface system_if
@@ -766,11 +906,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 19:19:56 on Feb 13,2025, Elapsed time: 0:00:01
+End time: 12:26:40 on Feb 18,2025, Elapsed time: 0:00:01
 Errors: 0, Warnings: 0
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch19.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -789,10 +929,10 @@ Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
 		'make clean_fpga' to clean fpga dir
 	Obviously a testbench file must exist for some options.
 
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ece437g/ECE-437'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  testbench/system_tb.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:19:56 on Feb 13,2025
+Start time: 12:26:40 on Feb 18,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 testbench/system_tb.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface system_if
@@ -802,7 +942,7 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	system_tb
-End time: 19:19:56 on Feb 13,2025, Elapsed time: 0:00:00
+End time: 12:26:40 on Feb 18,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 Reading pref.tcl
 
@@ -815,11 +955,11 @@ Reading pref.tcl
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 19:19:57 on Feb 13,2025
+# Start time: 12:26:41 on Feb 18,2025
 # ** Note: (vsim-3812) Design is being optimized...
-###### source/datapath.sv(59):   alu               ALU(.A(id_ex_out.rdat1), .B(Alu_b), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
-# ** Warning: source/datapath.sv(59): (vopt-2685) [TFMPC] - Too few port connections for 'ALU'.  Expected 7, found 6.
-# ** Warning: source/datapath.sv(59): (vopt-2718) [TFMPC] - Missing connection for port 'overflow'.
+###### source/datapath.sv(63):   alu               ALU(.A(Alu_d), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
+# ** Warning: source/datapath.sv(63): (vopt-2685) [TFMPC] - Too few port connections for 'ALU'.  Expected 7, found 6.
+# ** Warning: source/datapath.sv(63): (vopt-2718) [TFMPC] - Missing connection for port 'overflow'.
 ###### include/cache_control_if.vh(79):       iREN[1] = cif1.iREN;
 # ** Warning: include/cache_control_if.vh(79): (vopt-2576) [BSOB] - Bit-select into 'iREN' is out of bounds.
 ###### include/cache_control_if.vh(80):       dREN[1] = cif1.dREN;
@@ -889,6 +1029,8 @@ Reading pref.tcl
 # Loading work.register_file_if(fast__1)
 # Loading work.extender_if(fast__1)
 # Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
 # Loading work.control_unit(fast)
 # Loading work.decider_sv_unit(fast)
 # Loading work.decider(fast)
@@ -896,56 +1038,23 @@ Reading pref.tcl
 # Loading work.alu(fast)
 # Loading work.extender_sv_unit(fast)
 # Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
 # Loading work.caches(fast)
 # Loading work.memory_control(fast)
 # Loading work.ram(fast)
 # Loading altera_mf_ver.altsyncram(fast)
 # ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
-#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 59
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
 # run -all
 # Starting Processor.
-# Halted at 1840 time and ran for         45 cycles.
+# Halted at 360 time and ran for          8 cycles.
 # Starting memory dump.
 # Finished memory dump.
-# End time: 19:19:58 on Feb 13,2025, Elapsed time: 0:00:01
+# End time: 12:26:42 on Feb 18,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 23, Suppressed Errors: 1
-34 instructions
-processing file asmFiles/test.ldst2.asm (1 of 1)
-make[1]: Entering directory '/home/ecegridfs/a/437mg005/ece437/processors'
-
-Hello 437mg005@cparch12.ecn.purdue.edu, you forgot some targets.
-	If you need instructions to use this Makefile:
-		'make <module_name>' to build module
-		'make <module_name>_tb' to build module + testbench
-		'make <module_name>.sim' to sim tb on cmd line
-		'make <module_name>.wav' to sim tb with gui
-		'make <module_name>.syn' to synthesize functional net list
-		'make <module_name>.synt' to synthesize timing net list
-	Lint Rules:
-		'make <module_name>.lint' to run the linter on module
-		'make <module_name>_tb.lint' to run the linter on module testbench
-	Clean Rules:
-		'make clean' to clean everything
-		'make clean_sim' to clean simulation logs and work lib
-		'make clean_asm' to clean hex and testasm output
-		'make clean_map' to clean mapped dir
-		'make clean_fpga' to clean fpga dir
-	Obviously a testbench file must exist for some options.
-
-make[1]: Leaving directory '/home/ecegridfs/a/437mg005/ece437/processors'
-vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/register_file.sv
-QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 19:21:17 on Feb 13,2025
-vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/register_file.sv 
--- Compiling package cpu_types_pkg
--- Compiling interface register_file_if
--- Importing package cpu_types_pkg
--- Compiling module register_file
-
-Top level modules:
-	register_file
-End time: 19:21:17 on Feb 13,2025, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
+3 instructions
+processing file asmFiles/test.beqnottaken.asm (1 of 24)
 Reading pref.tcl
 
 # 2021.4
@@ -957,73 +1066,7 @@ Reading pref.tcl
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 19:21:18 on Feb 13,2025
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.caches(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
-#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 59
-# run -all
-# Starting Processor.
-# Halted at 1600 time and ran for         39 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 19:21:19 on Feb 13,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 1
-28 instructions
-processing file asmFiles/test.ldst1.asm (1 of 2)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 19:21:45 on Feb 13,2025
+# Start time: 12:27:21 on Feb 18,2025
 # ** Note: (vsim-8009) Loading existing optimized design _opt
 # //  Questa Sim-64
 # //  Version 2021.4 linux_x86_64 Oct 13 2021
@@ -1056,6 +1099,8 @@ Reading pref.tcl
 # Loading work.register_file_if(fast__1)
 # Loading work.extender_if(fast__1)
 # Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
 # Loading work.control_unit(fast)
 # Loading work.decider_sv_unit(fast)
 # Loading work.decider(fast)
@@ -1063,21 +1108,910 @@ Reading pref.tcl
 # Loading work.alu(fast)
 # Loading work.extender_sv_unit(fast)
 # Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
 # Loading work.caches(fast)
 # Loading work.memory_control(fast)
 # Loading work.ram(fast)
 # Loading altera_mf_ver.altsyncram(fast)
 # ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
-#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 59
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
 # run -all
 # Starting Processor.
-# Halted at 960 time and ran for         23 cycles.
+# Halted at 240 time and ran for          5 cycles.
 # Starting memory dump.
 # Finished memory dump.
-# End time: 19:21:46 on Feb 13,2025, Elapsed time: 0:00:01
+# End time: 12:27:22 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+3 instructions
+processing file asmFiles/test.beqtaken.asm (2 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:23 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 360 time and ran for          8 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:23 on Feb 18,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+3 instructions
+processing file asmFiles/test.bgenottaken.asm (3 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:24 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 240 time and ran for          5 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:25 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+3 instructions
+processing file asmFiles/test.bgetaken.asm (4 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:26 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 400 time and ran for          9 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:27 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+4 instructions
+processing file asmFiles/test.bgeunottaken.asm (5 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:28 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 400 time and ran for          9 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:29 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+3 instructions
+--- memsim.hex	2025-02-18 12:27:29.068077658 -0500
++++ memcpu.hex	2025-02-18 12:27:29.052077048 -0500
+@@ -2,6 +2,5 @@
+ :040001000030611357
+ :040002000020F46383
+ :04000300FFFFFFFFFD
+-:04000400003126A3FE
+ :04000500FFFFFFFFFB
+ :00000001FF
+processing file asmFiles/test.bgeutaken.asm (6 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:30 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 240 time and ran for          5 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:30 on Feb 18,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+4 instructions
+--- memsim.hex	2025-02-18 12:27:30.827144661 -0500
++++ memcpu.hex	2025-02-18 12:27:30.809143975 -0500
+@@ -2,5 +2,6 @@
+ :040001000030611357
+ :040002000020F46383
+ :04000300FFFFFFFFFD
++:04000400003126A3FE
+ :04000500FFFFFFFFFB
+ :00000001FF
+processing file asmFiles/test.bltnottaken.asm (7 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:31 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 240 time and ran for          5 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:32 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+3 instructions
+processing file asmFiles/test.blttaken.asm (8 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:33 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 240 time and ran for          5 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:34 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+4 instructions
+--- memsim.hex	2025-02-18 12:27:34.327277981 -0500
++++ memcpu.hex	2025-02-18 12:27:34.310277334 -0500
+@@ -2,5 +2,6 @@
+ :040001000060611327
+ :040002000020C463B3
+ :04000300FFFFFFFFFD
++:04000400003125237F
+ :04000500FFFFFFFFFB
+ :00000001FF
+processing file asmFiles/test.bltunottaken.asm (9 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:35 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 400 time and ran for          9 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:36 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+3 instructions
+--- memsim.hex	2025-02-18 12:27:36.098345441 -0500
++++ memcpu.hex	2025-02-18 12:27:36.077344641 -0500
+@@ -1,7 +1,6 @@
+ :0400000000306093D9
+ :040001000020611367
+ :040002000020E46393
+-:04000300FFFFFFFFFD
+ :04000400003126237E
+ :04000500FFFFFFFFFB
+ :00000001FF
+processing file asmFiles/test.bltutaken.asm (10 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:37 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 400 time and ran for          9 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:37 on Feb 18,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+4 instructions
+processing file asmFiles/test.bnenottaken.asm (11 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:38 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 240 time and ran for          5 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:39 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+3 instructions
+processing file asmFiles/test.bnetaken.asm (12 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:40 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 400 time and ran for          9 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:41 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+4 instructions
+processing file asmFiles/test.branchjump1.asm (13 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:42 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 680 time and ran for         16 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:43 on Feb 18,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 1
 13 instructions
-processing file asmFiles/test.ldst2.asm (2 of 2)
+--- memsim.hex	2025-02-18 12:27:43.191615625 -0500
++++ memcpu.hex	2025-02-18 12:27:43.173614939 -0500
+@@ -16,6 +16,5 @@
+ :04000F00004526235F
+ :04001000FEB094E3C7
+ :04001100FFFFFFFFEF
+-:0400220000000024B6
+-:040024000000003C9C
++:0400240000000024B4
+ :00000001FF
+processing file asmFiles/test.controlflowhazard.asm (14 of 24)
 Reading pref.tcl
 
 # 2021.4
@@ -1089,7 +2023,7 @@ Reading pref.tcl
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 19:21:46 on Feb 13,2025
+# Start time: 12:27:44 on Feb 18,2025
 # ** Note: (vsim-8009) Loading existing optimized design _opt
 # //  Questa Sim-64
 # //  Version 2021.4 linux_x86_64 Oct 13 2021
@@ -1122,6 +2056,8 @@ Reading pref.tcl
 # Loading work.register_file_if(fast__1)
 # Loading work.extender_if(fast__1)
 # Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
 # Loading work.control_unit(fast)
 # Loading work.decider_sv_unit(fast)
 # Loading work.decider(fast)
@@ -1129,21 +2065,23 @@ Reading pref.tcl
 # Loading work.alu(fast)
 # Loading work.extender_sv_unit(fast)
 # Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
 # Loading work.caches(fast)
 # Loading work.memory_control(fast)
 # Loading work.ram(fast)
 # Loading altera_mf_ver.altsyncram(fast)
 # ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
-#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 59
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
 # run -all
 # Starting Processor.
-# Halted at 1600 time and ran for         39 cycles.
+# Halted at 480 time and ran for         11 cycles.
 # Starting memory dump.
 # Finished memory dump.
-# End time: 19:21:47 on Feb 13,2025, Elapsed time: 0:00:01
+# End time: 12:27:44 on Feb 18,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1
-28 instructions
-processing file asmFiles/test.ldst1.asm (1 of 2)
+6 instructions
+processing file asmFiles/test.datahazard.asm (15 of 24)
 Reading pref.tcl
 
 # 2021.4
@@ -1155,7 +2093,7 @@ Reading pref.tcl
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 19:30:23 on Feb 13,2025
+# Start time: 12:27:45 on Feb 18,2025
 # ** Note: (vsim-8009) Loading existing optimized design _opt
 # //  Questa Sim-64
 # //  Version 2021.4 linux_x86_64 Oct 13 2021
@@ -1188,6 +2126,8 @@ Reading pref.tcl
 # Loading work.register_file_if(fast__1)
 # Loading work.extender_if(fast__1)
 # Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
 # Loading work.control_unit(fast)
 # Loading work.decider_sv_unit(fast)
 # Loading work.decider(fast)
@@ -1195,21 +2135,409 @@ Reading pref.tcl
 # Loading work.alu(fast)
 # Loading work.extender_sv_unit(fast)
 # Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
 # Loading work.caches(fast)
 # Loading work.memory_control(fast)
 # Loading work.ram(fast)
 # Loading altera_mf_ver.altsyncram(fast)
 # ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
-#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 59
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
 # run -all
 # Starting Processor.
-# Halted at 960 time and ran for         23 cycles.
+# Halted at 480 time and ran for         11 cycles.
 # Starting memory dump.
 # Finished memory dump.
-# End time: 19:30:24 on Feb 13,2025, Elapsed time: 0:00:01
+# End time: 12:27:46 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+6 instructions
+--- memsim.hex	2025-02-18 12:27:46.678748450 -0500
++++ memcpu.hex	2025-02-18 12:27:46.658747688 -0500
+@@ -1,6 +1,4 @@
+ :0400000000506193B8
+-:0400010000000005F6
+-:040002000000000AF0
+ :040003000040228314
+ :040004000032833310
+ :040005000060242350
+processing file asmFiles/test.forwardinghazard.asm (16 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:47 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 560 time and ran for         13 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:48 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+0 instructions
+--- memsim.hex	2025-02-18 12:27:46.678748450 -0500
++++ memcpu.hex	2025-02-18 12:27:48.445815758 -0500
+@@ -1,8 +1,9 @@
+ :0400000000506193B8
+-:0400010000000005F6
+-:040002000000000AF0
+-:040003000040228314
+-:040004000032833310
+-:040005000060242350
+-:04000600FFFFFFFFFA
++:040001000030262382
++:0400020000000013E7
++:040004000040611344
++:040005000030621352
++:04000600005203336E
++:04000700006026234C
++:04000800FFFFFFFFF8
+ :00000001FF
+processing file asmFiles/test.halt.asm (17 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:49 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 160 time and ran for          3 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:50 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+1 instructions
+processing file asmFiles/test.jal.asm (18 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:51 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 320 time and ran for          7 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:51 on Feb 18,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+4 instructions
+--- memsim.hex	2025-02-18 12:27:52.001951211 -0500
++++ memcpu.hex	2025-02-18 12:27:51.984950564 -0500
+@@ -2,5 +2,6 @@
+ :0400010000406193C7
+ :04000200008000EF8B
+ :04000300FFFFFFFFFD
++:040004000041A623EE
+ :04000500FFFFFFFFFB
+ :00000001FF
+processing file asmFiles/test.jalr.asm (19 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:52 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 320 time and ran for          7 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:53 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+5 instructions
+processing file asmFiles/test.ldst1.asm (20 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:54 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 880 time and ran for         21 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:55 on Feb 18,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 1
 13 instructions
-processing file asmFiles/test.ldst2.asm (2 of 2)
+processing file asmFiles/test.ldst2.asm (21 of 24)
 Reading pref.tcl
 
 # 2021.4
@@ -1221,7 +2549,7 @@ Reading pref.tcl
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 19:30:24 on Feb 13,2025
+# Start time: 12:27:56 on Feb 18,2025
 # ** Note: (vsim-8009) Loading existing optimized design _opt
 # //  Questa Sim-64
 # //  Version 2021.4 linux_x86_64 Oct 13 2021
@@ -1254,6 +2582,8 @@ Reading pref.tcl
 # Loading work.register_file_if(fast__1)
 # Loading work.extender_if(fast__1)
 # Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
 # Loading work.control_unit(fast)
 # Loading work.decider_sv_unit(fast)
 # Loading work.decider(fast)
@@ -1261,17 +2591,250 @@ Reading pref.tcl
 # Loading work.alu(fast)
 # Loading work.extender_sv_unit(fast)
 # Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
 # Loading work.caches(fast)
 # Loading work.memory_control(fast)
 # Loading work.ram(fast)
 # Loading altera_mf_ver.altsyncram(fast)
 # ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
-#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 59
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 1040 time and ran for         25 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:57 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+16 instructions
+processing file asmFiles/test.loadstore.asm (22 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:58 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 1000 time and ran for         24 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:27:58 on Feb 18,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+15 instructions
+processing file asmFiles/test.rtype.asm (23 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:27:59 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
 # run -all
 # Starting Processor.
 # Halted at 1600 time and ran for         39 cycles.
 # Starting memory dump.
 # Finished memory dump.
-# End time: 19:30:25 on Feb 13,2025, Elapsed time: 0:00:01
+# End time: 12:28:00 on Feb 18,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 1
 28 instructions
+--- memsim.hex	2025-02-18 12:28:00.726283522 -0500
++++ memcpu.hex	2025-02-18 12:28:00.708282836 -0500
+@@ -27,12 +27,12 @@
+ :04001A00007AAE2397
+ :04001B0003CAA02351
+ :04001C00FFFFFFFFE4
+-:0401C10000001261C7
++:0401C10000000261D7
+ :0401C2000000000930
+-:0401C30000010A5AD3
++:0401C30000000A5AD4
+ :0401C40000000740F0
+-:0401C500FFFFDA70EE
+-:0401C600000037F806
+-:0401C7000000D1560D
+-:0401C800000D269070
++:0401C500FFFFFA70CE
++:0401C600000007F836
++:0401C70000000156DD
++:0401C800000026907D
+ :00000001FF
+processing file asmFiles/test.structuralhazard.asm (24 of 24)
+Reading pref.tcl
+
+# 2021.4
+
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 12:28:01 on Feb 18,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.system_tb(fast)
+# Loading work.cpu_types_pkg(fast)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
+# Loading work.memory_control(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
+# run -all
+# Starting Processor.
+# Halted at 200 time and ran for          4 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# End time: 12:28:02 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+2 instructions

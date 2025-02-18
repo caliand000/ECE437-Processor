@@ -25,12 +25,15 @@ module forward_unit (
   always_comb begin
     fuif.Alu_in1 = 2'b00;
     fuif.Alu_in2 = 2'b00;
-
+    fuif.imm_sel = 0;
     if((fuif.rs1 == fuif.Rd_Mem && (fuif.Rd_Mem != 0)) && (fuif.RegWR_mem)) begin
         fuif.Alu_in1 = 2'b10; 
     end
     else if((fuif.rs1 == fuif.Rd_WB && (fuif.Rd_WB != 0)) && (fuif.RegWR_WB)) begin
         fuif.Alu_in1 = 2'b01;
+    end
+    if((fuif.rs1 == fuif.Rd_Mem && (fuif.Rd_Mem != 0)) && (fuif.RegWR_mem) && fuif.jumpsel == 2'b10) begin
+      fuif.imm_sel = 1;
     end
 
     if((fuif.rs2 == fuif.Rd_Mem && (fuif.Rd_Mem != 0)) && (fuif.RegWR_mem)) begin

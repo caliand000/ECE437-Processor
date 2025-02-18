@@ -36,8 +36,7 @@ module datapath(
   parameter PC_INIT = 0;
 
   //internal signals
-  word_t iaddr, Aluout, outdata, Alu_a, Alu_b, Alu_c;
-  logic [1:0] alu_a_sel, alu_b_sel;
+  word_t iaddr, Aluout, outdata, Alu_a, Alu_b, Alu_c, Alu_d;
 
   //internal pipelined signals
   IF_ID if_id_in;
@@ -61,7 +60,7 @@ module datapath(
   control_unit      CONTROL(CLK, nRST, cruif);
   decider           Branch(deif);
   register_file     REG_FILE(CLK, nRST, rfif);
-  alu               ALU(.A(alu_a), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
+  alu               ALU(.A(Alu_d), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
   extender          EX(exif_in);
   hazard_unit       HAZARD(huif);
   forward_unit      FORWARD(fuif);
@@ -71,13 +70,15 @@ module datapath(
 
   //================ALU================
   always_comb begin
-    case(alu_a_sel)
+    case(fuif.Alu_in1)
       2'b00:Alu_a = id_ex_out.rdat1;
       2'b01:Alu_a = rfif.wdat;
       2'b10:Alu_a = ex_mem_out.AluOut;
     endcase
 
-    case(alu_b_sel)
+    Alu_d = (fuif.imm_sel)? ex_mem_out.immediate:Alu_a;
+
+    case(fuif.Alu_in2)
       2'b00:Alu_b = id_ex_out.rdat2;
       2'b01:Alu_b = rfif.wdat;
       2'b10:Alu_b = ex_mem_out.AluOut;
@@ -103,23 +104,25 @@ module datapath(
   end
 
   //================IF/ID================
-  assign if_id_in.instruction =huif.Flush?:0: dpif.imemload;
+  assign if_id_in.instruction =huif.Flush?0: dpif.imemload;
   assign if_id_in.pc = dpif.imemaddr;
 
   //================IF/ID -> ID/EX================
   assign id_ex_in.pc = if_id_out.pc;
-  assign id_ex_in.pchalt = cruif.pchalt;
-  assign id_ex_in.MemtoReg = huif.Zero_controls?:0:cruif.MemtoReg;
+  assign id_ex_in.pchalt = huif.Zero_controls?0:cruif.pchalt;
+  assign id_ex_in.MemtoReg = huif.Zero_controls?0:cruif.MemtoReg;
   assign id_ex_in.AluSrc = cruif.AluSrc;
   assign id_ex_in.Aluop = cruif.Aluop;
-  assign id_ex_in.MemWr = huif.Zero_controls?:0:cruif.MemWr;
-  assign id_ex_in.RegWr = huif.Zero_controls?:0:cruif.RegWr;
+  assign id_ex_in.MemWr = huif.Zero_controls?0:cruif.MemWr;
+  assign id_ex_in.RegWr = huif.Zero_controls?0:cruif.RegWr;
   assign id_ex_in.branch = cruif.typ;
   assign id_ex_in.rdat1 = rfif.rdat1; 
   assign id_ex_in.rdat2 = rfif.rdat2;
   assign id_ex_in.immediate = exif_in.extended_im;
   assign id_ex_in.rd = if_id_out.instruction[11:7];
   assign id_ex_in.jumpsel = cruif.jumpsel;
+  assign id_ex_in.rs1 = if_id_out.instruction[19:15];
+  assign id_ex_in.rs2 = if_id_out.instruction[24:20];
  
   //================ID/EX -> EX/MEM================
   assign ex_mem_in.pchalt = id_ex_out.pchalt;
@@ -178,6 +181,7 @@ module datapath(
   assign fuif.Rd_WB = mem_wb_out.rd;
   assign fuif.RegWR_mem = ex_mem_out.RegWr;
   assign fuif.RegWR_WB = mem_wb_out.RegWr;
+  assign fuif.jumpsel = ex_mem_out.jumpsel;
 
   //================Hazard unit================ 
   assign huif.rs1= if_id_out.instruction[19:15];
@@ -190,21 +194,21 @@ module datapath(
   always_ff @(posedge CLK, negedge nRST) begin
     if(!nRST) begin
       dpif.imemaddr <= '0;
-      dpif.halt <= 0;
+      // dpif.halt <= 0;
     end 
     else begin
       dpif.imemaddr <= iaddr;
-      if(mem_wb_out.pchalt) dpif.halt <= 1;
+      // if(ex_mem_out.pchalt) dpif.halt <= 1;
     end 
   end
-
+  assign dpif.halt = ex_mem_out.pchalt;
   always_comb begin
     iaddr = dpif.imemaddr;
     if(mem_wb_out.pchalt) iaddr = '0;
     else if(dpif.ihit) begin
       case (deif.PCsrc)
         2'b00: iaddr =huif.Halt?dpif.imemaddr:dpif.imemaddr+ 4;
-        2'b01: iaddr = Aluout;
+        2'b01: iaddr = ex_mem_in.AdderOut;
         2'b10: iaddr = id_ex_out.pc+id_ex_out.immediate;
       endcase
     end

@@ -66,9 +66,9 @@ always_comb begin:extender_block
     else if(opcode==BTYPE) begin
      
       if(exif.imemload[31])
-        exif.extended_im={20'hfffff,exif.imemload[31],exif.imemload[7],exif.imemload[30:25],exif.imemload[11:8]};
+        exif.extended_im={19'hfffff,exif.imemload[31],exif.imemload[7],exif.imemload[30:25],exif.imemload[11:8],1'b0};
       else
-        exif.extended_im={20'h0,exif.imemload[31],exif.imemload[7],exif.imemload[30:25],exif.imemload[11:8]};      
+        exif.extended_im={19'h0,exif.imemload[31],exif.imemload[7],exif.imemload[30:25],exif.imemload[11:8],1'b0};      
       
     end
 

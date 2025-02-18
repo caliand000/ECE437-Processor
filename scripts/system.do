@@ -81,17 +81,34 @@ add wave -noupdate /system_tb/DUT/CPU/ccif/daddr
 add wave -noupdate /system_tb/DUT/CPU/ccif/ramaddr
 add wave -noupdate /system_tb/DUT/CPU/DP/cruif/dmemaddr
 add wave -noupdate /system_tb/DUT/CPU/CM/dcif/ihit
-add wave -noupdate /system_tb/DUT/CPU/DP/REG_FILE/register
+add wave -noupdate -expand /system_tb/DUT/CPU/DP/REG_FILE/register
 add wave -noupdate -radix decimal /system_tb/DUT/CPU/DP/cruif/Imm
 add wave -noupdate /system_tb/DUT/CPU/DP/cruif/Rs1
 add wave -noupdate /system_tb/DUT/CPU/DP/cruif/Imm
 add wave -noupdate -divider {Pipeline Latch Signals}
-add wave -noupdate /system_tb/DUT/CPU/DP/if_id_out
-add wave -noupdate /system_tb/DUT/CPU/DP/id_ex_out
-add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out
+add wave -noupdate -expand /system_tb/DUT/CPU/DP/if_id_out
+add wave -noupdate -expand /system_tb/DUT/CPU/DP/id_ex_out
+add wave -noupdate -expand /system_tb/DUT/CPU/DP/ex_mem_out
 add wave -noupdate /system_tb/DUT/CPU/DP/mem_wb_out
+add wave -noupdate /system_tb/DUT/CPU/DP/ALU/A
+add wave -noupdate /system_tb/DUT/CPU/DP/ALU/B
+add wave -noupdate /system_tb/DUT/CPU/DP/ALU/out
+add wave -noupdate /system_tb/DUT/CPU/DP/fuif/rs1
+add wave -noupdate /system_tb/DUT/CPU/DP/fuif/rs2
+add wave -noupdate /system_tb/DUT/CPU/DP/fuif/Rd_Mem
+add wave -noupdate /system_tb/DUT/CPU/DP/fuif/Rd_WB
+add wave -noupdate /system_tb/DUT/CPU/DP/fuif/RegWR_mem
+add wave -noupdate /system_tb/DUT/CPU/DP/fuif/RegWR_WB
+add wave -noupdate /system_tb/DUT/CPU/DP/fuif/Alu_in1
+add wave -noupdate /system_tb/DUT/CPU/DP/fuif/Alu_in2
+add wave -noupdate /system_tb/DUT/CPU/DP/Alu_a
+add wave -noupdate /system_tb/DUT/CPU/DP/Alu_b
+add wave -noupdate /system_tb/DUT/CPU/DP/Alu_c
+add wave -noupdate /system_tb/DUT/CPU/DP/Alu_d
+add wave -noupdate /system_tb/DUT/CPU/DP/fuif/imm_sel
+add wave -noupdate /system_tb/DUT/CPU/DP/fuif/jumpsel
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {475768 ps} 0}
+WaveRestoreCursors {{Cursor 1} {272208 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 258
 configure wave -valuecolwidth 100
@@ -107,4 +124,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {342900 ps} {688690 ps}
+WaveRestoreZoom {172890 ps} {518679 ps}

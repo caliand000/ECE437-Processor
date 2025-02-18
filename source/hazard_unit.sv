@@ -26,7 +26,7 @@ module hazard_unit (
   end
 
   if(huif.Pcsrc) begin
-  huif.latch_en=0;
+  huif.latch_en=1;
   huif.Halt=1;
   huif.Zero_controls=1;
   huif.Flush=1;
