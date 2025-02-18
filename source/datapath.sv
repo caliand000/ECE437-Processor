@@ -61,7 +61,7 @@ module datapath(
   control_unit      CONTROL(CLK, nRST, cruif);
   decider           Branch(deif);
   register_file     REG_FILE(CLK, nRST, rfif);
-  alu               ALU(.A(alu_a), .B(Alu_b), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
+  alu               ALU(.A(alu_a), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
   extender          EX(exif_in);
   hazard_unit       HAZARD(huif);
   forward_unit      FORWARD(fuif);
@@ -72,20 +72,18 @@ module datapath(
   //================ALU================
   always_comb begin
     case(alu_a_sel)
-      2'b00:alu_a = id_ex_out.rdat1;
-      2'b01:alu_a = rfif.wdat;
-      2'b10:alu_a = ex_mem_out.AluOut;
+      2'b00:Alu_a = id_ex_out.rdat1;
+      2'b01:Alu_a = rfif.wdat;
+      2'b10:Alu_a = ex_mem_out.AluOut;
     endcase
 
     case(alu_b_sel)
-      2'b00:alu_b = id_ex_out.rdat2;
-      2'b01:alu_b = rfif.wdat;
-      2'b10:alu_b = ex_mem_out.AluOut;
+      2'b00:Alu_b = id_ex_out.rdat2;
+      2'b01:Alu_b = rfif.wdat;
+      2'b10:Alu_b = ex_mem_out.AluOut;
     endcase
+    Alu_c = (id_ex_out.AluSrc)? id_ex_out.immediate: Alu_b;
   end
-
-
-  assign Alu_c = (id_ex_out.AluSrc)? id_ex_out.immediate: id_ex_out.rdat2;
 
   //================Immediate Generator(Extender)================
   assign exif_in.imemload = if_id_out.instruction;
@@ -105,17 +103,17 @@ module datapath(
   end
 
   //================IF/ID================
-  assign if_id_in.instruction = dpif.imemload;
+  assign if_id_in.instruction =huif.Flush?:0: dpif.imemload;
   assign if_id_in.pc = dpif.imemaddr;
 
   //================IF/ID -> ID/EX================
   assign id_ex_in.pc = if_id_out.pc;
   assign id_ex_in.pchalt = cruif.pchalt;
-  assign id_ex_in.MemtoReg = cruif.MemtoReg;
+  assign id_ex_in.MemtoReg = huif.Zero_controls?:0:cruif.MemtoReg;
   assign id_ex_in.AluSrc = cruif.AluSrc;
   assign id_ex_in.Aluop = cruif.Aluop;
-  assign id_ex_in.MemWr = cruif.MemWr;
-  assign id_ex_in.RegWr = cruif.RegWr;
+  assign id_ex_in.MemWr = huif.Zero_controls?:0:cruif.MemWr;
+  assign id_ex_in.RegWr = huif.Zero_controls?:0:cruif.RegWr;
   assign id_ex_in.branch = cruif.typ;
   assign id_ex_in.rdat1 = rfif.rdat1; 
   assign id_ex_in.rdat2 = rfif.rdat2;
@@ -181,6 +179,13 @@ module datapath(
   assign fuif.RegWR_mem = ex_mem_out.RegWr;
   assign fuif.RegWR_WB = mem_wb_out.RegWr;
 
+  //================Hazard unit================ 
+  assign huif.rs1= if_id_out.instruction[19:15];
+  assign huif.rs2 = if_id_out.instruction[24:20];
+  assign huif.Rd=id_ex_out.rd;
+  assign huif.Pcsrc= deif.PCsrc;
+  assign huif.Memtoreg=id_ex_out.MemtoReg;
+
   //================Program Count Logic================
   always_ff @(posedge CLK, negedge nRST) begin
     if(!nRST) begin
@@ -190,7 +195,7 @@ module datapath(
     else begin
       dpif.imemaddr <= iaddr;
       if(mem_wb_out.pchalt) dpif.halt <= 1;
-    end
+    end 
   end
 
   always_comb begin
@@ -198,7 +203,7 @@ module datapath(
     if(mem_wb_out.pchalt) iaddr = '0;
     else if(dpif.ihit) begin
       case (deif.PCsrc)
-        2'b00: iaddr =dpif.imemaddr+ 4;
+        2'b00: iaddr =huif.Halt?dpif.imemaddr:dpif.imemaddr+ 4;
         2'b01: iaddr = Aluout;
         2'b10: iaddr = id_ex_out.pc+id_ex_out.immediate;
       endcase
@@ -214,8 +219,10 @@ module datapath(
       mem_wb_out<= '0;
     end
     else begin
-      if(dpif.ihit) begin
+      if(dpif.ihit && huif.latch_en) begin
         if_id_out <= if_id_in;
+      end
+      if(dpif.ihit) begin
         id_ex_out <= id_ex_in;
         ex_mem_out<= ex_mem_in;
         mem_wb_out<= mem_wb_in;
