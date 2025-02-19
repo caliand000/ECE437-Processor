@@ -50,7 +50,13 @@ always_comb begin:extender_block
             end
         endcase
     end
-    else if (opcode==ITYPE_LW||opcode==JALR) begin
+    else if (opcode==ITYPE_LW) begin
+    if(exif.imemload[31])
+                exif.extended_im={20'hfffff,exif.imemload[31:20]};
+                else 
+                exif.extended_im={20'h0,exif.imemload[31:20]};
+    end
+    else if (opcode==JALR) begin
     if(exif.imemload[31])
                 exif.extended_im={20'hfffff,exif.imemload[31:20]};
                 else 
@@ -74,9 +80,9 @@ always_comb begin:extender_block
 
     else if(opcode == JAL) begin
       if(exif.imemload[31])
-        exif.extended_im={12'hfff,exif.imemload[31],exif.imemload[19:12],exif.imemload[20],exif.imemload[30:21]};
+        exif.extended_im={11'hfff,exif.imemload[31],exif.imemload[19:12],exif.imemload[20],exif.imemload[30:21],1'b0};
       else
-        exif.extended_im={12'h0,exif.imemload[31],exif.imemload[19:12],exif.imemload[20],exif.imemload[30:21]};
+        exif.extended_im={11'h0,exif.imemload[31],exif.imemload[19:12],exif.imemload[20],exif.imemload[30:21],1'b0};
     end
   
     else begin

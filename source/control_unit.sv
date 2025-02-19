@@ -28,7 +28,7 @@ module control_unit (
   b_t btype;
   u_t utype;
   logic beq,bne,bge,blt,bgeu,bltu,jal,jalr;
-  assign cuif.typ={beq,bne,bge,blt,bgeu,bltu,jal,jalr};
+  assign cuif.typ={beq,bne,bge,bgeu,blt,bltu,jal,jalr};
 
   always_comb begin
     beq=0;
@@ -173,13 +173,13 @@ module control_unit (
           BLTU: begin
             bltu=1;
             cuif.Imm = {{20{1'b0}},cuif.Imm[11:0]};        //unsigned
-            cuif.Aluop = ALU_SUB;
+            cuif.Aluop = ALU_SLTU;
             cuif.PCSrc = (cuif.neg)? 2'b01: '0;
           end
           BGEU: begin
             bgeu=1;
             cuif.Imm = {{20{1'b0}},cuif.Imm[11:0]};        //unsigned
-            cuif.Aluop = ALU_SUB;
+            cuif.Aluop = ALU_SLTU;
             cuif.PCSrc = (!cuif.neg || cuif.zero)? 2'b01: '0;
           end
         endcase
@@ -187,7 +187,7 @@ module control_unit (
       JAL: begin        
         jal=1;                                //R[rd] <= PC+4; PC <= PC+imm
         cuif.RegWr = 1;
-        cuif.jumpsel = 1;
+        cuif.jumpsel = 2'b11;
         cuif.PCSrc = 2'b01;
         cuif.Rd = jtype.rd;
         cuif.Imm = {{11{jtype.imm[19]}}, jtype.imm[19], jtype.imm[7:0], jtype.imm[8], jtype.imm[18:9], 1'b0};
@@ -203,7 +203,7 @@ module control_unit (
       AUIPC: begin           //R[rd] <= PC + {imm, 12b'0}
         cuif.Rd = utype.rd;
         cuif.RegWr = 1;
-        cuif.jumpsel = 2'b11;
+        cuif.jumpsel = 2'b01;
         cuif.Imm = {cuif.Imm, {12{1'b0}}};
       end
       // LR_SC: begin            //atomic instructions?

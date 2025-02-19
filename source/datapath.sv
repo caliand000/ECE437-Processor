@@ -74,6 +74,7 @@ module datapath(
       2'b00:Alu_a = id_ex_out.rdat1;
       2'b01:Alu_a = rfif.wdat;
       2'b10:Alu_a = ex_mem_out.AluOut;
+      2'b11:Alu_a = ex_mem_out.immediate;
     endcase
 
     Alu_d = (fuif.imm_sel)? ex_mem_out.immediate:Alu_a;
@@ -82,6 +83,7 @@ module datapath(
       2'b00:Alu_b = id_ex_out.rdat2;
       2'b01:Alu_b = rfif.wdat;
       2'b10:Alu_b = ex_mem_out.AluOut;
+      2'b11:Alu_b = ex_mem_out.immediate;
     endcase
     Alu_c = (id_ex_out.AluSrc)? id_ex_out.immediate: Alu_b;
   end
@@ -97,9 +99,9 @@ module datapath(
     always_comb begin
     case(mem_wb_out.jumpsel) 
       2'b00:rfif.wdat = outdata;
-      2'b01:rfif.wdat = mem_wb_out.AdderOut-mem_wb_out.immediate +4;
+      2'b01:rfif.wdat = mem_wb_out.AdderOut;
       2'b10:rfif.wdat = mem_wb_out.immediate;
-      2'b11:rfif.wdat = mem_wb_out.AdderOut;
+      2'b11:rfif.wdat = mem_wb_out.AdderOut-mem_wb_out.immediate +4;
     endcase
   end
 
@@ -134,7 +136,7 @@ module datapath(
   assign ex_mem_in.AluOut = Aluout;
   assign ex_mem_in.AdderOut=id_ex_out.pc+id_ex_out.immediate;
   assign ex_mem_in.immediate = id_ex_out.immediate;
-  assign ex_mem_in.rdat2 = id_ex_out.rdat2;
+  assign ex_mem_in.rdat2 = Alu_b;
   assign ex_mem_in.rd = id_ex_out.rd;
   assign ex_mem_in.read_data =dpif.dhit ? dpif.dmemload : ex_mem_out.read_data;
   
@@ -182,6 +184,7 @@ module datapath(
   assign fuif.RegWR_mem = ex_mem_out.RegWr;
   assign fuif.RegWR_WB = mem_wb_out.RegWr;
   assign fuif.jumpsel = ex_mem_out.jumpsel;
+  assign fuif.MemtoReg = ex_mem_out.MemtoReg;
 
   //================Hazard unit================ 
   assign huif.rs1= if_id_out.instruction[19:15];
@@ -209,7 +212,7 @@ module datapath(
       case (deif.PCsrc)
         2'b00: iaddr =huif.Halt?dpif.imemaddr:dpif.imemaddr+ 4;
         2'b01: iaddr = ex_mem_in.AdderOut;
-        2'b10: iaddr = id_ex_out.pc+id_ex_out.immediate;
+        2'b10: iaddr = id_ex_out.rdat1+id_ex_out.immediate;
       endcase
     end
   end

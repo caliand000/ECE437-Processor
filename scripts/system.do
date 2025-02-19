@@ -88,29 +88,53 @@ add wave -noupdate /system_tb/DUT/CPU/DP/cruif/Imm
 add wave -noupdate -divider {Pipeline Latch Signals}
 add wave -noupdate -expand /system_tb/DUT/CPU/DP/if_id_out
 add wave -noupdate -expand /system_tb/DUT/CPU/DP/id_ex_out
-add wave -noupdate -expand /system_tb/DUT/CPU/DP/ex_mem_out
+add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out
 add wave -noupdate /system_tb/DUT/CPU/DP/mem_wb_out
-add wave -noupdate /system_tb/DUT/CPU/DP/ALU/A
-add wave -noupdate /system_tb/DUT/CPU/DP/ALU/B
-add wave -noupdate /system_tb/DUT/CPU/DP/ALU/out
+add wave -noupdate -divider {Forward Unit Signals}
+add wave -noupdate /system_tb/DUT/CPU/DP/fuif/Alu_in1
+add wave -noupdate /system_tb/DUT/CPU/DP/fuif/Alu_in2
 add wave -noupdate /system_tb/DUT/CPU/DP/fuif/rs1
 add wave -noupdate /system_tb/DUT/CPU/DP/fuif/rs2
 add wave -noupdate /system_tb/DUT/CPU/DP/fuif/Rd_Mem
 add wave -noupdate /system_tb/DUT/CPU/DP/fuif/Rd_WB
 add wave -noupdate /system_tb/DUT/CPU/DP/fuif/RegWR_mem
 add wave -noupdate /system_tb/DUT/CPU/DP/fuif/RegWR_WB
-add wave -noupdate /system_tb/DUT/CPU/DP/fuif/Alu_in1
-add wave -noupdate /system_tb/DUT/CPU/DP/fuif/Alu_in2
+add wave -noupdate -divider {Data being selected from}
+add wave -noupdate /system_tb/DUT/CPU/DP/rfif/wdat
+add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out.AluOut
+add wave -noupdate /system_tb/DUT/CPU/DP/id_ex_out.rdat1
+add wave -noupdate /system_tb/DUT/CPU/DP/id_ex_out.rdat2
+add wave -noupdate -divider {Alu Signals}
+add wave -noupdate /system_tb/DUT/CPU/DP/ALU/zero
+add wave -noupdate /system_tb/DUT/CPU/DP/ALU/negative
+add wave -noupdate /system_tb/DUT/CPU/DP/ALU/overflow
+add wave -noupdate /system_tb/DUT/CPU/DP/ALU/A
+add wave -noupdate /system_tb/DUT/CPU/DP/ALU/B
+add wave -noupdate /system_tb/DUT/CPU/DP/ALU/out
 add wave -noupdate /system_tb/DUT/CPU/DP/Alu_a
 add wave -noupdate /system_tb/DUT/CPU/DP/Alu_b
 add wave -noupdate /system_tb/DUT/CPU/DP/Alu_c
 add wave -noupdate /system_tb/DUT/CPU/DP/Alu_d
 add wave -noupdate /system_tb/DUT/CPU/DP/fuif/imm_sel
 add wave -noupdate /system_tb/DUT/CPU/DP/fuif/jumpsel
+add wave -noupdate -divider {PC source from Decider}
+add wave -noupdate /system_tb/DUT/CPU/DP/deif/PCsrc
+add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_in.AdderOut
+add wave -noupdate /system_tb/DUT/CPU/DP/id_ex_out.pc
+add wave -noupdate /system_tb/DUT/CPU/DP/id_ex_out.immediate
+add wave -noupdate -divider Hazard
+add wave -noupdate /system_tb/DUT/CPU/DP/huif/Flush
+add wave -noupdate /system_tb/DUT/CPU/DP/huif/Zero_controls
+add wave -noupdate /system_tb/DUT/CPU/DP/huif/Halt
+add wave -noupdate /system_tb/DUT/CPU/DP/huif/latch_en
+add wave -noupdate /system_tb/DUT/CPU/DP/huif/rs1
+add wave -noupdate /system_tb/DUT/CPU/DP/huif/rs2
+add wave -noupdate /system_tb/DUT/CPU/DP/huif/Rd
+add wave -noupdate /system_tb/DUT/CPU/DP/huif/Memtoreg
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {272208 ps} 0}
+WaveRestoreCursors {{Cursor 1} {178729 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 258
+configure wave -namecolwidth 165
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1
@@ -124,4 +148,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {172890 ps} {518679 ps}
+WaveRestoreZoom {92400 ps} {323400 ps}
