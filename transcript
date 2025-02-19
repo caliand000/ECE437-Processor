@@ -1,13 +1,31 @@
+# 
+# 
+# 
+# 
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 21:29:45 on Feb 18,2025
+# vsim -coverage -suppress 12110 -suppress 7061 -do "view objects; do scripts/system.do; run -all;" -onfinish stop -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 13:26:54 on Feb 19,2025
 # ** Note: (vsim-3812) Design is being optimized...
-###### source/datapath.sv(63):   alu               ALU(.A(Alu_d), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
+###### source/datapath.sv(63):   alu               ALU(.A(Alu_a), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
 # ** Warning: source/datapath.sv(63): (vopt-2685) [TFMPC] - Too few port connections for 'ALU'.  Expected 7, found 6.
 # ** Warning: source/datapath.sv(63): (vopt-2718) [TFMPC] - Missing connection for port 'overflow'.
 ###### include/cache_control_if.vh(79):       iREN[1] = cif1.iREN;
@@ -48,20 +66,6 @@
 ###### source/extender.sv(28): assign bgeu=(opcode==BTYPE&&func3b==BGEU);
 # ** Warning: source/extender.sv(28): (vopt-2623) Undefined variable: bgeu.
 # ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=22.
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
 # Loading sv_std.std
 # Loading work.system_tb(fast)
 # Loading work.cpu_types_pkg(fast)
@@ -96,10 +100,23 @@
 # Loading altera_mf_ver.altsyncram(fast)
 # ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
 #    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
-# run -all
+# view objects
+# .main_pane.objects.interior.cs.body.tree
+#  do scripts/system.do
+# Unable to lock WLF file "system_tb.wlf". Retrying 1 times, errno 11
+# Unable to lock WLF file "system_tb.wlf". Retrying 2 times, errno 11
+# Unable to lock WLF file "system_tb.wlf". Retrying 3 times, errno 11
+# Cannot lock WLF file: "system_tb.wlf"
+#           errno 11: Resource temporarily unavailable.
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: system_tb.wlf
+#           File in use by: 437mg015  Hostname: ee207lnx16.ecn.purdue.edu  ProcessID: 894912
+#           Attempting to use alternate WLF file "./wlftSnWmRp".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: system_tb.wlf
+#           Using alternate file: ./wlftSnWmRp
+#  run -all
 # Starting Processor.
-# Break key hit
-# Simulation stop requested.
-#  exit
-# End time: 21:29:52 on Feb 18,2025, Elapsed time: 0:00:07
-# Errors: 0, Warnings: 23, Suppressed Errors: 1
+# Halted at 200 time and ran for          4 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# Break in Module test at testbench/system_tb.sv line 124
+# 

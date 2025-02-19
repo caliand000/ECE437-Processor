@@ -60,7 +60,7 @@ module datapath(
   control_unit      CONTROL(CLK, nRST, cruif);
   decider           Branch(deif);
   register_file     REG_FILE(CLK, nRST, rfif);
-  alu               ALU(.A(Alu_d), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
+  alu               ALU(.A(Alu_a), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
   extender          EX(exif_in);
   hazard_unit       HAZARD(huif);
   forward_unit      FORWARD(fuif);
@@ -72,17 +72,17 @@ module datapath(
   always_comb begin
     case(fuif.Alu_in1)
       2'b00:Alu_a = id_ex_out.rdat1;
-      2'b01:Alu_a = rfif.wdat;
-      2'b10:Alu_a = ex_mem_out.AluOut;
+      2'b01:Alu_a = mem_wb_out.wrb;
+      2'b10:Alu_a = outdata;
       2'b11:Alu_a = ex_mem_out.immediate;
     endcase
 
-    Alu_d = (fuif.imm_sel)? ex_mem_out.immediate:Alu_a;
+    
 
     case(fuif.Alu_in2)
       2'b00:Alu_b = id_ex_out.rdat2;
-      2'b01:Alu_b = rfif.wdat;
-      2'b10:Alu_b = ex_mem_out.AluOut;
+      2'b01:Alu_b = mem_wb_out.wrb;
+      2'b10:Alu_b = outdata;
       2'b11:Alu_b = ex_mem_out.immediate;
     endcase
     Alu_c = (id_ex_out.AluSrc)? id_ex_out.immediate: Alu_b;
@@ -127,11 +127,12 @@ module datapath(
   assign ex_mem_in.RegWr = id_ex_out.RegWr;
   assign ex_mem_in.jumpsel = id_ex_out.jumpsel;
   assign ex_mem_in.read_data = dpif.dhit ?dpif.dmemload: ex_mem_out.read_data;  // assign mem_wb_in.MemtoReg=ex_mem_out.MemtoReg;n.read_data =dpif.dhit ? dpif.dmemload : ex_mem_out.read_data;
-  
+  assign ex_mem_in.rd=id_ex_out.rd;
   //================EX/MEM -> MEM/WB================
   assign mem_wb_in.pchalt=ex_mem_out.pchalt;
   assign mem_wb_in.RegWr=ex_mem_out.RegWr;
   assign mem_wb_in.rd=ex_mem_out.rd;
+ 
   always_comb begin
   case(ex_mem_out.jumpsel) 
     2'b00:mem_wb_in.wrb = outdata;
@@ -148,8 +149,9 @@ module datapath(
   assign dpif.dmemaddr = ex_mem_out.AluOut;
 
   //================Connections to Data Memory/Memory Controller================
-  always_ff @(posedge CLK, negedge nRST) begin
+  always_ff @(posedge CLK, negedge nRST) begin                    
     if(!nRST) begin
+
       dpif.dmemREN <= 0;
       dpif.dmemWEN <= 0;
     end
@@ -161,7 +163,7 @@ module datapath(
       else if(id_ex_out.MemWr == 2'b01 && dpif.ihit) dpif.dmemWEN <= 1;
       else if(id_ex_out.MemWr == 2'b10 && dpif.ihit) dpif.dmemREN <= 1;
     end
-  end
+    end
 
   //================control unit================
   assign cruif.imemload = if_id_out.instruction;
