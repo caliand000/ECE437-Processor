@@ -57,14 +57,10 @@ package pipeline_types_pkg;
 
     typedef struct packed {
     logic pchalt;
-    logic MemtoReg;
     logic RegWr;
-    word_t AdderOut;
-    word_t AluOut;
-    word_t immediate;
-    word_t read_data;
+    word_t wrb;
     logic [4:0] rd;
-    logic [1:0] jumpsel;
+    
   } MEM_WB;
 endpackage
 `endif 

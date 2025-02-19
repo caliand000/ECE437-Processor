@@ -66,7 +66,7 @@ module datapath(
   forward_unit      FORWARD(fuif);
 
   //interface/signal connections
-  assign outdata = (mem_wb_out.MemtoReg)? mem_wb_out.read_data: mem_wb_out.AluOut; 
+  assign outdata = (ex_mem_out.MemtoReg)? ex_mem_out.read_data: ex_mem_out.AluOut; 
 
   //================ALU================
   always_comb begin
@@ -96,14 +96,7 @@ module datapath(
   assign rfif.rsel2 = if_id_out.instruction[24:20];
   assign rfif.wsel = mem_wb_out.rd;
   assign rfif.WEN = mem_wb_out.RegWr;
-    always_comb begin
-    case(mem_wb_out.jumpsel) 
-      2'b00:rfif.wdat = outdata;
-      2'b01:rfif.wdat = mem_wb_out.AdderOut;
-      2'b10:rfif.wdat = mem_wb_out.immediate;
-      2'b11:rfif.wdat = mem_wb_out.AdderOut-mem_wb_out.immediate +4;
-    endcase
-  end
+  assign rfif.wdat = mem_wb_out.wrb;
 
   //================IF/ID================
   assign if_id_in.instruction =huif.Flush?0: dpif.imemload;
@@ -133,23 +126,20 @@ module datapath(
   assign ex_mem_in.PCSrc = deif.PCsrc;
   assign ex_mem_in.RegWr = id_ex_out.RegWr;
   assign ex_mem_in.jumpsel = id_ex_out.jumpsel;
-  assign ex_mem_in.AluOut = Aluout;
-  assign ex_mem_in.AdderOut=id_ex_out.pc+id_ex_out.immediate;
-  assign ex_mem_in.immediate = id_ex_out.immediate;
-  assign ex_mem_in.rdat2 = Alu_b;
-  assign ex_mem_in.rd = id_ex_out.rd;
-  assign ex_mem_in.read_data =dpif.dhit ? dpif.dmemload : ex_mem_out.read_data;
+  assign ex_mem_in.read_data = dpif.dhit ?dpif.dmemload: ex_mem_out.read_data;  // assign mem_wb_in.MemtoReg=ex_mem_out.MemtoReg;n.read_data =dpif.dhit ? dpif.dmemload : ex_mem_out.read_data;
   
   //================EX/MEM -> MEM/WB================
   assign mem_wb_in.pchalt=ex_mem_out.pchalt;
-  assign mem_wb_in.MemtoReg=ex_mem_out.MemtoReg;
   assign mem_wb_in.RegWr=ex_mem_out.RegWr;
-  assign mem_wb_in.immediate=ex_mem_out.immediate;
-  assign mem_wb_in.jumpsel=ex_mem_out.jumpsel;
   assign mem_wb_in.rd=ex_mem_out.rd;
-  assign mem_wb_in.AluOut=ex_mem_out.AluOut;
-  assign mem_wb_in.AdderOut=ex_mem_out.AdderOut;
-  assign mem_wb_in.read_data= ex_mem_out.read_data;
+  always_comb begin
+  case(ex_mem_out.jumpsel) 
+    2'b00:mem_wb_in.wrb = outdata;
+    2'b01:mem_wb_in.wrb = ex_mem_out.AdderOut;
+    2'b10:mem_wb_in.wrb = ex_mem_out.immediate;
+    2'b11:mem_wb_in.wrb = ex_mem_out.AdderOut-ex_mem_out.immediate + 4;
+  endcase
+  end
 
   //assigning internal signals
   assign deif.typ=id_ex_out.branch; 
