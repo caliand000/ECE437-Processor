@@ -1,7 +1,12 @@
-# 
-# 
-# 
-# 
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 15:16:51 on Feb 19,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
 # //  Questa Sim-64
 # //  Version 2021.4 linux_x86_64 Oct 13 2021
 # //
@@ -16,56 +21,6 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -do "view objects; do scripts/system.do; run -all;" -onfinish stop -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 13:26:54 on Feb 19,2025
-# ** Note: (vsim-3812) Design is being optimized...
-###### source/datapath.sv(63):   alu               ALU(.A(Alu_a), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(Aluout), .zero(deif.Zero), .negative(deif.Negative));
-# ** Warning: source/datapath.sv(63): (vopt-2685) [TFMPC] - Too few port connections for 'ALU'.  Expected 7, found 6.
-# ** Warning: source/datapath.sv(63): (vopt-2718) [TFMPC] - Missing connection for port 'overflow'.
-###### include/cache_control_if.vh(79):       iREN[1] = cif1.iREN;
-# ** Warning: include/cache_control_if.vh(79): (vopt-2576) [BSOB] - Bit-select into 'iREN' is out of bounds.
-###### include/cache_control_if.vh(80):       dREN[1] = cif1.dREN;
-# ** Warning: include/cache_control_if.vh(80): (vopt-2576) [BSOB] - Bit-select into 'dREN' is out of bounds.
-###### include/cache_control_if.vh(81):       dWEN[1] = cif1.dWEN;
-# ** Warning: include/cache_control_if.vh(81): (vopt-2576) [BSOB] - Bit-select into 'dWEN' is out of bounds.
-###### include/cache_control_if.vh(82):       dstore[1] = cif1.dstore;
-# ** Warning: include/cache_control_if.vh(82): (vopt-2696) Index 1 into array dimension 1 of 'dstore' is out of bounds.
-# ** Warning: include/cache_control_if.vh(82): (vopt-2696) Index 1 into array dimension 1 of 'dstore' is out of bounds.
-###### include/cache_control_if.vh(83):       iaddr[1] = cif1.iaddr;
-# ** Warning: include/cache_control_if.vh(83): (vopt-2696) Index 1 into array dimension 1 of 'iaddr' is out of bounds.
-# ** Warning: include/cache_control_if.vh(83): (vopt-2696) Index 1 into array dimension 1 of 'iaddr' is out of bounds.
-###### include/cache_control_if.vh(84):       daddr[1] = cif1.daddr;
-# ** Warning: include/cache_control_if.vh(84): (vopt-2696) Index 1 into array dimension 1 of 'daddr' is out of bounds.
-# ** Warning: include/cache_control_if.vh(84): (vopt-2696) Index 1 into array dimension 1 of 'daddr' is out of bounds.
-###### include/cache_control_if.vh(85):       ccwrite[1] = cif1.ccwrite;
-# ** Warning: include/cache_control_if.vh(85): (vopt-2576) [BSOB] - Bit-select into 'ccwrite' is out of bounds.
-###### include/cache_control_if.vh(86):       cctrans[1] = cif1.cctrans;
-# ** Warning: include/cache_control_if.vh(86): (vopt-2576) [BSOB] - Bit-select into 'cctrans' is out of bounds.
-###### include/cache_control_if.vh(95):       cif1.iwait = iwait[1];
-# ** Warning: include/cache_control_if.vh(95): (vopt-2576) [BSOB] - Bit-select into 'iwait' is out of bounds.
-###### include/cache_control_if.vh(96):       cif1.dwait = dwait[1];
-# ** Warning: include/cache_control_if.vh(96): (vopt-2576) [BSOB] - Bit-select into 'dwait' is out of bounds.
-###### include/cache_control_if.vh(97):       cif1.iload = iload[1];
-# ** Warning: include/cache_control_if.vh(97): (vopt-2696) Index 1 into array dimension 1 of 'iload' is out of bounds.
-###### include/cache_control_if.vh(98):       cif1.dload = dload[1];
-# ** Warning: include/cache_control_if.vh(98): (vopt-2696) Index 1 into array dimension 1 of 'dload' is out of bounds.
-###### include/cache_control_if.vh(99):       cif1.ccwait = ccwait[1];
-# ** Warning: include/cache_control_if.vh(99): (vopt-2576) [BSOB] - Bit-select into 'ccwait' is out of bounds.
-###### include/cache_control_if.vh(100):       cif1.ccinv = ccinv[1];
-# ** Warning: include/cache_control_if.vh(100): (vopt-2576) [BSOB] - Bit-select into 'ccinv' is out of bounds.
-###### include/cache_control_if.vh(101):       cif1.ccsnoopaddr = ccsnoopaddr[1];
-# ** Warning: include/cache_control_if.vh(101): (vopt-2696) Index 1 into array dimension 1 of 'ccsnoopaddr' is out of bounds.
-###### source/extender.sv(26): assign bge=(opcode==BTYPE&&func3b==BGE);
-# ** Warning: source/extender.sv(26): (vopt-2623) Undefined variable: bge.
-###### source/extender.sv(28): assign bgeu=(opcode==BTYPE&&func3b==BGEU);
-# ** Warning: source/extender.sv(28): (vopt-2623) Undefined variable: bgeu.
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=22.
 # Loading sv_std.std
 # Loading work.system_tb(fast)
 # Loading work.cpu_types_pkg(fast)
@@ -100,23 +55,10 @@
 # Loading altera_mf_ver.altsyncram(fast)
 # ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
 #    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
-# view objects
-# .main_pane.objects.interior.cs.body.tree
-#  do scripts/system.do
-# Unable to lock WLF file "system_tb.wlf". Retrying 1 times, errno 11
-# Unable to lock WLF file "system_tb.wlf". Retrying 2 times, errno 11
-# Unable to lock WLF file "system_tb.wlf". Retrying 3 times, errno 11
-# Cannot lock WLF file: "system_tb.wlf"
-#           errno 11: Resource temporarily unavailable.
-# ** Warning: (vsim-WLF-5000) WLF file currently in use: system_tb.wlf
-#           File in use by: 437mg015  Hostname: ee207lnx16.ecn.purdue.edu  ProcessID: 894912
-#           Attempting to use alternate WLF file "./wlftSnWmRp".
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: system_tb.wlf
-#           Using alternate file: ./wlftSnWmRp
-#  run -all
+# run -all
 # Starting Processor.
 # Halted at 200 time and ran for          4 cycles.
 # Starting memory dump.
 # Finished memory dump.
-# Break in Module test at testbench/system_tb.sv line 124
-# 
+# End time: 15:16:52 on Feb 19,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
