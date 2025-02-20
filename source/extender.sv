@@ -80,7 +80,7 @@ always_comb begin:extender_block
 
     else if(opcode == JAL) begin
       if(exif.imemload[31])
-        exif.extended_im={11'hfff,exif.imemload[31],exif.imemload[19:12],exif.imemload[20],exif.imemload[30:21],1'b0};
+        exif.extended_im={11'hff7,exif.imemload[31],exif.imemload[19:12],exif.imemload[20],exif.imemload[30:21],1'b0};
       else
         exif.extended_im={11'h0,exif.imemload[31],exif.imemload[19:12],exif.imemload[20],exif.imemload[30:21],1'b0};
     end

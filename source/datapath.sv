@@ -99,17 +99,17 @@ module datapath(
   assign rfif.wdat = (mem_wb_out.MemtoReg)? mem_wb_out.read_data:mem_wb_out.wrb;
 
   //================IF/ID================
-  assign if_id_in.instruction =huif.Flush?0: dpif.imemload;
+  assign if_id_in.instruction = dpif.imemload;
   assign if_id_in.pc = dpif.imemaddr;
 
   //================IF/ID -> ID/EX================
   assign id_ex_in.pc = if_id_out.pc;
-  assign id_ex_in.pchalt = huif.Zero_controls?0:cruif.pchalt;
-  assign id_ex_in.MemtoReg = huif.Zero_controls?0:cruif.MemtoReg;
+  assign id_ex_in.pchalt = cruif.pchalt;
+  assign id_ex_in.MemtoReg = cruif.MemtoReg;
   assign id_ex_in.AluSrc = cruif.AluSrc;
   assign id_ex_in.Aluop = cruif.Aluop;
-  assign id_ex_in.MemWr = huif.Zero_controls?0:cruif.MemWr;
-  assign id_ex_in.RegWr = huif.Zero_controls?0:cruif.RegWr;
+  assign id_ex_in.MemWr = cruif.MemWr;
+  assign id_ex_in.RegWr = cruif.RegWr;
   assign id_ex_in.branch = cruif.typ;
   assign id_ex_in.rdat1 = rfif.rdat1; 
   assign id_ex_in.rdat2 = rfif.rdat2;
@@ -223,10 +223,16 @@ module datapath(
     end
     else begin
       if(dpif.ihit && huif.latch_en) begin
-        if_id_out <= if_id_in;
+        if(huif.Flush) if_id_out <= '0;
+        else if_id_out <= if_id_in;
       end
       if(dpif.ihit) begin
-        id_ex_out <= id_ex_in;
+        if(huif.Flush) begin
+          id_ex_out <= '0;
+        end
+        else begin
+          id_ex_out <= id_ex_in;  
+        end
         ex_mem_out<= ex_mem_in;
         mem_wb_out<= mem_wb_in;
       end

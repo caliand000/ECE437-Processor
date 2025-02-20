@@ -5,7 +5,7 @@
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 15:16:51 on Feb 19,2025
+# Start time: 20:21:17 on Feb 19,2025
 # ** Note: (vsim-8009) Loading existing optimized design _opt
 # //  Questa Sim-64
 # //  Version 2021.4 linux_x86_64 Oct 13 2021
@@ -57,8 +57,8 @@
 #    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 63
 # run -all
 # Starting Processor.
-# Halted at 200 time and ran for          4 cycles.
+# Halted at 35320 time and ran for        882 cycles.
 # Starting memory dump.
 # Finished memory dump.
-# End time: 15:16:52 on Feb 19,2025, Elapsed time: 0:00:01
+# End time: 20:21:18 on Feb 19,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 1

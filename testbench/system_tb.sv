@@ -41,42 +41,43 @@ module system_tb;
   // to the write back stage and sampled in the WRITEBACK stage.
   // This means more signals that would normally be necessary
   // for correct execution must be passed along to help with debugging.
+  
   /*
   cpu_tracker_pipeline cpu_track0 (
     // CLK in datapath
-    .CLK(DUT.CPU.DP0.CLK),
+    .CLK(DUT.CPU.DP.CLK),
     // MEMWB latch stall signal (or ~enable)
-    .memwb_latch_stall(~DUT.CPU.DP0.enable_MEM_WB),
+    .memwb_latch_stall(~DUT.CPU.DP.dpif.ihit),
     // funct3 bits, brought to WB stage
-    .funct3(DUT.CPU.DP0.funct3_WB),
+    .funct3(DUT.CPU.DP.funct3_WB),
     // funct7 bits, brought to WB stage
-    .funct7(DUT.CPU.DP0.funct7_WB),
+    .funct7(DUT.CPU.DP.funct7_WB),
     // opcode bits, brought to WB stage
-    .opcode(opcode_t'(DUT.CPU.DP0.opcode_WB)),
+    .opcode(opcode_t'(DUT.CPU.DP.opcode_WB)),
     // rsel1 bits, brought to WB stage
-    .rsel1(DUT.CPU.DP0.rs1_WB),
+    .rsel1(DUT.CPU.DP.rs1_WB),
     // rsel2 bits, brought to WB stage
-    .rsel2(DUT.CPU.DP0.rs2_WB),
+    .rsel2(DUT.CPU.DP.rs2_WB),
     // wsel bits, brought to WB stage
-    .wsel(DUT.CPU.DP0.rd_WB),
+    .wsel(DUT.CPU.DP.rd_WB),
     // 32-bit instruction, brought to WB stage
-    .instr(DUT.CPU.DP0.instr_WB),
+    .instr(DUT.CPU.DP.instr_WB),
     // PC for this instruction, brought to WB stage
-    .pc(DUT.CPU.DP0.PC_WB),
+    .pc(DUT.CPU.DP.PC_WB),
     // next PC to go to after this instruction, brought to WB stage
-    .next_pc(DUT.CPU.DP0.nPC_WB),
+    .next_pc(DUT.CPU.DP.nPC_WB),
     // target PC for this instruction. Branches and JAL: PC + imm32; JALR: R[rs] + imm32, brought to WB stage
-    .branch_jump_target_pc(DUT.CPU.DP0.branch_PC_WB),
+    .branch_jump_target_pc(DUT.CPU.DP.branch_PC_WB),
     // 32-bit decoded immediate, brought to WB stage
-    .imm32(DUT.CPU.DP0.imm_WB),
+    .imm32(DUT.CPU.DP.imm_WB),
     // upper 20 bits as used by U-Type instructions (LUI, AUIPC), brought to WB stage. Can be the upper 20 bits of your decoded imm32 if your pipeline does this already.
-    .utype_upper20(DUT.CPU.DP0.imm_WB[31:12]),
+    .utype_upper20(DUT.CPU.DP.imm_WB[31:12]),
     // 32-bit wdat to register file
-    .reg_file_wdat(DUT.CPU.DP0.rfif.wdat),
+    .reg_file_wdat(DUT.CPU.DP.rfif.wdat),
     // 32-bit data memory address, brought to WB stage
-    .data_mem_addr(DUT.CPU.DP0.dmemaddr_WB),
+    .data_mem_addr(DUT.CPU.DP.dmemaddr_WB),
     // 32-bit data memory store value, brought to WB stage
-    .data_mem_store(DUT.CPU.DP0.dmemstore_WB)
+    .data_mem_store(DUT.CPU.DP.dmemstore_WB)
   );
   */
 `else

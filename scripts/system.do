@@ -81,6 +81,12 @@ add wave -noupdate /system_tb/DUT/CPU/ccif/daddr
 add wave -noupdate /system_tb/DUT/CPU/ccif/ramaddr
 add wave -noupdate /system_tb/DUT/CPU/DP/cruif/dmemaddr
 add wave -noupdate /system_tb/DUT/CPU/CM/dcif/ihit
+add wave -noupdate -radix decimal /system_tb/DUT/CPU/DP/ex_mem_out.AdderOut
+add wave -noupdate -radix decimal /system_tb/DUT/CPU/DP/ex_mem_out.AluOut
+add wave -noupdate -radix decimal /system_tb/DUT/CPU/DP/ex_mem_out.immediate
+add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out.AdderOut
+add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out.AluOut
+add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out.immediate
 add wave -noupdate -expand /system_tb/DUT/CPU/DP/REG_FILE/register
 add wave -noupdate -radix decimal /system_tb/DUT/CPU/DP/cruif/Imm
 add wave -noupdate /system_tb/DUT/CPU/DP/cruif/Rs1
@@ -101,9 +107,14 @@ add wave -noupdate /system_tb/DUT/CPU/DP/fuif/RegWR_mem
 add wave -noupdate /system_tb/DUT/CPU/DP/fuif/RegWR_WB
 add wave -noupdate -divider {Data being selected from}
 add wave -noupdate /system_tb/DUT/CPU/DP/rfif/wdat
-add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out.AluOut
+add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out.immediate
 add wave -noupdate /system_tb/DUT/CPU/DP/id_ex_out.rdat1
 add wave -noupdate /system_tb/DUT/CPU/DP/id_ex_out.rdat2
+add wave -noupdate /system_tb/DUT/CPU/DP/mem_wb_in.wrb
+add wave -noupdate -divider {wrb pulling from}
+add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out.immediate
+add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out.AluOut
+add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out.AdderOut
 add wave -noupdate -divider {Alu Signals}
 add wave -noupdate /system_tb/DUT/CPU/DP/ALU/zero
 add wave -noupdate /system_tb/DUT/CPU/DP/ALU/negative
@@ -132,9 +143,9 @@ add wave -noupdate /system_tb/DUT/CPU/DP/huif/rs2
 add wave -noupdate /system_tb/DUT/CPU/DP/huif/Rd
 add wave -noupdate /system_tb/DUT/CPU/DP/huif/Memtoreg
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {178729 ps} 0}
+WaveRestoreCursors {{Cursor 1} {200000 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 165
+configure wave -namecolwidth 189
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1
@@ -148,4 +159,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {92400 ps} {323400 ps}
+WaveRestoreZoom {36 ns} {1452457 ps}

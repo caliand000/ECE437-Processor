@@ -27,6 +27,6 @@ done:
   org 0x80
 
 start:
-  cfw 4                      # First operand
-  cfw 100                      # Second operand
+  cfw 2                      # First operand
+  cfw 1                      # Second operand
   cfw 0                      # Placeholder for result
