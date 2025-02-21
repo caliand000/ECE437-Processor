@@ -10,5 +10,5 @@ ori   $1, $0, 0x5
 beq   $1, $1, branch_taken
 HALT
 branch_taken:
-  sw   $1, 15($1)  # Reached if taken
+  sw   $1, 31($1)  # Reached if taken
   HALT

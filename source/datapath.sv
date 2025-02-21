@@ -37,6 +37,7 @@ module datapath(
 
   //internal signals
   word_t iaddr, Aluout, outdata, Alu_a, Alu_b, Alu_c, Alu_d;
+  logic Neg, Zero;
 
   //internal pipelined signals
   IF_ID if_id_in;
@@ -60,7 +61,7 @@ module datapath(
   control_unit      CONTROL(CLK, nRST, cruif);
   decider           Branch(deif);
   register_file     REG_FILE(CLK, nRST, rfif);
-  alu               ALU(.A(Alu_a), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(ex_mem_in.AluOut), .zero(deif.Zero), .negative(deif.Negative));
+  alu               ALU(.A(Alu_a), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(ex_mem_in.AluOut), .zero(Zero), .negative(Neg));
   extender          EX(exif_in);
   hazard_unit       HAZARD(huif);
   forward_unit      FORWARD(fuif);
@@ -76,8 +77,6 @@ module datapath(
       2'b10:Alu_a = mem_wb_in.wrb;
       2'b11:Alu_a = ex_mem_out.immediate;
     endcase
-
-    
 
     case(fuif.Alu_in2)
       2'b00:Alu_b = id_ex_out.rdat2;
@@ -98,6 +97,10 @@ module datapath(
   assign rfif.WEN = mem_wb_out.RegWr;
   assign rfif.wdat = (mem_wb_out.MemtoReg)? mem_wb_out.read_data:mem_wb_out.wrb;
 
+  //================Branch Unit================
+  assign deif.Zero = ex_mem_out.Zero;
+  assign deif.Negative = ex_mem_out.Neg;
+  assign deif.typ = ex_mem_out.branch;
   //================IF/ID================
   assign if_id_in.instruction = dpif.imemload;
   assign if_id_in.pc = dpif.imemaddr;
@@ -125,9 +128,13 @@ module datapath(
   assign ex_mem_in.MemWr = id_ex_out.MemWr;
   assign ex_mem_in.PCSrc = deif.PCsrc;
   assign ex_mem_in.RegWr = id_ex_out.RegWr;
+  assign ex_mem_in.Zero = Zero;
+  assign ex_mem_in.Neg = Neg;
+  assign ex_mem_in.branch = id_ex_out.branch;
   assign ex_mem_in.jumpsel = id_ex_out.jumpsel;
-  assign ex_mem_in.read_data = dpif.dhit ?dpif.dmemload: ex_mem_out.read_data;  // assign mem_wb_in.MemtoReg=ex_mem_out.MemtoReg;n.read_data =dpif.dhit ? dpif.dmemload : ex_mem_out.read_data;
+  assign ex_mem_in.read_data = dpif.dhit ?dpif.dmemload: ex_mem_out.read_data;  
   assign ex_mem_in.rd=id_ex_out.rd;
+  assign ex_mem_in.rdat1=id_ex_out.rdat1;
   assign ex_mem_in.rdat2=Alu_b;
   assign ex_mem_in.AdderOut= id_ex_out.pc + id_ex_out.immediate;
   assign ex_mem_in.immediate=id_ex_out.immediate;
@@ -147,7 +154,6 @@ module datapath(
   end
 
   //assigning internal signals
-  assign deif.typ=id_ex_out.branch; 
   assign dpif.imemREN = 1;
   assign dpif.dmemstore = ex_mem_out.rdat2;
   assign dpif.dmemaddr = ex_mem_out.AluOut;
@@ -164,8 +170,8 @@ module datapath(
         dpif.dmemREN <= 0;
         dpif.dmemWEN <= 0;
       end
-      else if(id_ex_out.MemWr == 2'b01 && dpif.ihit) dpif.dmemWEN <= 1;
-      else if(id_ex_out.MemWr == 2'b10 && dpif.ihit) dpif.dmemREN <= 1;
+      else if(id_ex_out.MemWr == 2'b01 && dpif.ihit && !huif.Flush) dpif.dmemWEN <= 1;
+      else if(id_ex_out.MemWr == 2'b10 && dpif.ihit && !huif.Flush) dpif.dmemREN <= 1;
     end
     end
 
@@ -193,22 +199,21 @@ module datapath(
   always_ff @(posedge CLK, negedge nRST) begin
     if(!nRST) begin
       dpif.imemaddr <= '0;
-      // dpif.halt <= 0;
+      dpif.halt <= 0;
     end 
     else begin
       dpif.imemaddr <= iaddr;
-      // if(ex_mem_out.pchalt) dpif.halt <= 1;
+      dpif.halt <= ex_mem_out.pchalt || dpif.halt;
     end 
   end
-  assign dpif.halt = ex_mem_out.pchalt;
+
   always_comb begin
     iaddr = dpif.imemaddr;
-    if(mem_wb_out.pchalt) iaddr = '0;
-    else if(dpif.ihit) begin
+    if(dpif.ihit) begin
       case (deif.PCsrc)
         2'b00: iaddr = huif.Halt?dpif.imemaddr:dpif.imemaddr+ 4;
-        2'b01: iaddr = id_ex_out.pc + id_ex_out.immediate;
-        2'b10: iaddr = id_ex_out.rdat1+id_ex_out.immediate;
+        2'b01: iaddr = ex_mem_out.AdderOut;//id_ex_out.pc + id_ex_out.immediate;
+        2'b10: iaddr = ex_mem_out.rdat1+ex_mem_out.immediate;
       endcase
     end
   end
@@ -222,18 +227,17 @@ module datapath(
       mem_wb_out<= '0;
     end
     else begin
-      if(dpif.ihit && huif.latch_en) begin
-        if(huif.Flush) if_id_out <= '0;
-        else if_id_out <= if_id_in;
-      end
       if(dpif.ihit) begin
         if(huif.Flush) begin
+          if_id_out <= '0;
           id_ex_out <= '0;
+          ex_mem_out <= '0;
         end
         else begin
-          id_ex_out <= id_ex_in;  
+          id_ex_out <= id_ex_in;
+          if_id_out <= if_id_in;
+          ex_mem_out<= ex_mem_in;  
         end
-        ex_mem_out<= ex_mem_in;
         mem_wb_out<= mem_wb_in;
       end
       else if(dpif.dhit) begin
