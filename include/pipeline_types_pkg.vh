@@ -41,6 +41,7 @@ package pipeline_types_pkg;
 
 
   typedef struct packed {
+    word_t pc;
     logic pchalt;
     logic MemtoReg;
     logic [1:0] MemWr;
@@ -59,7 +60,8 @@ package pipeline_types_pkg;
     word_t read_data;
   } EX_MEM;
 
-    typedef struct packed {
+  typedef struct packed {
+    word_t pc;
     logic pchalt;
     logic RegWr;
     word_t wrb;

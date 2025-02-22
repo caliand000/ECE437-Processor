@@ -92,6 +92,11 @@ add wave -noupdate -radix decimal /system_tb/DUT/CPU/DP/cruif/Imm
 add wave -noupdate /system_tb/DUT/CPU/DP/cruif/Rs1
 add wave -noupdate /system_tb/DUT/CPU/DP/cruif/Imm
 add wave -noupdate -divider {Pipeline Latch Signals}
+add wave -noupdate /system_tb/DUT/CPU/DP/if_id_out.pc
+add wave -noupdate /system_tb/DUT/CPU/DP/id_ex_out.pc
+add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out.pc
+add wave -noupdate /system_tb/DUT/CPU/DP/mem_wb_out.pc
+add wave -noupdate -divider PC's
 add wave -noupdate -expand /system_tb/DUT/CPU/DP/if_id_out
 add wave -noupdate -expand /system_tb/DUT/CPU/DP/id_ex_out
 add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out
@@ -142,7 +147,7 @@ add wave -noupdate /system_tb/DUT/CPU/DP/huif/rs2
 add wave -noupdate /system_tb/DUT/CPU/DP/huif/Rd
 add wave -noupdate /system_tb/DUT/CPU/DP/huif/Memtoreg
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {798017 ps} 0}
+WaveRestoreCursors {{Cursor 1} {378683 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 189
 configure wave -valuecolwidth 100
@@ -158,4 +163,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ps} {1163896 ps}
+WaveRestoreZoom {0 ps} {1315 ns}

@@ -1,103 +1,20 @@
-processing file asmFiles/test.jalr.asm (1 of 1)
-processing file asmFiles/test.beqnottaken.asm (1 of 25)
-processing file asmFiles/test.beqtaken.asm (2 of 25)
-processing file asmFiles/test.bgenottaken.asm (3 of 25)
-processing file asmFiles/test.bgetaken.asm (4 of 25)
-processing file asmFiles/test.bgeunottaken.asm (5 of 25)
-processing file asmFiles/test.bgeutaken.asm (6 of 25)
-processing file asmFiles/test.bltnottaken.asm (7 of 25)
-processing file asmFiles/test.blttaken.asm (8 of 25)
-processing file asmFiles/test.bltunottaken.asm (9 of 25)
-processing file asmFiles/test.bltutaken.asm (10 of 25)
-processing file asmFiles/test.bnenottaken.asm (11 of 25)
-processing file asmFiles/test.bnetaken.asm (12 of 25)
-processing file asmFiles/test.branchjump1.asm (13 of 25)
-processing file asmFiles/test.controlflowhazard.asm (14 of 25)
-processing file asmFiles/test.datahazard.asm (15 of 25)
---- memsim.hex	2025-02-20 20:01:33.436532852 -0500
-+++ memcpu.hex	2025-02-20 20:01:33.419532205 -0500
-@@ -1,6 +1,6 @@
- :0400000000506193B8
- :0400010000000005F6
--:040002000000000AF0
-+:0400020000000009F1
- :040003000040228314
- :040004000032833310
- :040005000060242350
-processing file asmFiles/test.forwardinghazard.asm (16 of 25)
-processing file asmFiles/test.halt.asm (17 of 25)
-processing file asmFiles/test.jal.asm (18 of 25)
-processing file asmFiles/test.jalr.asm (19 of 25)
-processing file asmFiles/test.ldst1.asm (20 of 25)
-processing file asmFiles/test.ldst2.asm (21 of 25)
-processing file asmFiles/test.loadstore.asm (22 of 25)
-processing file asmFiles/test.lui.asm (23 of 25)
-processing file asmFiles/test.rtype.asm (24 of 25)
-processing file asmFiles/test.structuralhazard.asm (25 of 25)
-processing file asmFiles/fib.asm (1 of 1)
---- memsim.hex	2025-02-20 20:02:09.179894173 -0500
-+++ memcpu.hex	2025-02-20 20:02:09.160893449 -0500
-@@ -14,27 +14,27 @@
- :04000D00FE0814E3F2
- :04000E00FFFFFFFFF2
- :0400210000000001DA
--:0400220000000001D9
--:0400230000000002D7
--:0400240000000003D5
--:0400250000000005D2
--:0400260000000008CE
--:040027000000000DC8
--:0400280000000015BF
--:0400290000000022B1
--:04002A00000000379B
--:04002B000000005978
--:04002C000000009040
--:04002D00000000E9E6
--:04002E000000017954
--:04002F000000026269
--:04003000000003DBEE
--:040031000000063D88
--:0400320000000A18A8
--:040033000000105564
--:0400340000001A6D41
--:0400350000002AC2DB
--:040036000000452F52
--:0400370000006FF165
-+:040022000000008456
-+:040023000000008950
-+:0400240000000110C7
-+:0400250000000119BD
-+:04002600000001A431
-+:04002700000001B123
-+:040028000000024092
-+:040029000000025180
-+:04002A00000002E4EC
-+:04002B00000002F9D6
-+:04002C00000003903D
-+:04002D00000003A923
-+:04002E000000044486
-+:04002F000000046168
-+:0400300000000500C7
-+:0400310000000521A5
-+:04003200000005C401
-+:04003300000005E9DB
-+:040034000000069032
-+:04003500000006B908
-+:04003600000007645B
-+:04003700000007912D
- :0403C0000000001623
- :00000001FF
-processing file asmFiles/search.asm (1 of 1)
---- memsim.hex	2025-02-20 20:02:14.373091961 -0500
-+++ memcpu.hex	2025-02-20 20:02:14.356091313 -0500
-@@ -14,7 +14,6 @@
- :04000D00FE0004E30A
- :04000E0000D12023DA
- :04000F00FFFFFFFFF1
--:0400200000000124B7
- :0400210000005C6F10
- :040022000000006476
- :040023000000087D54
-processing file asmFiles/mergesort.asm (1 of 1)
-processing file asmFiles/multiply.asm (1 of 2)
-processing file asmFiles/multiplyprocedure.asm (2 of 2)
+processing file asmFiles/calculatedays.asm (1 of 31)
+processing file asmFiles/fib.asm (2 of 31)
+processing file asmFiles/mergesort.asm (3 of 31)
+processing file asmFiles/multiply.asm (4 of 31)
+processing file asmFiles/multiplyprocedure.asm (5 of 31)
+processing file asmFiles/search.asm (6 of 31)
+processing file asmFiles/test.beqnottaken.asm (7 of 31)
+processing file asmFiles/test.beqtaken.asm (8 of 31)
+processing file asmFiles/test.bgenottaken.asm (9 of 31)
+processing file asmFiles/test.bgetaken.asm (10 of 31)
+processing file asmFiles/test.bgeunottaken.asm (11 of 31)
+processing file asmFiles/test.bgeutaken.asm (12 of 31)
+processing file asmFiles/test.bltnottaken.asm (13 of 31)
+processing file asmFiles/test.blttaken.asm (14 of 31)
+processing file asmFiles/test.bltunottaken.asm (15 of 31)
+processing file asmFiles/test.bltutaken.asm (16 of 31)
+processing file asmFiles/test.bnenottaken.asm (17 of 31)
+processing file asmFiles/test.bnetaken.asm (18 of 31)
+processing file asmFiles/test.branchjump1.asm (19 of 31)
+processing file asmFiles/test.controlflowhazard.asm (20 of 31)
