@@ -37,7 +37,7 @@ input logic CLK, nRST,
   always_comb begin
     bpif.Br_PC = 1'b0;
     bpif.target = '0;
-
+    branch_buffer_next=branch_buffer;
     if(bpif.opcode == BTYPE) begin
         if(branch_buffer[bpif.PC].state == TAKEN) begin
             bpif.Br_PC = 1'b1;
@@ -49,7 +49,7 @@ input logic CLK, nRST,
         branch_buffer_next[bpif.PC].target = bpif.adderout;
         branch_buffer_next[bpif.PC].state = TAKEN;
     end
-    else if(bpif.mispredict) begin
+    else begin
         branch_buffer_next[bpif.PC].state = NOTTAKEN;
     end
 
@@ -58,7 +58,10 @@ input logic CLK, nRST,
 
 always_ff @(posedge CLK, negedge nRST) begin
     if(!nRST) begin
-        branch_buffer <= '0;
+      for(int i=0;i<256;i++) begin
+        branch_buffer[i].target <= '0;
+        branch_buffer[i].state  <= NOTTAKEN;
+      end
     end
     else begin
         branch_buffer <= branch_buffer_next;
