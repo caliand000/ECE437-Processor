@@ -146,11 +146,13 @@ add wave -noupdate /system_tb/DUT/CPU/DP/huif/rs1
 add wave -noupdate /system_tb/DUT/CPU/DP/huif/rs2
 add wave -noupdate /system_tb/DUT/CPU/DP/huif/Rd
 add wave -noupdate /system_tb/DUT/CPU/DP/huif/Memtoreg
+add wave -noupdate /system_tb/DUT/CPU/DP/bpif/Br_PC
+add wave -noupdate /system_tb/DUT/CPU/DP/bpif/mispredict
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {378683 ps} 0}
+WaveRestoreCursors {{Cursor 1} {148457 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 189
-configure wave -valuecolwidth 100
+configure wave -namecolwidth 367
+configure wave -valuecolwidth 39
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1
 configure wave -snapdistance 10
@@ -163,4 +165,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ps} {1315 ns}
+WaveRestoreZoom {0 ps} {359967 ps}

@@ -18,13 +18,13 @@ interface branch_pr_if;
   //signals
   logic [1:0] PCSrc;
   logic [6:0] opcode;
-  logic Br_PC;
-  word_t PC, old_PC;
+  logic Br_PC,mispredict;
+  word_t PC, branch_PC, target, adderout;
 
   // control unit ports
   modport bp (
-    input  PCSrc, PC, opcode, old_PC,
-    output Br_PC
+    input  PCSrc, PC, branch_PC, opcode, adderout,mispredict,
+    output Br_PC, target
   );
 
 

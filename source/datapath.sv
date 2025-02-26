@@ -13,6 +13,7 @@
 `include "decider_if.vh"
 `include "hazard_unit_if.vh"
 `include "forward_unit_if.vh"
+`include "branch_pr_if.vh"
 // alu op, mips op, and instruction type
 `include "cpu_types_pkg.vh"
 `include "pipeline_types_pkg.vh"
@@ -32,13 +33,15 @@ module datapath(
   decider_if deif();
   hazard_unit_if huif();
   forward_unit_if fuif();
+  branch_pr_if bpif();
   // pc init
   parameter PC_INIT = 0;
 
   //internal signals
   word_t iaddr, Aluout, outdata, Alu_a, Alu_b, Alu_c, Alu_d;
-  logic Neg, Zero;
-
+  word_t iaddr_a, iaddr_b;
+  logic Neg, Zero,mispredict;
+  
   //internal pipelined signals
   IF_ID if_id_in;
   IF_ID if_id_out;
@@ -65,9 +68,25 @@ module datapath(
   extender          EX(exif_in);
   hazard_unit       HAZARD(huif);
   forward_unit      FORWARD(fuif);
+  branch_pr         PREDICTOR(CLK, nRST, bpif);
 
   //interface/signal connections
 
+
+  //================Predictor================
+  assign bpif.PCSrc = deif.PCsrc;
+  assign bpif.PC = dpif.imemaddr;
+  assign bpif.branch_PC = ex_mem_out.pc;
+  assign bpif.opcode = dpif.imemload[6:0];
+  assign bpif.adderout = ex_mem_out.AdderOut;
+  assign bpif.mispredict = mispredict;
+
+  //mispredict logic
+  always_comb begin
+    mispredict=0;
+    if((deif.PCsrc != 2'b01) && ex_mem_out.Br_PC) mispredict=1;
+  end
+  
 
   //================ALU================
   always_comb begin
@@ -108,27 +127,28 @@ module datapath(
   assign if_id_in.pc = dpif.imemaddr;
 
   //================IF/ID -> ID/EX================
-  assign id_ex_in.pc = huif.Zero_controls?0:if_id_out.pc;
-  assign id_ex_in.pchalt = huif.Zero_controls?0:cruif.pchalt;
-  assign id_ex_in.MemtoReg = huif.Zero_controls?0:cruif.MemtoReg;
-  assign id_ex_in.AluSrc = huif.Zero_controls?0:cruif.AluSrc;
-  assign id_ex_in.Aluop = huif.Zero_controls?0:cruif.Aluop;
-  assign id_ex_in.MemWr = huif.Zero_controls?0:cruif.MemWr;
-  assign id_ex_in.RegWr = huif.Zero_controls?0:cruif.RegWr;
-  assign id_ex_in.branch = huif.Zero_controls?0:cruif.typ;
-  assign id_ex_in.rdat1 = huif.Zero_controls?0:rfif.rdat1; 
-  assign id_ex_in.rdat2 = huif.Zero_controls?0:rfif.rdat2;
-  assign id_ex_in.immediate = huif.Zero_controls?0:exif_in.extended_im;
-  assign id_ex_in.rd = huif.Zero_controls?0:if_id_out.instruction[11:7];
-  assign id_ex_in.jumpsel = huif.Zero_controls?0:cruif.jumpsel;
-  assign id_ex_in.rs1 = huif.Zero_controls?0:if_id_out.instruction[19:15];
-  assign id_ex_in.rs2 = huif.Zero_controls?0:if_id_out.instruction[24:20];
- 
+  assign id_ex_in.pc = (huif.Zero_controls||mispredict)?0:if_id_out.pc;
+  assign id_ex_in.pchalt = (huif.Zero_controls||mispredict)?0:cruif.pchalt;
+  assign id_ex_in.MemtoReg = (huif.Zero_controls||mispredict)?0:cruif.MemtoReg;
+  assign id_ex_in.AluSrc = (huif.Zero_controls||mispredict)?0:cruif.AluSrc;
+  assign id_ex_in.Aluop = (huif.Zero_controls||mispredict)?0:cruif.Aluop;
+  assign id_ex_in.MemWr = (huif.Zero_controls||mispredict)?0:cruif.MemWr;
+  assign id_ex_in.RegWr = (huif.Zero_controls||mispredict)?0:cruif.RegWr;
+  assign id_ex_in.branch = (huif.Zero_controls||mispredict)?0:cruif.typ;
+  assign id_ex_in.rdat1 = (huif.Zero_controls||mispredict)?0:rfif.rdat1; 
+  assign id_ex_in.rdat2 = (huif.Zero_controls||mispredict)?0:rfif.rdat2;
+  assign id_ex_in.immediate = (huif.Zero_controls||mispredict)?0:exif_in.extended_im;
+  assign id_ex_in.rd = (huif.Zero_controls||mispredict)?0:if_id_out.instruction[11:7];
+  assign id_ex_in.jumpsel = (huif.Zero_controls||mispredict)?0:cruif.jumpsel;
+  assign id_ex_in.rs1 = (huif.Zero_controls||mispredict)?0:if_id_out.instruction[19:15];
+  assign id_ex_in.rs2 = (huif.Zero_controls||mispredict)?0:if_id_out.instruction[24:20];
+  assign id_ex_in.Br_PC=if_id_out.Br_PC;
   //================ID/EX -> EX/MEM================
   assign ex_mem_in.pc = id_ex_out.pc;
   assign ex_mem_in.pchalt = id_ex_out.pchalt;
   assign ex_mem_in.MemtoReg = id_ex_out.MemtoReg;
   assign ex_mem_in.MemWr = id_ex_out.MemWr;
+  assign ex_mem_in.Br_PC=id_ex_out.Br_PC;
   // assign ex_mem_in.PCSrc = deif.PCsrc;
   assign ex_mem_in.RegWr = id_ex_out.RegWr;
   assign ex_mem_in.Zero = Zero;
@@ -141,6 +161,7 @@ module datapath(
   assign ex_mem_in.rdat2=Alu_b;
   assign ex_mem_in.AdderOut= id_ex_out.pc + id_ex_out.immediate;
   assign ex_mem_in.immediate=id_ex_out.immediate;
+  
   //================EX/MEM -> MEM/WB================
   assign mem_wb_in.pc = ex_mem_out.pc;
   assign mem_wb_in.pchalt=ex_mem_out.pchalt;
@@ -215,11 +236,14 @@ module datapath(
     iaddr = dpif.imemaddr;
     if(dpif.ihit) begin
       case (deif.PCsrc)
-        2'b00: iaddr = huif.Halt?dpif.imemaddr:dpif.imemaddr+ 4;
-        2'b01: iaddr = ex_mem_out.AdderOut;//id_ex_out.pc + id_ex_out.immediate;
-        2'b10: iaddr = ex_mem_out.rdat1+ex_mem_out.immediate;
+        2'b00: iaddr_a = huif.Halt?dpif.imemaddr:dpif.imemaddr+ 4;
+        2'b01: iaddr_a = ex_mem_out.AdderOut;
+        2'b10: iaddr_a = ex_mem_out.rdat1+ex_mem_out.immediate;
       endcase
+      iaddr_b = (bpif.Br_PC)? bpif.target: iaddr_a;
+      iaddr = (mispredict)? ex_mem_out.AdderOut-ex_mem_out.immediate + 4: iaddr_b;
     end
+
   end
 
   //================Latch Logic================
@@ -232,7 +256,7 @@ module datapath(
     end
     else begin
       if(dpif.ihit) begin
-        if(huif.Flush) begin
+        if(huif.Flush||mispredict) begin
           if_id_out <= '0;
           id_ex_out <= '0;
           ex_mem_out <= '0;

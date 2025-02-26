@@ -19,6 +19,7 @@ package pipeline_types_pkg;
   typedef struct packed {
     word_t instruction;
     word_t pc;
+    logic Br_PC;
   } IF_ID;
 
     typedef struct packed {
@@ -37,6 +38,7 @@ package pipeline_types_pkg;
     word_t immediate;
     logic [4:0] rd;
     logic [1:0] jumpsel;
+    logic Br_PC;
     } ID_EX;
 
 
@@ -58,6 +60,7 @@ package pipeline_types_pkg;
     word_t immediate;
     logic [1:0] jumpsel;
     word_t read_data;
+    logic Br_PC;
   } EX_MEM;
 
   typedef struct packed {

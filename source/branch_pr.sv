@@ -1,0 +1,70 @@
+/*
+  Andrew Cali
+  acali@purdue.edu
+
+  contains forwarding unit logic
+*/
+
+// forwarding unit interface
+`include "branch_pr_if.vh"
+
+// types interface include
+`include "cpu_types_pkg.vh"
+
+module branch_pr (
+input logic CLK, nRST,
+  branch_pr_if.bp bpif
+);
+  // import types
+  import cpu_types_pkg::*;
+
+  // pc init
+  parameter PC_INIT = 0;
+
+   typedef enum logic {
+    NOTTAKEN     = 1'b0,
+    TAKEN        = 1'b1
+   } state_t;
+
+  typedef struct packed {
+    word_t              target;
+    state_t             state;
+  } branch_target_buffer_t;
+
+  branch_target_buffer_t [255:0] branch_buffer;
+  branch_target_buffer_t [255:0] branch_buffer_next; 
+
+  always_comb begin
+    bpif.Br_PC = 1'b0;
+    bpif.target = '0;
+
+    if(bpif.opcode == BTYPE) begin
+        if(branch_buffer[bpif.PC].state == TAKEN) begin
+            bpif.Br_PC = 1'b1;
+            bpif.target = branch_buffer[bpif.PC].target;
+        end else bpif.Br_PC = 1'b0;
+    end
+
+    if(bpif.PCSrc==2'b01) begin
+        branch_buffer_next[bpif.PC].target = bpif.adderout;
+        branch_buffer_next[bpif.PC].state = TAKEN;
+    end
+    else if(bpif.mispredict) begin
+        branch_buffer_next[bpif.PC].state = NOTTAKEN;
+    end
+
+  end
+
+
+always_ff @(posedge CLK, negedge nRST) begin
+    if(!nRST) begin
+        branch_buffer <= '0;
+    end
+    else begin
+        branch_buffer <= branch_buffer_next;
+    end
+end
+
+
+
+endmodule
