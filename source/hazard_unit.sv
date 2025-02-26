@@ -18,7 +18,7 @@ module hazard_unit (
     huif.Halt = 0;
     huif.Zero_controls = 0;
     huif.Flush = 0;
-    if(huif.Pcsrc!=0) begin
+    if(huif.Pcsrc) begin
       // huif.latch_en=1;    // else if(huif.Halt) iaddr = dpif.imemaddr;
       //huif.Halt=1;
       // huif.Zero_controls=1;

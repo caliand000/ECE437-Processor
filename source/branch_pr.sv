@@ -39,18 +39,15 @@ input logic CLK, nRST,
     bpif.target = '0;
     branch_buffer_next=branch_buffer;
     if(bpif.opcode == BTYPE) begin
-        if(branch_buffer[bpif.PC].state == TAKEN) begin
+        if(branch_buffer[bpif.PC_fet].state == TAKEN) begin
             bpif.Br_PC = 1'b1;
-            bpif.target = branch_buffer[bpif.PC].target;
-        end else bpif.Br_PC = 1'b0;
+            bpif.target = branch_buffer[bpif.PC_fet].target;
+        end 
     end
-
+  
     if(bpif.PCSrc==2'b01) begin
-        branch_buffer_next[bpif.PC].target = bpif.adderout;
-        branch_buffer_next[bpif.PC].state = TAKEN;
-    end
-    else begin
-        branch_buffer_next[bpif.PC].state = NOTTAKEN;
+        branch_buffer_next[bpif.PC_mem[9:2]].target = bpif.adderout;
+        branch_buffer_next[bpif.PC_mem[9:2]].state = TAKEN;
     end
 
   end

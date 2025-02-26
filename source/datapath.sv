@@ -75,7 +75,8 @@ module datapath(
 
   //================Predictor================
   assign bpif.PCSrc = deif.PCsrc;
-  assign bpif.PC = dpif.imemaddr[9:2];
+  assign bpif.PC_fet = dpif.imemaddr[9:2];
+  assign bpif.PC_mem = ex_mem_out.AdderOut-ex_mem_out.immediate;
   assign bpif.branch_PC = ex_mem_out.pc;
   assign bpif.opcode = dpif.imemload[6:0];
   assign bpif.adderout = ex_mem_out.AdderOut;
@@ -84,7 +85,7 @@ module datapath(
   //mispredict logic
   always_comb begin
     mispredict=0;
-    if((deif.PCsrc != 2'b01) && ex_mem_out.Br_PC) mispredict=1;
+    if(((deif.PCsrc != 2'b01) && ex_mem_out.Br_PC)||((deif.PCsrc==2'b01)&&!ex_mem_out.Br_PC)) mispredict=1;
   end
   
 
@@ -125,6 +126,7 @@ module datapath(
   //================IF/ID================
   assign if_id_in.instruction = dpif.imemload;
   assign if_id_in.pc = dpif.imemaddr;
+  assign if_id_in.Br_PC = bpif.Br_PC;
 
   //================IF/ID -> ID/EX================
   assign id_ex_in.pc = (huif.Zero_controls||mispredict)?0:if_id_out.pc;
@@ -217,7 +219,7 @@ module datapath(
   assign huif.rs1= if_id_out.instruction[19:15];
   assign huif.rs2 = if_id_out.instruction[24:20];
   assign huif.Rd=id_ex_out.rd;
-  assign huif.Pcsrc= deif.PCsrc;
+  assign huif.Pcsrc= mispredict || (deif.PCsrc[1]);
   assign huif.Memtoreg=id_ex_out.MemtoReg;
 
   //================Program Count Logic================
@@ -234,14 +236,26 @@ module datapath(
 
   always_comb begin
     iaddr = dpif.imemaddr;
+    iaddr_a='b0;
+    iaddr_b='b0;
     if(dpif.ihit) begin
-      case (deif.PCsrc)
-        2'b00: iaddr_a = (huif.Halt)?dpif.imemaddr:dpif.imemaddr+ 4;
-        2'b01: iaddr_a = ex_mem_out.AdderOut;
+      
+      casez (deif.PCsrc)
+        2'b0?: iaddr_a = (huif.Halt)?dpif.imemaddr:dpif.imemaddr+ 4;
+        2'b11: iaddr_a = ex_mem_out.AdderOut;
+        // 2'b01: iaddr_a = ex_mem_out.AdderOut;
         2'b10: iaddr_a = ex_mem_out.rdat1+ex_mem_out.immediate;
       endcase
       iaddr_b = (bpif.Br_PC)? bpif.target: iaddr_a;
-      iaddr = (mispredict)? ex_mem_out.AdderOut-ex_mem_out.immediate + 4: iaddr_b;
+      // iaddr = (mispredict)? ex_mem_out.AdderOut-ex_mem_out.immediate + 4: iaddr_b;
+
+      if ((deif.PCsrc != 2'b01) && ex_mem_out.Br_PC) begin
+        iaddr = ex_mem_out.AdderOut-ex_mem_out.immediate + 4;
+      end else if ((deif.PCsrc == 2'b01) && !ex_mem_out.Br_PC) begin
+        iaddr = ex_mem_out.AdderOut;
+      end else begin
+        iaddr = iaddr_b;
+      end
     end
 
   end

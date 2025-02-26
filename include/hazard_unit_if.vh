@@ -19,7 +19,7 @@ interface hazard_unit_if;
     regbits_t rs1, rs2;
     regbits_t Rd;
     logic Flush,Zero_controls,Halt,latch_en,Memtoreg; 
-    logic [1:0] Pcsrc;
+    logic Pcsrc;
 
   // control unit ports
   modport hu (

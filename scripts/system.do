@@ -148,11 +148,21 @@ add wave -noupdate /system_tb/DUT/CPU/DP/huif/Rd
 add wave -noupdate /system_tb/DUT/CPU/DP/huif/Memtoreg
 add wave -noupdate /system_tb/DUT/CPU/DP/bpif/Br_PC
 add wave -noupdate /system_tb/DUT/CPU/DP/bpif/mispredict
+add wave -noupdate -expand -group {Branch Prediction} /system_tb/DUT/CPU/DP/PREDICTOR/branch_buffer
+add wave -noupdate -expand -group {Branch Prediction} /system_tb/DUT/CPU/DP/bpif/PCSrc
+add wave -noupdate -expand -group {Branch Prediction} /system_tb/DUT/CPU/DP/bpif/opcode
+add wave -noupdate -expand -group {Branch Prediction} /system_tb/DUT/CPU/DP/bpif/Br_PC
+add wave -noupdate -expand -group {Branch Prediction} /system_tb/DUT/CPU/DP/bpif/mispredict
+add wave -noupdate -expand -group {Branch Prediction} /system_tb/DUT/CPU/DP/bpif/PC_fet
+add wave -noupdate -expand -group {Branch Prediction} /system_tb/DUT/CPU/DP/bpif/PC_mem
+add wave -noupdate -expand -group {Branch Prediction} /system_tb/DUT/CPU/DP/bpif/branch_PC
+add wave -noupdate -expand -group {Branch Prediction} /system_tb/DUT/CPU/DP/bpif/target
+add wave -noupdate -expand -group {Branch Prediction} /system_tb/DUT/CPU/DP/bpif/adderout
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {148457 ps} 0}
+WaveRestoreCursors {{Cursor 1} {17600643110 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 367
-configure wave -valuecolwidth 39
+configure wave -valuecolwidth 40
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1
 configure wave -snapdistance 10
