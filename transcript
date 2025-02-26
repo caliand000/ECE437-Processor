@@ -5,10 +5,49 @@
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 17:47:19 on Feb 22,2025
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Warning: /package/eda/altera/altera15.0/quartus/eda/sim_lib/cycloneive_atoms.v(5684): (vopt-13162) Assignment to 'mem_invalidate' within the always block cannot trigger the same always block.
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Start time: 20:11:24 on Feb 25,2025
+# ** Note: (vsim-3812) Design is being optimized...
+###### source/datapath.sv(64):   alu               ALU(.A(Alu_a), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(ex_mem_in.AluOut), .zero(Zero), .negative(Neg));
+# ** Warning: source/datapath.sv(64): (vopt-2685) [TFMPC] - Too few port connections for 'ALU'.  Expected 7, found 6.
+# ** Warning: source/datapath.sv(64): (vopt-2718) [TFMPC] - Missing connection for port 'overflow'.
+###### include/cache_control_if.vh(79):       iREN[1] = cif1.iREN;
+# ** Warning: include/cache_control_if.vh(79): (vopt-2576) [BSOB] - Bit-select into 'iREN' is out of bounds.
+###### include/cache_control_if.vh(80):       dREN[1] = cif1.dREN;
+# ** Warning: include/cache_control_if.vh(80): (vopt-2576) [BSOB] - Bit-select into 'dREN' is out of bounds.
+###### include/cache_control_if.vh(81):       dWEN[1] = cif1.dWEN;
+# ** Warning: include/cache_control_if.vh(81): (vopt-2576) [BSOB] - Bit-select into 'dWEN' is out of bounds.
+###### include/cache_control_if.vh(82):       dstore[1] = cif1.dstore;
+# ** Warning: include/cache_control_if.vh(82): (vopt-2696) Index 1 into array dimension 1 of 'dstore' is out of bounds.
+# ** Warning: include/cache_control_if.vh(82): (vopt-2696) Index 1 into array dimension 1 of 'dstore' is out of bounds.
+###### include/cache_control_if.vh(83):       iaddr[1] = cif1.iaddr;
+# ** Warning: include/cache_control_if.vh(83): (vopt-2696) Index 1 into array dimension 1 of 'iaddr' is out of bounds.
+# ** Warning: include/cache_control_if.vh(83): (vopt-2696) Index 1 into array dimension 1 of 'iaddr' is out of bounds.
+###### include/cache_control_if.vh(84):       daddr[1] = cif1.daddr;
+# ** Warning: include/cache_control_if.vh(84): (vopt-2696) Index 1 into array dimension 1 of 'daddr' is out of bounds.
+# ** Warning: include/cache_control_if.vh(84): (vopt-2696) Index 1 into array dimension 1 of 'daddr' is out of bounds.
+###### include/cache_control_if.vh(85):       ccwrite[1] = cif1.ccwrite;
+# ** Warning: include/cache_control_if.vh(85): (vopt-2576) [BSOB] - Bit-select into 'ccwrite' is out of bounds.
+###### include/cache_control_if.vh(86):       cctrans[1] = cif1.cctrans;
+# ** Warning: include/cache_control_if.vh(86): (vopt-2576) [BSOB] - Bit-select into 'cctrans' is out of bounds.
+###### include/cache_control_if.vh(95):       cif1.iwait = iwait[1];
+# ** Warning: include/cache_control_if.vh(95): (vopt-2576) [BSOB] - Bit-select into 'iwait' is out of bounds.
+###### include/cache_control_if.vh(96):       cif1.dwait = dwait[1];
+# ** Warning: include/cache_control_if.vh(96): (vopt-2576) [BSOB] - Bit-select into 'dwait' is out of bounds.
+###### include/cache_control_if.vh(97):       cif1.iload = iload[1];
+# ** Warning: include/cache_control_if.vh(97): (vopt-2696) Index 1 into array dimension 1 of 'iload' is out of bounds.
+###### include/cache_control_if.vh(98):       cif1.dload = dload[1];
+# ** Warning: include/cache_control_if.vh(98): (vopt-2696) Index 1 into array dimension 1 of 'dload' is out of bounds.
+###### include/cache_control_if.vh(99):       cif1.ccwait = ccwait[1];
+# ** Warning: include/cache_control_if.vh(99): (vopt-2576) [BSOB] - Bit-select into 'ccwait' is out of bounds.
+###### include/cache_control_if.vh(100):       cif1.ccinv = ccinv[1];
+# ** Warning: include/cache_control_if.vh(100): (vopt-2576) [BSOB] - Bit-select into 'ccinv' is out of bounds.
+###### include/cache_control_if.vh(101):       cif1.ccsnoopaddr = ccsnoopaddr[1];
+# ** Warning: include/cache_control_if.vh(101): (vopt-2696) Index 1 into array dimension 1 of 'ccsnoopaddr' is out of bounds.
+###### source/extender.sv(26): assign bge=(opcode==BTYPE&&func3b==BGE);
+# ** Warning: source/extender.sv(26): (vopt-2623) Undefined variable: bge.
+###### source/extender.sv(28): assign bgeu=(opcode==BTYPE&&func3b==BGEU);
+# ** Warning: source/extender.sv(28): (vopt-2623) Undefined variable: bgeu.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=22.
 # //  Questa Sim-64
 # //  Version 2021.4 linux_x86_64 Oct 13 2021
 # //
@@ -29,65 +68,38 @@
 # Loading work.system_if(fast__1)
 # Loading work.test(fast)
 # Loading work.system(fast)
+# Loading work.cpu_ram_if(fast__1)
 # Loading work.pipeline(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
 # Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
 # Loading work.control_unit(fast)
-# Loading cycloneive_ver.cycloneive_lcell_comb(fast)
-# Loading work.forward_unit(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.extender(fast)
-# Loading work.alu(fast)
-# Loading cycloneive_ver.cycloneive_lcell_comb(fast__1)
-# Loading work.register_file(fast)
-# Loading altera_ver.dffeas(fast)
+# Loading work.decider_sv_unit(fast)
 # Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.caches(fast)
 # Loading work.memory_control(fast)
 # Loading work.ram(fast)
-# Loading work.altsyncram_1(fast)
-# Loading work.altsyncram_99f1(fast)
-# Loading work.altsyncram_fta2(fast)
-# Loading work.decode_jsa_1(fast)
-# Loading work.decode_jsa(fast)
-# Loading cycloneive_ver.cycloneive_ram_block(fast)
-# Loading cycloneive_ver.cycloneive_ram_pulse_generator(fast)
-# Loading cycloneive_ver.cycloneive_ram_pulse_generator(fast__1)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__1)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__2)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__3)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__4)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__5)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__6)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__7)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__8)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__9)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__10)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__11)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__12)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__13)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__14)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__15)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__16)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__17)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__18)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__19)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__20)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__21)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__22)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__23)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__24)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__25)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__26)
-# Loading cycloneive_ver.cycloneive_ram_block(fast__27)
-# Loading work.sld_mod_ram_rom(fast)
-# Loading work.sld_rom_sr(fast)
-# Loading cycloneive_ver.cycloneive_io_ibuf(fast)
-# Loading cycloneive_ver.cycloneive_clkctrl(fast)
-# Loading cycloneive_ver.cycloneive_io_obuf(fast)
-# Loading cycloneive_ver.cycloneive_jtag(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'opcode'. The port definition is at: source/alu.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /system_tb/DUT/CPU/DP/ALU File: source/datapath.sv Line: 64
 # run -all
 # Starting Processor.
-# Halted at 2480 time and ran for         61 cycles.
+# Halted at 4560 time and ran for        113 cycles.
 # Starting memory dump.
 # Finished memory dump.
-# End time: 17:47:27 on Feb 22,2025, Elapsed time: 0:00:08
-# Errors: 0, Warnings: 1
+# End time: 20:11:25 on Feb 25,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 23, Suppressed Errors: 1
