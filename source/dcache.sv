@@ -137,6 +137,7 @@ module icache (
  nxt_read_block=read_block;
  enable_hit_counter=0;
  enable_halt_counter=0;
+ dcif.flushed=0;
  case(state)
  Idle: begin
  if(dcif.dmemREN) begin
@@ -289,10 +290,11 @@ module icache (
     cif.dWEN=1;
     cif.daddr=32'h3100;
     cif.dstore=halt_cnt;
+    
  end
 
 
  endcase
-
+assign dcif.flushed=(state=halt_cleaned&&!cif.dwait);
  end
 endmodule
