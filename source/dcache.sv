@@ -112,6 +112,7 @@ module icache (
     end
     incrementing: begin
     nextstate=write_first_word;
+    if(halt_cnt==15) nextstate=halt_cleaned;
     end
     nhitR_doneC: begin
     nextstate=Idle;
@@ -119,7 +120,10 @@ module icache (
     nhitW_doneC: begin
     nextstate=Idle;
     end
-
+    halt_cleaned: begin
+    nextstate=halt_cleaned;
+    if(!cif.dwait) nextstate=Idle;
+    end
     endcase
     end
  always_comb begin : output_logic
@@ -281,8 +285,10 @@ module icache (
      end
      dcif.dhit=1;
  end
- Halt: begin
- 
+ halt_cleaned: begin
+    cif.dWEN=1;
+    cif.daddr=32'h3100;
+    cif.dstore=halt_cnt;
  end
 
 
