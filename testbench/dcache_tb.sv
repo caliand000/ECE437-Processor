@@ -4,6 +4,8 @@
 // interface
 `include "caches_if.vh"
 `include "datapath_cache_if.vh"
+`include "cpu_ram_if.vh"
+`include "cache_control_if.vh"
 // types
 `include "cpu_types_pkg.vh"
 
@@ -22,8 +24,16 @@ module dcache_tb;
   // Interface signals
   caches_if cif();
   datapath_cache_if dcif();
+  cpu_ram_if prif ();
+  cache_control_if ccif ();
+
   // DUT instances
-    dcache DUT(.CLK(CLK), .nRST(nRST), .dcif(dcif), .cif(cif));
+  dcache DUT(.CLK(CLK), .nRST(nRST), .dcif(dcif), .cif(cif));
+
+  // memory
+  ram RAM (CLK, nRST, prif);
+
+  memory_control MEMCTRL (CLK, nRST, ccif);
 
   // Clock generation
   always #(PERIOD / 2) CLK = ~CLK;
@@ -44,36 +54,21 @@ module dcache_tb;
   endtask
 
   task check_output;
-    input logic exp_dhit;
     input word_t exp_dmemload;
     input logic exp_flushed;
-    input logic exp_dREN, exp_dWEN;
-    input word_t exp_daddr;
-    input word_t exp_dstore;
     input string case_info;
     
     begin
-        // Compare each signal and display results
-        if ((exp_dhit == dcif.dhit) && (exp_dmemload == dcif.dmemload) && (exp_flushed == dcif.flushed) && (exp_dREN
-         == cif.dREN) && (exp_dWEN == if.dWEN) && (exp_daddr == cif.daddr) && (exp_dstore == cif.dstore)) 
+        if ((exp_dmemload == dcif.dmemload) && (exp_flushed == dcif.flushed))
         begin
             $display("Passed test case: %s", case_info);
         end
         else
         begin
             $display("Failed : %s", case_info);
-            // Display the expected and actual values
-            $display("Actual: %d; Expected: %d MemWr", dcif.dhit, exp_dhit);
             $display("Actual: %d; Expected: %d MemWr", dcif.dmemload, exp_dmemload);
             $display("Actual: %d; Expected: %d MemWr", dcif.flushed, exp_flushed);
-            $display("Actual: %d; Expected: %d MemWr", cif.dREN, exp_dREN);
-            $display("Actual: %d; Expected: %d MemWr", cif.dWEN, exp_dWEN);
-            $display("Actual: %d; Expected: %d MemWr", cif.daddr, exp_daddr);
-            $display("Actual: %d; Expected: %d MemWr", cif.dstore, exp_dstore);
         end
-
-        
-        // Small delay for simulation stability
         #(0.1ns);
 
       
@@ -86,20 +81,122 @@ endtask
     dcif.halt = 0;
     dcif.dmemREN = 0;
     dcif.dmemWEN = 0;
-    dcif.datomic = '0;
     dcif.dmemstore = '0;
     dcif.dmemaddr = '0;
 
-    cif.dwait = 1'b1;
-    cif.dload = '0;
     reset_if();
 
     // **********************************
-    // Test Case 1: 
+    // Test Case 1: Basic Cache Hit
     // **********************************
     @(posedge CLK);
+    dcif.dmemWEN = 1'b1;
+    dcif.dmemaddr = 32'h00000008;
+    dcif.dmemstore = 32'hadadbf00;
+
+    @(posedge dcif.dhit);
+    @(posedge CLK);
+
+    dcif.dmemWEN = 1'b0;
+    dcif.dmemaddr = 32'h0;
+    dcif.dmemstore = 32'h0;
     #(PERIOD);
-    check_output(0,"R type");
+
+    dcif.dmemREN = 1'b1;
+    dcif.dmemaddr = 32'h00000008;
+    @(posedge dcif.dhit);
+    check_output(32'hadadbf00,0,"Basic Cache Hit");
+
+    @(posedge CLK);
+    reset_if();
+
+    // **********************************
+    // Test Case 2: 2-way Associative Mapping Verification
+    // **********************************
+    @(posedge CLK);
+    dcif.dmemWEN = 1'b1;
+    dcif.dmemaddr = 32'h00000018;     //writing to index 3
+    dcif.dmemstore = 32'hadadbf00;
+
+    @(posedge dcif.dhit);
+    @(posedge CLK);
+
+    dcif.dmemaddr = 32'h00000018;     //writing to index 3
+    dcif.dmemstore = 32'hfaad1234;
+
+    @(posedge dcif.dhit);
+    @(posedge CLK);
+
+    dcif.dmemWEN = 1'b0;
+    dcif.dmemaddr = 32'h0;
+    dcif.dmemstore = 32'h0;
+
+    #(PERIOD);
+
+    dcif.dmemREN = 1'b1;
+    dcif.dmemaddr = 32'h0000001c;   //reading first block
+    @(posedge dcif.dhit);
+    check_output(32'hfaad1234,0,"2-Way Mapping Associative Verification first value");
+
+    @(posedge CLK);
+
+    dcif.dmemaddr = 32'h00000018;   //reading second block
+    @(posedge dcif.dhit);
+    check_output(32'hadadbf00,0,"2-Way Mapping Associative Verification second value");
+
+    @(posedge CLK);
+    reset_if();
+
+
+    // **********************************
+    // Test Case 3: Block Eviction
+    // **********************************
+    @(posedge CLK);
+    dcif.dmemWEN = 1'b1;
+    dcif.dmemaddr = 32'h00000010;       //writing to index 2
+    dcif.dmemstore = 32'hadadbf00;
+
+    @(posedge dcif.dhit);
+    @(posedge CLK);
+
+    dcif.dmemaddr = 32'h00000010;       //writing to index 2
+    dcif.dmemstore = 32'hfaad1234;
+
+    @(posedge dcif.dhit);
+    @(posedge CLK);
+
+    dcif.dmemaddr = 32'h00000010;       //writing to index 2, this should evict old block ()
+    dcif.dmemstore = 32'hffffffff;
+
+    @(posedge dcif.dhit);
+    @(posedge CLK);
+
+    dcif.dmemWEN = 1'b0;
+    dcif.dmemaddr = 32'h0;
+    dcif.dmemstore = 32'h0;
+
+    #(PERIOD);
+
+    dcif.dmemREN = 1'b1;
+    dcif.dmemaddr = 32'h0000001c;   //reading first block
+    @(posedge dcif.dhit);
+    check_output(32'hfaad1234,0,"Block Eviction");
+
+    @(posedge CLK);
+    reset_if();
+
+    // **********************************
+    // Test Case 4: Duplicate Hit Counts
+    // **********************************
+    @(posedge CLK);
+    dcif.dmemWEN = 1'b1;
+    dcif.dmemaddr = 32'h00000050;       //writing to index 5
+    dcif.dmemstore = 32'hbabababa;
+
+    @(posedge dcif.dhit);
+    @(posedge CLK);
+
+    
     @(posedge CLK);
     reset_if();
 

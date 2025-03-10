@@ -16,7 +16,7 @@ module icache (
     typedef enum logic {Idle, Miss} state_type;
     state_type state, nextstate;
 
-    icache_frame [3:0] cache_block, next_cache_block;
+    icache_frame [15:0] cache_block, next_cache_block;
     logic comparator;
 
     always_ff @(posedge CLK, negedge nRST) begin
