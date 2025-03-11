@@ -269,8 +269,8 @@ module dcache (
      nxt_dcache[index].way[0].data[0]=dcif.dmemstore;
      end
      nxt_dcache[index].way[0].valid=1;
-     
-     nxt_dcache[index].way[1].tag=dcif.dmemaddr[31:6];
+     nxt_dcache[index].way[0].dirty=0;
+     nxt_dcache[index].way[0].tag=dcif.dmemaddr[31:6];
      nxt_dcache[index].ru[0]=1;
      nxt_dcache[index].ru[1]=0;
      end
@@ -284,7 +284,7 @@ module dcache (
      nxt_dcache[index].way[1].data[0]=dcif.dmemstore;
      end
      nxt_dcache[index].way[1].valid=1;
-     
+     nxt_dcache[index].way[1].dirty=0;
      nxt_dcache[index].way[1].tag=dcif.dmemaddr[31:6];
      nxt_dcache[index].ru[1]=1;
      nxt_dcache[index].ru[0]=0;
