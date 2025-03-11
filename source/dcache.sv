@@ -1,19 +1,19 @@
 `include "cpu_types_pkg.vh"
-
+import cpu_types_pkg::*;
 typedef struct packed {
     dcache_frame [1:0] way;
-    logic  ru[1:0];
+    logic  [1:0]ru;
 } dcache;
 
 
-module icache (
+module dcache (
   input logic CLK, nRST,
   datapath_cache_if.cache dcif,
   caches_if cif
 );
-    import cpu_types_pkg::*;
+    
 
-    typedef enum logic {Idle,read_first_word,read_second_word,write_first_word,write_second_word,nhitR_doneR,nhitR_doneC,nhitW_doneR,nhitW_doneC,incrementing,halt_cleaned} state_type;
+    typedef enum logic[4:0] {Idle,read_first_word,read_second_word,write_first_word,write_second_word,nhitR_doneR,nhitR_doneC,nhitW_doneR,nhitW_doneC,incrementing,halt_cleaned} state_type;
     state_type state, nextstate;
     dcache[15:0] cur_dcache,nxt_dcache;
     logic [4:0] halt_cnt,nxt_halt_cnt;
@@ -49,7 +49,7 @@ module icache (
     always_comb begin: halt_counter
     nxt_halt_cnt=halt_cnt;
     if(enable_halt_counter) nxt_halt_cnt=halt_cnt+1;
-    if
+    
     end
     always_comb begin : next_State_logic
     case(state)
@@ -59,7 +59,7 @@ module icache (
         nextstate=write_first_word;
     end
    
-    else if(!hit||halt)begin
+    else if(!hit||dcif.halt)begin
     nextstate=read_first_word;
     
     end
@@ -81,15 +81,15 @@ module icache (
     end
     nhitR_doneR: begin
 
-    if((cur_dcache[index].way[0].dirty&&!cur_dcache[inex].ru[0])||(cur_dcache[index].way[1].dirty&&!cur_dcache[inex].ru[1])) begin
+    if((cur_dcache[index].way[0].dirty&&!cur_dcache[index].ru[0])||(cur_dcache[index].way[1].dirty&&!cur_dcache[index].ru[1])) 
     nextstate=write_first_word;
     else nextstate=nhitR_doneC;
-    end
+    
     end
 
     nhitW_doneR: begin
    
-    if((cur_dcache[index].way[0].dirty&&!cur_dcache[inex].ru[0])||(cur_dcache[index].way[1].dirty&&!cur_dcache[inex].ru[1])) begin
+    if((cur_dcache[index].way[0].dirty&&!cur_dcache[index].ru[0])||(cur_dcache[index].way[1].dirty&&!cur_dcache[index].ru[1])) begin
     nextstate=write_first_word;
     end
     else nextstate=nhitW_doneC;
@@ -142,15 +142,15 @@ module icache (
  Idle: begin
  if(dcif.dmemREN) begin
  if(hit0) begin
- dicf.dmemload=cur_dcache[index].way[0].data[offset]
- cur_dcache[index].ru[0]=1;
- cur_dcache[inedx].ru[1]=0;
+ dicf.dmemload=nxt_dcache[index].way[0].data[offset];
+ nxt_dcache[index].ru[0]=1;
+ nxt_dcache[index].ru[1]=0;
  enable_hit_counter=1;
  end
  else if(hit1) begin
- dicf.dmemload=cur_dcache[index].way[1].data[offset]
- cur_dcache[index].ru[1]=1;
- cur_dcache[inedx].ru[0]=0;
+ dicf.dmemload=nxt_dcache[index].way[1].data[offset];
+ nxt_dcache[index].ru[1]=1;
+ nxt_dcache[index].ru[0]=0;
  enable_hit_counter=1;
  end
  if(hit)
@@ -160,15 +160,15 @@ module icache (
  if(hit0) begin
  nxt_dcache[index].way[0].data[offset]=dcif.dmemstore;
  nxt_dcache[index].way[0].dirty=1;
- cur_dcache[index].ru[0]=1;
- cur_dcache[inedx].ru[1]=0;
+ nxt_dcache[index].ru[0]=1;
+ nxt_dcache[index].ru[1]=0;
  enable_hit_counter=1;
  end
  else if(hit1) begin
  nxt_dcache[index].way[1].data[offset]=dcif.dmemstore;
  nxt_dcache[index].way[1].dirty=1;
- cur_dcache[index].ru[0]=0;
- cur_dcache[inedx].ru[1]=1;
+ nxt_dcache[index].ru[0]=0;
+ nxt_dcache[index].ru[1]=1;
  enable_hit_counter=1;
  end
  dcif.dhit=1;
@@ -195,38 +195,38 @@ module icache (
  write_first_word: begin
     if(dcif.halt) begin
     cif.dWEN=1;
-    cif.daddr={cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].tag,halt_cnt[2:0],3'b000}
-    cif.dstore=cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].data[0];
+    cif.daddr={nxt_dcache[halt_cnt[2:0]].way[halt_cnt[3]].tag,halt_cnt[2:0],3'b000};
+    cif.dstore=nxt_dcache[halt_cnt[2:0]].way[halt_cnt[3]].data[0];
     end
     else begin
     cif.dWEN=1;
     cif.daddr={dcif.dmemaddr[31:3],0,dcif.dmemaddr[1:0]};
-    if(cur_dcache[index].way[0].dirty&&!cur_dcache[inex].ru[0])
-    cif.dstore=cur_dcache[inex].way[0].data[0];
-    else if(cur_dcache[index].way[1].dirty&&!cur_dcache[inex].ru[1])
-    cif.dstore=cur_dcache[inex].way[1].data[0];
+    if(nxt_dcache[index].way[0].dirty&&!nxt_dcache[index].ru[0])
+    cif.dstore=nxt_dcache[index].way[0].data[0];
+    else if(nxt_dcache[index].way[1].dirty&&!nxt_dcache[index].ru[1])
+    cif.dstore=nxt_dcache[index].way[1].data[0];
     end
  end
  write_second_word: begin
     if(dcif.halt) begin
     cif.dWEN=1;
-    cif.daddr={cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].tag,halt_cnt[2:0],3'b100}
-    cif.dstore=cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].data[1];
+    cif.daddr={nxt_dcache[halt_cnt[2:0]].way[halt_cnt[3]].tag,halt_cnt[2:0],3'b100};
+    cif.dstore=nxt_dcache[halt_cnt[2:0]].way[halt_cnt[3]].data[1];
     end
     else begin
     cif.dWEN=1;
     cif.daddr={dcif.dmemaddr[31:3],1,dcif.dmemaddr[1:0]};
-    if(cur_dcache[index].way[0].dirty&&!cur_dcache[inex].ru[0])
-    cif.dstore=cur_dcache[inex].way[0].data[1];
-    else if(cur_dcache[index].way[1].dirty&&!cur_dcache[inex].ru[1])
-    cif.dstore=cur_dcache[inex].way[1].data[0];
+    if(nxt_dcache[index].way[0].dirty&&!nxt_dcache[index].ru[0])
+    cif.dstore=nxt_dcache[index].way[0].data[1];
+    else if(nxt_dcache[index].way[1].dirty&&!nxt_dcache[index].ru[1])
+    cif.dstore=nxt_dcache[index].way[1].data[0];
  end
  end
  incrementing: begin
  enable_halt_counter=1;
  end
  nhitW_doneC: begin
-     if(!cur_dcache[inedx].ru[0]) begin
+     if(!nxt_dcache[index].ru[0]) begin
      if(dcif.dmemaddr[2])begin
      nxt_dcache[index].way[0].data[0]=read_block[0];
      nxt_dcache[index].way[0].data[1]=dcif.dmemstore;
@@ -235,12 +235,12 @@ module icache (
      nxt_dcache[index].way[0].data[1]=read_block[1];
      nxt_dcache[index].way[0].data[0]=dcif.dmemstore;
      end
-     cur_dcache[inedx].way[0].valid=1;
-     cur_dcache[index].way[0].dirty=1;
-     cur_dcache[index].ru[0]=1;
-     cur_dcache[inedx].ru[1]=0;
+     nxt_dcache[index].way[0].valid=1;
+     nxt_dcache[index].way[0].dirty=1;
+     nxt_dcache[index].ru[0]=1;
+     nxt_dcache[index].ru[1]=0;
      end
-     else if(!cur_dcache[inedx].ru[1]) begin
+     else if(!nxt_dcache[index].ru[1]) begin
      if(dcif.dmemaddr[2])begin
      nxt_dcache[index].way[1].data[0]=read_block[0];
      nxt_dcache[index].way[1].data[1]=dcif.dmemstore;
@@ -249,15 +249,15 @@ module icache (
      nxt_dcache[index].way[1].data[1]=read_block[1];
      nxt_dcache[index].way[1].data[0]=dcif.dmemstore;
      end
-     cur_dcache[inedx].way[1].valid=1;
-     cur_dcache[index].way[1].dirty=1;
-     cur_dcache[index].ru[0]=0;
-     cur_dcache[inedx].ru[1]=1;
+     nxt_dcache[index].way[1].valid=1;
+     nxt_dcache[index].way[1].dirty=1;
+     nxt_dcache[index].ru[0]=0;
+     nxt_dcache[index].ru[1]=1;
      end
      dcif.dhit=1;
  end
  nhitR_doneC: begin
-     if(!cur_dcache[inedx].ru[0]) begin
+     if(!nxt_dcache[index].ru[0]) begin
      if(dcif.dmemaddr[2])begin
      nxt_dcache[index].way[0].data[0]=read_block[0];
      nxt_dcache[index].way[0].data[1]=dcif.dmemstore;
@@ -266,12 +266,12 @@ module icache (
      nxt_dcache[index].way[0].data[1]=read_block[1];
      nxt_dcache[index].way[0].data[0]=dcif.dmemstore;
      end
-     cur_dcache[inedx].way[0].valid=1;
-     cur_dcache[index].way[0].dirty=1;
-     cur_dcache[index].ru[0]=1;
-     cur_dcache[inedx].ru[1]=0;
+     nxt_dcache[index].way[0].valid=1;
+     nxt_dcache[index].way[0].dirty=1;
+     nxt_dcache[index].ru[0]=1;
+     nxt_dcache[index].ru[1]=0;
      end
-     else if(!cur_dcache[inedx].ru[1]) begin
+     else if(!nxt_dcache[index].ru[1]) begin
      if(dcif.dmemaddr[2])begin
      nxt_dcache[index].way[1].data[0]=read_block[0];
      nxt_dcache[index].way[1].data[1]=dcif.dmemstore;
@@ -280,9 +280,9 @@ module icache (
      nxt_dcache[index].way[1].data[1]=read_block[1];
      nxt_dcache[index].way[1].data[0]=dcif.dmemstore;
      end
-     cur_dcache[inedx].way[1].valid=1;
-     cur_dcache[index].ru[1]=1;
-     cur_dcache[inedx].ru[0]=0;
+     nxt_dcache[index].way[1].valid=1;
+     nxt_dcache[index].ru[1]=1;
+     nxt_dcache[index].ru[0]=0;
      end
      dcif.dhit=1;
  end
@@ -295,6 +295,7 @@ module icache (
 
 
  endcase
-assign dcif.flushed=(state=halt_cleaned&&!cif.dwait);
+
  end
+ assign dcif.flushed=(state==halt_cleaned&&!cif.dwait);
 endmodule

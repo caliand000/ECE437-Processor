@@ -38,7 +38,7 @@ module dcache_tb;
   // Clock generation
   always #(PERIOD / 2) CLK = ~CLK;
 
-  
+  word_t i;
 
   // Testbench tasks
   task reset_if;
@@ -176,7 +176,7 @@ endtask
     @(posedge CLK);
     @(posedge CLK);
     @(posedge CLK);
-    word_t i;
+    
     for(i=0;i<17;i++) begin
     dcif.imemREN=1;
     dcif.imemaddr=i*4;
