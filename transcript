@@ -22,62 +22,59 @@
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -do "view objects; add wave *; run -all;" -onfinish stop -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf dcache_tb.wlf work.dcache_tb 
-# Start time: 08:59:20 on Mar 11,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
+# vsim -coverage -suppress 12110 -suppress 7061 -do "view objects; do scripts/icache.do; run -all;" -onfinish stop -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf icache_tb.wlf work.icache_tb 
+# Start time: 12:10:44 on Mar 11,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+###### include/cache_control_if.vh(79):       iREN[1] = cif1.iREN;
+# ** Warning: include/cache_control_if.vh(79): (vopt-2576) [BSOB] - Bit-select into 'iREN' is out of bounds.
+###### include/cache_control_if.vh(80):       dREN[1] = cif1.dREN;
+# ** Warning: include/cache_control_if.vh(80): (vopt-2576) [BSOB] - Bit-select into 'dREN' is out of bounds.
+###### include/cache_control_if.vh(81):       dWEN[1] = cif1.dWEN;
+# ** Warning: include/cache_control_if.vh(81): (vopt-2576) [BSOB] - Bit-select into 'dWEN' is out of bounds.
+###### include/cache_control_if.vh(82):       dstore[1] = cif1.dstore;
+# ** Warning: include/cache_control_if.vh(82): (vopt-2696) Index 1 into array dimension 1 of 'dstore' is out of bounds.
+# ** Warning: include/cache_control_if.vh(82): (vopt-2696) Index 1 into array dimension 1 of 'dstore' is out of bounds.
+###### include/cache_control_if.vh(83):       iaddr[1] = cif1.iaddr;
+# ** Warning: include/cache_control_if.vh(83): (vopt-2696) Index 1 into array dimension 1 of 'iaddr' is out of bounds.
+# ** Warning: include/cache_control_if.vh(83): (vopt-2696) Index 1 into array dimension 1 of 'iaddr' is out of bounds.
+###### include/cache_control_if.vh(84):       daddr[1] = cif1.daddr;
+# ** Warning: include/cache_control_if.vh(84): (vopt-2696) Index 1 into array dimension 1 of 'daddr' is out of bounds.
+# ** Warning: include/cache_control_if.vh(84): (vopt-2696) Index 1 into array dimension 1 of 'daddr' is out of bounds.
+###### include/cache_control_if.vh(85):       ccwrite[1] = cif1.ccwrite;
+# ** Warning: include/cache_control_if.vh(85): (vopt-2576) [BSOB] - Bit-select into 'ccwrite' is out of bounds.
+###### include/cache_control_if.vh(86):       cctrans[1] = cif1.cctrans;
+# ** Warning: include/cache_control_if.vh(86): (vopt-2576) [BSOB] - Bit-select into 'cctrans' is out of bounds.
+###### include/cache_control_if.vh(95):       cif1.iwait = iwait[1];
+# ** Warning: include/cache_control_if.vh(95): (vopt-2576) [BSOB] - Bit-select into 'iwait' is out of bounds.
+###### include/cache_control_if.vh(96):       cif1.dwait = dwait[1];
+# ** Warning: include/cache_control_if.vh(96): (vopt-2576) [BSOB] - Bit-select into 'dwait' is out of bounds.
+###### include/cache_control_if.vh(97):       cif1.iload = iload[1];
+# ** Warning: include/cache_control_if.vh(97): (vopt-2696) Index 1 into array dimension 1 of 'iload' is out of bounds.
+###### include/cache_control_if.vh(98):       cif1.dload = dload[1];
+# ** Warning: include/cache_control_if.vh(98): (vopt-2696) Index 1 into array dimension 1 of 'dload' is out of bounds.
+###### include/cache_control_if.vh(99):       cif1.ccwait = ccwait[1];
+# ** Warning: include/cache_control_if.vh(99): (vopt-2576) [BSOB] - Bit-select into 'ccwait' is out of bounds.
+###### include/cache_control_if.vh(100):       cif1.ccinv = ccinv[1];
+# ** Warning: include/cache_control_if.vh(100): (vopt-2576) [BSOB] - Bit-select into 'ccinv' is out of bounds.
+###### include/cache_control_if.vh(101):       cif1.ccsnoopaddr = ccsnoopaddr[1];
+# ** Warning: include/cache_control_if.vh(101): (vopt-2696) Index 1 into array dimension 1 of 'ccsnoopaddr' is out of bounds.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=18.
 # Loading sv_std.std
 # Loading work.cpu_types_pkg(fast)
-# Loading work.dcache_tb(fast)
+# Loading work.icache_tb(fast)
 # Loading work.caches_if(fast__1)
 # Loading work.datapath_cache_if(fast__1)
 # Loading work.cpu_ram_if(fast__1)
 # Loading work.cache_control_if(fast__1)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
+# Loading work.icache(fast)
 # Loading work.ram(fast)
 # Loading altera_mf_ver.altsyncram(fast)
 # Loading work.memory_control(fast)
 # view objects
 # .main_pane.objects.interior.cs.body.tree
-#  add wave *
+#  do scripts/icache.do
 #  run -all
-add wave -position insertpoint  \
-sim:/dcache_tb/DUT/CLK \
-sim:/dcache_tb/DUT/nRST \
-sim:/dcache_tb/DUT/state \
-sim:/dcache_tb/DUT/nextstate \
-sim:/dcache_tb/DUT/cur_dcache \
-sim:/dcache_tb/DUT/nxt_dcache \
-sim:/dcache_tb/DUT/halt_cnt \
-sim:/dcache_tb/DUT/nxt_halt_cnt \
-sim:/dcache_tb/DUT/hit_cnt \
-sim:/dcache_tb/DUT/nxt_hit_cnt \
-sim:/dcache_tb/DUT/hit0 \
-sim:/dcache_tb/DUT/hit1 \
-sim:/dcache_tb/DUT/enable_hit_counter \
-sim:/dcache_tb/DUT/hit \
-sim:/dcache_tb/DUT/offset \
-sim:/dcache_tb/DUT/enable_halt_counter \
-sim:/dcache_tb/DUT/index \
-sim:/dcache_tb/DUT/read_block \
-sim:/dcache_tb/DUT/nxt_read_block
-add wave -position insertpoint  \
-sim:/dcache_tb/ccif/cif0/dwait
+# Break in Module icache_tb at testbench/icache_tb.sv line 211
 # 
-restart
-run -a
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# Loading sv_std.std
-# Loading work.cpu_types_pkg(fast)
-# Loading work.dcache_tb(fast)
-# Loading work.caches_if(fast__1)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# Loading work.memory_control(fast)
-# End time: 09:49:56 on Mar 11,2025, Elapsed time: 0:50:36
-# Errors: 0, Warnings: 0
+# End time: 12:17:49 on Mar 11,2025, Elapsed time: 0:07:05
+# Errors: 0, Warnings: 18

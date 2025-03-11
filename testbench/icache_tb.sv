@@ -10,7 +10,7 @@
 `include "cpu_types_pkg.vh"
 
 
-module dcache_tb;
+module icache_tb;
 
   parameter PERIOD = 10;
 
@@ -20,24 +20,46 @@ module dcache_tb;
 
   // import types
   import cpu_types_pkg::*;
+  always #(PERIOD / 2) CLK = ~CLK;
+   parameter CLKDIV = 2;
+  logic CPUCLK;
+  logic [3:0] count;
+  //logic CPUnRST;
 
+  always_ff @(posedge CLK, negedge nRST)
+  begin
+    if (!nRST)
+    begin
+      count <= 0;
+      CPUCLK <= 0;
+    end
+    else if (count == CLKDIV-2)
+    begin
+      count <= 0;
+      CPUCLK <= ~CPUCLK;
+    end
+    else
+    begin
+      count <= count + 1;
+    end
+  end
   // Interface signals
   caches_if cif();
+  caches_if cif1();
   datapath_cache_if dcif();
-  cpu_ram_if prif ();
-  cache_control_if ccif ();
+  cpu_ram_if ramif ();
+  cache_control_if ccif (cif,cif1);
 
   // DUT instances
-  icache DUT(.CLK(CLK), .nRST(nRST), .dcif(dcif), .cif(cif));
+  icache DUT(.CLK(CPUCLK), .nRST(nRST), .dcif(dcif), .cif(cif));
 
   // memory
-  ram RAM (CLK, nRST, prif);
+  ram RAM (CLK, nRST, ramif);
 
   memory_control MEMCTRL (CLK, nRST, ccif);
 
   // Clock generation
-  always #(PERIOD / 2) CLK = ~CLK;
-
+  
   word_t i;
 
   // Testbench tasks
@@ -53,28 +75,18 @@ module dcache_tb;
     end
   endtask
 
-  task check_output;
-    input word_t exp_dmemload;
-    
-    input string case_info;
-    
-    begin
-        if ((exp_dmemload == dcif.dmemload))
-        begin
-            $display("Passed test case: %s", case_info);
-        end
-        else
-        begin
-            $display("Failed : %s", case_info);
-            $display("Actual: %d; Expected: %d MemWr", dcif.dmemload, exp_dmemload);
-            $display("Actual: %d; Expected: %d MemWr", dcif.flushed, exp_flushed);
-        end
-        #(0.1ns);
+  
+  assign ccif.ramstate = ramif.ramstate;
+  assign ccif.ramload = ramif.ramload;
 
-      
-    end
-endtask
-
+  // assign ramif.memaddr = ccif.ramaddr;      //&*****Change back to ram if doesnt work instead of mem **************
+  // assign ramif.memstore = ccif.ramstore;
+  // assign ramif.memREN = ccif.ramREN;
+  // assign ramif.memWEN = ccif.ramWEN;
+  assign ramif.ramREN = ccif.ramREN;
+  assign ramif.ramWEN = ccif.ramWEN;
+  assign ramif.ramaddr = ccif.ramaddr;
+  assign ramif.ramstore = ccif.ramstore;
   initial begin
 
     //initialize interface ports
@@ -83,95 +95,99 @@ endtask
     dcif.dmemWEN = 0;
     dcif.dmemstore = '0;
     dcif.dmemaddr = '0;
-
+    dcif.imemREN=0;
     reset_if();
+    cif.dREN=0;
+    cif.dWEN=0;
+    cif.daddr=0;
+   /* @(posedge CLK);
+    @(posedge CLK);
+    cif.dWEN=1;
+    cif.daddr=0;
+    cif.dstore=32'h0F006213;
     @(posedge CLK);
     @(posedge CLK);
-    prif.ramWEN=1;
-    prif.ramaddr=0;
-    prif.ramstore=32'h0F006213
+    cif.dWEN=1;
+    cif.daddr=4;
+    cif.dstore=32'h10006513;
     @(posedge CLK);
     @(posedge CLK);
-    prif.ramWEN=1;
-    prif.ramaddr=4;
-    prif.ramstore=32'h10006513
+    cif.dWEN=1;
+    cif.daddr=8;
+    cif.dstore=32'h20006593;
     @(posedge CLK);
     @(posedge CLK);
-    prif.ramWEN=1;
-    prif.ramaddr=8;
-    prif.ramstore=32'h20006593
+    cif.dWEN=1;
+    cif.daddr=12;
+    cif.dstore=32'h30006613;
     @(posedge CLK);
     @(posedge CLK);
-    prif.ramWEN=1;
-    prif.ramaddr=12;
-    prif.ramstore=32'h30006613;
+    cif.dWEN=1;
+    cif.daddr=16;
+    cif.dstore=32'h40006693;
     @(posedge CLK);
     @(posedge CLK);
-    prif.ramWEN=1;
-    prif.ramaddr=16;
-    prif.ramstore=32'h40006693;
+    cif.dWEN=1;
+    cif.daddr=20;
+    cif.dstore=32'h00022703;
     @(posedge CLK);
     @(posedge CLK);
-    prif.ramWEN=1;
-    prif.ramaddr=20;
-    prif.ramstore=32'h00022703;
+    cif.dWEN=1;
+    cif.daddr=24;
+    cif.dstore=32'h00422783;
     @(posedge CLK);
     @(posedge CLK);
-    prif.ramWEN=1;
-    prif.ramaddr=24;
-    prif.ramstore=32'h00422783;
+     cif.dWEN=1;
+    cif.daddr=28;
+    cif.dstore=32'h00822283;
     @(posedge CLK);
     @(posedge CLK);
-     prif.ramWEN=1;
-    prif.ramaddr=28;
-    prif.ramstore=32'h00822283;
+     cif.dWEN=1;
+    cif.daddr=32;
+    cif.dstore=32'h50006613;
     @(posedge CLK);
     @(posedge CLK);
-     prif.ramWEN=1;
-    prif.ramaddr=32;
-    prif.ramstore=32'h50006613;
+     cif.dWEN=1;
+    cif.daddr=36;
+    cif.dstore=32'h60006693;
     @(posedge CLK);
     @(posedge CLK);
-     prif.ramWEN=1;
-    prif.ramaddr=36;
-    prif.ramstore=32'h60006693;
+      cif.dWEN=1;
+    cif.daddr=40;
+    cif.dstore=32'h00E52023;
     @(posedge CLK);
     @(posedge CLK);
-      prif.ramWEN=1;
-    prif.ramaddr=40;
-    prif.ramstore=32'h00E52023;
+      cif.dWEN=1;
+    cif.daddr=44;
+    cif.dstore=32'h00F52223;
     @(posedge CLK);
     @(posedge CLK);
-      prif.ramWEN=1;
-    prif.ramaddr=44;
-    prif.ramstore=32'h00F52223;
+     cif.dWEN=1;
+    cif.daddr=48;
+    cif.dstore=32'h00552423;
     @(posedge CLK);
     @(posedge CLK);
-     prif.ramWEN=1;
-    prif.ramaddr=48;
-    prif.ramstore=32'h00552423;
+     cif.dWEN=1;
+    cif.daddr=52;
+    cif.dstore=32'hFFFFFFFF;
     @(posedge CLK);
     @(posedge CLK);
-     prif.ramWEN=1;
-    prif.ramaddr=52;
-    prif.ramstore=32'hFFFFFFFF;
+     cif.dWEN=1;
+    cif.daddr=56;
+    cif.dstore=32'h00007337;
     @(posedge CLK);
     @(posedge CLK);
-     prif.ramWEN=1;
-    prif.ramaddr=56;
-    prif.ramstore=32'h00007337;
+     cif.dWEN=1;
+    cif.daddr=60;
+    cif.dstore=32'h00002701;
     @(posedge CLK);
     @(posedge CLK);
-     prif.ramWEN=1;
-    prif.ramaddr=60;
-    prif.ramstore=32'h00002701;
+     cif.dWEN=1;
+    cif.daddr=64;
+    cif.dstore=32'h00001337;
     @(posedge CLK);
     @(posedge CLK);
-     prif.ramWEN=1;
-    prif.ramaddr=64;
-    prif.ramstore=32'h00001337;
-    @(posedge CLK);
-    @(posedge CLK);
+    cif.dWEN=0;*/
     @(posedge CLK);
     @(posedge CLK);
     @(posedge CLK);
@@ -182,6 +198,11 @@ endtask
     dcif.imemaddr=i*4;
     @(posedge CLK);
     @(posedge CLK);
+    @(posedge CLK);
+    @(posedge CLK);
+    @(posedge CLK);
+    @(posedge CLK);
+    
     end
 
     reset_if();

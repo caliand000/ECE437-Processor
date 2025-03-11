@@ -30,10 +30,11 @@ module icache (
         end
     end
 
-    assign comparator = dcif.imemaddr[31:6] && cache_block[dcif.imemaddr[5:2]].tag;
+    assign comparator = ((dcif.imemaddr[31:6] == cache_block[dcif.imemaddr[5:2]].tag)&&cache_block[dcif.imemaddr[5:2]].valid);
 
     always_comb begin
         nextstate = state;
+        next_cache_block=cache_block;
         cif.iREN = 1'b0;
         cif.iaddr = '0;
 
@@ -53,15 +54,17 @@ module icache (
                     end
                 end
             end
-            Miss:
+            Miss:begin
                 cif.iREN = 1'b1;
+                
                 cif.iaddr = dcif.imemaddr;
                 if(!cif.iwait) begin
-                    next_cache_block[dcif.imemaddr].data = cif.iload;
-                    next_cache_block[dcif.imemaddr].valid = 1'b1;
-                    next_cache_block[dcif.imemaddr].tag = dcif.imemaddr[31:6];
+                    next_cache_block[dcif.imemaddr[5:2]].data = cif.iload;
+                    next_cache_block[dcif.imemaddr[5:2]].valid = 1'b1;
+                    next_cache_block[dcif.imemaddr[5:2]].tag = dcif.imemaddr[31:6];
                     nextstate = Idle;
                 end
+            end
         endcase
         
     end
