@@ -55,11 +55,11 @@ module dcache_tb;
 
   task check_output;
     input word_t exp_dmemload;
-    input logic exp_flushed;
+    
     input string case_info;
     
     begin
-        if ((exp_dmemload == dcif.dmemload) && (exp_flushed == dcif.flushed))
+        if ((exp_dmemload == dcif.dmemload))
         begin
             $display("Passed test case: %s", case_info);
         end
@@ -85,119 +85,104 @@ endtask
     dcif.dmemaddr = '0;
 
     reset_if();
-
-    // **********************************
-    // Test Case 1: Basic Cache Hit
-    // **********************************
     @(posedge CLK);
-    dcif.dmemWEN = 1'b1;
-    dcif.dmemaddr = 32'h00000008;
-    dcif.dmemstore = 32'hadadbf00;
-
-    @(posedge dcif.dhit);
     @(posedge CLK);
-
-    dcif.dmemWEN = 1'b0;
-    dcif.dmemaddr = 32'h0;
-    dcif.dmemstore = 32'h0;
-    #(PERIOD);
-
-    dcif.dmemREN = 1'b1;
-    dcif.dmemaddr = 32'h00000008;
-    @(posedge dcif.dhit);
-    check_output(32'hadadbf00,0,"Basic Cache Hit");
-
+    prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h0F006213
     @(posedge CLK);
-    reset_if();
-
-    // **********************************
-    // Test Case 2: 2-way Associative Mapping Verification
-    // **********************************
     @(posedge CLK);
-    dcif.dmemWEN = 1'b1;
-    dcif.dmemaddr = 32'h00000018;     //writing to index 3
-    dcif.dmemstore = 32'hadadbf00;
-
-    @(posedge dcif.dhit);
+    prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h10006513
     @(posedge CLK);
-
-    dcif.dmemaddr = 32'h00000018;     //writing to index 3
-    dcif.dmemstore = 32'hfaad1234;
-
-    @(posedge dcif.dhit);
     @(posedge CLK);
-
-    dcif.dmemWEN = 1'b0;
-    dcif.dmemaddr = 32'h0;
-    dcif.dmemstore = 32'h0;
-
-    #(PERIOD);
-
-    dcif.dmemREN = 1'b1;
-    dcif.dmemaddr = 32'h0000001c;   //reading first block
-    @(posedge dcif.dhit);
-    check_output(32'hfaad1234,0,"2-Way Mapping Associative Verification first value");
-
+    prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h20006593
     @(posedge CLK);
-
-    dcif.dmemaddr = 32'h00000018;   //reading second block
-    @(posedge dcif.dhit);
-    check_output(32'hadadbf00,0,"2-Way Mapping Associative Verification second value");
-
     @(posedge CLK);
-    reset_if();
-
-
-    // **********************************
-    // Test Case 3: Block Eviction
-    // **********************************
+    prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h30006613;
     @(posedge CLK);
-    dcif.dmemWEN = 1'b1;
-    dcif.dmemaddr = 32'h00000010;       //writing to index 2
-    dcif.dmemstore = 32'hadadbf00;
-
-    @(posedge dcif.dhit);
     @(posedge CLK);
-
-    dcif.dmemaddr = 32'h00000010;       //writing to index 2
-    dcif.dmemstore = 32'hfaad1234;
-
-    @(posedge dcif.dhit);
+    prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h40006693;
     @(posedge CLK);
-
-    dcif.dmemaddr = 32'h00000010;       //writing to index 2, this should evict old block ()
-    dcif.dmemstore = 32'hffffffff;
-
-    @(posedge dcif.dhit);
     @(posedge CLK);
-
-    dcif.dmemWEN = 1'b0;
-    dcif.dmemaddr = 32'h0;
-    dcif.dmemstore = 32'h0;
-
-    #(PERIOD);
-
-    dcif.dmemREN = 1'b1;
-    dcif.dmemaddr = 32'h0000001c;   //reading first block
-    @(posedge dcif.dhit);
-    check_output(32'hfaad1234,0,"Block Eviction");
-
+    prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h00022703;
     @(posedge CLK);
-    reset_if();
-
-    // **********************************
-    // Test Case 4: Duplicate Hit Counts
-    // **********************************
     @(posedge CLK);
-    dcif.dmemWEN = 1'b1;
-    dcif.dmemaddr = 32'h00000050;       //writing to index 5
-    dcif.dmemstore = 32'hbabababa;
-
-    @(posedge dcif.dhit);
+    prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h00422783;
     @(posedge CLK);
-
-    
     @(posedge CLK);
+     prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h00822283;
+    @(posedge CLK);
+    @(posedge CLK);
+     prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h50006613;
+    @(posedge CLK);
+    @(posedge CLK);
+     prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h60006693;
+    @(posedge CLK);
+    @(posedge CLK);
+      prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h00E52023;
+    @(posedge CLK);
+    @(posedge CLK);
+      prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h00F52223;
+    @(posedge CLK);
+    @(posedge CLK);
+     prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h00552423;
+    @(posedge CLK);
+    @(posedge CLK);
+     prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'hFFFFFFFF;
+    @(posedge CLK);
+    @(posedge CLK);
+     prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h00007337;
+    @(posedge CLK);
+    @(posedge CLK);
+     prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h00002701;
+    @(posedge CLK);
+    @(posedge CLK);
+     prif.ramWEN=1;
+    prif.ramaddr=0;
+    prif.ramstore=32'h00001337;
+    @(posedge CLK);
+    @(posedge CLK);
+    @(posedge CLK);
+    @(posedge CLK);
+    @(posedge CLK);
+    @(posedge CLK);
+    word_t i;
+    for(i=0;i<17;i++) begin
+    dcif.imemREN=1;
+    @(posedge CLK);
+    @(posedge CLK);
+    end
+
     reset_if();
 
 
