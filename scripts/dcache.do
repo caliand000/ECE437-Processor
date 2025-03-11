@@ -15,7 +15,7 @@ add wave -noupdate /dcache_tb/dcif/dhit
 add wave -noupdate /dcache_tb/dcif/flushed
 add wave -noupdate /dcache_tb/dcif/dmemload
 add wave -noupdate /dcache_tb/DUT/state
-add wave -noupdate /dcache_tb/DUT/cur_dcache
+add wave -noupdate -expand /dcache_tb/DUT/cur_dcache
 add wave -noupdate /dcache_tb/DUT/halt_cnt
 add wave -noupdate /dcache_tb/DUT/hit_cnt
 add wave -noupdate /dcache_tb/DUT/index
@@ -27,8 +27,9 @@ add wave -noupdate /dcache_tb/cif1/dload
 add wave -noupdate /dcache_tb/cif1/dstore
 add wave -noupdate /dcache_tb/cif1/daddr
 add wave -noupdate /dcache_tb/RAM/rstate
+add wave -noupdate /dcache_tb/RAM/ramif/ramstore
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {119605 ps} 0}
+WaveRestoreCursors {{Cursor 1} {877351 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
@@ -44,4 +45,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {76800 ps} {140800 ps}
+WaveRestoreZoom {459 ns} {1445 ns}

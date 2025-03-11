@@ -150,7 +150,7 @@ endtask
 
     @(posedge CPUCLK);
     dcif.dmemREN = 1'b0;
-    reset_if();
+    // reset_if();
 
     // **********************************
     // Test Case 2: 2-way Associative Mapping Verification
@@ -193,7 +193,7 @@ endtask
 
     @(posedge CPUCLK);
     dcif.dmemREN = 1'b0;
-    reset_if();
+    // reset_if();
 
 
     // **********************************
@@ -201,7 +201,8 @@ endtask
     // **********************************
     @(posedge CPUCLK);
     dcif.dmemWEN = 1'b1;
-    frame.idx = 4;
+    frame.tag = 0;
+    frame.idx = 3;
     dcif.dmemaddr = frame;     
     dcif.dmemstore = 32'hadadbf00;
 
@@ -216,6 +217,14 @@ endtask
     @(posedge dcif.dhit);
     @(posedge CPUCLK);
 
+    frame.tag = 1;
+    dcif.dmemaddr = frame;
+    dcif.dmemstore = 32'hffffffff;
+
+    @(posedge CPUCLK);
+    @(posedge dcif.dhit);
+    @(posedge CPUCLK);
+
     dcif.dmemWEN = 1'b0;
     dcif.dmemaddr = 32'h0;
     dcif.dmemstore = 32'h0;
@@ -223,38 +232,47 @@ endtask
     #(PERIOD * 2);
 
     dcif.dmemREN = 1'b1;
-    frame.tag = 0;
+    frame.tag = 1;
     dcif.dmemaddr = frame;   //reading first block
     @(posedge dcif.dhit);
-    check_output(32'hadadbf00,0,"2-Way Mapping Associative Verification first value");
-
-    #(PERIOD * 2);
-    @(posedge CPUCLK);
-    frame.tag = 2;
-    dcif.dmemaddr = frame;   //reading second block
-    @(posedge dcif.dhit);
-    check_output(32'hfaad1234,0,"2-Way Mapping Associative Verification second value");
+    check_output(32'hffffffff,0,"Eviction");
 
     @(posedge CPUCLK);
     dcif.dmemREN = 1'b0;
-    reset_if();
+    // reset_if();
 
     // // **********************************
-    // // Test Case 4: Duplicate Hit Counts
+    // // Test Case 4: Halt
     // // **********************************
     @(posedge CPUCLK);
     dcif.dmemWEN = 1'b1;
-    dcif.dmemaddr = 32'h00000050;       //writing to index 5
-    dcif.dmemstore = 32'hbabababa;
+    frame.idx = 6;
+    dcif.dmemaddr = frame;
+    dcif.dmemstore = 32'hdeadbeef;
 
     @(posedge dcif.dhit);
     @(posedge CPUCLK);
 
-    
+    dcif.dmemWEN = 1'b0;
+    dcif.dmemaddr = 32'h0;
+    dcif.dmemstore = 32'h0;
+    #(PERIOD);
+
+    dcif.dmemREN = 1'b1;
+    dcif.dmemaddr = frame;
+    @(posedge dcif.dhit);
+
     @(posedge CPUCLK);
+    dcif.dmemREN = 1'b0;
+    dcif.halt = 1'b1;
+
+    #(PERIOD * 100);
+    check_output(32'hadadbf00,0,"Halt");
+
+
+
+
     reset_if();
-
-
     $finish;
   end
 endmodule
