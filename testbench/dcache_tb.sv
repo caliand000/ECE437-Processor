@@ -22,13 +22,15 @@ module dcache_tb;
   import cpu_types_pkg::*;
 
   // Interface signals
-  caches_if cif();
+  
+  caches_if cif0();
+  caches_if cif1();
   datapath_cache_if dcif();
   cpu_ram_if prif ();
-  cache_control_if ccif ();
+  cache_control_if ccif (cif0,cif1);
 
   // DUT instances
-  dcache DUT(.CLK(CLK), .nRST(nRST), .dcif(dcif), .cif(cif));
+  dcache DUT(.CLK(CLK), .nRST(nRST), .dcif(dcif), .cif(cif0));
 
   // memory
   ram RAM (CLK, nRST, prif);

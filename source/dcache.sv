@@ -59,7 +59,7 @@ module dcache (
         nextstate=write_first_word;
     end
    
-    else if(!hit||dcif.halt)begin
+    else if(!hit)begin
     nextstate=read_first_word;
     
     end
@@ -137,18 +137,18 @@ module dcache (
  nxt_read_block=read_block;
  enable_hit_counter=0;
  enable_halt_counter=0;
- dcif.flushed=0;
+
  case(state)
  Idle: begin
  if(dcif.dmemREN) begin
  if(hit0) begin
- dicf.dmemload=nxt_dcache[index].way[0].data[offset];
+ dcif.dmemload=nxt_dcache[index].way[0].data[offset];
  nxt_dcache[index].ru[0]=1;
  nxt_dcache[index].ru[1]=0;
  enable_hit_counter=1;
  end
  else if(hit1) begin
- dicf.dmemload=nxt_dcache[index].way[1].data[offset];
+ dcif.dmemload=nxt_dcache[index].way[1].data[offset];
  nxt_dcache[index].ru[1]=1;
  nxt_dcache[index].ru[0]=0;
  enable_hit_counter=1;
@@ -239,6 +239,7 @@ module dcache (
      nxt_dcache[index].way[0].dirty=1;
      nxt_dcache[index].ru[0]=1;
      nxt_dcache[index].ru[1]=0;
+     nxt_dcache[index].way[0].tag=dcif.dmemaddr[31:6];
      end
      else if(!nxt_dcache[index].ru[1]) begin
      if(dcif.dmemaddr[2])begin
@@ -253,6 +254,7 @@ module dcache (
      nxt_dcache[index].way[1].dirty=1;
      nxt_dcache[index].ru[0]=0;
      nxt_dcache[index].ru[1]=1;
+     nxt_dcache[index].way[1].tag=dcif.dmemaddr[31:6];
      end
      dcif.dhit=1;
  end
@@ -267,7 +269,8 @@ module dcache (
      nxt_dcache[index].way[0].data[0]=dcif.dmemstore;
      end
      nxt_dcache[index].way[0].valid=1;
-     nxt_dcache[index].way[0].dirty=1;
+     
+     nxt_dcache[index].way[1].tag=dcif.dmemaddr[31:6];
      nxt_dcache[index].ru[0]=1;
      nxt_dcache[index].ru[1]=0;
      end
@@ -281,6 +284,8 @@ module dcache (
      nxt_dcache[index].way[1].data[0]=dcif.dmemstore;
      end
      nxt_dcache[index].way[1].valid=1;
+     
+     nxt_dcache[index].way[1].tag=dcif.dmemaddr[31:6];
      nxt_dcache[index].ru[1]=1;
      nxt_dcache[index].ru[0]=0;
      end
