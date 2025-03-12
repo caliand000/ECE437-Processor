@@ -231,26 +231,28 @@ module datapath(
       mem_wb_out<= '0;
     end
     else begin
-      if(dpif.ihit) begin
-        if(huif.Flush) begin
-          if_id_out <= '0;
-          id_ex_out <= '0;
-          ex_mem_out <= '0;
+      if(!ex_mem_out.MemWr || !dpif.ihit || dpif.dhit) begin
+        if(dpif.ihit) begin
+          if(huif.Flush) begin
+            if_id_out <= '0;
+            id_ex_out <= '0;
+            ex_mem_out <= '0;
+          end
+          else if(huif.latch_en) begin
+            if_id_out <= if_id_in;
+            id_ex_out <= id_ex_in;
+            ex_mem_out<= ex_mem_in;
+          end
+          else begin
+            if_id_out <= if_id_out;
+            id_ex_out <= id_ex_in;
+            ex_mem_out<= ex_mem_in;  
+          end
+          mem_wb_out<= mem_wb_in;
         end
-        else if(huif.latch_en) begin
-          if_id_out <= if_id_in;
-          id_ex_out <= id_ex_in;
-          ex_mem_out<= ex_mem_in;
+        else if(dpif.dhit) begin
+          ex_mem_out.read_data<= ex_mem_in.read_data;
         end
-        else begin
-          if_id_out <= if_id_out;
-          id_ex_out <= id_ex_in;
-          ex_mem_out<= ex_mem_in;  
-        end
-        mem_wb_out<= mem_wb_in;
-      end
-      else if(dpif.dhit) begin
-        ex_mem_out.read_data<= ex_mem_in.read_data;
       end
     end
   end

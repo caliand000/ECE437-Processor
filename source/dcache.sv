@@ -63,7 +63,7 @@ module dcache (
             if(dcif.halt) begin
                nextstate=write_first_word;
             end
-            else if(!hit)begin
+            else if(!hit && (dcif.dmemREN || dcif.dmemWEN))begin
             nextstate=read_first_word;
             end
          end
