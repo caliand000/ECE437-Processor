@@ -13,7 +13,33 @@ module dcache (
 );
     
 
-    typedef enum logic[4:0] {Idle,read_first_word,read_second_word,write_first_word,write_second_word,nhitR_doneR,nhitR_doneC,nhitW_doneR,nhitW_doneC,incrementing,halt_cleaned} state_type;
+     //dcache frame
+//   typedef struct packed {
+// 	logic valid;
+// 	logic dirty;
+// 	logic [DTAG_W - 1:0] tag;
+// 	word_t [1:0] data;
+//   } dcache_frame; --> ARRAY OF THIS = CACHEE TABLE
+
+// typdef struct cache_row{
+//    dcache_frame right
+//    dcache_frame left
+// }
+
+//cache_row [8] ht;
+//address that i want to replace = ht[dcache_info.idx].right/left.tag
+
+//   // dcache format type
+//   typedef struct packed {
+//     logic [DTAG_W-1:0]  tag;
+//     logic [DIDX_W-1:0]  idx;
+//     logic [DBLK_W-1:0]  blkoff;
+//     logic [DBYT_W-1:0]  bytoff;
+//   } dcachef_t; --> REQUEST INFORMATION
+
+
+
+    typedef enum logic[4:0] {Idle,read_first_word,read_second_word,write_first_word,write_second_word,nhitR_doneR,nhitW_doneR,incrementing,halt_cleaned} state_type;
     state_type state, nextstate;
     dcache[15:0] cur_dcache,nxt_dcache;
     logic [4:0] halt_cnt,nxt_halt_cnt;
@@ -26,7 +52,7 @@ module dcache (
     assign index=dcif.dmemaddr[5:3];
     assign hit0=(cur_dcache[index].way[0].tag==dcif.dmemaddr[31:6]&&cur_dcache[index].way[0].valid);
     assign hit1=(cur_dcache[index].way[1].tag==dcif.dmemaddr[31:6]&&cur_dcache[index].way[0].valid);
-
+    
     always_ff@(posedge CLK,negedge nRST) begin
       if(!nRST) begin
          cur_dcache<='0;
@@ -37,12 +63,13 @@ module dcache (
       end
       else begin
          cur_dcache<=nxt_dcache;
-         hit_cnt<=nxt_hit_cnt;
-         state<=nextstate;
+         hit_cnt<=nxt_hit_cnt; //dcache frame
+          state<=nextstate;
          read_block<=nxt_read_block;
          halt_cnt<=nxt_halt_cnt;
       end 
     end
+     
 
     assign hit=hit0||hit1;
 
@@ -61,17 +88,23 @@ module dcache (
          Idle: begin
             nextstate=Idle;
             if(dcif.halt) begin
-               nextstate=write_first_word;
+               
+               nextstate=incrementing;
             end
             else if(!hit && (dcif.dmemREN || dcif.dmemWEN))begin
-            nextstate=read_first_word;
+            if((cur_dcache[index].way[0].dirty&&!cur_dcache[index].ru[0])||(cur_dcache[index].way[1].dirty&&!cur_dcache[index].ru[1])) begin
+            nextstate=write_first_word;
+            end
+            else if(dcif.dmemWEN&&dcif.dmemaddr[2]) nextstate=read_second_word;
+            else nextstate=read_first_word;
             end
          end
 
          read_first_word: begin
             nextstate=read_first_word;
-            if(!cif.dwait)
+            if(!cif.dwait&&dcif.dmemREN)
             nextstate=read_second_word;
+            else if(!cif.dwait&&dcif.dmemWEN) nextstate=nhitW_doneR;
          end
          read_second_word: begin
             nextstate=read_second_word;
@@ -81,15 +114,11 @@ module dcache (
             nextstate=nhitW_doneR;
          end
          nhitR_doneR: begin
-            if((cur_dcache[index].way[0].dirty&&!cur_dcache[index].ru[0])||(cur_dcache[index].way[1].dirty&&!cur_dcache[index].ru[1])) 
-            nextstate=write_first_word;
-            else nextstate=nhitR_doneC;
+   
+            nextstate=Idle;
          end
          nhitW_doneR: begin
-            if((cur_dcache[index].way[0].dirty&&!cur_dcache[index].ru[0])||(cur_dcache[index].way[1].dirty&&!cur_dcache[index].ru[1])) begin
-            nextstate=write_first_word;
-            end
-            else nextstate=nhitW_doneC;
+            nextstate=Idle;
          end
          write_first_word: begin
             nextstate=write_first_word;
@@ -98,9 +127,9 @@ module dcache (
          write_second_word: begin
             nextstate=write_second_word;
             if(!cif.dwait&&dcif.dmemREN)
-            nextstate=nhitR_doneC;
+            nextstate=read_first_word;
             else if(!cif.dwait&&dcif.dmemWEN)
-            nextstate=nhitW_doneC;
+            nextstate=read_first_word;
             else if(!cif.dwait&&dcif.halt) begin
             nextstate=incrementing;
             end
@@ -109,14 +138,9 @@ module dcache (
             nextstate=incrementing;
             if(cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].dirty)
             nextstate=write_first_word;
-            if(halt_cnt==15) nextstate=halt_cleaned;
+            if(halt_cnt==16) nextstate=halt_cleaned;
          end
-         nhitR_doneC: begin
-            nextstate=Idle;
-         end
-         nhitW_doneC: begin
-            nextstate=Idle;
-         end
+         
          halt_cleaned: begin
             nextstate=halt_cleaned;
             if(!cif.dwait) nextstate=Idle;
@@ -174,20 +198,37 @@ module dcache (
       end
       read_first_word: begin
          cif.dREN=1;
-         cif.daddr={dcif.dmemaddr[31:3],0,dcif.dmemaddr[1:0]};
+         cif.daddr={dcif.dmemaddr[31:3],1'b0,dcif.dmemaddr[1:0]};
+            
       end
 
       read_second_word: begin
          cif.dREN=1;
-         cif.daddr={dcif.dmemaddr[31:3],1,dcif.dmemaddr[1:0]};
-         nxt_read_block[0]=cif.dload;
+         cif.daddr={dcif.dmemaddr[31:3],1'b1,dcif.dmemaddr[1:0]};
+            if(!cur_dcache[index].ru[0]&&dcif.dmemREN) begin
+            
+               
+               nxt_dcache[index].way[0].data[0]=cif.dload;
+           
+            nxt_dcache[index].way[0].valid=1;
+            nxt_dcache[index].way[0].dirty=1;
+            nxt_dcache[index].ru[0]=1;
+            nxt_dcache[index].ru[1]=0;
+            nxt_dcache[index].way[0].tag=dcif.dmemaddr[31:6];
+         end
+         else if(!nxt_dcache[index].ru[1]&&dcif.dmemREN) begin
+            
+               
+               nxt_dcache[index].way[1].data[0]=cif.dload;
+           
+            nxt_dcache[index].way[1].valid=1;
+            nxt_dcache[index].way[1].dirty=1;
+            nxt_dcache[index].ru[0]=0;
+            nxt_dcache[index].ru[1]=1;
+            nxt_dcache[index].way[1].tag=dcif.dmemaddr[31:6];
+         end
       end
-      nhitR_doneR : begin
-         nxt_read_block[1]=cif.dload;
-      end
-      nhitW_doneR: begin
-         nxt_read_block[1]=cif.dload;
-      end
+     
       write_first_word: begin
          if(dcif.halt) begin
             cif.dWEN=1;
@@ -220,16 +261,23 @@ module dcache (
       end
       incrementing: begin
          enable_halt_counter=1;
+
+         if(cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].dirty) begin
+         nxt_dcache[halt_cnt[2:0]].way[halt_cnt[3]].dirty=0;
+         enable_halt_counter=0;
+         end
+         
       end
-      nhitW_doneC: begin
+      nhitW_doneR: begin
          if(!cur_dcache[index].ru[0]) begin
             if(dcif.dmemaddr[2])begin
-               nxt_dcache[index].way[0].data[0]=read_block[0];
                nxt_dcache[index].way[0].data[1]=dcif.dmemstore;
+               nxt_dcache[index].way[0].data[0]=cif.dload;
             end
             else begin
-               nxt_dcache[index].way[0].data[1]=read_block[1];
                nxt_dcache[index].way[0].data[0]=dcif.dmemstore;
+               nxt_dcache[index].way[0].data[1]=cif.dload;
+               
             end
             nxt_dcache[index].way[0].valid=1;
             nxt_dcache[index].way[0].dirty=1;
@@ -239,12 +287,14 @@ module dcache (
          end
          else if(!nxt_dcache[index].ru[1]) begin
             if(dcif.dmemaddr[2])begin
-               nxt_dcache[index].way[1].data[0]=read_block[0];
+               
                nxt_dcache[index].way[1].data[1]=dcif.dmemstore;
+               nxt_dcache[index].way[1].data[0]=cif.dload;
             end
             else begin
-               nxt_dcache[index].way[1].data[1]=read_block[1];
+               
                nxt_dcache[index].way[1].data[0]=dcif.dmemstore;
+               nxt_dcache[index].way[1].data[1]=cif.dload;
             end
             nxt_dcache[index].way[1].valid=1;
             nxt_dcache[index].way[1].dirty=1;
@@ -254,43 +304,36 @@ module dcache (
          end
          dcif.dhit=1;
       end
-      nhitR_doneC: begin
-         if(!cur_dcache[index].ru[0]) begin
+      nhitR_doneR: begin
+          if(!cur_dcache[index].ru[0]) begin
             if(dcif.dmemaddr[2])begin
-               nxt_dcache[index].way[0].data[0]=read_block[0];
-               nxt_dcache[index].way[0].data[1]=dcif.dmemstore;
+               dcif.dmemload=nxt_dcache[index].way[0].data[0];
+               
             end
             else begin
-               nxt_dcache[index].way[0].data[1]=read_block[1];
-               nxt_dcache[index].way[0].data[0]=dcif.dmemstore;
+               dcif.dmemload=nxt_dcache[index].way[0].data[1];
+               
             end
-            nxt_dcache[index].way[0].valid=1;
-            nxt_dcache[index].way[0].dirty=0;
-            nxt_dcache[index].way[0].tag=dcif.dmemaddr[31:6];
-            nxt_dcache[index].ru[0]=1;
-            nxt_dcache[index].ru[1]=0;
+            
          end
-         else if(!cur_dcache[index].ru[1]) begin
+         else if(!nxt_dcache[index].ru[1]) begin
             if(dcif.dmemaddr[2])begin
-               nxt_dcache[index].way[1].data[0]=read_block[0];
-               nxt_dcache[index].way[1].data[1]=dcif.dmemstore;
+               
+               dcif.dmemload=nxt_dcache[index].way[1].data[1];
             end
             else begin
-               nxt_dcache[index].way[1].data[1]=read_block[1];
-               nxt_dcache[index].way[1].data[0]=dcif.dmemstore;
+               
+               dcif.dmemload=nxt_dcache[index].way[1].data[0];
             end
-            nxt_dcache[index].way[1].valid=1;
-            nxt_dcache[index].way[1].dirty=0;
-            nxt_dcache[index].way[1].tag=dcif.dmemaddr[31:6];
-            nxt_dcache[index].ru[1]=1;
-            nxt_dcache[index].ru[0]=0;
+           
          end
+         
          dcif.dhit=1;
       end
       halt_cleaned: begin
          cif.dWEN=1;
          cif.daddr=32'h3100;
-         cif.dstore=halt_cnt;
+         cif.dstore=hit_cnt;
          
       end
    endcase

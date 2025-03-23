@@ -129,7 +129,7 @@ module datapath(
   assign ex_mem_in.pchalt = id_ex_out.pchalt;
   assign ex_mem_in.MemtoReg = id_ex_out.MemtoReg;
   assign ex_mem_in.MemWr = id_ex_out.MemWr;
-  // assign ex_mem_in.PCSrc = deif.PCsrc;
+  //assign ex_mem_in.PCSrc = deif.PCsrc;
   assign ex_mem_in.RegWr = id_ex_out.RegWr;
   assign ex_mem_in.Zero = Zero;
   assign ex_mem_in.Neg = Neg;
@@ -205,7 +205,7 @@ module datapath(
       dpif.imemaddr <= '0;
       dpif.halt <= 0;
     end 
-    else begin
+    else  begin
       dpif.imemaddr <= iaddr;
       dpif.halt <= ex_mem_out.pchalt || dpif.halt;
     end 
@@ -231,7 +231,7 @@ module datapath(
       mem_wb_out<= '0;
     end
     else begin
-      if(!ex_mem_out.MemWr || !dpif.ihit || dpif.dhit) begin
+      //if(!ex_mem_out.MemWr || !dpif.ihit || dpif.dhit) begin
         if(dpif.ihit) begin
           if(huif.Flush) begin
             if_id_out <= '0;
@@ -255,5 +255,5 @@ module datapath(
         end
       end
     end
-  end
+  //end
 endmodule

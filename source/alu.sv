@@ -4,7 +4,7 @@ module alu
 import cpu_types_pkg::*;
 (
   input logic [31:0] A, B, // Input operands
-  input logic [3:0] opcode, // Operation code
+  input logic [4:0] opcode, // Operation code
   output logic [31:0] out, // Result of the operation
   output logic zero, negative, overflow // Flags
 );
