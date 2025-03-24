@@ -49,7 +49,7 @@ module icache (
                     end
                     else if(comparator) begin
                         dcif.imemload = cache_block[dcif.imemaddr[5:2]].data;
-                        dcif.ihit = 1'b1;
+                        dcif.ihit = !(!dcif.dhit&&(dcif.dmemREN||dcif.dmemWEN));
                         nextstate = Idle;
                     end
                 end

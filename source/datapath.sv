@@ -232,7 +232,7 @@ module datapath(
     end
     else begin
       //if(!ex_mem_out.MemWr || !dpif.ihit || dpif.dhit) begin
-        if(dpif.ihit) begin
+        if(dpif.ihit&&!dpif.halt) begin
           if(huif.Flush) begin
             if_id_out <= '0;
             id_ex_out <= '0;

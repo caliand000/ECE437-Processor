@@ -7,5 +7,5 @@ ori   $2, $0, 0x3
 bltu   $1, $2, branch_taken
 HALT
 branch_taken:
-  sw  $3, 13($2)  # Reached if taken
+  sw  $3, 53($2)  # Reached if taken
   HALT

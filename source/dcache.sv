@@ -126,13 +126,14 @@ module dcache (
          end
          write_second_word: begin
             nextstate=write_second_word;
-            if(!cif.dwait&&dcif.dmemREN)
-            nextstate=read_first_word;
+            if(!cif.dwait&&dcif.halt) 
+            nextstate=incrementing;
             else if(!cif.dwait&&dcif.dmemWEN)
             nextstate=read_first_word;
-            else if(!cif.dwait&&dcif.halt) begin
-            nextstate=incrementing;
-            end
+            else if(!cif.dwait&&dcif.dmemREN)
+            nextstate=read_first_word;
+            
+         
          end
          incrementing: begin
             nextstate=incrementing;
