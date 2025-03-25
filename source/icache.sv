@@ -8,8 +8,8 @@
 
 module icache (
   input logic CLK, nRST,
-  datapath_cache_if.cache dcif,
-  caches_if cif
+  datapath_cache_if.icache dcif,
+  caches_if.icache cif
 );
     import cpu_types_pkg::*;
 
@@ -49,7 +49,7 @@ module icache (
                     end
                     else if(comparator) begin
                         dcif.imemload = cache_block[dcif.imemaddr[5:2]].data;
-                        dcif.ihit = !(!dcif.dhit&&(dcif.dmemREN||dcif.dmemWEN));
+                        dcif.ihit = 1'b1;
                         nextstate = Idle;
                     end
                 end

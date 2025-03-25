@@ -147,7 +147,7 @@ module datapath(
   assign mem_wb_in.RegWr=ex_mem_out.RegWr;
   assign mem_wb_in.rd=ex_mem_out.rd;
   assign mem_wb_in.MemtoReg=ex_mem_out.MemtoReg;
-  assign mem_wb_in.read_data=ex_mem_out.read_data;
+  assign mem_wb_in.read_data=(dpif.ihit&&dpif.dhit)?dpif.dmemload:ex_mem_out.read_data;
   always_comb begin
   case(ex_mem_out.jumpsel) 
     2'b00:mem_wb_in.wrb = ex_mem_out.AluOut;
@@ -158,7 +158,7 @@ module datapath(
   end
 
   //assigning internal signals
-  assign dpif.imemREN = 1;
+  assign dpif.imemREN =!dpif.dmemREN && !dpif.dmemWEN;
   assign dpif.dmemstore = ex_mem_out.rdat2;
   assign dpif.dmemaddr = ex_mem_out.AluOut;
 
@@ -232,7 +232,8 @@ module datapath(
     end
     else begin
       //if(!ex_mem_out.MemWr || !dpif.ihit || dpif.dhit) begin
-        if(dpif.ihit&&!dpif.halt) begin
+        
+         if(dpif.ihit && (!(dpif.dmemREN || dpif.dmemWEN) || dpif.dhit)) begin
           if(huif.Flush) begin
             if_id_out <= '0;
             id_ex_out <= '0;
