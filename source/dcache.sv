@@ -39,19 +39,19 @@ module dcache (
 
 
 
-    typedef enum logic[4:0] {Idle,read_first_word,read_second_word,write_first_word,write_second_word,nhitR_doneR,nhitW_doneR,incrementing,halt_cleaned} state_type;
+    typedef enum logic[4:0] {Idle,read_first_word,read_second_word,write_first_word,write_second_word,incrementing,halt_cleaned} state_type;
     state_type state, nextstate;
     dcache[15:0] cur_dcache,nxt_dcache;
     logic [4:0] halt_cnt,nxt_halt_cnt;
     word_t hit_cnt,nxt_hit_cnt;
-    logic hit0,hit1,enable_hit_counter,hit,offset,enable_halt_counter;
+    logic hit0,hit1,enable_hit_counter,enable_hit_counter_sub,hit,offset,enable_halt_counter;
     logic [2:0] index;
     word_t[1:0] read_block,nxt_read_block;
 
     assign offset=dcif.dmemaddr[2];
     assign index=dcif.dmemaddr[5:3];
     assign hit0=(cur_dcache[index].way[0].tag==dcif.dmemaddr[31:6]&&cur_dcache[index].way[0].valid);
-    assign hit1=(cur_dcache[index].way[1].tag==dcif.dmemaddr[31:6]&&cur_dcache[index].way[0].valid);
+    assign hit1=(cur_dcache[index].way[1].tag==dcif.dmemaddr[31:6]&&cur_dcache[index].way[1].valid);
     
     always_ff@(posedge CLK,negedge nRST) begin
       if(!nRST) begin
@@ -76,6 +76,7 @@ module dcache (
     always_comb begin : hit_counter
       nxt_hit_cnt=hit_cnt;
       if(enable_hit_counter) nxt_hit_cnt=hit_cnt+1;
+      if(enable_hit_counter_sub) nxt_hit_cnt=hit_cnt-1;
     end
 
     always_comb begin: halt_counter
@@ -95,8 +96,8 @@ module dcache (
             if((cur_dcache[index].way[0].dirty&&!cur_dcache[index].ru[0])||(cur_dcache[index].way[1].dirty&&!cur_dcache[index].ru[1])) begin
             nextstate=write_first_word;
             end
-            else if(dcif.dmemWEN&&dcif.dmemaddr[2]) nextstate=read_second_word;
-            else nextstate=read_first_word;
+            else if((dcif.dmemWEN&&dcif.dmemaddr[2])||dcif.dmemREN) nextstate=read_first_word;
+            else nextstate=read_second_word;
             end
          end
 
@@ -104,22 +105,16 @@ module dcache (
             nextstate=read_first_word;
             if(!cif.dwait&&dcif.dmemREN)
             nextstate=read_second_word;
-            else if(!cif.dwait&&dcif.dmemWEN) nextstate=nhitW_doneR;
+            else if(!cif.dwait&&dcif.dmemWEN) nextstate=Idle;
          end
          read_second_word: begin
             nextstate=read_second_word;
             if(!cif.dwait&&dcif.dmemREN)
-            nextstate=nhitR_doneR;
+            nextstate=Idle;
             else if(!cif.dwait&&dcif.dmemWEN)
-            nextstate=nhitW_doneR;
-         end
-         nhitR_doneR: begin
-   
             nextstate=Idle;
          end
-         nhitW_doneR: begin
-            nextstate=Idle;
-         end
+         
          write_first_word: begin
             nextstate=write_first_word;
             if(!cif.dwait) nextstate=write_second_word;
@@ -129,7 +124,7 @@ module dcache (
             if(!cif.dwait&&dcif.halt) 
             nextstate=incrementing;
             else if(!cif.dwait&&dcif.dmemWEN)
-            nextstate=read_first_word;
+            nextstate=Idle;
             else if(!cif.dwait&&dcif.dmemREN)
             nextstate=read_first_word;
             
@@ -158,6 +153,7 @@ module dcache (
    nxt_dcache=cur_dcache;
    nxt_read_block=read_block;
    enable_hit_counter=0;
+   enable_hit_counter_sub=0;
    enable_halt_counter=0;
 
    case(state)
@@ -182,52 +178,72 @@ module dcache (
          if(hit0) begin
             nxt_dcache[index].way[0].data[offset]=dcif.dmemstore;
             nxt_dcache[index].way[0].dirty=1;
-            nxt_dcache[index].ru[0]=1;
+             nxt_dcache[index].ru[0]=1;
             nxt_dcache[index].ru[1]=0;
             enable_hit_counter=1;
          end
          else if(hit1) begin
             nxt_dcache[index].way[1].data[offset]=dcif.dmemstore;
             nxt_dcache[index].way[1].dirty=1;
-            nxt_dcache[index].ru[0]=0;
             nxt_dcache[index].ru[1]=1;
+            nxt_dcache[index].ru[0]=0;
             enable_hit_counter=1;
          end
          if(hit)
             dcif.dhit=1;
          end
+         else enable_hit_counter_sub=1;
       end
       read_first_word: begin
          cif.dREN=1;
          cif.daddr={dcif.dmemaddr[31:3],1'b0,dcif.dmemaddr[1:0]};
-            
-      end
-
-      read_second_word: begin
-         cif.dREN=1;
-         cif.daddr={dcif.dmemaddr[31:3],1'b1,dcif.dmemaddr[1:0]};
-            if(!cur_dcache[index].ru[0]&&dcif.dmemREN) begin
+           if(!cur_dcache[index].ru[0]&&(dcif.dmemREN||dcif.dmemWEN)) begin
             
                
                nxt_dcache[index].way[0].data[0]=cif.dload;
            
             nxt_dcache[index].way[0].valid=1;
             nxt_dcache[index].way[0].dirty=1;
-            nxt_dcache[index].ru[0]=1;
-            nxt_dcache[index].ru[1]=0;
+            
             nxt_dcache[index].way[0].tag=dcif.dmemaddr[31:6];
          end
-         else if(!nxt_dcache[index].ru[1]&&dcif.dmemREN) begin
+         else if(!nxt_dcache[index].ru[1]&&(dcif.dmemREN||dcif.dmemWEN)) begin
             
                
                nxt_dcache[index].way[1].data[0]=cif.dload;
            
             nxt_dcache[index].way[1].valid=1;
             nxt_dcache[index].way[1].dirty=1;
-            nxt_dcache[index].ru[0]=0;
-            nxt_dcache[index].ru[1]=1;
+            
             nxt_dcache[index].way[1].tag=dcif.dmemaddr[31:6];
          end
+            
+      end
+
+      read_second_word: begin
+         cif.dREN=1;
+         cif.daddr={dcif.dmemaddr[31:3],1'b1,dcif.dmemaddr[1:0]};
+           if(!cur_dcache[index].ru[0]&&(dcif.dmemREN||dcif.dmemWEN)) begin
+            
+               
+               nxt_dcache[index].way[0].data[1]=cif.dload;
+           
+            nxt_dcache[index].way[0].valid=1;
+            nxt_dcache[index].way[0].dirty=1;
+            
+            nxt_dcache[index].way[0].tag=dcif.dmemaddr[31:6];
+         end
+         else if(!nxt_dcache[index].ru[1]&&(dcif.dmemREN||dcif.dmemWEN)) begin
+            
+               
+               nxt_dcache[index].way[1].data[1]=cif.dload;
+           
+            nxt_dcache[index].way[1].valid=1;
+            nxt_dcache[index].way[1].dirty=1;
+            
+            nxt_dcache[index].way[1].tag=dcif.dmemaddr[31:6];
+         end
+          
       end
      
       write_first_word: begin
@@ -269,68 +285,7 @@ module dcache (
          end
          
       end
-      nhitW_doneR: begin
-         if(!cur_dcache[index].ru[0]) begin
-            if(dcif.dmemaddr[2])begin
-               nxt_dcache[index].way[0].data[1]=dcif.dmemstore;
-               nxt_dcache[index].way[0].data[0]=cif.dload;
-            end
-            else begin
-               nxt_dcache[index].way[0].data[0]=dcif.dmemstore;
-               nxt_dcache[index].way[0].data[1]=cif.dload;
-               
-            end
-            nxt_dcache[index].way[0].valid=1;
-            nxt_dcache[index].way[0].dirty=1;
-            nxt_dcache[index].ru[0]=1;
-            nxt_dcache[index].ru[1]=0;
-            nxt_dcache[index].way[0].tag=dcif.dmemaddr[31:6];
-         end
-         else if(!nxt_dcache[index].ru[1]) begin
-            if(dcif.dmemaddr[2])begin
-               
-               nxt_dcache[index].way[1].data[1]=dcif.dmemstore;
-               nxt_dcache[index].way[1].data[0]=cif.dload;
-            end
-            else begin
-               
-               nxt_dcache[index].way[1].data[0]=dcif.dmemstore;
-               nxt_dcache[index].way[1].data[1]=cif.dload;
-            end
-            nxt_dcache[index].way[1].valid=1;
-            nxt_dcache[index].way[1].dirty=1;
-            nxt_dcache[index].ru[0]=0;
-            nxt_dcache[index].ru[1]=1;
-            nxt_dcache[index].way[1].tag=dcif.dmemaddr[31:6];
-         end
-         dcif.dhit=1;
-      end
-      nhitR_doneR: begin
-          if(!cur_dcache[index].ru[0]) begin
-            if(dcif.dmemaddr[2])begin
-               dcif.dmemload=nxt_dcache[index].way[0].data[0];
-               
-            end
-            else begin
-               dcif.dmemload=nxt_dcache[index].way[0].data[1];
-               
-            end
-            
-         end
-         else if(!nxt_dcache[index].ru[1]) begin
-            if(dcif.dmemaddr[2])begin
-               
-               dcif.dmemload=nxt_dcache[index].way[1].data[1];
-            end
-            else begin
-               
-               dcif.dmemload=nxt_dcache[index].way[1].data[0];
-            end
-           
-         end
-         
-         dcif.dhit=1;
-      end
+      
       halt_cleaned: begin
          cif.dWEN=1;
          cif.daddr=32'h3100;

@@ -1,7 +1,7 @@
 processing file asmFiles/test.datahazard.asm (1 of 1)
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -23,7 +23,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/alu.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:05 on Mar 23,2025
+Start time: 20:38:10 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/alu.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling module alu
@@ -31,11 +31,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	alu
-End time: 23:31:05 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:10 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -57,7 +57,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/cache_control_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:05 on Mar 23,2025
+Start time: 20:38:10 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/cache_control_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface caches_if
@@ -66,11 +66,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 23:31:05 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:10 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -92,17 +92,17 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/caches.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:05 on Mar 23,2025
+Start time: 20:38:10 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/caches.sv 
 -- Compiling module caches
 
 Top level modules:
 	caches
-End time: 23:31:06 on Mar 23,2025, Elapsed time: 0:00:01
+End time: 20:38:10 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -124,7 +124,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/caches_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:06 on Mar 23,2025
+Start time: 20:38:10 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/caches_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface caches_if
@@ -132,11 +132,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 23:31:06 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:11 on Mar 24,2025, Elapsed time: 0:00:01
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -158,7 +158,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/control_request_unit_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:06 on Mar 23,2025
+Start time: 20:38:11 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/control_request_unit_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface control_request_unit_if
@@ -166,11 +166,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 23:31:06 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:11 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -192,7 +192,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/control_unit.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:06 on Mar 23,2025
+Start time: 20:38:11 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/control_unit.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface control_request_unit_if
@@ -201,11 +201,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	control_unit
-End time: 23:31:06 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:11 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -227,7 +227,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/cpu_ram_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:06 on Mar 23,2025
+Start time: 20:38:11 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/cpu_ram_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface cpu_ram_if
@@ -235,11 +235,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 23:31:06 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:11 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -261,17 +261,17 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/cpu_types_pkg.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:06 on Mar 23,2025
+Start time: 20:38:11 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/cpu_types_pkg.vh 
 -- Compiling package cpu_types_pkg
 
 Top level modules:
 	--none--
-End time: 23:31:06 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:11 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -293,7 +293,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/datapath.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:06 on Mar 23,2025
+Start time: 20:38:11 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/datapath.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface datapath_cache_if
@@ -309,11 +309,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	datapath
-End time: 23:31:06 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:11 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -335,7 +335,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/datapath_cache_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:06 on Mar 23,2025
+Start time: 20:38:12 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/datapath_cache_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface datapath_cache_if
@@ -343,11 +343,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 23:31:06 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:12 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -369,7 +369,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/dcache.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:06 on Mar 23,2025
+Start time: 20:38:12 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/dcache.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling package dcache_sv_unit
@@ -378,11 +378,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	dcache
-End time: 23:31:07 on Mar 23,2025, Elapsed time: 0:00:01
+End time: 20:38:12 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -404,7 +404,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/decider.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:07 on Mar 23,2025
+Start time: 20:38:12 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/decider.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface decider_if
@@ -415,11 +415,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	decider
-End time: 23:31:07 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:12 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -441,7 +441,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/decider_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:07 on Mar 23,2025
+Start time: 20:38:12 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/decider_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface decider_if
@@ -449,11 +449,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 23:31:07 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:12 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -475,7 +475,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/extender.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:07 on Mar 23,2025
+Start time: 20:38:12 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/extender.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface extender_if
@@ -494,11 +494,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	extender
-End time: 23:31:07 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:12 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 4
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -520,7 +520,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/extender_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:07 on Mar 23,2025
+Start time: 20:38:12 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/extender_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface extender_if
@@ -528,11 +528,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 23:31:07 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:13 on Mar 24,2025, Elapsed time: 0:00:01
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -554,7 +554,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/forward_unit.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:07 on Mar 23,2025
+Start time: 20:38:13 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/forward_unit.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface forward_unit_if
@@ -563,11 +563,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	forward_unit
-End time: 23:31:07 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:13 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -589,7 +589,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/forward_unit_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:07 on Mar 23,2025
+Start time: 20:38:13 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/forward_unit_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface forward_unit_if
@@ -597,11 +597,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 23:31:07 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:13 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -623,7 +623,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/hazard_unit.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:07 on Mar 23,2025
+Start time: 20:38:13 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/hazard_unit.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface hazard_unit_if
@@ -632,11 +632,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	hazard_unit
-End time: 23:31:07 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:13 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -658,7 +658,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/hazard_unit_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:08 on Mar 23,2025
+Start time: 20:38:13 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/hazard_unit_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface hazard_unit_if
@@ -666,11 +666,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 23:31:08 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:13 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -692,7 +692,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/icache.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:08 on Mar 23,2025
+Start time: 20:38:13 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/icache.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling module icache
@@ -700,11 +700,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	icache
-End time: 23:31:08 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:14 on Mar 24,2025, Elapsed time: 0:00:01
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -726,7 +726,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/memory_control.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:08 on Mar 23,2025
+Start time: 20:38:14 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/memory_control.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface caches_if
@@ -736,11 +736,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	memory_control
-End time: 23:31:08 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:14 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -762,17 +762,17 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/pipeline.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:08 on Mar 23,2025
+Start time: 20:38:14 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/pipeline.sv 
 -- Compiling module pipeline
 
 Top level modules:
 	pipeline
-End time: 23:31:08 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:14 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -794,7 +794,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/pipeline_types_pkg.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:08 on Mar 23,2025
+Start time: 20:38:14 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/pipeline_types_pkg.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling package pipeline_types_pkg
@@ -802,11 +802,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 23:31:08 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:14 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -828,7 +828,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/ram.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:08 on Mar 23,2025
+Start time: 20:38:14 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/ram.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface cpu_ram_if
@@ -837,11 +837,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	ram
-End time: 23:31:08 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:14 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0, Suppressed Errors: 1
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -863,7 +863,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/register_file.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:08 on Mar 23,2025
+Start time: 20:38:14 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/register_file.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface register_file_if
@@ -872,11 +872,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	register_file
-End time: 23:31:08 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:14 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -898,7 +898,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/register_file_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:08 on Mar 23,2025
+Start time: 20:38:15 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/register_file_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface register_file_if
@@ -906,11 +906,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 23:31:08 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:15 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -932,7 +932,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/system.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:09 on Mar 23,2025
+Start time: 20:38:15 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/system.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface system_if
@@ -941,11 +941,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	system
-End time: 23:31:09 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:15 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -967,7 +967,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/system_if.vh
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:09 on Mar 23,2025
+Start time: 20:38:15 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/system_if.vh 
 -- Compiling package cpu_types_pkg
 -- Compiling interface system_if
@@ -975,11 +975,11 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	--none--
-End time: 23:31:09 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:15 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
+Hello 437mg015@cparch10.ecn.purdue.edu, you forgot some targets.
 	If you need instructions to use this Makefile:
 		'make <module_name>' to build module
 		'make <module_name>_tb' to build module + testbench
@@ -1001,7 +1001,7 @@ Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
 make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
 vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  testbench/system_tb.sv
 QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:31:09 on Mar 23,2025
+Start time: 20:38:15 on Mar 24,2025
 vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 testbench/system_tb.sv 
 -- Compiling package cpu_types_pkg
 -- Compiling interface system_if
@@ -1011,7 +1011,7 @@ vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 
 
 Top level modules:
 	system_tb
-End time: 23:31:09 on Mar 23,2025, Elapsed time: 0:00:00
+End time: 20:38:15 on Mar 24,2025, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 Reading pref.tcl
 
@@ -1024,12 +1024,12 @@ Reading pref.tcl
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
 # vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:10 on Mar 23,2025
+# Start time: 20:38:16 on Mar 24,2025
 # ** Note: (vsim-3812) Design is being optimized...
-###### source/dcache.sv(241):             cif.daddr={dcif.dmemaddr[31:3],0,dcif.dmemaddr[1:0]};
-# ** Warning: source/dcache.sv(241): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
-###### source/dcache.sv(256):             cif.daddr={dcif.dmemaddr[31:3],1,dcif.dmemaddr[1:0]};
-# ** Warning: source/dcache.sv(256): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+###### source/dcache.sv(257):             cif.daddr={dcif.dmemaddr[31:3],0,dcif.dmemaddr[1:0]};
+# ** Warning: source/dcache.sv(257): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+###### source/dcache.sv(272):             cif.daddr={dcif.dmemaddr[31:3],1,dcif.dmemaddr[1:0]};
+# ** Warning: source/dcache.sv(272): (vopt-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
 # ** Note: (vopt-143) Recognized 1 FSM in module "dcache(fast)".
 ###### source/datapath.sv(64):   alu               ALU(.A(Alu_a), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(ex_mem_in.AluOut), .zero(Zero), .negative(Neg));
 # ** Warning: source/datapath.sv(64): (vopt-2685) [TFMPC] - Too few port connections for 'ALU'.  Expected 7, found 6.
@@ -1126,2366 +1126,15 @@ Reading pref.tcl
 # Halted at 2220 time and ran for         54 cycles.
 # Starting memory dump.
 # Finished memory dump.
-# End time: 23:31:11 on Mar 23,2025, Elapsed time: 0:00:01
+# End time: 20:38:18 on Mar 24,2025, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 24, Suppressed Errors: 1
 6 instructions
---- memsim.hex	2025-03-23 23:31:11.376522209 -0400
-+++ memcpu.hex	2025-03-23 23:31:11.358521521 -0400
-@@ -1,7 +1,5 @@
--:0400000000506193B8
- :0400010000000005F6
--:040002000000000AF0
--:040003000040228314
-+:0400020000000005F5
- :040004000032833310
- :040005000060242350
+--- memsim.hex	2025-03-24 20:38:18.276172642 -0400
++++ memcpu.hex	2025-03-24 20:38:18.257171917 -0400
+@@ -6,5 +6,5 @@
+ :0400050004602C2344
  :04000600FFFFFFFFFA
-processing file asmFiles/test.beqnottaken.asm (1 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:17 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1500 time and ran for         36 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:31:17 on Mar 23,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-3 instructions
-processing file asmFiles/test.beqtaken.asm (2 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:18 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1860 time and ran for         45 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:31:19 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-3 instructions
-processing file asmFiles/test.bgenottaken.asm (3 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:20 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1500 time and ran for         36 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:31:20 on Mar 23,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-3 instructions
-processing file asmFiles/test.bgetaken.asm (4 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:21 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 2100 time and ran for         51 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:31:22 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-5 instructions
-processing file asmFiles/test.bgeunottaken.asm (5 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:23 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1620 time and ran for         39 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:31:24 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-4 instructions
-processing file asmFiles/test.bgeutaken.asm (6 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:24 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1980 time and ran for         48 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:31:25 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-4 instructions
-processing file asmFiles/test.bltnottaken.asm (7 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:26 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1500 time and ran for         36 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:31:27 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-3 instructions
-processing file asmFiles/test.blttaken.asm (8 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:27 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1980 time and ran for         48 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:31:28 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-4 instructions
-processing file asmFiles/test.bltunottaken.asm (9 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:29 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1500 time and ran for         36 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:31:30 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-3 instructions
-processing file asmFiles/test.bltutaken.asm (10 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:30 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1980 time and ran for         48 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:31:31 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-4 instructions
-processing file asmFiles/test.bnenottaken.asm (11 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:32 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1500 time and ran for         36 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:31:33 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-3 instructions
-processing file asmFiles/test.bnetaken.asm (12 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:33 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1980 time and ran for         48 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:31:34 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-4 instructions
-processing file asmFiles/test.branchjump1.asm (13 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:35 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 3860 time and ran for         95 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:31:36 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-13 instructions
-processing file asmFiles/test.ihitbeforedhit.asm (1 of 2)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:31:46 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Break key hit
-# Break in Module datapath at source/datapath.sv line 143
-# Stopped at source/datapath.sv line 143
-#  exit
-# End time: 23:32:01 on Mar 23,2025, Elapsed time: 0:00:15
-# Errors: 0, Warnings: 0
-# Break key hit
-processing file asmFiles/test.ihitbeforedhit.asm (1 of 2)
-make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
-
-Hello 437mg015@ececomp4.ecn.purdue.edu, you forgot some targets.
-	If you need instructions to use this Makefile:
-		'make <module_name>' to build module
-		'make <module_name>_tb' to build module + testbench
-		'make <module_name>.sim' to sim tb on cmd line
-		'make <module_name>.wav' to sim tb with gui
-		'make <module_name>.syn' to synthesize functional net list
-		'make <module_name>.synt' to synthesize timing net list
-	Lint Rules:
-		'make <module_name>.lint' to run the linter on module
-		'make <module_name>_tb.lint' to run the linter on module testbench
-	Clean Rules:
-		'make clean' to clean everything
-		'make clean_sim' to clean simulation logs and work lib
-		'make clean_asm' to clean hex and testasm output
-		'make clean_map' to clean mapped dir
-		'make clean_fpga' to clean fpga dir
-	Obviously a testbench file must exist for some options.
-
-make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
-vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/datapath.sv
-QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
-Start time: 23:32:31 on Mar 23,2025
-vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/datapath.sv 
--- Compiling package cpu_types_pkg
--- Compiling interface datapath_cache_if
--- Importing package cpu_types_pkg
--- Compiling interface control_request_unit_if
--- Compiling interface extender_if
--- Compiling interface decider_if
--- Compiling interface hazard_unit_if
--- Compiling interface forward_unit_if
--- Compiling package pipeline_types_pkg
--- Compiling module datapath
--- Importing package pipeline_types_pkg
-
-Top level modules:
-	datapath
-End time: 23:32:31 on Mar 23,2025, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:32:32 on Mar 23,2025
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-###### source/datapath.sv(64):   alu               ALU(.A(Alu_a), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(ex_mem_in.AluOut), .zero(Zero), .negative(Neg));
-# ** Warning: source/datapath.sv(64): (vopt-2685) [TFMPC] - Too few port connections for 'ALU'.  Expected 7, found 6.
-# ** Warning: source/datapath.sv(64): (vopt-2718) [TFMPC] - Missing connection for port 'overflow'.
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=2.
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 3540 time and ran for         87 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:32:33 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 2
-20 instructions
-processing file asmFiles/test.ihitdhitsame.asm (2 of 2)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:32:34 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 2740 time and ran for         67 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:32:35 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-15 instructions
-processing file asmFiles/test.beqnottaken.asm (1 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:32:43 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1500 time and ran for         36 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:32:44 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-3 instructions
-processing file asmFiles/test.beqtaken.asm (2 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:32:45 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1860 time and ran for         45 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:32:45 on Mar 23,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-3 instructions
-processing file asmFiles/test.bgenottaken.asm (3 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:32:46 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1500 time and ran for         36 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:32:47 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-3 instructions
-processing file asmFiles/test.bgetaken.asm (4 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:32:48 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 2100 time and ran for         51 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:32:48 on Mar 23,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-5 instructions
-processing file asmFiles/test.bgeunottaken.asm (5 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:32:49 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1620 time and ran for         39 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:32:50 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-4 instructions
-processing file asmFiles/test.bgeutaken.asm (6 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:32:51 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1980 time and ran for         48 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:32:51 on Mar 23,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-4 instructions
-processing file asmFiles/test.bltnottaken.asm (7 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:32:52 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1500 time and ran for         36 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:32:53 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-3 instructions
-processing file asmFiles/test.blttaken.asm (8 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:32:54 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1980 time and ran for         48 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:32:54 on Mar 23,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-4 instructions
-processing file asmFiles/test.bltunottaken.asm (9 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:32:55 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1500 time and ran for         36 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:32:56 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-3 instructions
-processing file asmFiles/test.bltutaken.asm (10 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:32:57 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1980 time and ran for         48 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:32:57 on Mar 23,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-4 instructions
-processing file asmFiles/test.bnenottaken.asm (11 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:32:58 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1500 time and ran for         36 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:32:59 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-3 instructions
-processing file asmFiles/test.bnetaken.asm (12 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:33:00 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 1980 time and ran for         48 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:33:01 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-4 instructions
-processing file asmFiles/test.branchjump1.asm (13 of 13)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:33:01 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 3860 time and ran for         95 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:33:02 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-13 instructions
-processing file asmFiles/test.loadstore.asm (1 of 1)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:34:56 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 3660 time and ran for         90 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:34:57 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-15 instructions
---- memsim.hex	2025-03-23 23:34:57.366163558 -0400
-+++ memcpu.hex	2025-03-23 23:34:57.348162870 -0400
-@@ -14,11 +14,6 @@
- :04000D0000D52423D3
- :04000E0000F52623B0
- :04000F00FFFFFFFFF1
--:040020000000733732
--:0400210000002701B3
--:040022000000133790
- :04002300DEADBEEFA1
--:04003C000000733716
--:04003D000000270197
--:04003E000000133774
-+:04003C000000270198
- :00000001FF
-processing file asmFiles/test.rtype.asm (1 of 1)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:35:03 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 5300 time and ran for        131 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:35:03 on Mar 23,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-28 instructions
-processing file asmFiles/test.loadstore.asm (1 of 1)
-Reading pref.tcl
-
-# 2021.4
-
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
-# Start time: 23:35:21 on Mar 23,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# //  Questa Sim-64
-# //  Version 2021.4 linux_x86_64 Oct 13 2021
-# //
-# //  Copyright 1991-2021 Mentor Graphics Corporation
-# //  All Rights Reserved.
-# //
-# //  QuestaSim and its associated documentation contain trade
-# //  secrets and commercial or financial information that are the property of
-# //  Mentor Graphics Corporation and are privileged, confidential,
-# //  and exempt from disclosure under the Freedom of Information Act,
-# //  5 U.S.C. Section 552. Furthermore, this information
-# //  is prohibited from disclosure under the Trade Secrets Act,
-# //  18 U.S.C. Section 1905.
-# //
-# Loading sv_std.std
-# Loading work.system_tb(fast)
-# Loading work.cpu_types_pkg(fast)
-# Loading work.system_if(fast__1)
-# Loading work.test(fast)
-# Loading work.system(fast)
-# Loading work.cpu_ram_if(fast__1)
-# Loading work.pipeline(fast)
-# Loading work.datapath_cache_if(fast__1)
-# Loading work.caches_if(fast__1)
-# Loading work.cache_control_if(fast__1)
-# Loading work.pipeline_types_pkg(fast)
-# Loading work.datapath(fast)
-# Loading work.control_request_unit_if(fast__1)
-# Loading work.register_file_if(fast__1)
-# Loading work.extender_if(fast__1)
-# Loading work.decider_if(fast__1)
-# Loading work.hazard_unit_if(fast__1)
-# Loading work.forward_unit_if(fast__1)
-# Loading work.control_unit(fast)
-# Loading work.decider_sv_unit(fast)
-# Loading work.decider(fast)
-# Loading work.register_file(fast)
-# Loading work.alu(fast)
-# Loading work.extender_sv_unit(fast)
-# Loading work.extender(fast)
-# Loading work.hazard_unit(fast)
-# Loading work.forward_unit(fast)
-# Loading work.caches(fast)
-# Loading work.icache(fast)
-# Loading work.dcache_sv_unit(fast)
-# Loading work.dcache(fast)
-# Loading work.memory_control(fast)
-# Loading work.ram(fast)
-# Loading altera_mf_ver.altsyncram(fast)
-# run -all
-# Starting Processor.
-# Halted at 3660 time and ran for         90 cycles.
-# Starting memory dump.
-# Finished memory dump.
-# End time: 23:35:22 on Mar 23,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-15 instructions
---- memsim.hex	2025-03-23 23:35:22.692131948 -0400
-+++ memcpu.hex	2025-03-23 23:35:22.675131298 -0400
-@@ -14,11 +14,6 @@
- :04000D0000D52423D3
- :04000E0000F52623B0
- :04000F00FFFFFFFFF1
--:040020000000733732
--:0400210000002701B3
--:040022000000133790
- :04002300DEADBEEFA1
--:04003C000000733716
--:04003D000000270197
--:04003E000000133774
-+:04003C000000270198
+ :0400150000000005E2
+-:040016000000000ADC
++:0400160000000005E1
  :00000001FF

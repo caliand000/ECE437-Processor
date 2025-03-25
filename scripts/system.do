@@ -99,7 +99,7 @@ add wave -noupdate /system_tb/DUT/CPU/DP/mem_wb_out.pc
 add wave -noupdate -divider PC's
 add wave -noupdate -expand /system_tb/DUT/CPU/DP/if_id_out
 add wave -noupdate -expand /system_tb/DUT/CPU/DP/id_ex_out
-add wave -noupdate /system_tb/DUT/CPU/DP/ex_mem_out
+add wave -noupdate -expand /system_tb/DUT/CPU/DP/ex_mem_out
 add wave -noupdate /system_tb/DUT/CPU/DP/mem_wb_out
 add wave -noupdate -divider {Forward Unit Signals}
 add wave -noupdate /system_tb/DUT/CPU/DP/fuif/Alu_in1
@@ -153,9 +153,10 @@ add wave -noupdate /system_tb/DUT/CPU/CM/cif/dWEN
 add wave -noupdate /system_tb/DUT/CPU/CM/cif/daddr
 add wave -noupdate -divider dcache
 add wave -noupdate /system_tb/DUT/CPU/CM/DCACHE/state
-add wave -noupdate /system_tb/DUT/CPU/CM/DCACHE/cur_dcache
+add wave -noupdate -expand -subitemconfig {{/system_tb/DUT/CPU/CM/DCACHE/cur_dcache[6]} -expand} /system_tb/DUT/CPU/CM/DCACHE/cur_dcache
+add wave -noupdate -expand /system_tb/DUT/CPU/DP/REG_FILE/register
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {572814 ps} 0}
+WaveRestoreCursors {{Cursor 1} {1455932 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 189
 configure wave -valuecolwidth 100
@@ -171,4 +172,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ps} {1479057 ps}
+WaveRestoreZoom {887422 ps} {2366479 ps}

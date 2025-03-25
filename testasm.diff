@@ -1,74 +1,10 @@
 processing file asmFiles/test.datahazard.asm (1 of 1)
---- memsim.hex	2025-03-23 23:31:11.376522209 -0400
-+++ memcpu.hex	2025-03-23 23:31:11.358521521 -0400
-@@ -1,7 +1,5 @@
--:0400000000506193B8
- :0400010000000005F6
--:040002000000000AF0
--:040003000040228314
-+:0400020000000005F5
- :040004000032833310
- :040005000060242350
+--- memsim.hex	2025-03-24 20:38:18.276172642 -0400
++++ memcpu.hex	2025-03-24 20:38:18.257171917 -0400
+@@ -6,5 +6,5 @@
+ :0400050004602C2344
  :04000600FFFFFFFFFA
-processing file asmFiles/test.beqnottaken.asm (1 of 13)
-processing file asmFiles/test.beqtaken.asm (2 of 13)
-processing file asmFiles/test.bgenottaken.asm (3 of 13)
-processing file asmFiles/test.bgetaken.asm (4 of 13)
-processing file asmFiles/test.bgeunottaken.asm (5 of 13)
-processing file asmFiles/test.bgeutaken.asm (6 of 13)
-processing file asmFiles/test.bltnottaken.asm (7 of 13)
-processing file asmFiles/test.blttaken.asm (8 of 13)
-processing file asmFiles/test.bltunottaken.asm (9 of 13)
-processing file asmFiles/test.bltutaken.asm (10 of 13)
-processing file asmFiles/test.bnenottaken.asm (11 of 13)
-processing file asmFiles/test.bnetaken.asm (12 of 13)
-processing file asmFiles/test.branchjump1.asm (13 of 13)
-processing file asmFiles/test.ihitbeforedhit.asm (1 of 2)
-processing file asmFiles/test.ihitbeforedhit.asm (1 of 2)
-processing file asmFiles/test.ihitdhitsame.asm (2 of 2)
-processing file asmFiles/test.beqnottaken.asm (1 of 13)
-processing file asmFiles/test.beqtaken.asm (2 of 13)
-processing file asmFiles/test.bgenottaken.asm (3 of 13)
-processing file asmFiles/test.bgetaken.asm (4 of 13)
-processing file asmFiles/test.bgeunottaken.asm (5 of 13)
-processing file asmFiles/test.bgeutaken.asm (6 of 13)
-processing file asmFiles/test.bltnottaken.asm (7 of 13)
-processing file asmFiles/test.blttaken.asm (8 of 13)
-processing file asmFiles/test.bltunottaken.asm (9 of 13)
-processing file asmFiles/test.bltutaken.asm (10 of 13)
-processing file asmFiles/test.bnenottaken.asm (11 of 13)
-processing file asmFiles/test.bnetaken.asm (12 of 13)
-processing file asmFiles/test.branchjump1.asm (13 of 13)
-processing file asmFiles/test.loadstore.asm (1 of 1)
---- memsim.hex	2025-03-23 23:34:57.366163558 -0400
-+++ memcpu.hex	2025-03-23 23:34:57.348162870 -0400
-@@ -14,11 +14,6 @@
- :04000D0000D52423D3
- :04000E0000F52623B0
- :04000F00FFFFFFFFF1
--:040020000000733732
--:0400210000002701B3
--:040022000000133790
- :04002300DEADBEEFA1
--:04003C000000733716
--:04003D000000270197
--:04003E000000133774
-+:04003C000000270198
- :00000001FF
-processing file asmFiles/test.rtype.asm (1 of 1)
-processing file asmFiles/test.loadstore.asm (1 of 1)
---- memsim.hex	2025-03-23 23:35:22.692131948 -0400
-+++ memcpu.hex	2025-03-23 23:35:22.675131298 -0400
-@@ -14,11 +14,6 @@
- :04000D0000D52423D3
- :04000E0000F52623B0
- :04000F00FFFFFFFFF1
--:040020000000733732
--:0400210000002701B3
--:040022000000133790
- :04002300DEADBEEFA1
--:04003C000000733716
--:04003D000000270197
--:04003E000000133774
-+:04003C000000270198
+ :0400150000000005E2
+-:040016000000000ADC
++:0400160000000005E1
  :00000001FF
