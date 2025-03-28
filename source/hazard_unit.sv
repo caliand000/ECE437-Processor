@@ -23,6 +23,7 @@ module hazard_unit (
       //huif.Halt=1;
       // huif.Zero_controls=1;
       huif.Flush=1;
+
     end
     else if(((huif.rs1==huif.Rd&&huif.rs1!=0)||(huif.rs2==huif.Rd&&huif.rs2!=0))&&huif.Memtoreg) begin
       huif.latch_en=0;
