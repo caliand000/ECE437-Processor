@@ -9,7 +9,7 @@
   ori   $4, $0, 0x75C
   add $4, $4, $3
   addi $4, $4, 0x300
-   ori   $10, $0, 0x080
+   ori   $10, $0, 0x800
    ori   $16, $0, jmpR
    beq   $0, $0, braZ
    sw    $4, 0($10)
