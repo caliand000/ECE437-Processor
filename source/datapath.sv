@@ -137,7 +137,7 @@ module datapath(
   assign ex_mem_in.jumpsel = id_ex_out.jumpsel;
   assign ex_mem_in.read_data = dpif.dhit ?dpif.dmemload: ex_mem_out.read_data;  
   assign ex_mem_in.rd=id_ex_out.rd;
-  assign ex_mem_in.rdat1=id_ex_out.rdat1;
+  assign ex_mem_in.rdat1=Alu_a;//((fuif.Alu_in1==2'b)?rfif.wdat:id_ex_out.rdat1);
   assign ex_mem_in.rdat2=Alu_b;
   assign ex_mem_in.AdderOut= id_ex_out.pc + id_ex_out.immediate;
   assign ex_mem_in.immediate=id_ex_out.immediate;

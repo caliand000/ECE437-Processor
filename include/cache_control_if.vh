@@ -135,7 +135,7 @@ interface cache_control_if(
             // coherence outputs to cache
             ccwait, ccinv, ccsnoopaddr
   );
-
+//cctrans=m->s or m->i
 endinterface
-
+ccinv=ccwrite&dren
 `endif //CACHE_CONTROL_IF_VH

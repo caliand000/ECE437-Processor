@@ -1,0 +1,1020 @@
+processing file asmFiles/calculatedays.asm (1 of 43)
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/alu.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:17 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/alu.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling module alu
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	alu
+End time: 17:05:18 on Mar 31,2025, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/cache_control_if.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:18 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/cache_control_if.vh 
+-- Compiling package cpu_types_pkg
+-- Compiling interface caches_if
+-- Importing package cpu_types_pkg
+-- Compiling interface cache_control_if
+
+Top level modules:
+	--none--
+End time: 17:05:18 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/caches.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:18 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/caches.sv 
+-- Compiling module caches
+
+Top level modules:
+	caches
+End time: 17:05:18 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/caches_if.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:18 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/caches_if.vh 
+-- Compiling package cpu_types_pkg
+-- Compiling interface caches_if
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	--none--
+End time: 17:05:18 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/control_request_unit_if.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:18 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/control_request_unit_if.vh 
+-- Compiling package cpu_types_pkg
+-- Compiling interface control_request_unit_if
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	--none--
+End time: 17:05:18 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/control_unit.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:18 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/control_unit.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling interface control_request_unit_if
+-- Importing package cpu_types_pkg
+-- Compiling module control_unit
+
+Top level modules:
+	control_unit
+End time: 17:05:18 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/cpu_ram_if.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:19 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/cpu_ram_if.vh 
+-- Compiling package cpu_types_pkg
+-- Compiling interface cpu_ram_if
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	--none--
+End time: 17:05:19 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/cpu_types_pkg.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:19 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/cpu_types_pkg.vh 
+-- Compiling package cpu_types_pkg
+
+Top level modules:
+	--none--
+End time: 17:05:19 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/datapath.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:19 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/datapath.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling interface datapath_cache_if
+-- Importing package cpu_types_pkg
+-- Compiling interface control_request_unit_if
+-- Compiling interface extender_if
+-- Compiling interface decider_if
+-- Compiling interface hazard_unit_if
+-- Compiling interface forward_unit_if
+-- Compiling package pipeline_types_pkg
+-- Compiling module datapath
+-- Importing package pipeline_types_pkg
+
+Top level modules:
+	datapath
+End time: 17:05:19 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/datapath_cache_if.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:19 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/datapath_cache_if.vh 
+-- Compiling package cpu_types_pkg
+-- Compiling interface datapath_cache_if
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	--none--
+End time: 17:05:19 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/dcache.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:19 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/dcache.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling package dcache_sv_unit
+-- Importing package cpu_types_pkg
+-- Compiling module dcache
+
+Top level modules:
+	dcache
+End time: 17:05:19 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/decider.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:19 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/decider.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling interface decider_if
+-- Importing package cpu_types_pkg
+-- Compiling package decider_sv_unit
+-- Importing package cpu_types_pkg
+-- Compiling module decider
+
+Top level modules:
+	decider
+End time: 17:05:20 on Mar 31,2025, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/decider_if.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:20 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/decider_if.vh 
+-- Compiling package cpu_types_pkg
+-- Compiling interface decider_if
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	--none--
+End time: 17:05:20 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/extender.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:20 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/extender.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling interface extender_if
+-- Importing package cpu_types_pkg
+###### source/extender.sv(26): assign bge=(opcode==BTYPE&&func3b==BGE);
+** Warning: source/extender.sv(26): (vlog-2623) Undefined variable: bge.
+###### source/extender.sv(28): assign bgeu=(opcode==BTYPE&&func3b==BGEU);
+** Warning: source/extender.sv(28): (vlog-2623) Undefined variable: bgeu.
+-- Compiling package extender_sv_unit
+-- Importing package cpu_types_pkg
+-- Compiling module extender
+###### source/extender.sv(26): assign bge=(opcode==BTYPE&&func3b==BGE);
+** Warning: source/extender.sv(26): (vlog-2623) Undefined variable: bge.
+###### source/extender.sv(28): assign bgeu=(opcode==BTYPE&&func3b==BGEU);
+** Warning: source/extender.sv(28): (vlog-2623) Undefined variable: bgeu.
+
+Top level modules:
+	extender
+End time: 17:05:20 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 4
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/extender_if.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:20 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/extender_if.vh 
+-- Compiling package cpu_types_pkg
+-- Compiling interface extender_if
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	--none--
+End time: 17:05:20 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/forward_unit.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:20 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/forward_unit.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling interface forward_unit_if
+-- Importing package cpu_types_pkg
+-- Compiling module forward_unit
+
+Top level modules:
+	forward_unit
+End time: 17:05:20 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/forward_unit_if.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:20 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/forward_unit_if.vh 
+-- Compiling package cpu_types_pkg
+-- Compiling interface forward_unit_if
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	--none--
+End time: 17:05:20 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/hazard_unit.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:20 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/hazard_unit.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling interface hazard_unit_if
+-- Importing package cpu_types_pkg
+-- Compiling module hazard_unit
+
+Top level modules:
+	hazard_unit
+End time: 17:05:21 on Mar 31,2025, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/hazard_unit_if.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:21 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/hazard_unit_if.vh 
+-- Compiling package cpu_types_pkg
+-- Compiling interface hazard_unit_if
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	--none--
+End time: 17:05:21 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/icache.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:21 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/icache.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling module icache
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	icache
+End time: 17:05:21 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/memory_control.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:21 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/memory_control.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling interface caches_if
+-- Importing package cpu_types_pkg
+-- Compiling interface cache_control_if
+-- Compiling module memory_control
+
+Top level modules:
+	memory_control
+End time: 17:05:21 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/multicore.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:21 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/multicore.sv 
+-- Compiling module multicore
+
+Top level modules:
+	multicore
+End time: 17:05:21 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/pipeline_types_pkg.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:21 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/pipeline_types_pkg.vh 
+-- Compiling package cpu_types_pkg
+-- Compiling package pipeline_types_pkg
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	--none--
+End time: 17:05:21 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/ram.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:21 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/ram.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling interface cpu_ram_if
+-- Importing package cpu_types_pkg
+-- Compiling module ram
+
+Top level modules:
+	ram
+End time: 17:05:22 on Mar 31,2025, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0, Suppressed Errors: 1
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/register_file.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:22 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/register_file.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling interface register_file_if
+-- Importing package cpu_types_pkg
+-- Compiling module register_file
+
+Top level modules:
+	register_file
+End time: 17:05:22 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/register_file_if.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:22 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/register_file_if.vh 
+-- Compiling package cpu_types_pkg
+-- Compiling interface register_file_if
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	--none--
+End time: 17:05:22 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  source/system.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:22 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 source/system.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling interface system_if
+-- Importing package cpu_types_pkg
+-- Compiling module system
+
+Top level modules:
+	system
+End time: 17:05:22 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  include/system_if.vh
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:22 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 include/system_if.vh 
+-- Compiling package cpu_types_pkg
+-- Compiling interface system_if
+-- Importing package cpu_types_pkg
+
+Top level modules:
+	--none--
+End time: 17:05:22 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+make[1]: Entering directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+
+Hello 437mg015@cparch04.ecn.purdue.edu, you forgot some targets.
+	If you need instructions to use this Makefile:
+		'make <module_name>' to build module
+		'make <module_name>_tb' to build module + testbench
+		'make <module_name>.sim' to sim tb on cmd line
+		'make <module_name>.wav' to sim tb with gui
+		'make <module_name>.syn' to synthesize functional net list
+		'make <module_name>.synt' to synthesize timing net list
+	Lint Rules:
+		'make <module_name>.lint' to run the linter on module
+		'make <module_name>_tb.lint' to run the linter on module testbench
+	Clean Rules:
+		'make clean' to clean everything
+		'make clean_sim' to clean simulation logs and work lib
+		'make clean_asm' to clean hex and testasm output
+		'make clean_map' to clean mapped dir
+		'make clean_fpga' to clean fpga dir
+	Obviously a testbench file must exist for some options.
+
+make[1]: Leaving directory '/home/ecegridfs/a/437mg015/ECE437-Processor'
+vlog  +acc -sv12compat -mfcu -lint +incdir+include -suppress 12110 -suppress 7061  testbench/system_tb.sv
+QuestaSim-64 vlog 2021.4 Compiler 2021.10 Oct 13 2021
+Start time: 17:05:22 on Mar 31,2025
+vlog "+acc" -sv12compat -mfcu -lint "+incdir+include" -suppress 12110 -suppress 7061 testbench/system_tb.sv 
+-- Compiling package cpu_types_pkg
+-- Compiling interface system_if
+-- Importing package cpu_types_pkg
+-- Compiling module system_tb
+-- Compiling program test
+
+Top level modules:
+	system_tb
+End time: 17:05:22 on Mar 31,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Reading pref.tcl
+
+# 2021.4
+
+# Break key hit
