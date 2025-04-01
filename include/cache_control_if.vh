@@ -137,5 +137,5 @@ interface cache_control_if(
   );
 //cctrans=m->s or m->i
 endinterface
-ccinv=ccwrite&dren
+// ccinv=ccwrite&dren
 `endif //CACHE_CONTROL_IF_VH

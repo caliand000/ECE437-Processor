@@ -181,16 +181,18 @@ module memory_control_tb;
 
     // Test 1: Instruction fetch
     cif0.iREN = 1;
-    cif0.iaddr = 32'h00000001;
+    cif0.iaddr = 32'h10;
     cif1.iREN=1;
-    cif1.iaddr=32'h204   
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
+    cif1.iaddr=32'h204;   
+    
+    @(negedge cif0.iwait);
+    if(cif0.iload==0) $display("instruction load for core 0 failed");
+    @(negedge cif1.iwait);
    
+  
+    
+    if(cif1.iload==0) $display("instruction load for core 1 failed");
+    #(PERIOD);
 
     //Test 3: Both cores read from same address 
     cif0.dWEN = 1'b0;
@@ -198,38 +200,23 @@ module memory_control_tb;
     cif0.daddr = 32'h00000002;
     cif1.dWEN = 1'b0;
     cif1.daddr = 32'h00000002;
-    cif1.dREN = 1'b1
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
+    cif1.dREN = 1'b1;
+    @(negedge cif0.dwait);
+    if(cif0.dload==0) $display("Failed to read data to core 0");
+    @(negedge cif1.dwait);
+    if(cif1.dload==0) $display("Failed to read data to core 1");
     #(PERIOD);
      //Test 2: both cores write to same address
+     cif0.dREN=0;
+     cif1.dREN=0;
     cif0.dWEN = 1'b1;
     cif0.daddr = 32'h00000002;
     cif0.dstore=10;
     cif1.dWEN = 1'b1;
     cif1.daddr = 32'h00000002;
     cif1.dstore=11;
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
-    #(PERIOD);
+    @(negedge cif0.dwait);
+    @(negedge cif1.dwait);
     //Test 4: cc trans 
     cif0.dWEN = 1'b0;
     cif0.dREN = 1'b1;
@@ -237,7 +224,7 @@ module memory_control_tb;
     
     cif1.dWEN = 1'b0;
     cif1.daddr = 32'h00000002;
-    cif1.dREN = 1'b0
+    cif1.dREN = 1'b0;
     cif0.ccwrite = 0;
     cif0.cctrans = 0;
     cif1.ccwrite = 0;
@@ -248,7 +235,7 @@ module memory_control_tb;
     cif0.dREN=0;
     cif1.dWEN = 1'b0;
     cif1.daddr = 32'h00000002;
-    cif1.dREN = 1'b1
+    cif1.dREN = 1'b1;
     #(PERIOD);
     #(PERIOD);
     #(PERIOD);
@@ -314,7 +301,7 @@ module memory_control_tb;
     #(PERIOD);
     #(PERIOD);
     #(PERIOD);
-    (PERIOD);
+    #(PERIOD);
     #(PERIOD);
     #(PERIOD);
     #(PERIOD);
