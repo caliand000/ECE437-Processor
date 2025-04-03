@@ -91,6 +91,99 @@ module memory_control_tb;
   // Clock generation
   always #(PERIOD / 2) CLK = ~CLK;
 
+  //=================================================================
+  // Helper Tasks
+  //=================================================================
+  // Task to drive transaction inputs. This task sets all the
+  // input signals for both cores and prints a start message with a timestamp.
+  task automatic send_transaction(
+    input string test_name,
+    // Core 0 instruction and data signals
+    input logic    iREN0,    input logic [31:0] iaddr0,
+    input logic    dREN0,    input logic dWEN0,    input logic [31:0] daddr0,    input logic [31:0] dstore0,
+    input logic    ccwrite0, input logic cctrans0,
+    // Core 1 instruction and data signals
+    input logic    iREN1,    input logic [31:0] iaddr1,
+    input logic    dREN1,    input logic dWEN1,    input logic [31:0] daddr1,    input logic [31:0] dstore1,
+    input logic    ccwrite1, input logic cctrans1
+  );
+    begin
+      $display("[%0t] Starting %s", $time, test_name);
+      // Core 0 inputs
+      cif0.iREN   = iREN0;
+      cif0.iaddr  = iaddr0;
+      cif0.dREN   = dREN0;
+      cif0.dWEN   = dWEN0;
+      cif0.daddr  = daddr0;
+      cif0.dstore = dstore0;
+      cif0.ccwrite = ccwrite0;
+      cif0.cctrans = cctrans0;
+      // Core 1 inputs
+      cif1.iREN   = iREN1;
+      cif1.iaddr  = iaddr1;
+      cif1.dREN   = dREN1;
+      cif1.dWEN   = dWEN1;
+      cif1.daddr  = daddr1;
+      cif1.dstore = dstore1;
+      cif1.ccwrite = ccwrite1;
+      cif1.cctrans = cctrans1;
+    end
+  endtask
+
+
+  task automatic check_signals(
+  input string test_name,
+  // Core interface expected outputs
+  input logic expected_iwait,
+  input logic expected_dwait,
+  input logic [31:0] expected_iload,
+  input logic [31:0] expected_dload,
+  // RAM interface expected outputs
+  input logic [31:0] expected_ramstore,
+  input logic [31:0] expected_ramaddr,
+  input logic expected_ramWEN,
+  input logic expected_ramREN,
+  // Coherence expected outputs
+  input logic expected_ccwait,
+  input logic expected_ccinv,
+  input logic [31:0] expected_ccsnoopaddr
+);
+  begin
+    // Use a temporary flag to capture if all signals match
+    bit pass = 1;
+    if (ccif.iwait !== expected_iwait) pass = 0;
+    if (ccif.dwait !== expected_dwait) pass = 0;
+    if (ccif.iload !== expected_iload) pass = 0;
+    if (ccif.dload !== expected_dload) pass = 0;
+    if (ccif.ramstore !== expected_ramstore) pass = 0;
+    if (ccif.ramaddr  !== expected_ramaddr)  pass = 0;
+    if (ccif.ramWEN  !== expected_ramWEN)  pass = 0;
+    if (ccif.ramREN  !== expected_ramREN)  pass = 0;
+    if (ccif.ccwait  !== expected_ccwait)  pass = 0;
+    if (ccif.ccinv   !== expected_ccinv)   pass = 0;
+    if (ccif.ccsnoopaddr !== expected_ccsnoopaddr) pass = 0;
+
+    if (pass)
+      $display("[%0t] %s: PASSED", $time, test_name);
+    else begin
+      $display("[%0t] %s: FAILED", $time, test_name);
+      $display("   iwait:      expected = %0h, got = %0h", expected_iwait, ccif.iwait);
+      $display("   dwait:      expected = %0h, got = %0h", expected_dwait, ccif.dwait);
+      $display("   iload:      expected = %0h, got = %0h", expected_iload, ccif.iload);
+      $display("   dload:      expected = %0h, got = %0h", expected_dload, ccif.dload);
+      $display("   ramstore:   expected = %0h, got = %0h", expected_ramstore, ccif.ramstore);
+      $display("   ramaddr:    expected = %0h, got = %0h", expected_ramaddr, ccif.ramaddr);
+      $display("   ramWEN:     expected = %0h, got = %0h", expected_ramWEN, ccif.ramWEN);
+      $display("   ramREN:     expected = %0h, got = %0h", expected_ramREN, ccif.ramREN);
+      $display("   ccwait:     expected = %0h, got = %0h", expected_ccwait, ccif.ccwait);
+      $display("   ccinv:      expected = %0h, got = %0h", expected_ccinv, ccif.ccinv);
+      $display("   ccsnoopaddr:expected = %0h, got = %0h", expected_ccsnoopaddr, ccif.ccsnoopaddr);
+    end
+  end
+endtask
+
+
+
   // Testbench tasks
   task reset_if;
     begin
@@ -177,6 +270,64 @@ module memory_control_tb;
     // Initialize signals
     init();
     reset_if();
+
+
+
+    //-----------------------------------------------------------
+    // Test 1: Instruction Fetch
+    // Goal: Verify that an instruction fetch returns a valid iload
+    //-----------------------------------------------------------
+    send_transaction("Test 1: Instruction Fetch",
+                     /* Core 0: */ 1, 32'h10, 0, 0, 32'h0,  /* cc signals */ 0, 0, 0,
+                     /* Core 1: */ 1, 32'h204, 0, 0, 32'h0,  /* cc signals */ 0, 0, 0);
+    // Allow some cycles for the Iread state to complete.
+
+    // wait (ccif.iwait[0] == 0);
+    // wait (ccif.iwait[1] == 0);
+
+    repeat (5) @(posedge CLK);
+    // Check expected outputs for each core.
+    // (Expected values below are placeholders; adjust them as needed.)
+    check_signals("Test 1: Instruction Fetch",
+                       /* Core 0 expected outputs: */
+                       0,    // iwait should go low
+                       1,    // dwait remains high (1)
+                       32'hABCD0001, // iload (nonzero value from RAM)
+                       32'h0,       // dload not used
+                       32'h0,       // ramstore
+                       32'h10,      // ramaddr should match iaddr
+                       0,           // ramWEN off
+                       1,           // ramREN on
+                       0,           // ccwait
+                       0,           // ccinv
+                       32'h0);      // ccsnoopaddr
+    check_signals("Test 1: Instruction Fetch",
+                       /* Core 1 expected outputs: */
+                       0,    // iwait low
+                       1,    // dwait high
+                       32'hABCD0002, // iload (nonzero value)
+                       32'h0,
+                       32'h0,
+                       32'h204,     // ramaddr matches iaddr
+                       0,
+                       1,
+                       0,
+                       0,
+                       32'h0);
+    reset_if(); 
+
+    
+    //test one core writing to memory
+
+    //test one core doing read exclusive (with intent to modify, this means cctrans should be high from other core)
+
+    //test one core reading, and other core is in invalid/shared state
+
+    //test priority, with one core trying to read instruction, and other core doing write request
+
+    //test priority, with one core trying to read instruction, and other core doing instruction read as well
+
+    //test priority, with one core trying to read instruction, and other core doing read request
 
 
     // Test 1: Instruction fetch
