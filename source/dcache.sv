@@ -96,8 +96,8 @@ module dcache (
                if((cur_dcache[index].way[0].dirty && !cur_dcache[index].ru[0])||(cur_dcache[index].way[1].dirty && !cur_dcache[index].ru[1])) begin
                   nextstate=write_first_word;
                end
-               else if((dcif.dmemWEN && dcif.dmemaddr[2]) || dcif.dmemREN) nextstate=read_first_word;
-               else nextstate=read_second_word;
+               else  nextstate=read_first_word;
+              
             end
          end
 
