@@ -70,12 +70,13 @@ module memory_control (
         end
       end
       Snoop: begin
-        if(ccif.cctrans[curr_core]) next_state = WB1;
+        if(ccif.cctrans[curr_core]) next_state = WB1;           //if its in a modified state, then we need to write it back and do cache to cache transfer
         else next_state = RD1;
       end
       WB1: begin
         if(ccif.ramstate == ACCESS) begin
            ccif.dwait[curr_core] = '0;
+           ccif.dwait[~curr_core] = '0;
            next_state = WB2;
         end
       end
@@ -83,6 +84,7 @@ module memory_control (
         if(ccif.ramstate == ACCESS && ccif.cctrans[curr_core]) next_state = RD1;
         else if(ccif.ramstate == ACCESS) begin
           ccif.dwait[curr_core] = '0;
+          ccif.dwait[~curr_core] = '0;
           next_state = Idle;
           next_core = ~curr_core;
         end
@@ -126,33 +128,34 @@ module memory_control (
 
   always_comb begin 
     //initialize outputs
-    
-    ccif.iload = '0;
-    ccif.dload = '0;
-    ccif.ramstore = '0;
-    ccif.ramaddr = '0;
-    ccif.ramWEN = '0;
-    ccif.ramREN = '0;
-    ccif.ccwait = '0;
-    ccif.ccinv = '0;
+    ccif.iload =       '0;
+    ccif.dload =       '0;
+    ccif.ramstore =    '0;
+    ccif.ramaddr =     '0;
+    ccif.ramWEN =      '0;
+    ccif.ramREN =      '0;
+    ccif.ccwait =      '0;
+    ccif.ccinv =       '0;
     ccif.ccsnoopaddr = '0;
 
     case(curr_state) 
-      // Idle: begin
-      // end
       Snoop: begin
         ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
-        if(ccif.ccwrite[curr_core]) ccif.ccinv[curr_core] = 1;
+        if(ccif.ccwrite[curr_core]) ccif.ccinv[curr_core] = 1;          //if ccwrite, this means its read with intent to modify, need to set other cache data to invalid state
       end
       WB1: begin
         ccif.ramaddr = ccif.daddr[curr_core];
         ccif.ramstore = ccif.dstore[curr_core];
         ccif.ramWEN = 1'b1;
+
+        ccif.dload[curr_core] = ccif.dstore[ccif.dstore];               //cache to cache transfer
       end
       WB2: begin
         ccif.ramaddr = ccif.daddr[curr_core];
         ccif.ramstore = ccif.dstore[curr_core];
         ccif.ramWEN = 1'b1;
+
+        ccif.dload[curr_core] = ccif.dstore[ccif.dstore];                 //cache to cache transfer
       end
       RD1: begin
         ccif.ramaddr = ccif.daddr[curr_core];

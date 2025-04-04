@@ -134,8 +134,8 @@ module memory_control_tb;
   task automatic check_signals(
   input string test_name,
   // Core interface expected outputs
-  input logic expected_iwait,
-  input logic expected_dwait,
+  input logic [1:0] expected_iwait,
+  input logic [1:0] expected_dwait,
   input logic [31:0] expected_iload,
   input logic [31:0] expected_dload,
   // RAM interface expected outputs
@@ -144,8 +144,8 @@ module memory_control_tb;
   input logic expected_ramWEN,
   input logic expected_ramREN,
   // Coherence expected outputs
-  input logic expected_ccwait,
-  input logic expected_ccinv,
+  input logic [1:0] expected_ccwait,
+  input logic [1:0] expected_ccinv,
   input logic [31:0] expected_ccsnoopaddr
 );
   begin
@@ -243,6 +243,8 @@ endtask
   ramstate_t rstate = BUSY;
   word_t addr = 0;
 
+  string testcase = "";
+
   task init;
     begin
       cif0.iREN = 0;
@@ -271,26 +273,72 @@ endtask
     init();
     reset_if();
 
-
+    $timeformat(-9, 2, " ns", 20);
 
     //-----------------------------------------------------------
     // Test 1: Instruction Fetch
     // Goal: Verify that an instruction fetch returns a valid iload
     //-----------------------------------------------------------
+    testcase = "Test 1: Instruction Fetch";
     send_transaction("Test 1: Instruction Fetch",
-                     /* Core 0: */ 1, 32'h10, 0, 0, 32'h0,  /* cc signals */ 0, 0, 0,
-                     /* Core 1: */ 1, 32'h204, 0, 0, 32'h0,  /* cc signals */ 0, 0, 0);
-    // Allow some cycles for the Iread state to complete.
-
-    // wait (ccif.iwait[0] == 0);
-    // wait (ccif.iwait[1] == 0);
-
-    repeat (5) @(posedge CLK);
+                     /* Core 0: */ 1, 32'h10, 0, 0, 32'h0,  32'h0,/* cc signals */ 0, 0,
+                     /* Core 1: */ 1, 32'h204, 0, 0, 32'h0, 32'h0, /* cc signals */ 0, 0);
+    wait (ccif.iwait[0] == 0);
+    @(negedge CLK);
     // Check expected outputs for each core.
-    // (Expected values below are placeholders; adjust them as needed.)
     check_signals("Test 1: Instruction Fetch",
                        /* Core 0 expected outputs: */
-                       0,    // iwait should go low
+                       2,    // iwait should go low
+                       3,    // dwait remains high (1)
+                       32'hABCD0001, // iload (nonzero value from RAM)
+                       32'h0,       // dload not used
+                       32'h0,       // ramstore
+                       32'h10,      // ramaddr should match iaddr
+                       0,           // ramWEN off
+                       1,           // ramREN on
+                       0,           // ccwait
+                       0,           // ccinv
+                       32'h0);      // ccsnoopaddr
+
+    wait (ccif.iwait[1] == 0);
+    @(negedge CLK);
+    check_signals("Test 1: Instruction Fetch",
+                       /* Core 1 expected outputs: */
+                       1,    // iwait low
+                       1,    // dwait high
+                       32'hABCD0002, // iload (nonzero value)
+                       32'h0,
+                       32'h0,
+                       32'h204,     // ramaddr matches iaddr
+                       0,
+                       1,
+                       0,
+                       0,
+                       32'h0);
+    reset_if(); 
+    cif0.iREN = 0;
+    cif0.dREN = 0;
+    cif0.dWEN = 0;
+    cif1.iREN = 0;
+    cif1.dREN = 0;
+    cif1.dWEN = 0;
+    
+    //-----------------------------------------------------------
+    // Test 2: write memory
+    // Goal: Verify that memory write operation takes place
+    //-----------------------------------------------------------
+    testcase = "Test 2: write memory";
+    send_transaction("Test 2: write memory",
+                     /* Core 0: */ 1, 32'h10, 0, 0, 32'h0,  32'h0,/* cc signals */ 0, 0,
+                     /* Core 1: */ 0, 32'h204, 0, 1, 32'h0840, 32'hABABEFEF, /* cc signals */ 0, 0);
+    
+    wait (ccif.dwait[1] == 0);
+    @(negedge CLK);
+
+    // Check expected outputs for each core.
+    check_signals("Test 2: write memory first core",
+                       /* Core 0 expected outputs: */
+                       3,    // iwait should go low
                        1,    // dwait remains high (1)
                        32'hABCD0001, // iload (nonzero value from RAM)
                        32'h0,       // dload not used
@@ -301,7 +349,7 @@ endtask
                        0,           // ccwait
                        0,           // ccinv
                        32'h0);      // ccsnoopaddr
-    check_signals("Test 1: Instruction Fetch",
+    check_signals("Test 2: write memory second core",
                        /* Core 1 expected outputs: */
                        0,    // iwait low
                        1,    // dwait high
@@ -316,8 +364,13 @@ endtask
                        32'h0);
     reset_if(); 
 
-    
-    //test one core writing to memory
+    cif0.iREN = 0;
+    cif0.dREN = 0;
+    cif0.dWEN = 0;
+    cif1.iREN = 0;
+    cif1.dREN = 0;
+    cif1.dWEN = 0;
+
 
     //test one core doing read exclusive (with intent to modify, this means cctrans should be high from other core)
 
