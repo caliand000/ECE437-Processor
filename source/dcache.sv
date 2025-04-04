@@ -39,19 +39,24 @@ module dcache (
 
 
 
-    typedef enum logic[4:0] {Idle,read_first_word,read_second_word,write_first_word,write_second_word,incrementing,halt_cleaned,flushed} state_type;
+    typedef enum logic[4:0] {Idle,read_first_word,read_second_word,write_first_word,write_second_word,incrementing,halt_cleaned,flushed,Got_Snoop,Cache_transfer1,Cache_Transfer2} state_type;
     state_type state, nextstate;
     dcache[15:0] cur_dcache,nxt_dcache;
     logic [4:0] halt_cnt,nxt_halt_cnt;
     word_t hit_cnt,nxt_hit_cnt;
-    logic hit0,hit1,enable_hit_counter,enable_hit_counter_sub,hit,offset,enable_halt_counter;
-    logic [2:0] index;
+    logic hit0,hit1, shit0, shit1,shit, enable_hit_counter,enable_hit_counter_sub,hit,offset,enable_halt_counter, soffset;
+    logic [2:0] index, sindex;
     word_t[1:0] read_block,nxt_read_block;
 
     assign offset=dcif.dmemaddr[2];
+    assign soffset=ccif.ccsnoopaddr[2];
     assign index=dcif.dmemaddr[5:3];
+    assign sindex=ccif.ccsnoopaddr[5:3];
     assign hit0=(cur_dcache[index].way[0].tag==dcif.dmemaddr[31:6]&&cur_dcache[index].way[0].valid);
     assign hit1=(cur_dcache[index].way[1].tag==dcif.dmemaddr[31:6]&&cur_dcache[index].way[1].valid);
+
+    assign shit0=(cur_dcache[sindex].way[0].tag==ccif.ccsnoopaddr[31:6]&&cur_dcache[sindex].way[0].valid);
+    assign shit1=(cur_dcache[sindex].way[1].tag==ccif.ccsnoopaddr[31:6]&&cur_dcache[sindex].way[1].valid);
     
     always_ff@(posedge CLK,negedge nRST) begin
       if(!nRST) begin
@@ -72,7 +77,8 @@ module dcache (
      
 
     assign hit=hit0||hit1;
-
+    assign shit=shit0||shit1;
+    assign cif.cctrans=shit&&(cur_dcache[sindex].way[0].dirty||cur_dcache[sindex].way[1].dirty);
     always_comb begin : hit_counter
       nxt_hit_cnt=hit_cnt;
       if(enable_hit_counter) nxt_hit_cnt=hit_cnt+1;
@@ -89,21 +95,27 @@ module dcache (
       case(state)
          Idle: begin
             nextstate=Idle;
-            if(dcif.halt) begin
+            if(ccif.ccwait) begin
+               nextstate=Got_Snoop;
+            end
+            else if(dcif.halt) begin
                nextstate=incrementing;
             end
             else if(!hit && (dcif.dmemREN || dcif.dmemWEN))begin
                if((cur_dcache[index].way[0].dirty && !cur_dcache[index].ru[0])||(cur_dcache[index].way[1].dirty && !cur_dcache[index].ru[1])) begin
                   nextstate=write_first_word;
                end
-               else if((dcif.dmemWEN && dcif.dmemaddr[2]) || dcif.dmemREN) nextstate=read_first_word;
-               else nextstate=read_second_word;
+               else  nextstate=read_first_word;
+               
             end
          end
 
          read_first_word: begin
             nextstate=read_first_word;
-            if(!cif.dwait)
+            if(ccif.ccwait) begin
+               nextstate=Got_Snoop;
+            end
+            else if(!cif.dwait)
                nextstate = read_second_word;
             // else if(!cif.dwait&&dcif.dmemWEN) nextstate=Idle;
          end
@@ -115,11 +127,14 @@ module dcache (
          
          write_first_word: begin
             nextstate=write_first_word;
-            if(!cif.dwait) nextstate=write_second_word;
+            if(ccif.ccwait) begin
+               nextstate=Got_Snoop;
+            end
+            else if(!cif.dwait) nextstate=write_second_word;
          end
          write_second_word: begin
             nextstate=write_second_word;
-            if(!cif.dwait && dcif.halt) 
+             if(!cif.dwait && dcif.halt) 
                nextstate=incrementing;
             // else if(!cif.dwait&&dcif.dmemWEN)
             // nextstate=Idle;
@@ -140,9 +155,19 @@ module dcache (
             nextstate=halt_cleaned;
             if(!cif.dwait) nextstate=flushed;
          end
-         
+         Got_Snoop: begin
+         if(!ccif.cctrans) nextstate=Idle;
+         else nextstate=Cache_transfer1;
+         end
+         Cache_transfer1: begin
+            if(!ccif.dwait) nextstate=Cache_Transfer2;
+         end  
+         Cache_Transfer2: begin
+            if(!ccif.dwait) nextstate=Idle;
+         end 
       endcase
     end
+      
  always_comb begin : output_logic
    cif.dREN=0;
    cif.dWEN=0;
@@ -158,7 +183,7 @@ module dcache (
 
    case(state)
       Idle: begin
-         if(dcif.dmemREN&&!dcif.halt) begin
+         if(dcif.dmemREN&&!dcif.halt&&!ccif.ccwait) begin
             if(hit0) begin
                dcif.dmemload=cur_dcache[index].way[0].data[offset];
                nxt_dcache[index].ru[0]=1;
@@ -175,7 +200,7 @@ module dcache (
             end
             else enable_hit_counter_sub=1;
          end
-         else if(dcif.dmemWEN&&!dcif.halt) begin
+         else if(dcif.dmemWEN&&!dcif.halt&&!ccif.ccwait) begin
             if(hit0) begin
                nxt_dcache[index].way[0].data[offset]=dcif.dmemstore;
                nxt_dcache[index].way[0].dirty=1;
@@ -184,7 +209,7 @@ module dcache (
                enable_hit_counter=1;
                dcif.dhit=1;
             end
-            else if(hit1) begin
+            else if(hit1&&!ccif.ccwait) begin
                nxt_dcache[index].way[1].data[offset]=dcif.dmemstore;
                nxt_dcache[index].way[1].dirty=1;
                nxt_dcache[index].ru[1]=1;
@@ -301,6 +326,39 @@ module dcache (
          cif.daddr=32'h3100;
          cif.dstore=hit_cnt;
          
+      end
+      Got_Snoop: begin
+         
+         if (ccif.ccinv) begin
+            if(shit0)begin 
+               nxt_dcache[sindex].way[0].dirty=0;
+               nxt_dcache[sindex].way[0].valid=0;
+            end
+            else if(shit1) begin
+               nxt_dcache[sindex].way[1].dirty=0;
+               nxt_dcache[sindex].way[1].valid=0;
+            end
+         end
+         else begin
+            if(shit0)begin 
+               nxt_dcache[sindex].way[0].dirty=0;
+              
+            end
+            else if(shit1) begin
+               nxt_dcache[sindex].way[1].dirty=0;
+               
+            end
+         end
+      end
+      Cache_transfer1: begin
+            cif.dWEN=1;
+            cif.daddr={cur_dcache[sindex].way[!shit0].tag,index,3'b000};
+            cif.dstore=cur_dcache[index].way[!shit0].data[0];    
+      end
+      Cache_Transfer2:begin
+            cif.dWEN=1;
+            cif.daddr={cur_dcache[sindex].way[!shit0].tag,index,3'b100};
+            cif.dstore=cur_dcache[index].way[!shit0].data[1];    
       end
    endcase
       dcif.flushed=(state==flushed);

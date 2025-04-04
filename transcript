@@ -1,0 +1,55 @@
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf dcache_tb.wlf work.dcache_tb 
+# Start time: 10:42:40 on Apr 04,2025
+# ** Note: (vsim-3812) Design is being optimized...
+###### source/dcache.sv(54):     assign sindex=ccif.ccsnoopaddr[5:3];
+# ** Warning: source/dcache.sv(54): (vopt-2697) MSB 5 of part-select into 'ccif.ccsnoopaddr' is out of bounds.
+# ** Warning: source/dcache.sv(54): (vopt-2697) LSB 3 of part-select into 'ccif.ccsnoopaddr' is out of bounds.
+###### source/dcache.sv(58):     assign shit0=(cur_dcache[sindex].way[0].tag==ccif.ccsnoopaddr[31:6]&&cur_dcache[sindex].way[0].valid);
+# ** Warning: source/dcache.sv(58): (vopt-2697) MSB 31 of part-select into 'ccif.ccsnoopaddr' is out of bounds.
+# ** Warning: source/dcache.sv(58): (vopt-2697) LSB 6 of part-select into 'ccif.ccsnoopaddr' is out of bounds.
+###### source/dcache.sv(59):     assign shit1=(cur_dcache[sindex].way[1].tag==ccif.ccsnoopaddr[31:6]&&cur_dcache[sindex].way[1].valid);
+# ** Warning: source/dcache.sv(59): (vopt-2697) MSB 31 of part-select into 'ccif.ccsnoopaddr' is out of bounds.
+# ** Warning: source/dcache.sv(59): (vopt-2697) LSB 6 of part-select into 'ccif.ccsnoopaddr' is out of bounds.
+# ** Note: (vopt-143) Recognized 1 FSM in module "dcache(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "memory_control(fast)".
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=6.
+# //  Questa Sim-64
+# //  Version 2021.4 linux_x86_64 Oct 13 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.cpu_types_pkg(fast)
+# Loading work.dcache_tb(fast)
+# Loading work.caches_if(fast__1)
+# Loading work.caches_if(fast__2)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.cpu_ram_if(fast__1)
+# Loading work.cache_control_if(fast__1)
+# Loading work.dcache_sv_unit(fast)
+# Loading work.dcache(fast)
+# Loading work.ram(fast)
+# Loading altera_mf_ver.altsyncram(fast)
+# Loading work.memory_control(fast)
+# run -all
+# Break key hit
+# Break in Module dcache_tb at testbench/dcache_tb.sv line 42
+# Stopped at testbench/dcache_tb.sv line 42
+#  exit
+# End time: 10:42:46 on Apr 04,2025, Elapsed time: 0:00:06
+# Errors: 0, Warnings: 6, Suppressed Errors: 1

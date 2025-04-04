@@ -142,20 +142,23 @@ module memory_control (
       Snoop: begin
         ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
         if(ccif.ccwrite[curr_core]) ccif.ccinv[curr_core] = 1;          //if ccwrite, this means its read with intent to modify, need to set other cache data to invalid state
+        ccif.ccwait = 1'b1;
       end
       WB1: begin
         ccif.ramaddr = ccif.daddr[curr_core];
         ccif.ramstore = ccif.dstore[curr_core];
         ccif.ramWEN = 1'b1;
 
-        ccif.dload[curr_core] = ccif.dstore[ccif.dstore];               //cache to cache transfer
+        ccif.dload[curr_core] = ccif.dstore[~curr_core];               //cache to cache transfer
+        ccif.ccwait = 1'b1;
       end
       WB2: begin
         ccif.ramaddr = ccif.daddr[curr_core];
         ccif.ramstore = ccif.dstore[curr_core];
         ccif.ramWEN = 1'b1;
 
-        ccif.dload[curr_core] = ccif.dstore[ccif.dstore];                 //cache to cache transfer
+        ccif.dload[curr_core] = ccif.dstore[~curr_core];                 //cache to cache transfer
+        ccif.ccwait = 1'b1;
       end
       RD1: begin
         ccif.ramaddr = ccif.daddr[curr_core];
