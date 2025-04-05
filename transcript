@@ -1,24 +1,7 @@
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
-# vsim -coverage -suppress 12110 -suppress 7061 -c -do "run -all; exit;" -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf dcache_tb.wlf work.dcache_tb 
-# Start time: 10:42:40 on Apr 04,2025
-# ** Note: (vsim-3812) Design is being optimized...
-###### source/dcache.sv(54):     assign sindex=ccif.ccsnoopaddr[5:3];
-# ** Warning: source/dcache.sv(54): (vopt-2697) MSB 5 of part-select into 'ccif.ccsnoopaddr' is out of bounds.
-# ** Warning: source/dcache.sv(54): (vopt-2697) LSB 3 of part-select into 'ccif.ccsnoopaddr' is out of bounds.
-###### source/dcache.sv(58):     assign shit0=(cur_dcache[sindex].way[0].tag==ccif.ccsnoopaddr[31:6]&&cur_dcache[sindex].way[0].valid);
-# ** Warning: source/dcache.sv(58): (vopt-2697) MSB 31 of part-select into 'ccif.ccsnoopaddr' is out of bounds.
-# ** Warning: source/dcache.sv(58): (vopt-2697) LSB 6 of part-select into 'ccif.ccsnoopaddr' is out of bounds.
-###### source/dcache.sv(59):     assign shit1=(cur_dcache[sindex].way[1].tag==ccif.ccsnoopaddr[31:6]&&cur_dcache[sindex].way[1].valid);
-# ** Warning: source/dcache.sv(59): (vopt-2697) MSB 31 of part-select into 'ccif.ccsnoopaddr' is out of bounds.
-# ** Warning: source/dcache.sv(59): (vopt-2697) LSB 6 of part-select into 'ccif.ccsnoopaddr' is out of bounds.
-# ** Note: (vopt-143) Recognized 1 FSM in module "dcache(fast)".
-# ** Note: (vopt-143) Recognized 1 FSM in module "memory_control(fast)".
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=6.
+# 
+# 
+# 
+# 
 # //  Questa Sim-64
 # //  Version 2021.4 linux_x86_64 Oct 13 2021
 # //
@@ -33,23 +16,60 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# ** Note: Multiple occurrences of ini variable ToggleWidthLimit are found, only first occurence will be considered.
+# vsim -coverage -suppress 12110 -suppress 7061 -do "view objects; do scripts/system.do; run -all;" -onfinish stop -L altera_mf_ver -L altera_ver -L cycloneive_ver -wlf system_tb.wlf work.system_tb 
+# Start time: 16:58:03 on Apr 05,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
 # Loading sv_std.std
+# Loading work.system_tb(fast)
 # Loading work.cpu_types_pkg(fast)
-# Loading work.dcache_tb(fast)
-# Loading work.caches_if(fast__1)
-# Loading work.caches_if(fast__2)
-# Loading work.datapath_cache_if(fast__1)
+# Loading work.system_if(fast__1)
+# Loading work.test(fast)
+# Loading work.system(fast)
 # Loading work.cpu_ram_if(fast__1)
+# Loading work.multicore(fast)
+# Loading work.datapath_cache_if(fast__1)
+# Loading work.caches_if(fast__1)
 # Loading work.cache_control_if(fast__1)
+# Loading work.pipeline_types_pkg(fast)
+# Loading work.datapath(fast)
+# Loading work.control_request_unit_if(fast__1)
+# Loading work.register_file_if(fast__1)
+# Loading work.extender_if(fast__1)
+# Loading work.decider_if(fast__1)
+# Loading work.hazard_unit_if(fast__1)
+# Loading work.forward_unit_if(fast__1)
+# Loading work.control_unit(fast)
+# Loading work.decider_sv_unit(fast)
+# Loading work.decider(fast)
+# Loading work.register_file(fast)
+# Loading work.alu(fast)
+# Loading work.extender_sv_unit(fast)
+# Loading work.extender(fast)
+# Loading work.hazard_unit(fast)
+# Loading work.forward_unit(fast)
+# Loading work.datapath(fast__1)
+# Loading work.caches(fast)
+# Loading work.icache(fast)
 # Loading work.dcache_sv_unit(fast)
 # Loading work.dcache(fast)
+# Loading work.memory_control(fast)
 # Loading work.ram(fast)
 # Loading altera_mf_ver.altsyncram(fast)
-# Loading work.memory_control(fast)
-# run -all
-# Break key hit
-# Break in Module dcache_tb at testbench/dcache_tb.sv line 42
-# Stopped at testbench/dcache_tb.sv line 42
-#  exit
-# End time: 10:42:46 on Apr 04,2025, Elapsed time: 0:00:06
-# Errors: 0, Warnings: 6, Suppressed Errors: 1
+# view objects
+# .main_pane.objects.interior.cs.body.tree
+#  do scripts/system.do
+#  run -all
+# Starting Processor.
+# Halted at 4320 time and ran for        107 cycles.
+# Starting memory dump.
+# Finished memory dump.
+# Break in Module test at testbench/system_tb.sv line 165
+# 
+# End time: 17:02:04 on Apr 05,2025, Elapsed time: 0:04:01
+# Errors: 0, Warnings: 0

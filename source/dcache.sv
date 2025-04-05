@@ -41,26 +41,29 @@ module dcache (
 
     typedef enum logic[4:0] {Idle,read_first_word,read_second_word,write_first_word,write_second_word,incrementing,halt_cleaned,flushed,Got_Snoop,Cache_transfer1,Cache_Transfer2} state_type;
     state_type state, nextstate;
-    dcache[15:0] cur_dcache,nxt_dcache;
+    dcache[15:0] cur_dcache,nxt_dcache, snoop_dcache, nxt_snoop_dcache;
     logic [4:0] halt_cnt,nxt_halt_cnt;
     word_t hit_cnt,nxt_hit_cnt;
     logic hit0,hit1, shit0, shit1,shit, enable_hit_counter,enable_hit_counter_sub,hit,offset,enable_halt_counter, soffset;
     logic [2:0] index, sindex;
     word_t[1:0] read_block,nxt_read_block;
 
+    assign nxt_snoop_dcache = nxt_dcache;
+
     assign offset=dcif.dmemaddr[2];
-    assign soffset=ccif.ccsnoopaddr[2];
+    assign soffset=cif.ccsnoopaddr[2];
     assign index=dcif.dmemaddr[5:3];
-    assign sindex=ccif.ccsnoopaddr[5:3];
+    assign sindex=cif.ccsnoopaddr[5:3];
     assign hit0=(cur_dcache[index].way[0].tag==dcif.dmemaddr[31:6]&&cur_dcache[index].way[0].valid);
     assign hit1=(cur_dcache[index].way[1].tag==dcif.dmemaddr[31:6]&&cur_dcache[index].way[1].valid);
 
-    assign shit0=(cur_dcache[sindex].way[0].tag==ccif.ccsnoopaddr[31:6]&&cur_dcache[sindex].way[0].valid);
-    assign shit1=(cur_dcache[sindex].way[1].tag==ccif.ccsnoopaddr[31:6]&&cur_dcache[sindex].way[1].valid);
-    
+    assign shit0=((snoop_dcache[sindex].way[0].tag==cif.ccsnoopaddr[31:6])&&(snoop_dcache[sindex].way[0].valid));
+    assign shit1=((snoop_dcache[sindex].way[1].tag==cif.ccsnoopaddr[31:6])&&snoop_dcache[sindex].way[1].valid);
+    assign cif.ccwrite=dcif.dmemWEN;
     always_ff@(posedge CLK,negedge nRST) begin
       if(!nRST) begin
          cur_dcache<='0;
+         snoop_dcache <= '0;
          hit_cnt<='0;
          state<=Idle;
          read_block<='0;
@@ -68,6 +71,7 @@ module dcache (
       end
       else begin
          cur_dcache<=nxt_dcache;
+         snoop_dcache <= nxt_snoop_dcache;
          hit_cnt<=nxt_hit_cnt; //dcache frame
           state<=nextstate;
          read_block<=nxt_read_block;
@@ -95,7 +99,7 @@ module dcache (
       case(state)
          Idle: begin
             nextstate=Idle;
-            if(ccif.ccwait) begin
+            if(cif.ccwait) begin
                nextstate=Got_Snoop;
             end
             else if(dcif.halt) begin
@@ -112,7 +116,7 @@ module dcache (
 
          read_first_word: begin
             nextstate=read_first_word;
-            if(ccif.ccwait) begin
+            if(cif.ccwait) begin
                nextstate=Got_Snoop;
             end
             else if(!cif.dwait)
@@ -127,7 +131,7 @@ module dcache (
          
          write_first_word: begin
             nextstate=write_first_word;
-            if(ccif.ccwait) begin
+            if(cif.ccwait) begin
                nextstate=Got_Snoop;
             end
             else if(!cif.dwait) nextstate=write_second_word;
@@ -156,14 +160,14 @@ module dcache (
             if(!cif.dwait) nextstate=flushed;
          end
          Got_Snoop: begin
-         if(!ccif.cctrans) nextstate=Idle;
+         if(!cif.cctrans) nextstate=Idle;
          else nextstate=Cache_transfer1;
          end
          Cache_transfer1: begin
-            if(!ccif.dwait) nextstate=Cache_Transfer2;
+            if(!cif.dwait) nextstate=Cache_Transfer2;
          end  
          Cache_Transfer2: begin
-            if(!ccif.dwait) nextstate=Idle;
+            if(!cif.dwait) nextstate=Idle;
          end 
       endcase
     end
@@ -183,7 +187,7 @@ module dcache (
 
    case(state)
       Idle: begin
-         if(dcif.dmemREN&&!dcif.halt&&!ccif.ccwait) begin
+         if(dcif.dmemREN&&!dcif.halt&&!cif.ccwait) begin
             if(hit0) begin
                dcif.dmemload=cur_dcache[index].way[0].data[offset];
                nxt_dcache[index].ru[0]=1;
@@ -200,7 +204,7 @@ module dcache (
             end
             else enable_hit_counter_sub=1;
          end
-         else if(dcif.dmemWEN&&!dcif.halt&&!ccif.ccwait) begin
+         else if(dcif.dmemWEN&&!dcif.halt&&!cif.ccwait) begin
             if(hit0) begin
                nxt_dcache[index].way[0].data[offset]=dcif.dmemstore;
                nxt_dcache[index].way[0].dirty=1;
@@ -209,7 +213,7 @@ module dcache (
                enable_hit_counter=1;
                dcif.dhit=1;
             end
-            else if(hit1&&!ccif.ccwait) begin
+            else if(hit1&&!cif.ccwait) begin
                nxt_dcache[index].way[1].data[offset]=dcif.dmemstore;
                nxt_dcache[index].way[1].dirty=1;
                nxt_dcache[index].ru[1]=1;
@@ -329,7 +333,7 @@ module dcache (
       end
       Got_Snoop: begin
          
-         if (ccif.ccinv) begin
+         if (cif.ccinv) begin
             if(shit0)begin 
                nxt_dcache[sindex].way[0].dirty=0;
                nxt_dcache[sindex].way[0].valid=0;

@@ -17,7 +17,7 @@
 `include "cpu_types_pkg.vh"
 `include "pipeline_types_pkg.vh"
 
-module datapath(
+module datapath (
   input logic CLK, nRST,
   datapath_cache_if.dp dpif
 );
@@ -55,7 +55,6 @@ module datapath(
   MEM_WB mem_wb_in;
   MEM_WB mem_wb_out;
   MEM_WB mem_wb_nxt;
-
 
   //================Instances================
   control_unit      CONTROL(CLK, nRST, cruif);
@@ -202,7 +201,7 @@ module datapath(
   //================Program Count Logic================
   always_ff @(posedge CLK, negedge nRST) begin
     if(!nRST) begin
-      dpif.imemaddr <= '0;
+      dpif.imemaddr <= PC_INIT;
       dpif.halt <= 0;
     end 
     else  begin
