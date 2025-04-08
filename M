@@ -1,0 +1,2 @@
+processing file asmFiles/I->M->I.asm (1 of 1) Line 3: syntax error '500'
+

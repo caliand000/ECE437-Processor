@@ -62,12 +62,15 @@ module memory_control (
         end
         else if(ccif.dREN[~curr_core]) begin
           next_state = Snoop_wait;
+          next_core=~curr_core;
         end
         else if(ccif.dWEN[~curr_core]) begin
           next_state = WD1;
+          next_core=~curr_core;
         end
         else if(ccif.iREN[~curr_core]) begin
           next_state = Iread;
+          next_core=~curr_core;
         end
       end
       Snoop_wait: next_state = Snoop;
@@ -147,12 +150,12 @@ module memory_control (
       end
       Snoop: begin
         ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
-        if(ccif.ccwrite[curr_core]) ccif.ccinv[curr_core] = 1;          //if ccwrite, this means its read with intent to modify, need to set other cache data to invalid state
+        if(ccif.ccwrite[curr_core]) ccif.ccinv[~curr_core] = 1;          //if ccwrite, this means its read with intent to modify, need to set other cache data to invalid state
         ccif.ccwait[~curr_core] = 1'b1;
       end
       WB1: begin
         ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
-        ccif.ramaddr = ccif.daddr[~curr_core];
+        ccif.ramaddr = ccif.daddr[curr_core];
         ccif.ramstore = ccif.dstore[~curr_core];
         ccif.ramWEN = 1'b1;
 
@@ -161,7 +164,7 @@ module memory_control (
       end
       WB2: begin
         ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
-        ccif.ramaddr = ccif.daddr[~curr_core];
+        ccif.ramaddr = ccif.daddr[curr_core];
         ccif.ramstore = ccif.dstore[~curr_core];
         ccif.ramWEN = 1'b1;
 
@@ -182,11 +185,13 @@ module memory_control (
         ccif.ramaddr = ccif.daddr[curr_core];
         ccif.ramstore = ccif.dstore[curr_core];
         ccif.ramWEN = 1'b1;
+        // ccif.ccwait[~curr_core]=1'b1;
       end
       WD2: begin
         ccif.ramaddr = ccif.daddr[curr_core];
         ccif.ramstore = ccif.dstore[curr_core];
         ccif.ramWEN = 1'b1;
+        // ccif.ccwait[~curr_core]=1'b1;
       end
       Iread: begin
         ccif.ramaddr = ccif.iaddr[curr_core];
