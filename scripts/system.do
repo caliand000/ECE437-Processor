@@ -55,11 +55,12 @@ add wave -noupdate /system_tb/DUT/CPU/CC/ccif/daddr
 add wave -noupdate /system_tb/DUT/CPU/CC/ccif/ccwait
 add wave -noupdate /system_tb/DUT/CPU/CC/ccif/ccinv
 add wave -noupdate /system_tb/DUT/CPU/CC/ccif/ccwrite
+add wave -noupdate /system_tb/DUT/CPU/ccif/cctrans
 add wave -noupdate -expand /system_tb/DUT/CPU/CC/ccif/ccsnoopaddr
 add wave -noupdate -divider dcache0
 add wave -noupdate /system_tb/DUT/CPU/CM0/cif/ccwait
 add wave -noupdate /system_tb/DUT/CPU/CM0/DCACHE/state
-add wave -noupdate -expand -subitemconfig {{/system_tb/DUT/CPU/CM0/DCACHE/cur_dcache[0]} -expand} /system_tb/DUT/CPU/CM0/DCACHE/cur_dcache
+add wave -noupdate -expand -subitemconfig {{/system_tb/DUT/CPU/CM0/DCACHE/cur_dcache[0]} -expand {/system_tb/DUT/CPU/CM0/DCACHE/cur_dcache[0].way} -expand} /system_tb/DUT/CPU/CM0/DCACHE/cur_dcache
 add wave -noupdate /system_tb/DUT/CPU/CM0/DCACHE/hit0
 add wave -noupdate /system_tb/DUT/CPU/CM0/DCACHE/hit1
 add wave -noupdate /system_tb/DUT/CPU/CM0/DCACHE/shit0
@@ -77,12 +78,12 @@ add wave -noupdate /system_tb/DUT/CPU/CM1/DCACHE/shit1
 add wave -noupdate /system_tb/DUT/CPU/CM1/DCACHE/shit
 add wave -noupdate /system_tb/DUT/CPU/CM1/DCACHE/snoop_dcache
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {615109 ps} 0}
+WaveRestoreCursors {{Cursor 1} {1720000 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 284
-configure wave -valuecolwidth 100
+configure wave -namecolwidth 123
+configure wave -valuecolwidth 219
 configure wave -justifyvalue left
-configure wave -signalnamewidth 0
+configure wave -signalnamewidth 1
 configure wave -snapdistance 10
 configure wave -datasetprefix 0
 configure wave -rowmargin 4
@@ -93,4 +94,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ps} {1390519 ps}
+WaveRestoreZoom {1434 ns} {2207 ns}

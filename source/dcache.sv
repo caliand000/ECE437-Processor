@@ -356,13 +356,13 @@ module dcache (
       end
       Cache_transfer1: begin
             cif.dWEN=1;
-            cif.daddr={cur_dcache[sindex].way[!shit0].tag,index,3'b000};
-            cif.dstore=cur_dcache[index].way[!shit0].data[0];    
+            cif.daddr={cur_dcache[sindex].way[!shit0].tag,sindex,3'b000};
+            cif.dstore=cur_dcache[sindex].way[!shit0].data[0];    
       end
       Cache_Transfer2:begin
             cif.dWEN=1;
-            cif.daddr={cur_dcache[sindex].way[!shit0].tag,index,3'b100};
-            cif.dstore=cur_dcache[index].way[!shit0].data[1];    
+            cif.daddr={cur_dcache[sindex].way[!shit0].tag,sindex,3'b100};
+            cif.dstore=cur_dcache[sindex].way[!shit0].data[1];    
       end
    endcase
       dcif.flushed=(state==flushed);
