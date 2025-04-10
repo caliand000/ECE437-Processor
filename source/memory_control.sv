@@ -23,7 +23,7 @@ module memory_control (
   parameter CPUS = 1;
 
   word_t addr = 0; 
-  word_t latched_snoopaddr;
+  word_t[1:0] latched_snoopaddr;
 
 
   typedef enum logic[3:0] {Idle, Snoop, Snoop_wait, WB1, WB2, RD1, RD2, WD1, WD2, Iread} state_type;
