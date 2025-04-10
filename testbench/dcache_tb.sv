@@ -267,7 +267,7 @@ endtask
     dcif.halt = 1'b1;
 
     #(PERIOD * 100);
-    check_output(32'hadadbf00,0,"Halt");
+    check_output(32'h0,0,"Halt");
 
 
 

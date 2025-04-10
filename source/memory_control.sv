@@ -23,7 +23,7 @@ module memory_control (
   parameter CPUS = 1;
 
   word_t addr = 0; 
-  word_t latched_snoopaddr = '0;
+  word_t latched_snoopaddr;
 
 
   typedef enum logic[3:0] {Idle, Snoop, Snoop_wait, WB1, WB2, RD1, RD2, WD1, WD2, Iread} state_type;
@@ -35,10 +35,12 @@ module memory_control (
     if(!nRST) begin
       curr_state <= Idle;
       curr_core <= '0;
+      ccif.ccsnoopaddr <= '0;
     end
     else begin
       curr_state <= next_state;
       curr_core <= next_core;
+      ccif.ccsnoopaddr <= latched_snoopaddr;
     end
   end
 
@@ -87,6 +89,7 @@ module memory_control (
       end
       WB2: begin
         if(ccif.ramstate == ACCESS && ccif.cctrans[curr_core]) next_state = RD1;
+        // if(ccif.ramstate == ACCESS) next_state = RD1;
         else if(ccif.ramstate == ACCESS) begin
           ccif.dwait[curr_core] = '0;
           ccif.dwait[~curr_core] = '0;
@@ -141,20 +144,23 @@ module memory_control (
     ccif.ramREN =      '0;
     ccif.ccwait =      '0;
     ccif.ccinv =       '0;
-    ccif.ccsnoopaddr = '0;
+    latched_snoopaddr = '0;
+    // ccif.ccsnoopaddr = '0;
+    latched_snoopaddr[~curr_core] = ccif.daddr[curr_core];
+    // ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
 
     case(curr_state) 
       Snoop_wait: begin
         ccif.ccwait[~curr_core] = 1'b1;
-        ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
+        // ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
       end
       Snoop: begin
-        ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
+        // ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
         if(ccif.ccwrite[curr_core]) ccif.ccinv[~curr_core] = 1;          //if ccwrite, this means its read with intent to modify, need to set other cache data to invalid state
         ccif.ccwait[~curr_core] = 1'b1;
       end
       WB1: begin
-        ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
+        // ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
         ccif.ramaddr = ccif.daddr[curr_core];
         ccif.ramstore = ccif.dstore[~curr_core];
         ccif.ramWEN = 1'b1;
@@ -163,8 +169,8 @@ module memory_control (
         ccif.ccwait[~curr_core] = 1'b1;
       end
       WB2: begin
-        ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
-        ccif.ramaddr = ccif.daddr[curr_core];
+        // ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];       //could hardiwre snoopaddr to addr of other core, not doing anyting else
+        ccif.ramaddr = ccif.daddr[curr_core];                       //we need to latch snoopaddr so we dont do 2 cache lookups in one clock cycle 
         ccif.ramstore = ccif.dstore[~curr_core];
         ccif.ramWEN = 1'b1;
 
