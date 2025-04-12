@@ -27,6 +27,7 @@ module control_unit (
   s_t stype;
   b_t btype;
   u_t utype;
+  funct5_atomic_t rlsctype;
   logic beq,bne,bge,blt,bgeu,bltu,jal,jalr;
   assign cuif.typ={beq,bne,bge,bgeu,blt,bltu,jal,jalr};
 
@@ -45,7 +46,7 @@ module control_unit (
     stype = cuif.imemload;
     btype = cuif.imemload;
     utype = cuif.imemload;
-
+    rlsctype=cuif.imemload[31:27]
     cuif.MemWr = '0;
     cuif.MemtoReg = 0;
     cuif.Aluop = ALU_SLL;
@@ -207,7 +208,10 @@ module control_unit (
         cuif.Imm = {cuif.Imm, {12{1'b0}}};
       end
       // LR_SC: begin            //atomic instructions?
+      LR_SC: begin
         
+
+      end
       // end;
       HALT: begin     
         cuif.pchalt = 1;
