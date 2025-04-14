@@ -48,6 +48,8 @@ module dcache (
     logic [2:0] index, sindex;
     word_t[1:0] read_block,nxt_read_block;
 
+    word_t latched_daddr;
+
     assign nxt_snoop_dcache = nxt_dcache;
 
     assign offset=dcif.dmemaddr[2];
@@ -70,6 +72,7 @@ module dcache (
          state<=Idle;
          read_block<='0;
          halt_cnt<=0;
+         cif.daddr <= '0;
       end
       else begin
          cur_dcache<=nxt_dcache;
@@ -78,6 +81,7 @@ module dcache (
           state<=nextstate;
          read_block<=nxt_read_block;
          halt_cnt<=nxt_halt_cnt;
+         cif.daddr <= latched_daddr;
       end 
     end
      
@@ -179,7 +183,7 @@ module dcache (
  always_comb begin : output_logic
    cif.dREN=0;
    cif.dWEN=0;
-   cif.daddr=0;
+   latched_daddr=0;
    cif.dstore=0;
    dcif.dhit=0;
    dcif.dmemload=0;
@@ -231,7 +235,7 @@ module dcache (
       end
       read_first_word: begin
          cif.dREN=1;
-         cif.daddr={dcif.dmemaddr[31:3],1'b0,dcif.dmemaddr[1:0]};
+         latched_daddr={dcif.dmemaddr[31:3],1'b0,dcif.dmemaddr[1:0]};
            if(!cur_dcache[index].ru[0]) begin
             
                
@@ -257,7 +261,7 @@ module dcache (
 
       read_second_word: begin
          cif.dREN=1;
-         cif.daddr={dcif.dmemaddr[31:3],1'b1,dcif.dmemaddr[1:0]};
+         latched_daddr={dcif.dmemaddr[31:3],1'b1,dcif.dmemaddr[1:0]};
            if(!cur_dcache[index].ru[0]&&(dcif.dmemREN||dcif.dmemWEN)) begin
             
                
@@ -284,12 +288,12 @@ module dcache (
       write_first_word: begin
          if(dcif.halt) begin
             cif.dWEN=1;
-            cif.daddr={cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].tag,halt_cnt[2:0],3'b000};
+            latched_daddr={cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].tag,halt_cnt[2:0],3'b000};
             cif.dstore=cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].data[0];
          end
          else begin
             cif.dWEN=1;
-            cif.daddr={cur_dcache[index].way[!cur_dcache[index].ru[1]].tag,index,3'b000};
+            latched_daddr={cur_dcache[index].way[!cur_dcache[index].ru[1]].tag,index,3'b000};
             if(!cur_dcache[index].ru[0]) 
                cif.dstore=cur_dcache[index].way[0].data[0];
             else if(!cur_dcache[index].ru[1])
@@ -299,7 +303,7 @@ module dcache (
       write_second_word: begin
          if(dcif.halt) begin
             cif.dWEN=1;
-            cif.daddr={cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].tag,halt_cnt[2:0],3'b100}; 
+            latched_daddr={cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].tag,halt_cnt[2:0],3'b100}; 
             cif.dstore=cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].data[1];
             nxt_dcache[halt_cnt[2:0]].way[halt_cnt[3]].dirty=0;
             if (!cif.dwait) begin
@@ -308,7 +312,7 @@ module dcache (
          end
          else begin
             cif.dWEN=1;
-            cif.daddr={cur_dcache[index].way[!cur_dcache[index].ru[1]].tag,index,3'b100};
+            latched_daddr={cur_dcache[index].way[!cur_dcache[index].ru[1]].tag,index,3'b100};
             if(!cur_dcache[index].ru[0]) begin
                cif.dstore=cur_dcache[index].way[0].data[1];
                nxt_dcache[index].way[0].dirty=0;
@@ -331,7 +335,7 @@ module dcache (
       
       halt_cleaned: begin
          cif.dWEN=1;
-         cif.daddr=32'h3100;
+         latched_daddr=32'h3100;
          cif.dstore=hit_cnt;
          
       end
@@ -346,12 +350,12 @@ module dcache (
       end
       Cache_transfer1: begin
             cif.dWEN=1;
-            cif.daddr={cur_dcache[sindex].way[!shit0].tag,sindex,3'b000};
+            latched_daddr={cur_dcache[sindex].way[!shit0].tag,sindex,3'b000};
             cif.dstore=cur_dcache[sindex].way[!shit0].data[0];    
       end
       Cache_Transfer2:begin
             cif.dWEN=1;
-            cif.daddr={cur_dcache[sindex].way[!shit0].tag,sindex,3'b100};
+            latched_daddr={cur_dcache[sindex].way[!shit0].tag,sindex,3'b100};
             cif.dstore=cur_dcache[sindex].way[!shit0].data[1];
             if (cif.ccinv) begin
             if(shit0)begin 
