@@ -72,7 +72,7 @@ module dcache (
          state<=Idle;
          read_block<='0;
          halt_cnt<=0;
-         cif.daddr <= '0;
+         cif.daddr<=0;
       end
       else begin
          cur_dcache<=nxt_dcache;
@@ -81,10 +81,11 @@ module dcache (
           state<=nextstate;
          read_block<=nxt_read_block;
          halt_cnt<=nxt_halt_cnt;
-         cif.daddr <= latched_daddr;
+         cif.daddr<=latched_daddr;
+         
       end 
     end
-     
+   //assign cif.daddr=latched_daddr;
 
     assign hit=hit0||hit1;
     assign shit=shit0||shit1;
@@ -183,7 +184,7 @@ module dcache (
  always_comb begin : output_logic
    cif.dREN=0;
    cif.dWEN=0;
-   latched_daddr=0;
+   latched_daddr=cif.daddr;
    cif.dstore=0;
    dcif.dhit=0;
    dcif.dmemload=0;
@@ -231,11 +232,30 @@ module dcache (
             end
             else enable_hit_counter_sub=1;
          end
+         case(nextstate)
+         read_first_word: begin 
+            latched_daddr={dcif.dmemaddr[31:3],1'b0,dcif.dmemaddr[1:0]};
+         end
+         write_first_word: begin
+         if(dcif.halt) begin
+            
+            latched_daddr={cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].tag,halt_cnt[2:0],3'b000};
+            
+         end
+         else begin
+            
+            latched_daddr={cur_dcache[index].way[!cur_dcache[index].ru[1]].tag,index,3'b000};
+            
+         end
+      end
+       
+
+      endcase
          
       end
       read_first_word: begin
          cif.dREN=1;
-         latched_daddr={dcif.dmemaddr[31:3],1'b0,dcif.dmemaddr[1:0]};
+         if(nextstate==read_second_word) latched_daddr={dcif.dmemaddr[31:3],1'b1,dcif.dmemaddr[1:0]};
            if(!cur_dcache[index].ru[0]) begin
             
                
@@ -261,7 +281,7 @@ module dcache (
 
       read_second_word: begin
          cif.dREN=1;
-         latched_daddr={dcif.dmemaddr[31:3],1'b1,dcif.dmemaddr[1:0]};
+         
            if(!cur_dcache[index].ru[0]&&(dcif.dmemREN||dcif.dmemWEN)) begin
             
                
@@ -288,12 +308,12 @@ module dcache (
       write_first_word: begin
          if(dcif.halt) begin
             cif.dWEN=1;
-            latched_daddr={cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].tag,halt_cnt[2:0],3'b000};
+            if(nextstate==write_second_word) latched_daddr={cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].tag,halt_cnt[2:0],3'b100};
             cif.dstore=cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].data[0];
          end
          else begin
             cif.dWEN=1;
-            latched_daddr={cur_dcache[index].way[!cur_dcache[index].ru[1]].tag,index,3'b000};
+            if(nextstate==write_second_word) latched_daddr={cur_dcache[index].way[!cur_dcache[index].ru[1]].tag,index,3'b100};
             if(!cur_dcache[index].ru[0]) 
                cif.dstore=cur_dcache[index].way[0].data[0];
             else if(!cur_dcache[index].ru[1])
@@ -303,16 +323,16 @@ module dcache (
       write_second_word: begin
          if(dcif.halt) begin
             cif.dWEN=1;
-            latched_daddr={cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].tag,halt_cnt[2:0],3'b100}; 
+             
             cif.dstore=cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].data[1];
-            nxt_dcache[halt_cnt[2:0]].way[halt_cnt[3]].dirty=0;
             if (!cif.dwait) begin
+               nxt_dcache[halt_cnt[2:0]].way[halt_cnt[3]].dirty=0;
                enable_halt_counter=1;
             end
          end
          else begin
             cif.dWEN=1;
-            latched_daddr={cur_dcache[index].way[!cur_dcache[index].ru[1]].tag,index,3'b100};
+            
             if(!cur_dcache[index].ru[0]) begin
                cif.dstore=cur_dcache[index].way[0].data[1];
                nxt_dcache[index].way[0].dirty=0;
@@ -325,9 +345,9 @@ module dcache (
       end
       incrementing: begin
          enable_halt_counter=1;
-
+         if(nextstate==write_first_word) latched_daddr={cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].tag,halt_cnt[2:0],3'b000};
          if(cur_dcache[halt_cnt[2:0]].way[halt_cnt[3]].dirty) begin
-         
+            
             enable_halt_counter=0;
          end
          
@@ -340,7 +360,7 @@ module dcache (
          
       end
       Got_Snoop: begin
-         
+         if(nextstate==Cache_transfer1) latched_daddr={cur_dcache[sindex].way[!shit0].tag,sindex,3'b000};
          if(cif.ccinv&&shit0&&!cur_dcache[sindex].way[0].dirty) begin
             nxt_dcache[sindex].way[0].valid=0;
          end
@@ -350,12 +370,12 @@ module dcache (
       end
       Cache_transfer1: begin
             cif.dWEN=1;
-            latched_daddr={cur_dcache[sindex].way[!shit0].tag,sindex,3'b000};
+            if(nextstate==Cache_Transfer2) latched_daddr={cur_dcache[sindex].way[!shit0].tag,sindex,3'b100};
             cif.dstore=cur_dcache[sindex].way[!shit0].data[0];    
       end
       Cache_Transfer2:begin
             cif.dWEN=1;
-            latched_daddr={cur_dcache[sindex].way[!shit0].tag,sindex,3'b100};
+            
             cif.dstore=cur_dcache[sindex].way[!shit0].data[1];
             if (cif.ccinv) begin
             if(shit0)begin 
