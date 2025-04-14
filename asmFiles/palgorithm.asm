@@ -15,13 +15,6 @@
   jal     mainc1        # core 1 main program
   halt
 
-#----------------------------------------------------------
-# Core 2 Init - Consumer
-#----------------------------------------------------------
-  org 0x0200    
-  li      sp, 0x7FFC    # core 2 stack
-  jal     mainc2        # core 2 main program
-  halt
 
 
 #----------------------------------------------------------
@@ -53,25 +46,27 @@ mainc1:
     push ra
 
     # Set initial seed for CRC random number generator (32-bit seed)
-    li    t0, 0x12345678        
+    li    a4, 0xdeadbeef        
 
     # Initialize counter (number of generated numbers)
     li    a3, 0 
-    ori    t6, x0, stack_ptr    # t4 = current shared stack pointer.
+    ori    t6, x0, stack_ptr    # t6 = current shared stack pointer.
 
 random_loop:  
-# Generate new random number using the provided CRC subroutine:
-    ori  a0, t0, 0                
-    jal   crc32                  
-    ori  t0, a0, 0    
 
 # Acquire lock on shared data
-    #andi a7, a7, 0
     ori a0, zero, lock_var
-    jal lock    
+    jal lock 
+    
+# Generate new random number using the provided CRC subroutine:
+    ori  a2, a4, 0                
+    jal   crc32                  
+    ori  a4, a0, 0    
+
+   
 
 # Begin critical section for push:
-    sw    t0, 0(t6)             # Store new CRC value -> shared stack pointer
+    sw    a4, 0(t6)             # Store new CRC value -> shared stack pointer
     addi  t6, t6, 4             # Increment
 
 # Release the lock after finishing push.
@@ -113,7 +108,13 @@ l2:
    
   ret
 
-
+#----------------------------------------------------------
+# Core 2 Init - Consumer
+#----------------------------------------------------------
+  org 0x0200    
+  li      sp, 0x7FFC    # core 2 stack
+  jal     mainc2        # core 2 main program
+  halt
 
 #----------------------------------------------------------
 # Core 2 Main
@@ -123,7 +124,7 @@ mainc2:
   push ra
 
 # Initialize statistics:
-  li    t0, 0                 # Count of numbers consumed
+  li    t3, 0                 # Count of numbers consumed
   li    t4, 0                 # Running sum (for average)
   li    t5, 0xFFFF            # Initial minimum (set high, 16-bit value)
   li    t6, 0                 # Initial maximum
@@ -131,46 +132,48 @@ mainc2:
 
 consumer_loop:
   # Pop a value from the shared stack using the shared lock
-  #andi a7, a7, 0
   ori   a0, zero, lock_var
   jal   lock              
 
   # Critical Section: Perform the pop operation.
-  lw  t2, 0(a4)                 # Load the popped CRC value
+  lw  a3, 0(a4)                 # Load the popped CRC value
   li    t0, 0
   sw    t0, 0(a4)               # Zero out that memory location
-  addi  a4, a4, -4              # Decrement pointer by 4 to point to the last pushed item
+  addi  a4, a4, 4              # Decrement pointer by 4 to point to the last pushed item
 
   ori   a0, zero, lock_var  
   jal   unlock                
 
   # Process the popped value:
-  andi  t2, t2, 0xFFFF        # Use only the lower 16 bits
-  add   t4, t4, t2            # Add to running sum
+  li  a7, 0xFFFFFFFF        # Use only the lower 16 bits
+  srli  a7, a7, 16
+  and a3, a3, a7
+  add   t4, t4, a3            # Add to running sum
 
   # Update minimum value
-  blt   t2, t5, set_min
+  blt   a3, t5, set_min
   j     check_max
 
 set_min:
-  ori  t5, t2, 0
+  ori  t5, a3, 0
 
 # Update maximum value
 check_max:
-  bgt   t2, t6, set_max
+  bgt   a3, t6, set_max
   j     after_update
 
 set_max:
-  ori  t6, t2, 0
+  ori  t6, a3, 0stack_ptr_start:
+  cfw stack_ptr
 
 after_update:
   # Increment count and loop until all 256 numbers are consumed
-  addi  t0, t0, 1
-  li    a3, 256
-  blt   t0, a3, consumer_loop
+  addi  t3, t3, 1
+  li    a5, 256
+  blt   t3, a5, consumer_loop
 
   # Compute average: Shift right by 8 bits to divide by 256
-  srli   a4, t4, 8          # t10 contains the computed average
+  srli   a6, t4, 8          # t10 contains the computed average
 
 
   # Restore return address and return from consumer_main
@@ -181,16 +184,18 @@ after_update:
 #----------------------------------------------------------
 # Shared Data Segment
 #----------------------------------------------------------
-org 0x0400
+org 0x0800
 
 
 lock_var:
   cfw 0x0     # lock starts unlocked, should end unlocked
 
 # Shared stack pointer:
+stack_ptr_start:
+  cfw 0x0
+
 stack_ptr:
   cfw 0x0   # Initialize pointer to the start of the buffer.
-
 
 
 
