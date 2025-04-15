@@ -68,6 +68,8 @@ random_loop:
 # Begin critical section for push:
     sw    a4, 0(t6)             # Store new CRC value -> shared stack pointer
     addi  t6, t6, 4             # Increment
+    ori a7, x0, stack_ptr_start
+    sw    t6, 0(a7)
 
 # Release the lock after finishing push.
     ori   a0, zero, lock_var
@@ -133,7 +135,17 @@ mainc2:
 consumer_loop:
   # Pop a value from the shared stack using the shared lock
   ori   a0, zero, lock_var
-  jal   lock              
+  jal   lock
+
+  ori a3, x0, stack_ptr_start
+  lw a3, 0(a3)
+  bne a3, x0, continue
+
+  ori   a0, zero, lock_var  
+  jal   unlock 
+  j consumer_loop
+
+  continue:             
 
   # Critical Section: Perform the pop operation.
   lw  a3, 0(a4)                 # Load the popped CRC value
@@ -163,8 +175,7 @@ check_max:
   j     after_update
 
 set_max:
-  ori  t6, a3, 0stack_ptr_start:
-  cfw stack_ptr
+  ori  t6, a3, 0
 
 after_update:
   # Increment count and loop until all 256 numbers are consumed
