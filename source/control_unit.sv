@@ -27,6 +27,7 @@ module control_unit (
   s_t stype;
   b_t btype;
   u_t utype;
+
   logic beq,bne,bge,blt,bgeu,bltu,jal,jalr;
   assign cuif.typ={beq,bne,bge,bgeu,blt,bltu,jal,jalr};
 
@@ -45,7 +46,7 @@ module control_unit (
     stype = cuif.imemload;
     btype = cuif.imemload;
     utype = cuif.imemload;
-
+   
     cuif.MemWr = '0;
     cuif.MemtoReg = 0;
     cuif.Aluop = ALU_SLL;
@@ -58,7 +59,8 @@ module control_unit (
     cuif.PCSrc = '0;
     cuif.jumpsel = 0;
     cuif.pchalt = 0;
-
+    cuif.lr=0;
+    cuif.sc=0;
     case(rtype.opcode)
       RTYPE: begin    
         cuif.RegWr = 1;
@@ -207,7 +209,34 @@ module control_unit (
         cuif.Imm = {cuif.Imm, {12{1'b0}}};
       end
       // LR_SC: begin            //atomic instructions?
-        
+      LR_SC: begin
+        if(cuif.imemload[31:27]==5'h02) begin
+         cuif.lr=1;
+         cuif.RegWr = 1;                               //writing to rd
+        cuif.AluSrc = 1;                              //select extended immediate field to add to rs1
+        cuif.MemtoReg = 1;                            //select dmemload from request unit output
+        cuif.MemWr = 2'b10;                           //read from memorys
+        cuif.Aluop = ALU_ADD;                         //adding immediate field to rs1 
+        cuif.Rd = itype.rd;                           //destination register
+        cuif.Rs1 = itype.rs1;                         //first register field
+        cuif.Imm = 0;
+
+        end
+
+        else if(cuif.imemload[31:27]==5'h03) begin
+        cuif.sc=1;
+        cuif.AluSrc = 1;                                //select extended immediate field to add to rs1
+        cuif.MemWr = 2'b01;
+        cuif.RegWr = 1;                              //writing to location [R[rs1] + imm] in memory
+        cuif.Aluop = ALU_ADD;
+        cuif.PCSrc = 0;
+        cuif.Rs1 = stype.rs1;
+        cuif.Rs2 = stype.rs2;
+
+        cuif.Imm =0;
+        end
+
+      end
       // end;
       HALT: begin     
         cuif.pchalt = 1;

@@ -47,7 +47,7 @@ module dcache (
     logic hit0,hit1, shit0, shit1,shit, enable_hit_counter,enable_hit_counter_sub,hit,offset,enable_halt_counter, soffset,sshit1,sshit2;
     logic [2:0] index, sindex;
     word_t[1:0] read_block,nxt_read_block;
-
+    word_t rsv_set,nxt_rsv_set;
     assign nxt_snoop_dcache = nxt_dcache;
 
     assign offset=dcif.dmemaddr[2];
@@ -70,6 +70,7 @@ module dcache (
          state<=Idle;
          read_block<='0;
          halt_cnt<=0;
+         rsv_set<=0;
       end
       else begin
          cur_dcache<=nxt_dcache;
@@ -78,6 +79,7 @@ module dcache (
           state<=nextstate;
          read_block<=nxt_read_block;
          halt_cnt<=nxt_halt_cnt;
+         rsv_set<=nxt_rsv_set;
       end 
     end
      
@@ -101,6 +103,7 @@ module dcache (
       case(state)
          Idle: begin
             nextstate=Idle;
+            if(!dcif.dhit) begin
             if(cif.ccwait) begin
                nextstate=Got_Snoop;
             end
@@ -113,6 +116,7 @@ module dcache (
                end
                else  nextstate=read_first_word;
                
+            end
             end
          end
 
@@ -188,7 +192,7 @@ module dcache (
    enable_hit_counter=0;
    enable_hit_counter_sub=0;
    enable_halt_counter=0;
-
+   nxt_rsv_set=rsv_set;
    case(state)
       Idle: begin
          if(dcif.dmemREN&&!dcif.halt&&!cif.ccwait) begin
@@ -209,7 +213,11 @@ module dcache (
             else enable_hit_counter_sub=1;
          end
          else if(dcif.dmemWEN&&!dcif.halt&&!cif.ccwait) begin
-            if(hit0) begin
+            if(dcif.datomic&&{dcif.dmemaddr[31:3],3'b000}!=rsv_set) begin
+               dcif.dhit=1;
+               dcif.dmemload=1;
+            end
+            else if(hit0) begin
                nxt_dcache[index].way[0].data[offset]=dcif.dmemstore;
                nxt_dcache[index].way[0].dirty=1;
                nxt_dcache[index].ru[0]=1;
@@ -225,8 +233,10 @@ module dcache (
                enable_hit_counter=1;
                dcif.dhit=1;
             end
+            
             else enable_hit_counter_sub=1;
          end
+         if(nextstate==read_first_word&&dcif.datomic) nxt_rsv_set={dcif.dmemaddr[31:3],3'b000};
          
       end
       read_first_word: begin
@@ -336,7 +346,7 @@ module dcache (
          
       end
       Got_Snoop: begin
-         
+         if({cif.ccsnoopaddr[31:3],3'b000}==rsv_set&&cif.ccinv) nxt_rsv_set=0;
          if(cif.ccinv&&shit0&&!cur_dcache[sindex].way[0].dirty) begin
             nxt_dcache[sindex].way[0].valid=0;
          end
