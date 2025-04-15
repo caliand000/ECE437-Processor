@@ -18,12 +18,12 @@ interface hazard_unit_if;
   //signals
     regbits_t rs1, rs2;
     regbits_t Rd;
-    logic Flush,Zero_controls,Halt,latch_en,Memtoreg; 
+    logic Flush,Zero_controls,Halt,latch_en,Memtoreg, lr, sc; 
     logic [1:0] Pcsrc;
 
   // control unit ports
   modport hu (
-    input  rs1, rs2, Rd,Pcsrc,Memtoreg,
+    input  rs1, rs2, Rd,Pcsrc,Memtoreg, lr, sc,
     output Flush,Zero_controls,Halt,latch_en
   );
 

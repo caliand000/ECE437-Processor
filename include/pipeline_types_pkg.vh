@@ -37,6 +37,8 @@ package pipeline_types_pkg;
     word_t immediate;
     logic [4:0] rd;
     logic [1:0] jumpsel;
+    logic sc;
+    logic lr;
     } ID_EX;
 
 
@@ -58,7 +60,9 @@ package pipeline_types_pkg;
     word_t immediate;
     logic [1:0] jumpsel;
     word_t read_data;
-    
+    logic sc;
+    logic lr;
+    logic datomic;
   } EX_MEM;
 
   typedef struct packed {
