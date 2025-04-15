@@ -24,9 +24,11 @@ module memory_control (
 
   word_t addr = 0; 
   word_t[1:0] latched_snoopaddr;
+  word_t[1:0] latched_dstore;
+  word_t[1:0] latched_daddr;
 
 
-  typedef enum logic[3:0] {Idle, Snoop, Snoop_wait, WB1, WB2, RD1, RD2, WD1, WD2, Iread} state_type;
+  typedef enum logic[5:0] {Idle, Snoop, Snoop_wait, WB1, WB2, RD1, RD2, WD1, WD2, Iread, Wait1, Wait2, Wait3, Wait4, Wait5, Wait6} state_type;
   state_type curr_state, next_state;
 
   logic curr_core, next_core;
@@ -36,11 +38,15 @@ module memory_control (
       curr_state <= Idle;
       curr_core <= '0;
       ccif.ccsnoopaddr <= '0;
+      latched_dstore <= '0;
+      latched_daddr <= '0;
     end
     else begin
       curr_state <= next_state;
       curr_core <= next_core;
       ccif.ccsnoopaddr <= latched_snoopaddr;
+      latched_dstore <= ccif.dstore;
+      latched_daddr <= ccif.daddr;
     end
   end
 
@@ -57,7 +63,7 @@ module memory_control (
           next_state = Snoop_wait;
         end
         else if(ccif.dWEN[curr_core]) begin
-          next_state = WD1;
+          next_state = Wait1;
         end
         else if(ccif.iREN[curr_core]) begin
           next_state = Iread;
@@ -67,7 +73,7 @@ module memory_control (
           next_core=~curr_core;
         end
         else if(ccif.dWEN[~curr_core]) begin
-          next_state = WD1;
+          next_state = Wait1;
           next_core=~curr_core;
         end
         else if(ccif.iREN[~curr_core]) begin
@@ -75,20 +81,26 @@ module memory_control (
           next_core=~curr_core;
         end
       end
+      Wait1: next_state = WD1;
+      Wait2: next_state = WD2;
+      Wait3: next_state = WB1; 
+      Wait4: next_state = WB2;  
+      Wait5: next_state = RD1;  
+      Wait6: next_state = RD2;  
       Snoop_wait: next_state = Snoop;
       Snoop: begin
-        if(ccif.cctrans[~curr_core]) next_state = WB1;           //if its in a modified state, then we need to write it back and do cache to cache transfer
-        else next_state = RD1;
+        if(ccif.cctrans[~curr_core]) next_state = Wait3;           //if its in a modified state, then we need to write it back and do cache to cache transfer
+        else next_state = Wait5;
       end
       WB1: begin
         if(ccif.ramstate == ACCESS) begin
            ccif.dwait[curr_core] = '0;
            ccif.dwait[~curr_core] = '0;
-           next_state = WB2;
+           next_state = Wait4;
         end
       end
       WB2: begin
-        if(ccif.ramstate == ACCESS && ccif.cctrans[curr_core]) next_state = RD1;
+        if(ccif.ramstate == ACCESS && ccif.cctrans[curr_core]) next_state = Wait5;
         // if(ccif.ramstate == ACCESS) next_state = RD1;
         else if(ccif.ramstate == ACCESS) begin
           ccif.dwait[curr_core] = '0;
@@ -101,7 +113,7 @@ module memory_control (
       RD1: begin
         if(ccif.ramstate == ACCESS) begin
           ccif.dwait[curr_core] = '0;
-          next_state = RD2;
+          next_state = Wait6;
         end
       end
       RD2: begin
@@ -113,7 +125,7 @@ module memory_control (
       end
       WD1: begin
         if(ccif.ramstate == ACCESS) begin
-          next_state = WD2;
+          next_state = Wait2;
           ccif.dwait[curr_core] = '0;
         end
       end
@@ -146,11 +158,18 @@ module memory_control (
     ccif.ccinv =       '0;
     latched_snoopaddr = '0;
     // ccif.ccsnoopaddr = '0;
-    latched_snoopaddr[~curr_core] = ccif.daddr[curr_core];
+    latched_snoopaddr[~curr_core] = latched_daddr[curr_core];
     // ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
 
     case(curr_state) 
+      // Wait1: 
+      // Wait2: 
+      // Wait3:  
+      // Wait4:   
+      // Wait5:   
+      // Wait6:   
       Snoop_wait: begin
+
         ccif.ccwait[~curr_core] = 1'b1;
         // ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
       end
@@ -161,41 +180,41 @@ module memory_control (
       end
       WB1: begin
         // ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];
-        ccif.ramaddr = ccif.daddr[curr_core];
-        ccif.ramstore = ccif.dstore[~curr_core];
+        ccif.ramaddr = latched_daddr[curr_core];
+        ccif.ramstore = latched_dstore[~curr_core];
         ccif.ramWEN = 1'b1;
 
-        ccif.dload[curr_core] = ccif.dstore[~curr_core];               //cache to cache transfer
+        ccif.dload[curr_core] = latched_dstore[~curr_core];               //cache to cache transfer
         ccif.ccwait[~curr_core] = 1'b1;
       end
       WB2: begin
         // ccif.ccsnoopaddr[~curr_core] = ccif.daddr[curr_core];       //could hardiwre snoopaddr to addr of other core, not doing anyting else
-        ccif.ramaddr = ccif.daddr[curr_core];                       //we need to latch snoopaddr so we dont do 2 cache lookups in one clock cycle 
-        ccif.ramstore = ccif.dstore[~curr_core];
+        ccif.ramaddr = latched_daddr[curr_core];                       //we need to latch snoopaddr so we dont do 2 cache lookups in one clock cycle 
+        ccif.ramstore = latched_dstore[~curr_core];
         ccif.ramWEN = 1'b1;
 
-        ccif.dload[curr_core] = ccif.dstore[~curr_core];                 //cache to cache transfer
+        ccif.dload[curr_core] = latched_dstore[~curr_core];                 //cache to cache transfer
         ccif.ccwait[~curr_core] = 1'b1;
       end
       RD1: begin
-        ccif.ramaddr = ccif.daddr[curr_core];
+        ccif.ramaddr = latched_daddr[curr_core];
         ccif.dload[curr_core] = ccif.ramload;
         ccif.ramREN = 1'b1;
       end
       RD2: begin
-        ccif.ramaddr = ccif.daddr[curr_core];
+        ccif.ramaddr = latched_daddr[curr_core];
         ccif.dload[curr_core] = ccif.ramload;
         ccif.ramREN = 1'b1;
       end
       WD1: begin
-        ccif.ramaddr = ccif.daddr[curr_core];
-        ccif.ramstore = ccif.dstore[curr_core];
+        ccif.ramaddr = latched_daddr[curr_core];
+        ccif.ramstore = latched_dstore[curr_core];
         ccif.ramWEN = 1'b1;
         // ccif.ccwait[~curr_core]=1'b1;
       end
       WD2: begin
-        ccif.ramaddr = ccif.daddr[curr_core];
-        ccif.ramstore = ccif.dstore[curr_core];
+        ccif.ramaddr = latched_daddr[curr_core];
+        ccif.ramstore = latched_dstore[curr_core];
         ccif.ramWEN = 1'b1;
         // ccif.ccwait[~curr_core]=1'b1;
       end

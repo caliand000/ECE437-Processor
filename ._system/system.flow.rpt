@@ -1,0 +1,137 @@
+Flow report for system
+Tue Apr 15 11:01:21 2025
+Quartus Prime Version 21.1.1 Build 850 06/23/2022 SJ Standard Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2022  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++--------------------------------------------------------------------------------------+
+; Flow Summary                                                                         ;
++------------------------------------+-------------------------------------------------+
+; Flow Status                        ; Successful - Tue Apr 15 11:01:21 2025           ;
+; Quartus Prime Version              ; 21.1.1 Build 850 06/23/2022 SJ Standard Edition ;
+; Revision Name                      ; system                                          ;
+; Top-level Entity Name              ; system                                          ;
+; Family                             ; Cyclone IV E                                    ;
+; Device                             ; EP4CE115F29C8                                   ;
+; Timing Models                      ; Final                                           ;
+; Total logic elements               ; 15,260 / 114,480 ( 13 % )                       ;
+;     Total combinational functions  ; 13,900 / 114,480 ( 12 % )                       ;
+;     Dedicated logic registers      ; 8,370 / 114,480 ( 7 % )                         ;
+; Total registers                    ; 8370                                            ;
+; Total pins                         ; 102 / 529 ( 19 % )                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 524,288 / 3,981,312 ( 13 % )                    ;
+; Embedded Multiplier 9-bit elements ; 0 / 532 ( 0 % )                                 ;
+; Total PLLs                         ; 0 / 4 ( 0 % )                                   ;
++------------------------------------+-------------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 04/15/2025 10:55:52 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; system              ;
++-------------------+---------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                           ;
++-------------------------------------+-------------------------------------------------------+---------------+-------------+----------------+
+; Assignment Name                     ; Value                                                 ; Default Value ; Entity Name ; Section Id     ;
++-------------------------------------+-------------------------------------------------------+---------------+-------------+----------------+
+; COMPILER_SIGNATURE_ID               ; 88623631063204.174472895253767                        ; --            ; --          ; --             ;
+; EDA_MAINTAIN_DESIGN_HIERARCHY       ; On                                                    ; --            ; --          ; eda_simulation ;
+; EDA_OUTPUT_DATA_FORMAT              ; Verilog                                               ; --            ; --          ; eda_simulation ;
+; EDA_SIMULATION_TOOL                 ; ModelSim (Verilog)                                    ; <None>        ; --          ; --             ;
+; EDA_TIME_SCALE                      ; 1 ps                                                  ; --            ; --          ; eda_simulation ;
+; ENABLE_DRC_SETTINGS                 ; On                                                    ; Off           ; --          ; --             ;
+; FMAX_REQUIREMENT                    ; 400 MHz                                               ; --            ; --          ; --             ;
+; NUM_PARALLEL_PROCESSORS             ; 4                                                     ; --            ; --          ; --             ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family)                ; --            ; --          ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                ; --            ; --          ; Top            ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                ; --            ; --          ; Top            ;
+; PROJECT_OUTPUT_DIRECTORY            ; /home/ecegridfs/a/437mg005/ece437/processors/._system ; --            ; --          ; --             ;
+; SEARCH_PATH                         ; /home/ecegridfs/a/437mg005/ece437/processors/include  ; --            ; --          ; --             ;
+; SMART_RECOMPILE                     ; On                                                    ; Off           ; --          ; --             ;
+; TIMING_ANALYZER_DO_REPORT_TIMING    ; On                                                    ; Off           ; --          ; --             ;
+; USE_GENERATED_PHYSICAL_CONSTRAINTS  ; Off                                                   ; --            ; --          ; eda_blast_fpga ;
+; VERILOG_INPUT_VERSION               ; SystemVerilog_2005                                    ; Verilog_2001  ; --          ; --             ;
+; VERILOG_SHOW_LMF_MAPPING_MESSAGES   ; Off                                                   ; --            ; --          ; --             ;
++-------------------------------------+-------------------------------------------------------+---------------+-------------+----------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                        ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis ; 00:00:55     ; 1.0                     ; 617 MB              ; 00:01:13                           ;
+; Fitter               ; 00:04:05     ; 1.1                     ; 1474 MB             ; 00:06:25                           ;
+; Design Assistant     ; 00:00:04     ; 1.0                     ; 766 MB              ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:11     ; 1.5                     ; 883 MB              ; 00:00:13                           ;
+; EDA Netlist Writer   ; 00:00:05     ; 1.0                     ; 736 MB              ; 00:00:04                           ;
+; Total                ; 00:05:20     ; --                      ; --                  ; 00:07:59                           ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                        ;
++----------------------+-------------------------+---------+------------+----------------+
+; Module Name          ; Machine Hostname        ; OS Name ; OS Version ; Processor type ;
++----------------------+-------------------------+---------+------------+----------------+
+; Analysis & Synthesis ; cparch14.ecn.purdue.edu ; Red Hat ; Red Hat    ; x86_64         ;
+; Fitter               ; cparch14.ecn.purdue.edu ; Red Hat ; Red Hat    ; x86_64         ;
+; Design Assistant     ; cparch14.ecn.purdue.edu ; Red Hat ; Red Hat    ; x86_64         ;
+; Timing Analyzer      ; cparch14.ecn.purdue.edu ; Red Hat ; Red Hat    ; x86_64         ;
+; EDA Netlist Writer   ; cparch14.ecn.purdue.edu ; Red Hat ; Red Hat    ; x86_64         ;
++----------------------+-------------------------+---------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --64bit system -c system
+quartus_fit --64bit system -c system
+quartus_drc --64bit system -c system
+quartus_sta --64bit system -c system
+quartus_eda --64bit system -c system
+
+
+
