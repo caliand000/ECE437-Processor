@@ -21,7 +21,7 @@ module hazard_unit (
     if(huif.Pcsrc!=0) begin
       huif.Flush=1;
     end
-    else if(((huif.rs1==huif.Rd&&huif.rs1!=0)||(huif.rs2==huif.Rd&&huif.rs2!=0))&&huif.Memtoreg) begin
+    else if(((huif.rs1==huif.Rd&&huif.rs1!=0)||(huif.rs2==huif.Rd&&huif.rs2!=0))&&(huif.Memtoreg||huif.sc)) begin
       huif.latch_en=0;
       huif.Halt=1;
       huif.Zero_controls=1;

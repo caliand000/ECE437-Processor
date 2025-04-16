@@ -73,6 +73,8 @@ package pipeline_types_pkg;
     logic [4:0] rd;
     logic MemtoReg;
     word_t read_data;
+    logic lr;
+    logic sc;
   } MEM_WB;
 endpackage
 `endif 

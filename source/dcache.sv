@@ -103,7 +103,7 @@ module dcache (
       case(state)
          Idle: begin
             nextstate=Idle;
-            if(!dcif.dhit) begin
+            
             if(cif.ccwait) begin
                nextstate=Got_Snoop;
             end
@@ -117,7 +117,7 @@ module dcache (
                else  nextstate=read_first_word;
                
             end
-            end
+            //else if(((!cur_dcache[index].way[0].dirty && hit0)||(!cur_dcache[index].way[1].dirty && hit1))&&(dcif.dmemWEN)) nextstate=read_first_word;
          end
 
          read_first_word: begin
@@ -196,6 +196,7 @@ module dcache (
    case(state)
       Idle: begin
          if(dcif.dmemREN&&!dcif.halt&&!cif.ccwait) begin
+            if(dcif.datomic) nxt_rsv_set={dcif.dmemaddr[31:3],3'b000};
             if(hit0) begin
                dcif.dmemload=cur_dcache[index].way[0].data[offset];
                nxt_dcache[index].ru[0]=1;
@@ -223,7 +224,7 @@ module dcache (
                nxt_dcache[index].ru[0]=1;
                nxt_dcache[index].ru[1]=0;
                enable_hit_counter=1;
-               dcif.dhit=1;
+               if(cur_dcache[index].way[0].dirty)dcif.dhit=1;
             end
             else if(hit1&&!cif.ccwait) begin
                nxt_dcache[index].way[1].data[offset]=dcif.dmemstore;
@@ -231,12 +232,12 @@ module dcache (
                nxt_dcache[index].ru[1]=1;
                nxt_dcache[index].ru[0]=0;
                enable_hit_counter=1;
-               dcif.dhit=1;
+               if(cur_dcache[index].way[1].dirty)dcif.dhit=1;
             end
             
             else enable_hit_counter_sub=1;
          end
-         if(nextstate==read_first_word&&dcif.datomic) nxt_rsv_set={dcif.dmemaddr[31:3],3'b000};
+         
          
       end
       read_first_word: begin
@@ -274,7 +275,7 @@ module dcache (
                nxt_dcache[index].way[0].data[1]=cif.dload;
            
             nxt_dcache[index].way[0].valid=1;
-            // nxt_dcache[index].way[0].dirty=1;
+            nxt_dcache[index].way[0].dirty=dcif.dmemWEN;
             
             nxt_dcache[index].way[0].tag=dcif.dmemaddr[31:6];
          end
@@ -284,7 +285,7 @@ module dcache (
                nxt_dcache[index].way[1].data[1]=cif.dload;
            
             nxt_dcache[index].way[1].valid=1;
-            // nxt_dcache[index].way[1].dirty=1;
+            nxt_dcache[index].way[1].dirty=dcif.dmemWEN;
             
             nxt_dcache[index].way[1].tag=dcif.dmemaddr[31:6];
          end

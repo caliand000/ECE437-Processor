@@ -83,7 +83,7 @@ module datapath (
       2'b01:Alu_b = rfif.wdat;
       2'b10:Alu_b = mem_wb_in.wrb;
     endcase
-    Alu_c = (id_ex_out.AluSrc)? id_ex_out.immediate: Alu_b;
+    Alu_c = (id_ex_out.AluSrc)? ((id_ex_out.lr||id_ex_out.sc)?0:id_ex_out.immediate): Alu_b;
   end
 
   //================Immediate Generator(Extender)================
@@ -93,7 +93,7 @@ module datapath (
   assign rfif.rsel2 = if_id_out.instruction[24:20];
   assign rfif.wsel = mem_wb_out.rd;
   assign rfif.WEN = mem_wb_out.RegWr;
-  assign rfif.wdat = (mem_wb_out.MemtoReg)? mem_wb_out.read_data:mem_wb_out.wrb;
+  assign rfif.wdat = (mem_wb_out.MemtoReg||mem_wb_out.sc)? mem_wb_out.read_data:mem_wb_out.wrb;
   //================Branch Unit================
   assign deif.Zero = ex_mem_out.Zero;
   assign deif.Negative = ex_mem_out.Neg;
@@ -133,8 +133,8 @@ module datapath (
   assign ex_mem_in.rd=id_ex_out.rd;
   assign ex_mem_in.rdat1=Alu_a;
   assign ex_mem_in.rdat2=Alu_b;
-  assign ex_mem_in.AdderOut= id_ex_out.pc + id_ex_out.immediate;
-  assign ex_mem_in.immediate=id_ex_out.immediate;
+  assign ex_mem_in.AdderOut= id_ex_out.pc + ((id_ex_out.lr||id_ex_out.sc)?0:id_ex_out.immediate);
+  assign ex_mem_in.immediate=((id_ex_out.lr||id_ex_out.sc)?0:id_ex_out.immediate);
   assign ex_mem_in.lr = id_ex_out.lr;
   assign ex_mem_in.sc = id_ex_out.sc;
   //================EX/MEM -> MEM/WB================
@@ -144,7 +144,8 @@ module datapath (
   assign mem_wb_in.rd=ex_mem_out.rd;
   assign mem_wb_in.MemtoReg=ex_mem_out.MemtoReg;
   assign mem_wb_in.read_data=(dpif.ihit&&dpif.dhit)?dpif.dmemload:ex_mem_out.read_data;
-
+  assign mem_wb_in.lr=ex_mem_out.lr;
+  assign mem_wb_in.sc=ex_mem_out.sc;
 
   always_comb begin
   case(ex_mem_out.jumpsel) 
@@ -194,6 +195,7 @@ module datapath (
   assign huif.Rd=id_ex_out.rd;
   assign huif.Pcsrc= deif.PCsrc;
   assign huif.Memtoreg=id_ex_out.MemtoReg;
+  assign huif.sc=id_ex_out.sc;
 //================reservation set================
   assign ex_mem_in.datomic = (id_ex_out.lr || id_ex_out.sc);
   assign dpif.datomic = ex_mem_out.datomic;
