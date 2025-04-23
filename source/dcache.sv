@@ -219,20 +219,22 @@ module dcache (
                dcif.dmemload=1;
             end
             else if(hit0&&!cif.ccwait) begin
+               if({dcif.dmemaddr[31:3],3'b000}==rsv_set&&cur_dcache[index].way[0].dirty) nxt_rsv_set=0;
                nxt_dcache[index].way[0].data[offset]=dcif.dmemstore;
                //nxt_dcache[index].way[0].dirty=1;
                nxt_dcache[index].ru[0]=1;
                nxt_dcache[index].ru[1]=0;
                enable_hit_counter=1;
-               if(cur_dcache[index].way[0].dirty)dcif.dhit=1;
+               if(cur_dcache[index].way[0].dirty) dcif.dhit=1;
             end
             else if(hit1&&!cif.ccwait) begin
+               if({dcif.dmemaddr[31:3],3'b000}==rsv_set&&cur_dcache[index].way[0].dirty) nxt_rsv_set=0;
                nxt_dcache[index].way[1].data[offset]=dcif.dmemstore;
                //nxt_dcache[index].way[1].dirty=1;
                nxt_dcache[index].ru[1]=1;
                nxt_dcache[index].ru[0]=0;
                enable_hit_counter=1;
-               if(cur_dcache[index].way[1].dirty)dcif.dhit=1;
+               if(cur_dcache[index].way[1].dirty) dcif.dhit=1;
             end
             
             else enable_hit_counter_sub=1;
@@ -283,6 +285,7 @@ module dcache (
       end
 
       read_second_word: begin
+         
          cif.dREN=1;
          cif.daddr={dcif.dmemaddr[31:3],1'b1,dcif.dmemaddr[1:0]};
            if(hit0&&!cur_dcache[index].way[0].dirty&&cur_dcache[index].way[0].valid&&dcif.dmemWEN) begin
