@@ -3,7 +3,7 @@ import cpu_types_pkg::*;
 typedef struct packed {
     dcache_frame [1:0] way;
     logic  [1:0]ru;
-} dcache;
+} dcache_set_t;
 
 
 module dcache (
@@ -41,7 +41,7 @@ module dcache (
 
     typedef enum logic[4:0] {Idle,read_first_word,read_second_word,write_first_word,write_second_word,incrementing,halt_cleaned,flushed} state_type;
     state_type state, nextstate;
-    dcache[15:0] cur_dcache,nxt_dcache;
+   dcache_set_t cur_dcache [15:0],nxt_dcache [15:0];
     logic [4:0] halt_cnt,nxt_halt_cnt;
     word_t hit_cnt,nxt_hit_cnt;
     logic hit0,hit1,enable_hit_counter,enable_hit_counter_sub,hit,offset,enable_halt_counter;
@@ -55,7 +55,7 @@ module dcache (
     
     always_ff@(posedge CLK,negedge nRST) begin
       if(!nRST) begin
-         cur_dcache<='0;
+         cur_dcache<='{default:'0};
          hit_cnt<='0;
          state<=Idle;
          read_block<='0;
