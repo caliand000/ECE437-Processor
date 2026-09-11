@@ -5,6 +5,8 @@
 # Test with a fibonacci sequence
 #--------------------------------------
   org 0x0000
+.globl _start
+_start:
 
   ori   $10, $10, start
    ori   $4, $4, 1

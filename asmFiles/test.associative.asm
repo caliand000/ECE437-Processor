@@ -2,6 +2,8 @@
 # Test 2-Way Set Associative Cache
 #--------------------------------------
 org 0x0000
+.globl _start
+_start:
 
 ori   $3, $0, 0x10 
 sw    $3, 32($0)   

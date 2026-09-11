@@ -2,6 +2,8 @@
 # Test Control Flow Hazard
 #--------------------------------------
 org 0x0000
+.globl _start
+_start:
 ori   $1, $0, 0x4
 ori   $2, $0, 0x5
 ori   $3, $0, 0x6

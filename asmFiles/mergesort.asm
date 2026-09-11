@@ -1,11 +1,16 @@
 #----------------------------------------------------------
 # RISC-V Assembly
+# Updated for standard GNU RISC-V syntax compliance:
+#   - %lo(size) relocation used for label offset in lw
+#   - Replaced push macro with explicit stack pointer adjustment (addi $2, $2, -4; sw $5, 0($2))
 #----------------------------------------------------------
 #Mergesort for benchmarking
 #Optimized for 512 bit I$ 1024 bit D$
 #Author Adam Hendrickson ahendri@purdue.edu
 
 org 0x0000
+.globl _start
+_start:
   ori   $8, $0, 0xFFC
    ori   $2, $0, 0xFFC
    lui $3, 0xffff7  
@@ -15,7 +20,7 @@ org 0x0000
   add $2, $2, $3
   add $8, $8, $3
    ori   $12, $0, data
-   lw    $24, size($0)
+   lw    $24, %lo(size)($0)
    ori   $6, $0, 1
    srl  $13,$24,$6
    or    $9, $0, $12
@@ -36,12 +41,11 @@ org 0x0000
    or    $14, $0, $19
    or    $15, $0, $20
    ori   $5, $0, sorted
-   push  $5
+   addi  $2, $2, -4
+   sw    $5, 0($2)
    jal   merge
-  addi $2, $2, 4
+   addi  $2, $2, 4
    halt
-
-
 
 #void insertion_sort(int* $a0, int $a1)
 # $a0 : pointer to data start

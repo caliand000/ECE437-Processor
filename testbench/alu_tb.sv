@@ -19,6 +19,11 @@
 
 module alu_tb;
 
+  initial begin
+    $dumpfile("module.vcd");
+    $dumpvars(0, alu_tb);
+  end
+
   parameter PERIOD = 10;
 
   logic CLK = 0, nRST;

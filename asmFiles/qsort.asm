@@ -1,7 +1,14 @@
+#----------------------------------------------------------
+# RISC-V Assembly: Quicksort
+# Updated for standard GNU RISC-V syntax compliance:
+#   - %lo(array) relocation used for label address in addi
+#----------------------------------------------------------
 org 0x0000
+.globl _start
+_start:
 
 main:
-    addi a0, x0, array   # Load array base address (0x400)
+    addi a0, x0, %lo(array) # Load array base address (0x400)
     addi a1, x0, 0       # Left index = 0
     addi a2, x0, 9       # Right index = 9
     call quicksort        # Call quicksort

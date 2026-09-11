@@ -1,0 +1,30 @@
+# Verilator & Compiler build artifacts
+obj_dir/
+.build/
+build_*/
+work/
+asm_test_outputs/
+
+# Generated memory hex images & simulation binaries
+meminit.hex
+memcpu.hex
+system_tb.out
+
+# Waveforms & trace files
+*.vcd
+waves/*.vcd
+*.wlf
+wlft*
+
+# Log files & test reports
+*.log
+transcript
+asm_test_report_*.txt
+sweep_report_*.txt
+out.txt
+output.txt
+temp.txt
+
+# Inspection scratch files
+inspect_*.txt
+current_changes.txt

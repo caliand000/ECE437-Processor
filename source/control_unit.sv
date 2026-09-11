@@ -75,7 +75,9 @@ module control_unit (
           XOR:cuif.Aluop = ALU_XOR;
           SLT:cuif.Aluop = ALU_SLT;
           SLTU:cuif.Aluop = ALU_SLTU;
-        endcase 
+            // Keep malformed funct3/funct7 combinations on the safe default.
+            default: cuif.Aluop = ALU_SLL;
+          endcase 
       end
 
       ITYPE: begin     
@@ -122,6 +124,9 @@ module control_unit (
       JALR: begin         
         jalr=1;                            //R[rd] <= PC + 4; PC <= R[rs1] + imm
         cuif.RegWr = 1;                               //writing to rd  
+        // JALR computes rs1 + the sign-extended immediate before redirecting.
+        cuif.AluSrc = 1;
+        cuif.Aluop = ALU_ADD;
         cuif.jumpsel = 2'b11;                             //writing PC + 4 to rd
         cuif.PCSrc = 2'b10;                           //writing PC to rs1 + imm
 
@@ -147,7 +152,8 @@ module control_unit (
       BTYPE: begin                                      //PC <= (R[rs1] == R[rs2])? PC + imm: PC + 4
         cuif.Rs1 = btype.rs1;
         cuif.Rs2 = btype.rs2;
-        cuif.Imm = {{20{btype.imm2[6]}},btype.imm2[6], btype.imm1[0],btype.imm2[5:0], btype.imm1[4:1], 1'b0};
+        // The branch immediate contains 13 payload bits, so it needs 19 sign bits.
+        cuif.Imm = {{19{btype.imm2[6]}},btype.imm2[6], btype.imm1[0],btype.imm2[5:0], btype.imm1[4:1], 1'b0};
 
         case(btype.funct3)                              //branch type it is to update PCSrc, is it ok to do that here or will that delay?
           BEQ: begin
@@ -182,7 +188,12 @@ module control_unit (
             cuif.Aluop = ALU_SLTU;
             cuif.PCSrc = (!cuif.neg || cuif.zero)? 2'b01: '0;
           end
-        endcase
+            // Do not infer a branch target for an unsupported funct3.
+            default: begin
+              cuif.Aluop = ALU_SLL;
+              cuif.PCSrc = '0;
+            end
+          endcase
       end
       JAL: begin        
         jal=1;                                //R[rd] <= PC+4; PC <= PC+imm
@@ -197,14 +208,16 @@ module control_unit (
         cuif.Rd = utype.rd;
         cuif.RegWr = 1;
         cuif.jumpsel = 2'b10;
-        cuif.Imm = {{32{utype.imm[11]}},utype.imm, {12{1'b0}}};
+        // U-type immediates are already 20 bits; append 12 zeros for 32 bits.
+        cuif.Imm = {utype.imm, {12{1'b0}}};
 
       end
       AUIPC: begin           //R[rd] <= PC + {imm, 12b'0}
         cuif.Rd = utype.rd;
         cuif.RegWr = 1;
         cuif.jumpsel = 2'b01;
-        cuif.Imm = {cuif.Imm, {12{1'b0}}};
+        // AUIPC uses the same upper-immediate layout as LUI.
+        cuif.Imm = {utype.imm, {12{1'b0}}};
       end
       // LR_SC: begin            //atomic instructions?
         
@@ -212,7 +225,8 @@ module control_unit (
       HALT: begin     
         cuif.pchalt = 1;
       end
-    endcase
+        default: cuif.Aluop = ALU_SLL;
+      endcase
 
   end
 

@@ -27,14 +27,16 @@ module forward_unit (
     fuif.Alu_in2 = 2'b00;
     fuif.imm_sel = 0;
 
-    if((fuif.rs1 == fuif.Rd_Mem && (fuif.Rd_Mem != 0)) && (fuif.RegWR_mem) && (!fuif.MemtoReg)) begin
+    // Register selectors are 5-bit values; compare them explicitly to avoid
+    // treating a multi-bit selector as a one-bit boolean.
+    if((fuif.rs1 == fuif.Rd_Mem && (fuif.Rd_Mem != 0)) && (fuif.RegWR_mem != 0) && (!fuif.MemtoReg)) begin
       fuif.Alu_in1 = 2'b11; 
     end
 
-    if((fuif.rs1 == fuif.Rd_Mem && (fuif.Rd_Mem != 0)) && (fuif.RegWR_mem)) begin
+    if((fuif.rs1 == fuif.Rd_Mem && (fuif.Rd_Mem != 0)) && (fuif.RegWR_mem != 0)) begin
         fuif.Alu_in1 = 2'b10; 
     end
-    else if((fuif.rs1 == fuif.Rd_WB && (fuif.Rd_WB != 0)) && (fuif.RegWR_WB)) begin
+    else if((fuif.rs1 == fuif.Rd_WB && (fuif.Rd_WB != 0)) && (fuif.RegWR_WB != 0)) begin
         fuif.Alu_in1 = 2'b01;
     end
 
@@ -42,14 +44,14 @@ module forward_unit (
     // if((fuif.rs2 == fuif.Rd_Mem && (fuif.Rd_Mem != 0)) && (fuif.RegWR_mem) && (!fuif.MemtoReg)) begin
     //     fuif.Alu_in2 = 2'b11; 
     // end
-    if((fuif.rs2 == fuif.Rd_Mem && (fuif.Rd_Mem != 0)) && (fuif.RegWR_mem)) begin
+    if((fuif.rs2 == fuif.Rd_Mem && (fuif.Rd_Mem != 0)) && (fuif.RegWR_mem != 0)) begin
         fuif.Alu_in2 = 2'b10; 
     end
-    else if((fuif.rs2 == fuif.Rd_WB && (fuif.Rd_WB != 0)) && (fuif.RegWR_WB)) begin
+    else if((fuif.rs2 == fuif.Rd_WB && (fuif.Rd_WB != 0)) && (fuif.RegWR_WB != 0)) begin
         fuif.Alu_in2 = 2'b01;
     end
 
-    if((fuif.rs1 == fuif.Rd_Mem && (fuif.Rd_Mem != 0)) && (fuif.RegWR_mem) && fuif.jumpsel == 2'b10) begin
+    if((fuif.rs1 == fuif.Rd_Mem && (fuif.Rd_Mem != 0)) && (fuif.RegWR_mem != 0) && fuif.jumpsel == 2'b10) begin
       fuif.imm_sel = 1;
     end
   end

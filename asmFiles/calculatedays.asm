@@ -2,6 +2,8 @@
 # Calculate Days Since 2000
 #----------------------------------------------------------
   org 0x0000
+.globl _start
+_start:
 
 calc_days:
 

@@ -5,6 +5,8 @@
 # Test a search algorithm
 #--------------------------------------
   org   0x0000
+.globl _start
+_start:
   ori   $2, $0, 0x80
  start:
   ori   $4, $0, 0x01

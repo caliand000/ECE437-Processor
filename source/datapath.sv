@@ -61,7 +61,9 @@ module datapath(
   control_unit      CONTROL(CLK, nRST, cruif);
   decider           Branch(deif);
   register_file     REG_FILE(CLK, nRST, rfif);
-  alu               ALU(.A(Alu_a), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(ex_mem_in.AluOut), .zero(Zero), .negative(Neg));
+  // The pipeline does not consume overflow, but naming the unused port keeps
+  // the ALU interface connection explicit and avoids a missing-pin warning.
+  alu               ALU(.A(Alu_a), .B(Alu_c), .opcode(id_ex_out.Aluop), .out(ex_mem_in.AluOut), .zero(Zero), .negative(Neg), .overflow());
   extender          EX(exif_in);
   hazard_unit       HAZARD(huif);
   forward_unit      FORWARD(fuif);

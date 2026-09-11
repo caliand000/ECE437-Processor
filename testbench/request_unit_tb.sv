@@ -11,6 +11,11 @@
 
 module request_unit_tb;
 
+  initial begin
+    $dumpfile("module.vcd");
+    $dumpvars(0, request_unit_tb);
+  end
+
   parameter PERIOD = 10;
 
   // Clock and reset

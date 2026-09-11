@@ -2,6 +2,8 @@
 # RISC-V Assembly: Test Loop (Sum Array)
 #----------------------------------------------------------
 org   0x0000
+.globl _start
+_start:
 
 # Initialize: sum in $1, counter in $2, pointer in $3.
 addi  $1, $0, 0         # sum = 0

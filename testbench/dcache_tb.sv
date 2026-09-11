@@ -12,6 +12,11 @@
 
 module dcache_tb;
 
+  initial begin
+    $dumpfile("module.vcd");
+    $dumpvars(0, dcache_tb);
+  end
+
   parameter PERIOD = 10;
 
   // Clock and reset

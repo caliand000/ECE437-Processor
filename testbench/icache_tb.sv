@@ -12,6 +12,11 @@
 
 module icache_tb;
 
+  initial begin
+    $dumpfile("module.vcd");
+    $dumpvars(0, icache_tb);
+  end
+
   parameter PERIOD = 10;
 
   // Clock and reset
@@ -20,7 +25,8 @@ module icache_tb;
 
   // import types
   import cpu_types_pkg::*;
-  always #(PERIOD / 2) CLK = ~CLK;
+  // Nonblocking clock update avoids a sequential blocking-assignment warning.
+  always #(PERIOD / 2) CLK <= ~CLK;
    parameter CLKDIV = 2;
   logic CPUCLK;
   logic [3:0] count;

@@ -1,12 +1,16 @@
 #----------------------------------------------------------
 # RISC-V Assembly
+# Updated for standard GNU RISC-V syntax compliance:
+#   - %lo(start) relocation used for label address in ori
 #----------------------------------------------------------
 #--------------------------------------
 # Multiply Two Unsigned Integers
 #--------------------------------------
   org 0x0000
+.globl _start
+_start:
 
-  ori   $10, $10, start      # Initialize pointer to start
+  ori   $10, $10, %lo(start) # Initialize pointer to start
   lw    $11, 0($10)          # Load Operand1
   lw    $12, 4($10)          # Load Operand2
   ori   $13, $13, 0          # Initialize result register

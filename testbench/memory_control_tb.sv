@@ -11,6 +11,11 @@
 
 module memory_control_tb;
 
+  initial begin
+    $dumpfile("module.vcd");
+    $dumpvars(0, memory_control_tb);
+  end
+
   parameter PERIOD = 10;
 
   // Clock and reset

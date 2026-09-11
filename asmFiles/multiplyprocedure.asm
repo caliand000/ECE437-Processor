@@ -1,12 +1,16 @@
 #----------------------------------------------------------
 # RISC-V Assembly
+# Updated for standard GNU RISC-V syntax compliance:
+#   - %lo(start) relocation used for label address in ori
 #----------------------------------------------------------
 #--------------------------------------
 # Multiply Procedure for Multiple Operands
 #--------------------------------------
   org 0x0000
+.globl _start
+_start:
 
-  ori   $10, $10, start      # Initialize pointer to start
+  ori   $10, $10, %lo(start) # Initialize pointer to start
   lw    $11, 0($10)          # Load first operand
   lw    $12, 4($10)          # Load second operand
   jal   multiply             # Call multiply subroutine

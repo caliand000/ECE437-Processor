@@ -1,6 +1,5 @@
 #!/bin/bash
 set -uo pipefail
-# Continue after individual failures so the complete test set is reported.
 
 ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 ASM_DIR="$ROOT_DIR/asmFiles"
@@ -8,6 +7,11 @@ OUT_DIR="$ROOT_DIR/asm_test_outputs"
 REPORT_FILE="$ROOT_DIR/asm_test_report_$(date +"%Y_%m_%d_%I_%M_%p").txt"
 SIMULATE=0
 SINGLE_FILE=""
+
+# ANSI Colors for clean terminal display
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
 
 while (( "$#" )); do
   case "$1" in
@@ -27,9 +31,11 @@ done
 
 mkdir -p "$OUT_DIR"
 
-echo "Assembly Test Report File $(date +"%Y_%m_%d_%I_%M_%p")" > "$REPORT_FILE"
-
-echo "Root dir: $ROOT_DIR" >> "$REPORT_FILE"
+echo "==================================================" > "$REPORT_FILE"
+echo "Assembly Test Report - $(date +"%Y-%m-%d %I:%M:%S %p")" >> "$REPORT_FILE"
+echo "Root Directory: $ROOT_DIR" >> "$REPORT_FILE"
+echo "Simulate Mode: $SIMULATE" >> "$REPORT_FILE"
+echo "==================================================" >> "$REPORT_FILE"
 
 shopt -s nullglob
 default_files=("$ASM_DIR"/*.asm)
@@ -49,7 +55,19 @@ if (( count == 0 )); then
   exit 1
 fi
 
-echo "Executing $count assembly test files" | tee -a "$REPORT_FILE"
+echo "Executing $count assembly test files..."
+echo "" >> "$REPORT_FILE"
+
+if (( SIMULATE )); then
+  if [[ ! -x "$ROOT_DIR/obj_dir/Vsystem_tb" ]]; then
+    echo "Compiling system testbench with Verilator..."
+    if ! (cd "$ROOT_DIR" && verilator --binary --timing --Wno-fatal -Iinclude --top-module system_tb testbench/system_tb.sv source/*.sv > "$OUT_DIR/verilator_compile.log" 2>&1); then
+      echo -e "${RED}FAIL${NC}: Verilator testbench compilation failed (see $OUT_DIR/verilator_compile.log)"
+      echo "VERILATOR COMPILE FAILED" >> "$REPORT_FILE"
+      exit 1
+    fi
+  fi
+fi
 
 pass_count=0
 fail_count=0
@@ -57,9 +75,7 @@ fail_count=0
 for i in "${!asm_files[@]}"; do
   asm_file="${asm_files[$i]}"
   name="$(basename "$asm_file" .asm)"
-  idx=$((i + 1))
-
-  printf 'processing file %s (%d of %d)\n' "${asm_file#$ROOT_DIR/}" "$idx" "$count" | tee -a "$REPORT_FILE"
+  rel_path="${asm_file#$ROOT_DIR/}"
 
   out_subdir="$OUT_DIR/$name"
   mkdir -p "$out_subdir"
@@ -67,49 +83,51 @@ for i in "${!asm_files[@]}"; do
 
   asm_path="$(cd "$(dirname "$asm_file")" && pwd)/$(basename "$asm_file")"
   if ! (cd "$out_subdir" && bash "$ROOT_DIR/NewAssemblerFiles/New_files/build_asm.sh" "$asm_path" > "$out_subdir/build.log" 2>&1); then
-    echo "BUILD FAILED: $asm_file" | tee -a "$REPORT_FILE"
-    echo "See $out_subdir/build.log" | tee -a "$REPORT_FILE"
+    echo -e "${RED}FAIL${NC}: $rel_path (Build Failed)"
+    echo "[FAIL] $rel_path - Build Failed (See $out_subdir/build.log)" >> "$REPORT_FILE"
     fail_count=$((fail_count + 1))
     continue
   fi
 
   cp "$out_subdir/meminit.hex" "$ROOT_DIR/meminit.hex"
-  echo "ASSEMBLY OK: $asm_file" | tee -a "$REPORT_FILE"
 
   if (( SIMULATE )); then
-    # This requires an Icarus installation with the project's RAM primitive
-    # and SystemVerilog interfaces available.
-    if ! (cd "$ROOT_DIR" && iverilog -g2012 -I./include -s system_tb -o "$out_subdir/system_tb.out" testbench/system_tb.sv source/*.sv > "$out_subdir/system_compile.log" 2>&1); then
-      echo "SIM COMPILE FAILED: $asm_file" | tee -a "$REPORT_FILE"
-      echo "See $out_subdir/system_compile.log" | tee -a "$REPORT_FILE"
-      fail_count=$((fail_count + 1))
-      continue
-    fi
-
-    if ! (cd "$ROOT_DIR" && vvp "$out_subdir/system_tb.out" > "$out_subdir/system_run.log" 2>&1); then
-      echo "SIM RUN FAILED: $asm_file" | tee -a "$REPORT_FILE"
-      echo "See $out_subdir/system_run.log" | tee -a "$REPORT_FILE"
+    if ! (cd "$ROOT_DIR" && ./obj_dir/Vsystem_tb > "$out_subdir/system_run.log" 2>&1); then
+      echo -e "${RED}FAIL${NC}: $rel_path (Simulation Run Failed)"
+      echo "[FAIL] $rel_path - Simulation Run Failed (See $out_subdir/system_run.log)" >> "$REPORT_FILE"
       fail_count=$((fail_count + 1))
       continue
     fi
 
     halt_line="$(grep -o "Halted at.*ran for[[:space:]]*[0-9]*[[:space:]]*cycles\." "$out_subdir/system_run.log" || true)"
     if [[ -z "$halt_line" ]]; then
-      echo "SIM RUN FAILED: $asm_file (no halt detected)" | tee -a "$REPORT_FILE"
-      echo "See $out_subdir/system_run.log" | tee -a "$REPORT_FILE"
+      echo -e "${RED}FAIL${NC}: $rel_path (No Halt Detected)"
+      echo "[FAIL] $rel_path - No Halt Detected (See $out_subdir/system_run.log)" >> "$REPORT_FILE"
       fail_count=$((fail_count + 1))
       continue
     fi
 
     cycles="$(echo "$halt_line" | grep -o '[0-9]\+' | tail -1)"
-    echo "SIM OK: $asm_file - $cycles cycles" | tee -a "$REPORT_FILE"
+    echo -e "${GREEN}PASS${NC}: $rel_path ($cycles cycles)"
+    echo "[PASS] $rel_path - Assembly OK | Simulation OK ($cycles cycles)" >> "$REPORT_FILE"
+  else
+    echo -e "${GREEN}PASS${NC}: $rel_path"
+    echo "[PASS] $rel_path - Assembly OK" >> "$REPORT_FILE"
   fi
 
   pass_count=$((pass_count + 1))
 done
 
-echo "" | tee -a "$REPORT_FILE"
-echo "Completed $count assembly tests: $pass_count passed, $fail_count failed" | tee -a "$REPORT_FILE"
-echo "Outputs stored in $OUT_DIR" | tee -a "$REPORT_FILE"
+echo ""
+echo "==================================================" >> "$REPORT_FILE"
+echo "Summary: $count total | $pass_count passed | $fail_count failed" >> "$REPORT_FILE"
+echo "Outputs stored in $OUT_DIR" >> "$REPORT_FILE"
+
+if (( fail_count == 0 )); then
+  echo -e "${GREEN}Completed $count assembly tests: $pass_count passed, $fail_count failed${NC}"
+else
+  echo -e "${RED}Completed $count assembly tests: $pass_count passed, $fail_count failed${NC}"
+fi
+echo "Report log: ${REPORT_FILE#$ROOT_DIR/}"
 
 (( fail_count == 0 ))

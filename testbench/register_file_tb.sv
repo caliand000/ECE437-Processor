@@ -13,6 +13,11 @@
 
 module register_file_tb;
 
+  initial begin
+    $dumpfile("module.vcd");
+    $dumpvars(0, register_file_tb);
+  end
+
   parameter PERIOD = 10;
 
   logic CLK = 0, nRST;
@@ -21,12 +26,10 @@ module register_file_tb;
   // logic [4:0] wsel, rsel1, rsel2;
 
   // test vars
-  int v1 = 1;
-  int v2 = 4721;
-  int v3 = 25119;
 
   // clock
-  always #(PERIOD/2) CLK++;
+  // Nonblocking clock update avoids a sequential blocking-assignment warning.
+  always #(PERIOD/2) CLK <= ~CLK;
 
   // interface
   register_file_if rfif ();

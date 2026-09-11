@@ -18,10 +18,10 @@ opcode is invented for this course).
 import re
 import sys
 
-REG_RE = re.compile(r'\$(\d+)')
-CFW_RE = re.compile(r'\bcfw\b')
-HALT_RE = re.compile(r'\bhalt\b')
-ORG_RE = re.compile(r'\borg\b')
+REG_RE = re.compile(r'\$([a-zA-Z0-9]+)')
+CFW_RE = re.compile(r'\bcfw\b', re.IGNORECASE)
+HALT_RE = re.compile(r'\bhalt\b', re.IGNORECASE)
+ORG_RE = re.compile(r'\borg\b', re.IGNORECASE)
 
 # I-type ALU ops with a 12-bit sign-extended immediate field (matches the generic
 # assignment in control_unit.sv's ITYPE case: cuif.Imm = {{20{itype.imm[11]}},itype.imm}).
@@ -31,7 +31,7 @@ ORG_RE = re.compile(r'\borg\b')
 # behavior matches whatever the original hardware/assembler combination really did --
 # it does NOT mean the literal's intended value is preserved semantically.
 ITYPE_IMM_RE = re.compile(
-    r'^(\s*)(addi|ori|andi|xori|slti|sltiu)(\s+)(x\d+)\s*,\s*(x\d+)\s*,\s*(-?0[xX][0-9A-Fa-f]+|-?\d+)(.*)$'
+    r'^(\s*)(addi|ori|andi|xori|slti|sltiu)(\s+)([a-zA-Z0-9_]+)\s*,\s*([a-zA-Z0-9_]+)\s*,\s*(-?0[xX][0-9A-Fa-f]+|-?\d+)(.*)$'
 )
 
 # Bare label used as an I-type immediate (e.g. `ori x10, x10, start`). GNU as
@@ -44,7 +44,7 @@ ITYPE_IMM_RE = re.compile(
 # (< 0x1000) -- for larger addresses this needs a real lui+addi/%hi()+%lo()
 # pair instead, which this shim does not attempt to detect or generate.
 ITYPE_LABEL_IMM_RE = re.compile(
-    r'^(\s*)(addi|ori|andi|xori|slti|sltiu)(\s+)(x\d+)\s*,\s*(x\d+)\s*,\s*([A-Za-z_][A-Za-z0-9_]*)\s*$'
+    r'^(\s*)(addi|ori|andi|xori|slti|sltiu)(\s+)([a-zA-Z0-9_]+)\s*,\s*([a-zA-Z0-9_]+)\s*,\s*([A-Za-z_][A-Za-z0-9_]*)\s*$'
 )
 
 def fix_itype_label_immediate(line: str) -> str:
@@ -67,8 +67,14 @@ def fix_itype_immediate(line: str) -> str:
     note = f"  # NOTE: {imm_text} truncated to 12-bit field -> {signed} (was out of -2048..2047 range)"
     return f"{indent}{mnem}{sp}{rd}, {rs1}, {signed}{rest}{note}\n"
 
+def convert_reg(m: re.Match) -> str:
+    val = m.group(1)
+    if val.isdigit():
+        return f"x{val}"
+    return val
+
 def translate_line(line: str) -> str:
-    line = REG_RE.sub(r'x\1', line)
+    line = REG_RE.sub(convert_reg, line)
     line = CFW_RE.sub('.word', line)
     line = ORG_RE.sub('.org', line)
     line = HALT_RE.sub('.word 0x0000007f', line)

@@ -2,6 +2,8 @@
 # Test Forwarding Hazard
 #--------------------------------------
 org 0x0000
+.globl _start
+_start:
 
 ori   $3, $0, 0x5
 sw    $3, 64($0)  

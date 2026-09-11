@@ -2,6 +2,8 @@
 # Test BGEU Not Taken
 #--------------------------------------
 org 0x0000
+.globl _start
+_start:
 ori   $3,$0,15
 ori   $1, $0, 0x2
 ori   $2, $0, 0x3

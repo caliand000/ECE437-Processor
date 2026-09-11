@@ -13,6 +13,11 @@
 
 module hazard_unit_tb;
 
+  initial begin
+    $dumpfile("module.vcd");
+    $dumpvars(0, hazard_unit_tb);
+  end
+
   parameter PERIOD = 10;
 
 

@@ -13,6 +13,11 @@
 
 module forward_unit_tb;
 
+  initial begin
+    $dumpfile("module.vcd");
+    $dumpvars(0, forward_unit_tb);
+  end
+
   parameter PERIOD = 10;
 
 

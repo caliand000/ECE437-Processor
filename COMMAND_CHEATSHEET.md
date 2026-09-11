@@ -186,6 +186,14 @@ This expects a matching `testbench/alu_tb.sv`; other available module names
 include `control_unit`, `dcache`, `forward_unit`, `hazard_unit`, `icache`,
 `memory_control`, `register_file`, and `request_unit`.
 
+The command prints the testbench output, saves a VCD waveform at
+`waves/<module>.vcd`, and opens it in GTKWave when GTKWave is installed. The
+waveform can also be opened manually:
+
+```bash
+gtkwave waves/alu.vcd
+```
+
 In ModelSim/Questa, load the corresponding waveform file after launching the testbench:
 
 ```tcl

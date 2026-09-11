@@ -5,6 +5,8 @@
 # Test branch and jumps
 #--------------------------------------
   org 0x0000
+.globl _start
+_start:
   lui $3, 0x0000B
   ori   $4, $0, 0x75C
   add $4, $4, $3

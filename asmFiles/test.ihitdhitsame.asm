@@ -2,6 +2,8 @@
 # Test IHIT and DHIT in the Same Cycle
 #--------------------------------------
 org 0x0000
+.globl _start
+_start:
 
 ori   $3, $0, 0x4  
 sw    $3, 64($0)    
