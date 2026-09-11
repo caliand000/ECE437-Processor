@@ -1,0 +1,24 @@
+name: Assembly Build CI
+
+on:
+  push:
+    branches: [ pipeline, processor-toolchain, main ]
+  pull_request:
+    branches: [ pipeline, main ]
+
+jobs:
+  build-asm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install RISC-V Toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-riscv64-unknown-elf python3
+
+      - name: Build all Assembly programs
+        run: |
+          bash run_all_asm_tests.sh
