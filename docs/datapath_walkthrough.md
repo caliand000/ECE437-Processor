@@ -191,6 +191,19 @@ module datapath #(
 endmodule
 ```
 
+## Phase C condition mapping
+
+| Original latch behavior | `advance` | `pipe_flush` | `if_id_en` | IF/ID | ID/EX | EX/MEM | MEM/WB |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Reset: all four structs assigned `'0` | n/a | n/a | n/a | async clear | async clear | async clear | async clear |
+| `dpif.ihit && (!(dpif.dmemREN || dpif.dmemWEN) || dpif.dhit)` | 1 | `huif.Flush` | `huif.latch_en` | load only when `latch_en` | load | load | load |
+| Same condition with `huif.Flush` | 1 | 1 | don't care | flush | flush | flush | load, never flush |
+| Same condition, no flush, `huif.latch_en` | 1 | 0 | 1 | load | load | load | load |
+| Same condition, no flush, `!huif.latch_en` | 1 | 0 | 0 | hold | load bubble-built data | load | load |
+| `else if(dpif.dhit)` after the normal condition fails | 0 | 0 | 0 | hold | hold | hold except `read_data` | hold |
+
+`EX_MEM_READ_DATA_REG` has enable `advance || dpif.dhit` and flush `pipe_flush`: when `advance` is false, the `dhit` term preserves the original dedicated capture; when `advance` is true, it tracks the normal EX/MEM input. The full EX/MEM register's `read_data` field is intentionally ignored in favor of this dedicated value.
+
 ## Verified oddities not changed
 
 - `forward_unit.sv`: confirmed. `Alu_in1` is first assigned `2'b11` for a non-load EX/MEM dependency and then immediately overridden to `2'b10` by the next `if` when the same condition is true. This is dead behavior in the current code and was left unchanged.

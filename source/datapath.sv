@@ -30,10 +30,13 @@ module datapath #(
   EX_MEM ex_mem_q;
   MEM_WB mem_wb_d;
   MEM_WB mem_wb_q;
+  EX_MEM ex_mem_pipe_q;
+  logic [31:0] ex_mem_read_data_q;
 
   logic [31:0] rf_wdat, rf_rdat1, rf_rdat2;
   logic [1:0] pcsrc;
   logic [1:0] alu_in1, alu_in2;
+  logic advance, pipe_flush, if_id_en;
 
   hazard_unit HAZARD(huif);
   forward_unit FORWARD(fuif);
@@ -81,36 +84,36 @@ module datapath #(
   assign alu_in1 = fuif.Alu_in1;
   assign alu_in2 = fuif.Alu_in2;
 
-  always_ff @(posedge CLK, negedge nRST) begin
-    if(!nRST) begin
-      if_id_q <= '0;
-      id_ex_q <= '0;
-      ex_mem_q <= '0;
-      mem_wb_q <= '0;
-    end
-    else begin
-      if(dpif.ihit && (!(dpif.dmemREN || dpif.dmemWEN) || dpif.dhit)) begin
-        if(huif.Flush) begin
-          if_id_q <= '0;
-          id_ex_q <= '0;
-          ex_mem_q <= '0;
-        end
-        else if(huif.latch_en) begin
-          if_id_q <= if_id_d;
-          id_ex_q <= id_ex_d;
-          ex_mem_q <= ex_mem_d;
-        end
-        else begin
-          if_id_q <= if_id_q;
-          id_ex_q <= id_ex_d;
-          ex_mem_q <= ex_mem_d;
-        end
-        mem_wb_q <= mem_wb_d;
-      end
-      else if(dpif.dhit) begin
-        ex_mem_q.read_data <= ex_mem_d.read_data;
-      end
-    end
+  assign advance = dpif.ihit && (!(dpif.dmemREN || dpif.dmemWEN) || dpif.dhit);
+  assign pipe_flush = advance && huif.Flush;
+  assign if_id_en = advance && huif.latch_en;
+
+  always_comb begin
+    ex_mem_q = ex_mem_pipe_q;
+    ex_mem_q.read_data = ex_mem_read_data_q;
   end
+
+  pipe_reg #(.T(IF_ID)) IF_ID_REG(
+    .CLK(CLK), .nRST(nRST), .en(if_id_en), .flush(pipe_flush),
+    .d(if_id_d), .q(if_id_q)
+  );
+  pipe_reg #(.T(ID_EX)) ID_EX_REG(
+    .CLK(CLK), .nRST(nRST), .en(advance), .flush(pipe_flush),
+    .d(id_ex_d), .q(id_ex_q)
+  );
+  pipe_reg #(.T(EX_MEM)) EX_MEM_REG(
+    .CLK(CLK), .nRST(nRST), .en(advance), .flush(pipe_flush),
+    .d(ex_mem_d), .q(ex_mem_pipe_q)
+  );
+  pipe_reg #(.T(MEM_WB)) MEM_WB_REG(
+    .CLK(CLK), .nRST(nRST), .en(advance), .flush(1'b0),
+    .d(mem_wb_d), .q(mem_wb_q)
+  );
+
+  // Preserve the original dhit-only capture when the pipeline itself is stalled.
+  pipe_reg #(.T(logic [31:0])) EX_MEM_READ_DATA_REG(
+    .CLK(CLK), .nRST(nRST), .en(advance || dpif.dhit), .flush(pipe_flush),
+    .d(ex_mem_d.read_data), .q(ex_mem_read_data_q)
+  );
 
 endmodule
