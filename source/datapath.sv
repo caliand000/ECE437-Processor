@@ -32,24 +32,30 @@ module datapath #(
   MEM_WB mem_wb_q;
 
   logic [31:0] rf_wdat, rf_rdat1, rf_rdat2;
+  logic [1:0] pcsrc;
+  logic [1:0] alu_in1, alu_in2;
+
+  hazard_unit HAZARD(huif);
+  forward_unit FORWARD(fuif);
 
   if_stage #(.PC_INIT(PC_INIT)) IF_STAGE(
-    .CLK(CLK), .nRST(nRST), .dpif(dpif), .deif(deif), .huif(huif),
+    .CLK(CLK), .nRST(nRST), .dpif(dpif), .pcsrc(pcsrc), .halt(huif.Halt),
     .ex_mem_q(ex_mem_q), .if_id_d(if_id_d)
   );
   id_stage ID_STAGE(
     .CLK(CLK), .nRST(nRST), .if_id_q(if_id_q),
     .rf_rdat1(rf_rdat1), .rf_rdat2(rf_rdat2), .id_ex_q(id_ex_q),
-    .deif(deif),
-    .cruif(cruif), .exif_in(exif_in), .huif(huif), .id_ex_d(id_ex_d)
+    .cruif(cruif), .exif_in(exif_in), .bubble(huif.Zero_controls),
+    .id_ex_d(id_ex_d)
   );
   ex_stage EX_STAGE(
-    .dpif(dpif), .deif(deif), .fuif(fuif), .id_ex_q(id_ex_q),
+    .dpif(dpif), .deif(deif), .id_ex_q(id_ex_q),
     .ex_mem_q(ex_mem_q), .rf_wdat(rf_wdat), .mem_wb_d(mem_wb_d),
-    .mem_wb_q(mem_wb_q), .ex_mem_d(ex_mem_d)
+    .mem_wb_q(mem_wb_q), .alu_in1(alu_in1), .alu_in2(alu_in2),
+    .pcsrc(pcsrc), .ex_mem_d(ex_mem_d)
   );
   mem_stage MEM_STAGE(
-    .CLK(CLK), .nRST(nRST), .dpif(dpif), .huif(huif),
+    .CLK(CLK), .nRST(nRST), .dpif(dpif), .flush(huif.Flush),
     .id_ex_q(id_ex_q), .ex_mem_q(ex_mem_q), .mem_wb_d(mem_wb_d)
   );
   wb_stage WB_STAGE(
@@ -57,6 +63,23 @@ module datapath #(
     .mem_wb_q(mem_wb_q), .rf_rdat1(rf_rdat1), .rf_rdat2(rf_rdat2),
     .rf_wdat(rf_wdat)
   );
+
+  assign huif.rs1 = if_id_q.instruction[19:15];
+  assign huif.rs2 = if_id_q.instruction[24:20];
+  assign huif.Rd = id_ex_q.rd;
+  assign huif.Pcsrc = pcsrc;
+  assign huif.Memtoreg = id_ex_q.MemtoReg;
+
+  assign fuif.rs1 = id_ex_q.rs1;
+  assign fuif.rs2 = id_ex_q.rs2;
+  assign fuif.Rd_Mem = ex_mem_q.rd;
+  assign fuif.Rd_WB = mem_wb_q.rd;
+  assign fuif.RegWR_mem = ex_mem_q.RegWr;
+  assign fuif.RegWR_WB = mem_wb_q.RegWr;
+  assign fuif.jumpsel = ex_mem_q.jumpsel;
+  assign fuif.MemtoReg = ex_mem_q.MemtoReg;
+  assign alu_in1 = fuif.Alu_in1;
+  assign alu_in2 = fuif.Alu_in2;
 
   always_ff @(posedge CLK, negedge nRST) begin
     if(!nRST) begin

@@ -1,17 +1,18 @@
 `include "datapath_cache_if.vh"
 `include "decider_if.vh"
-`include "forward_unit_if.vh"
 `include "pipeline_types_pkg.vh"
 
 module ex_stage(
   datapath_cache_if.dp dpif,
   decider_if deif,
-  forward_unit_if fuif,
   input pipeline_types_pkg::ID_EX id_ex_q,
   input pipeline_types_pkg::EX_MEM ex_mem_q,
   input logic [31:0] rf_wdat,
   input pipeline_types_pkg::MEM_WB mem_wb_d,
   input pipeline_types_pkg::MEM_WB mem_wb_q,
+  input logic [1:0] alu_in1,
+  input logic [1:0] alu_in2,
+  output logic [1:0] pcsrc,
   output pipeline_types_pkg::EX_MEM ex_mem_d
 );
   import cpu_types_pkg::*;
@@ -22,7 +23,6 @@ module ex_stage(
   word_t alu_out;
   EX_MEM ex_mem_raw;
 
-  forward_unit FORWARD(fuif);
   decider Branch(deif);
   alu ALU(.A(Alu_a), .B(Alu_c), .opcode(id_ex_q.Aluop),
     .out(alu_out), .zero(Zero), .negative(Neg), .overflow());
@@ -30,14 +30,14 @@ module ex_stage(
   always_comb begin
     Alu_a = '0;
     Alu_b = '0;
-    case(fuif.Alu_in1)
+    case(alu_in1)
       2'b00: Alu_a = id_ex_q.rdat1;
       2'b01: Alu_a = rf_wdat;
       2'b10: Alu_a = mem_wb_d.wrb;
       2'b11: Alu_a = ex_mem_q.immediate;
     endcase
 
-    case(fuif.Alu_in2)
+    case(alu_in2)
       2'b00: Alu_b = id_ex_q.rdat2;
       2'b01: Alu_b = rf_wdat;
       2'b10: Alu_b = mem_wb_d.wrb;
@@ -49,14 +49,7 @@ module ex_stage(
   assign deif.Negative = ex_mem_q.Neg;
   assign deif.typ = ex_mem_q.branch;
 
-  assign fuif.rs1 = id_ex_q.rs1;
-  assign fuif.rs2 = id_ex_q.rs2;
-  assign fuif.Rd_Mem = ex_mem_q.rd;
-  assign fuif.Rd_WB = mem_wb_q.rd;
-  assign fuif.RegWR_mem = ex_mem_q.RegWr;
-  assign fuif.RegWR_WB = mem_wb_q.RegWr;
-  assign fuif.jumpsel = ex_mem_q.jumpsel;
-  assign fuif.MemtoReg = ex_mem_q.MemtoReg;
+  assign pcsrc = deif.PCsrc;
 
   always_comb begin
     ex_mem_raw = '0;

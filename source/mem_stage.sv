@@ -1,12 +1,11 @@
 `include "datapath_cache_if.vh"
-`include "hazard_unit_if.vh"
 `include "pipeline_types_pkg.vh"
 
 module mem_stage(
   input logic CLK,
   input logic nRST,
   datapath_cache_if.dp dpif,
-  hazard_unit_if huif,
+  input logic flush,
   input pipeline_types_pkg::ID_EX id_ex_q,
   input pipeline_types_pkg::EX_MEM ex_mem_q,
   output pipeline_types_pkg::MEM_WB mem_wb_d
@@ -41,9 +40,9 @@ module mem_stage(
         dpif.dmemREN <= 0;
         dpif.dmemWEN <= 0;
       end
-      else if(id_ex_q.MemWr == 2'b01 && dpif.ihit && !huif.Flush)
+      else if(id_ex_q.MemWr == 2'b01 && dpif.ihit && !flush)
         dpif.dmemWEN <= 1;
-      else if(id_ex_q.MemWr == 2'b10 && dpif.ihit && !huif.Flush)
+      else if(id_ex_q.MemWr == 2'b10 && dpif.ihit && !flush)
         dpif.dmemREN <= 1;
     end
   end
