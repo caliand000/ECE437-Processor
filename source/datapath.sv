@@ -22,72 +22,70 @@ module datapath #(
   hazard_unit_if huif();
   forward_unit_if fuif();
 
-  IF_ID if_id_in;
-  IF_ID if_id_out;
-  ID_EX id_ex_in;
-  ID_EX id_ex_out;
-  EX_MEM ex_mem_in;
-  EX_MEM ex_mem_out;
-  MEM_WB mem_wb_in;
-  MEM_WB mem_wb_out;
+  IF_ID if_id_d;
+  IF_ID if_id_q;
+  ID_EX id_ex_d;
+  ID_EX id_ex_q;
+  EX_MEM ex_mem_d;
+  EX_MEM ex_mem_q;
+  MEM_WB mem_wb_d;
+  MEM_WB mem_wb_q;
 
   logic [31:0] rf_wdat, rf_rdat1, rf_rdat2;
 
   if_stage #(.PC_INIT(PC_INIT)) IF_STAGE(
     .CLK(CLK), .nRST(nRST), .dpif(dpif), .deif(deif), .huif(huif),
-    .ex_mem_out(ex_mem_out), .if_id_in(if_id_in)
+    .ex_mem_q(ex_mem_q), .if_id_d(if_id_d)
   );
   id_stage ID_STAGE(
-    .CLK(CLK), .nRST(nRST), .if_id_out(if_id_out),
-    .rf_rdat1(rf_rdat1), .rf_rdat2(rf_rdat2), .id_ex_out(id_ex_out),
+    .CLK(CLK), .nRST(nRST), .if_id_q(if_id_q),
+    .rf_rdat1(rf_rdat1), .rf_rdat2(rf_rdat2), .id_ex_q(id_ex_q),
     .deif(deif),
-    .cruif(cruif), .exif_in(exif_in), .huif(huif), .id_ex_in(id_ex_in)
+    .cruif(cruif), .exif_in(exif_in), .huif(huif), .id_ex_d(id_ex_d)
   );
   ex_stage EX_STAGE(
-    .dpif(dpif), .deif(deif), .fuif(fuif), .id_ex_out(id_ex_out),
-    .ex_mem_out(ex_mem_out), .rf_wdat(rf_wdat), .mem_wb_in(mem_wb_in),
-    .mem_wb_out(mem_wb_out),
-    .ex_mem_in(ex_mem_in)
+    .dpif(dpif), .deif(deif), .fuif(fuif), .id_ex_q(id_ex_q),
+    .ex_mem_q(ex_mem_q), .rf_wdat(rf_wdat), .mem_wb_d(mem_wb_d),
+    .mem_wb_q(mem_wb_q), .ex_mem_d(ex_mem_d)
   );
   mem_stage MEM_STAGE(
     .CLK(CLK), .nRST(nRST), .dpif(dpif), .huif(huif),
-    .id_ex_out(id_ex_out), .ex_mem_out(ex_mem_out),
-    .mem_wb_in(mem_wb_in)
+    .id_ex_q(id_ex_q), .ex_mem_q(ex_mem_q), .mem_wb_d(mem_wb_d)
   );
   wb_stage WB_STAGE(
-    .CLK(CLK), .nRST(nRST), .if_id_out(if_id_out),
-    .mem_wb_out(mem_wb_out), .rf_rdat1(rf_rdat1), .rf_rdat2(rf_rdat2),
+    .CLK(CLK), .nRST(nRST), .if_id_q(if_id_q),
+    .mem_wb_q(mem_wb_q), .rf_rdat1(rf_rdat1), .rf_rdat2(rf_rdat2),
     .rf_wdat(rf_wdat)
   );
 
   always_ff @(posedge CLK, negedge nRST) begin
     if(!nRST) begin
-      if_id_out <= '0;
-      id_ex_out <= '0;
-      ex_mem_out <= '0;
-      mem_wb_out <= '0;
+      if_id_q <= '0;
+      id_ex_q <= '0;
+      ex_mem_q <= '0;
+      mem_wb_q <= '0;
     end
     else begin
       if(dpif.ihit && (!(dpif.dmemREN || dpif.dmemWEN) || dpif.dhit)) begin
         if(huif.Flush) begin
-          if_id_out <= '0;
-          id_ex_out <= '0;
-          ex_mem_out <= '0;
+          if_id_q <= '0;
+          id_ex_q <= '0;
+          ex_mem_q <= '0;
         end
         else if(huif.latch_en) begin
-          if_id_out <= if_id_in;
-          id_ex_out <= id_ex_in;
-          ex_mem_out <= ex_mem_in;
+          if_id_q <= if_id_d;
+          id_ex_q <= id_ex_d;
+          ex_mem_q <= ex_mem_d;
         end
         else begin
-          if_id_out <= if_id_out;
-          id_ex_out <= id_ex_in;
-          ex_mem_out <= ex_mem_in;
+          if_id_q <= if_id_q;
+          id_ex_q <= id_ex_d;
+          ex_mem_q <= ex_mem_d;
         end
-        mem_wb_out <= mem_wb_in;
+        mem_wb_q <= mem_wb_d;
       end
       else if(dpif.dhit) begin
-        ex_mem_out.read_data <= ex_mem_in.read_data;
+        ex_mem_q.read_data <= ex_mem_d.read_data;
       end
     end
   end
