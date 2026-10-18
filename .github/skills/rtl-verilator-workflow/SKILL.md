@@ -33,6 +33,7 @@ The script prints the first differing register write, the Spike PC and instructi
 ## Known caveats (check these before blaming the RTL)
 - CI and local setup use the patched Spike base pinned in `scripts/setup_spike.sh` plus `tools/spike/0001-ram-at-zero.patch`. The patch omits the debug module and boot ROM, starts harts at the ELF entry point (normally PC `0`), and retains Spike's zeroed integer and floating-point register reset.
 - The patched Spike has no boot-ROM register values and no ROM range shadowing RAM at address 0. The former caveats about boot-ROM values in x5/x10/x11 and the `0x1000-0x1FFF` ROM overlap no longer apply.
+- The default `SPIKE_MEM` maps both `0x0:0x10000` and `0xffff0000:0x10000` to emulate the DUT RAM's 16-bit address decode. This deliberately matches the DUT's upper-bit ignorance and cannot detect RAM aliasing bugs.
 - The custom HALT encoding is illegal to Spike. It traps, and the compare script stops at the first `exception` line (or the DUT length). A COUNT MISMATCH after a clean prefix usually means the `retire` condition in `rf_monitor` is wrong for that stall pattern.
 - Coverage is register writes only. Stores and final memory are not compared; loads are covered through the value they write.
 - Spike's log format can change between versions. If parsing fails, check the regex against a real line before changing anything else. CI pins the Spike version.

@@ -3,7 +3,8 @@
 # usage: spike_ref.sh prog.elf out.log [isa]
 #
 # Env overrides:
-#   SPIKE_MEM      memory region(s), default 0x0:0x10000 (matches the 64 KB RAM at address 0)
+#   SPIKE_MEM      memory region(s), default 0x0:0x10000,0xffff0000:0x10000
+#                  (matches the DUT's 16-bit address decode)
 #   SPIKE_TIMEOUT  seconds before killing spike, default 3
 #
 # Why a timeout: the custom HALT instruction is illegal to Spike. It traps, jumps to
@@ -14,7 +15,7 @@ set -euo pipefail
 ELF="${1:?usage: spike_ref.sh prog.elf out.log [isa]}"
 OUT="${2:?usage: spike_ref.sh prog.elf out.log [isa]}"
 ISA="${3:-rv32i}"
-MEM="${SPIKE_MEM:-0x0:0x10000}"
+MEM="${SPIKE_MEM:-0x0:0x10000,0xffff0000:0x10000}"
 
 # -l + --log=FILE write the log; --log-commits adds register/memory write info.
 # --pc=0 overrides the ELF entry so execution starts at address 0 like the CPU.
