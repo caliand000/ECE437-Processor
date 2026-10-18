@@ -1,6 +1,7 @@
 # Verilator & Compiler build artifacts
 obj_dir/
 .build/
+build/
 build_*/
 work/
 asm_test_outputs/
