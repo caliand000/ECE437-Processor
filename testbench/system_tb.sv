@@ -41,7 +41,8 @@ module system_tb;
     .WEN(DUT.CPU.DP.WB_STAGE.rf_WEN),
     .wsel(DUT.CPU.DP.WB_STAGE.rf_wsel),
     .wdat(DUT.CPU.DP.WB_STAGE.rf_wdat),
-    .retire(DUT.CPU.DP.advance)
+    .retire(DUT.CPU.DP.advance),
+    .pchalt(DUT.CPU.DP.mem_wb_q.pchalt)
   );
 
   // CPU Tracker. Uncomment and change signal names to enable.
