@@ -1,4 +1,5 @@
 # Signed BLT/BGE coverage, including subtraction-overflow cases.
+# Each word at 0x200 through 0x21c is 1 for pass and 0 for fail.
 org 0x0000
 .globl _start
 _start:
@@ -85,6 +86,53 @@ case5_blt_pass:
 case5_bge_fail:
   addi  $10, $0, 0
   sw    $10, 0x210($0)
+
+case6:
+  # Equal operands: BLT is false and BGE is true.
+  addi  $1, $0, 7
+  addi  $2, $0, 7
+  blt   $1, $2, case6_fail
+  bge   $1, $2, case6_pass
+case6_fail:
+  addi  $10, $0, 0
+  sw    $10, 0x214($0)
+  jal   $0, case7
+case6_pass:
+  addi  $10, $0, 1
+  sw    $10, 0x214($0)
+
+case7:
+  # INT_MIN < INT_MAX is true; INT_MIN >= INT_MAX is false.
+  lui   $1, 0x80000
+  lui   $2, 0x80000
+  addi  $2, $2, -1
+  blt   $1, $2, case7_blt_pass
+  addi  $10, $0, 0
+  sw    $10, 0x218($0)
+  jal   $0, done
+case7_blt_pass:
+  bge   $1, $2, case7_fail
+  addi  $10, $0, 1
+  sw    $10, 0x218($0)
+  jal   $0, case8
+case7_fail:
+  addi  $10, $0, 0
+  sw    $10, 0x218($0)
+
+case8:
+  # INT_MAX < INT_MIN is false; INT_MAX >= INT_MIN is true.
+  lui   $1, 0x80000
+  addi  $1, $1, -1
+  lui   $2, 0x80000
+  blt   $1, $2, case8_fail
+  bge   $1, $2, case8_pass
+case8_fail:
+  addi  $10, $0, 0
+  sw    $10, 0x21c($0)
+  jal   $0, done
+case8_pass:
+  addi  $10, $0, 1
+  sw    $10, 0x21c($0)
 
 done:
   HALT
