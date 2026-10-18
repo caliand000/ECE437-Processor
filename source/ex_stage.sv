@@ -24,8 +24,10 @@ module ex_stage(
   EX_MEM ex_mem_raw;
 
   decider Branch(deif);
+  logic Overflow;
+
   alu ALU(.A(Alu_a), .B(Alu_c), .opcode(id_ex_q.Aluop),
-    .out(alu_out), .zero(Zero), .negative(Neg), .overflow());
+    .out(alu_out), .zero(Zero), .negative(Neg), .overflow(Overflow));
 
   always_comb begin
     Alu_a = '0;
@@ -47,6 +49,7 @@ module ex_stage(
 
   assign deif.Zero = ex_mem_q.Zero;
   assign deif.Negative = ex_mem_q.Neg;
+  assign deif.Overflow = ex_mem_q.Overflow;
   assign deif.typ = ex_mem_q.branch;
 
   assign pcsrc = deif.PCsrc;
@@ -60,6 +63,7 @@ module ex_stage(
     ex_mem_raw.RegWr = id_ex_q.RegWr;
     ex_mem_raw.Zero = Zero;
     ex_mem_raw.Neg = Neg;
+    ex_mem_raw.Overflow = Overflow;
     ex_mem_raw.branch = id_ex_q.branch;
     ex_mem_raw.jumpsel = id_ex_q.jumpsel;
     ex_mem_raw.read_data = dpif.dhit ? dpif.dmemload : ex_mem_q.read_data;

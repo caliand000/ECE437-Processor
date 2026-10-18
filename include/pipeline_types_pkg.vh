@@ -50,6 +50,7 @@ package pipeline_types_pkg;
     logic [7:0] branch;
     logic Zero;
     logic Neg;
+    logic Overflow;
     word_t AdderOut;
     word_t AluOut;
     word_t rdat1;
