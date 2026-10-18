@@ -19,7 +19,7 @@ env:
   # Pin to a Spike release tag or commit once it works locally. Changing this
   # value invalidates the cached build. Find the one you tested with:
   #   git -C ~/src/riscv-isa-sim rev-parse HEAD
-  SPIKE_REF: master
+  SPIKE_REF: 5a760667bf0d0ab893173b9eeff9c109c8d7dd9a
   RISCV: /home/runner/riscv
 
 jobs:
@@ -41,7 +41,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ env.RISCV }}
-          key: spike-${{ runner.os }}-${{ env.SPIKE_REF }}
+          key: spike-${{ runner.os }}-${{ env.SPIKE_REF }}-${{ hashFiles('tools/spike/0001-ram-at-zero.patch') }}
 
       - name: Build Spike (cache miss only)
         if: steps.spike-cache.outputs.cache-hit != 'true'
