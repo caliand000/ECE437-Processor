@@ -3,14 +3,13 @@ set -uo pipefail
 
 ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 ASM_DIR="$ROOT_DIR/asmFiles"
-OUT_DIR="$ROOT_DIR/asm_test_outputs"
 BUILD_DIR="$ROOT_DIR/build"
+OUT_DIR="$BUILD_DIR/tests"
 RESULTS_FILE="$BUILD_DIR/results.tsv"
-REPORT_FILE="$ROOT_DIR/asm_test_report_$(date +"%Y_%m_%d_%I_%M_%p").txt"
+REPORT_FILE="$BUILD_DIR/regression_report_$(date +"%Y_%m_%d_%I_%M_%p").txt"
 SIMULATE=0
 SINGLE_FILE=""
 SPIKE_CHECK="${SPIKE_CHECK:-0}"
-SPIKE_DIR="$ROOT_DIR/asm_test_outputs"
 
 if (( SPIKE_CHECK )); then
   SIMULATE=1
@@ -45,6 +44,11 @@ done
 mkdir -p "$OUT_DIR" "$BUILD_DIR"
 exec > >(tee "$BUILD_DIR/regression.log") 2>&1
 : > "$RESULTS_FILE"
+
+if (( SPIKE_CHECK )) && ! command -v spike >/dev/null 2>&1; then
+  echo "error: SPIKE_CHECK=1 but spike is not installed or not on PATH"
+  exit 1
+fi
 
 append_result() {
   local test_name="$1"
