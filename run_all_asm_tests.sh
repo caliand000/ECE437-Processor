@@ -114,6 +114,7 @@ for i in "${!asm_files[@]}"; do
   rel_path="${asm_file#$ROOT_DIR/}"
 
   out_subdir="$OUT_DIR/$name"
+  rm -rf "$out_subdir"
   mkdir -p "$out_subdir"
   cp "$asm_file" "$out_subdir/${name}.asm"
 
@@ -139,26 +140,17 @@ for i in "${!asm_files[@]}"; do
   cp "$out_subdir/meminit.hex" "$ROOT_DIR/meminit.hex"
 
   spike_status=0
+  spike_detail=""
   if (( SPIKE_CHECK )); then
-    if ! command -v spike >/dev/null 2>&1; then
-      echo -e "${RED}FAIL${NC}: $rel_path (SPIKE_CHECK=1 but spike is not installed)"
-      echo "[FAIL] $rel_path - Spike is not installed" >> "$REPORT_FILE"
-      append_result "$name" FAIL FAIL - "Spike is not installed"
-      fail_count=$((fail_count + 1))
-      spike_fail_count=$((spike_fail_count + 1))
-      continue
-    fi
-
     elf_path="$out_subdir/build_$name/$name.elf"
     spike_log="$out_subdir/spike.log"
     dut_log="$out_subdir/${name}_rfwrites.log"
     if ! bash "$ROOT_DIR/scripts/spike_ref.sh" "$elf_path" "$spike_log" "$spike_isa" > "$out_subdir/spike_run.log" 2>&1; then
       echo -e "${RED}FAIL${NC}: $rel_path (Spike run failed)"
       echo "[FAIL] $rel_path - Spike run failed" >> "$REPORT_FILE"
-      append_result "$name" FAIL FAIL "-" "Spike run failed"
-      fail_count=$((fail_count + 1))
+      spike_status=1
+      spike_detail="Spike run failed"
       spike_fail_count=$((spike_fail_count + 1))
-      continue
     fi
   fi
 
@@ -171,7 +163,11 @@ for i in "${!asm_files[@]}"; do
     if ! (cd "$ROOT_DIR" && "${sim_command[@]}" > "$out_subdir/system_run.log" 2>&1); then
       echo -e "${RED}FAIL${NC}: $rel_path (Simulation Run Failed)"
       echo "[FAIL] $rel_path - Simulation Run Failed (See $out_subdir/system_run.log)" >> "$REPORT_FILE"
-      append_result "$name" FAIL SKIP - "Simulation run failed"
+      if (( SPIKE_CHECK )); then
+        append_result "$name" FAIL FAIL - "Simulation run failed${spike_detail:+; $spike_detail}"
+      else
+        append_result "$name" FAIL SKIP - "Simulation run failed"
+      fi
       fail_count=$((fail_count + 1))
       continue
     fi
@@ -180,13 +176,25 @@ for i in "${!asm_files[@]}"; do
     if [[ -z "$halt_line" ]]; then
       echo -e "${RED}FAIL${NC}: $rel_path (No Halt Detected)"
       echo "[FAIL] $rel_path - No Halt Detected (See $out_subdir/system_run.log)" >> "$REPORT_FILE"
-      append_result "$name" FAIL SKIP - "No halt detected"
+      if (( SPIKE_CHECK )); then
+        append_result "$name" FAIL FAIL - \
+          "No halt detected${spike_detail:+; $spike_detail}"
+      else
+        append_result "$name" FAIL SKIP - "No halt detected"
+      fi
       fail_count=$((fail_count + 1))
       continue
     fi
 
     cycles="$(echo "$halt_line" | grep -o '[0-9]\+' | tail -1)"
     if (( SPIKE_CHECK )); then
+      if (( spike_status != 0 )); then
+        echo -e "${RED}FAIL${NC}: $rel_path (Spike diff unavailable; see $out_subdir/spike_run.log)"
+        echo "[FAIL] $rel_path - Simulation OK ($cycles cycles) | Spike run failed" >> "$REPORT_FILE"
+        append_result "$name" PASS FAIL "$cycles" "$spike_detail"
+        fail_count=$((fail_count + 1))
+        continue
+      fi
       if ! python3 "$ROOT_DIR/scripts/compare_rf_trace.py" "$dut_log" "$spike_log" > "$out_subdir/spike_compare.log" 2>&1; then
         echo -e "${RED}FAIL${NC}: $rel_path (Spike diff failed; see $out_subdir/spike_compare.log)"
         cat "$out_subdir/spike_compare.log"
