@@ -77,15 +77,16 @@ case5:
   blt   $1, $2, case5_blt_pass
   addi  $10, $0, 0
   sw    $10, 0x210($0)
-  jal   $0, done
+  jal   $0, case6
 case5_blt_pass:
   bge   $1, $2, case5_bge_fail
   addi  $10, $0, 1
   sw    $10, 0x210($0)
-  jal   $0, done
+  jal   $0, case6
 case5_bge_fail:
   addi  $10, $0, 0
   sw    $10, 0x210($0)
+  jal   $0, case6
 
 case6:
   # Equal operands: BLT is false and BGE is true.
