@@ -10,6 +10,10 @@
 set -euo pipefail
 
 PREFIX="${RISCV:-$HOME/riscv}"
+SPIKE_REF="${SPIKE_REF:-5a760667bf0d0ab893173b9eeff9c109c8d7dd9a}"
+JOBS="${JOBS:-$(nproc)}"
+REPO_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+PATCH_FILE="$REPO_ROOT/tools/spike/0001-ram-at-zero.patch"
 
 if [ "${SKIP_APT:-0}" != "1" ]; then
   sudo apt-get update
@@ -25,12 +29,18 @@ if [ -n "${SPIKE_REF:-}" ]; then
   git fetch --tags origin
   git checkout "$SPIKE_REF"
 fi
+if git apply --check "$PATCH_FILE" 2>/dev/null; then
+  git apply "$PATCH_FILE"
+elif ! git apply --reverse --check "$PATCH_FILE" 2>/dev/null; then
+  echo "error: cannot apply or detect existing Spike patch: $PATCH_FILE" >&2
+  exit 1
+fi
 echo "Building Spike at $(git rev-parse HEAD)"
 
 mkdir -p build
 cd build
 ../configure --prefix="$PREFIX"
-make -j"$(nproc)"
+make -j"$JOBS"
 make install
 
 # put spike on PATH for future interactive shells
