@@ -17,6 +17,15 @@ module dcache_tb;
     $dumpvars(0, dcache_tb);
   end
 
+  parameter time SIM_TIMEOUT = 100_000ns;
+
+  initial begin
+    #(SIM_TIMEOUT);
+    $display("TIMEOUT: dcache_tb did not finish within %0t", SIM_TIMEOUT);
+    $dumpflush;
+    $finish;
+  end
+
   parameter PERIOD = 10;
 
   // Clock and reset
@@ -115,7 +124,7 @@ endtask
   dcachef_t frame;
 
   initial begin
-    $timeformat(-9, 0, "ns");
+    $timeformat(-9, 0, "ns", 0);
 
     //initialize interface ports
     dcif.halt = 0;

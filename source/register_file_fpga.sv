@@ -18,7 +18,17 @@ module register_file_fpga (
   // interface
   register_file_if rfif();
   // rf
-  register_file RF(CLOCK_50, KEY[2], rfif);
+  register_file RF(
+    .CLK(CLOCK_50),
+    .nRST(KEY[2]),
+    .WEN(rfif.WEN),
+    .wsel(rfif.wsel),
+    .rsel1(rfif.rsel1),
+    .rsel2(rfif.rsel2),
+    .wdat(rfif.wdat),
+    .rdat1(rfif.rdat1),
+    .rdat2(rfif.rdat2)
+  );
 
 assign rfif.wsel = SW[4:0];
 assign rfif.rsel1 = SW[9:5];

@@ -21,11 +21,13 @@ ASM_FILE="$1"
 shift
 MODE="--readmemh"
 KEEP=0
+MARCH="${ASM_MARCH:-rv32ima}"
 for arg in "$@"; do
     case "$arg" in
         --readmemh) MODE="--readmemh" ;;
         --intelhex) MODE="--intelhex" ;;
         --keep) KEEP=1 ;;
+        --march=*) MARCH="${arg#--march=}" ;;
     esac
 done
 
@@ -35,7 +37,7 @@ rm -rf "$BUILD_DIR"
 mkdir -p "$BUILD_DIR"
 
 python3 "$SCRIPT_DIR/preprocess.py" "$ASM_FILE" "$BUILD_DIR/$BASENAME.s"
-riscv64-unknown-elf-as -march=rv32ima -mabi=ilp32 -o "$BUILD_DIR/$BASENAME.o" "$BUILD_DIR/$BASENAME.s"
+riscv64-unknown-elf-as -march="$MARCH" -mabi=ilp32 -o "$BUILD_DIR/$BASENAME.o" "$BUILD_DIR/$BASENAME.s"
 riscv64-unknown-elf-ld -m elf32lriscv -Ttext=0x0 -o "$BUILD_DIR/$BASENAME.elf" "$BUILD_DIR/$BASENAME.o"
 riscv64-unknown-elf-objcopy -O binary "$BUILD_DIR/$BASENAME.elf" "$BUILD_DIR/$BASENAME.bin"
 

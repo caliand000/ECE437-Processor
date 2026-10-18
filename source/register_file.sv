@@ -1,13 +1,18 @@
 
 `include "cpu_types_pkg.vh"
-`include "register_file_if.vh"
 
 module register_file
 import cpu_types_pkg::*;
-//import register_file_if::*;
 (
-  input logic CLK, nRST, 
-  register_file_if.rf rfif
+  input  logic     CLK,
+  input  logic     nRST,
+  input  logic     WEN,
+  input  regbits_t wsel,
+  input  regbits_t rsel1,
+  input  regbits_t rsel2,
+  input  word_t    wdat,
+  output word_t    rdat1,
+  output word_t    rdat2
 );
 
   word_t [31:0] register;
@@ -19,8 +24,8 @@ import cpu_types_pkg::*;
       register <= '0;
     end
     else begin
-      if(rfif.wsel != 0 && rfif.WEN)begin
-        register[rfif.wsel] <= rfif.wdat;
+      if(wsel != 0 && WEN)begin
+        register[wsel] <= wdat;
       end
     end
     register[0] <= '0;
@@ -30,7 +35,7 @@ import cpu_types_pkg::*;
   //assign register[0] = '0;
 
   //read ports
-  assign rfif.rdat1 = register[rfif.rsel1];
-  assign rfif.rdat2 = register[rfif.rsel2];
+  assign rdat1 = register[rsel1];
+  assign rdat2 = register[rsel2];
 
 endmodule

@@ -8,8 +8,8 @@ ASM_FILE := $(if $(RESOLVED_ASM),$(RESOLVED_ASM),$(if $(ASM),$(ASM),asmFiles/loo
 
 ASM_BUILDER := NewAssemblerFiles/New_files/build_asm.sh
 # Accept lowercase `module=...` too, since make variable names are case-sensitive.
-MODULE ?= $(if $(module),$(module),alu)
-SYSTEM_SOURCES := testbench/system_tb.sv source/*.sv
+MODULE ?= $(module)
+SYSTEM_SOURCES := testbench/system_tb.sv testbench/rf_monitor.sv source/*.sv
 MODULE_SOURCES := testbench/$(MODULE)_tb.sv source/*.sv
 VERILATOR_FLAGS := --timing --Wno-fatal -Iinclude --top-module system_tb
 # These are isolated-module/interface or legacy testbench warnings; keep
@@ -26,8 +26,8 @@ help:
 		'  assemble-all   Assemble all .asm files in asmFiles/' \
 		'  lint           Lint the complete system with Verilator' \
 		'  alu-lint       Lint only source/alu.sv' \
-		'  module-lint    Lint MODULE (default: alu)' \
-		'  module.sim     Build and run testbench/MODULE_tb.sv' \
+		'  module-lint    Lint MODULE (e.g. make MODULE=dcache module-lint)' \
+		'  module.sim     Build and run a module testbench (e.g. make MODULE=dcache module.sim)' \
 		'  system.compile Build the Verilator system executable' \
 		'  system.sim     Assemble, build, and run the full-system simulation' \
 		'  sim            Alias for system.sim' \
@@ -60,23 +60,32 @@ module-lint:
 module.compile:
 	verilator --binary --trace --timing --Wno-fatal $(MODULE_WARNING_FLAGS) -Iinclude --top-module $(MODULE)_tb $(MODULE_SOURCES)
 
+ifeq ($(strip $(MODULE)),)
+module.sim:
+	@printf '%s\n' \
+		'MODULE is required. Run: make MODULE=<name> module.sim' \
+		'Example: make MODULE=dcache module.sim'
+else
 module.sim: module.compile
 	@mkdir -p waves
 	@set -o pipefail; log=$$(mktemp); trap 'rm -f "$$log"' EXIT; \
 		./obj_dir/V$(MODULE)_tb 2>&1 | tee "$$log"; \
-		if grep -Eiq '(^|[[:space:]])(Failed|FAIL|failure|error|fatal)(:|[[:space:]]|$$)' "$$log" | grep -Eiv '0 failed' >/dev/null; then \
+		if [ -f module.vcd ]; then \
+			mv module.vcd waves/$(MODULE).vcd; \
+			printf 'Waveform written to waves/%s.vcd\n' '$(MODULE)'; \
+		fi; \
+		if grep -Eiq 'Failed|FAIL|TIMEOUT|failure|error|fatal' "$$log"; then \
 			printf '\033[31mFAIL: %s testbench reported a failure\033[0m\n' '$(MODULE)'; \
 			exit 1; \
 		fi; \
 		printf '\033[32mPASS: %s testbench completed without reported failures\033[0m\n' '$(MODULE)'; \
-		mv module.vcd waves/$(MODULE).vcd; \
-		printf 'Waveform written to waves/%s.vcd\n' '$(MODULE)'; \
 		if command -v gtkwave >/dev/null 2>&1; then \
 			gtkwave waves/$(MODULE).vcd >/tmp/gtkwave-$(MODULE).log 2>&1 & \
 			printf 'GTKWave opened for waves/%s.vcd\n' '$(MODULE)'; \
 		else \
 			printf 'GTKWave not found; open waves/%s.vcd manually.\n' '$(MODULE)'; \
 		fi
+endif
 
 system.compile:
 	verilator --binary $(VERILATOR_FLAGS) $(SYSTEM_SOURCES)
