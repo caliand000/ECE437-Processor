@@ -33,3 +33,4 @@ current_changes.txt
 *_rfwrites.log
 spike*.log
 *.elf
+source/ghtoken/
