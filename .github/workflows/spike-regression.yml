@@ -70,9 +70,6 @@ jobs:
         with:
           name: spike-regression-logs
           path: |
-            **/*_rfwrites.log
-            **/spike*.log
-            **/*.vcd
-            **/*.fst
+            build/
           if-no-files-found: ignore
           retention-days: 7
