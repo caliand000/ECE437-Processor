@@ -31,8 +31,8 @@ The regression only proves programs halt. Spike is the golden model: it executes
 The script prints the first differing register write, the Spike PC and instruction, and the five previous matched writes. Debug from there with `rtl-verilator-workflow/references/debug-playbook.md`: put that PC's instruction on the waveform and find where the value first goes wrong.
 
 ## Known caveats (check these before blaming the RTL)
-- Spike's boot ROM runs at `0x1000` first and leaves nonzero values in x5, x10, x11. The CPU resets registers to 0. A test that reads a register before writing it will diverge; initialize registers in the test.
-- The ROM address range (`0x1000-0x1FFF`) may shadow RAM mapped at 0 in Spike. A diff on loads/stores in that range may be a Spike memory-map artifact.
+- CI and local setup use the patched Spike base pinned in `scripts/setup_spike.sh` plus `tools/spike/0001-ram-at-zero.patch`. The patch omits the debug module and boot ROM, starts harts at the ELF entry point (normally PC `0`), and retains Spike's zeroed integer and floating-point register reset.
+- The patched Spike has no boot-ROM register values and no ROM range shadowing RAM at address 0. The former caveats about boot-ROM values in x5/x10/x11 and the `0x1000-0x1FFF` ROM overlap no longer apply.
 - The custom HALT encoding is illegal to Spike. It traps, and the compare script stops at the first `exception` line (or the DUT length). A COUNT MISMATCH after a clean prefix usually means the `retire` condition in `rf_monitor` is wrong for that stall pattern.
 - Coverage is register writes only. Stores and final memory are not compared; loads are covered through the value they write.
 - Spike's log format can change between versions. If parsing fails, check the regex against a real line before changing anything else. CI pins the Spike version.
