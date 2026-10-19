@@ -12,14 +12,22 @@
 
 class Valu_tb__Syms;
 class Valu_tb___024root;
+class VerilatedVcdC;
 
 // This class is the main interface to the Verilated model
 class alignas(VL_CACHE_LINE_BYTES) Valu_tb VL_NOT_FINAL : public VerilatedModel {
+    friend class Valu_tb__Syms;
   private:
     // Symbol table holding complete model state (owned by this class)
     Valu_tb__Syms* const vlSymsp;
+    // Evaluation loop
+    VerilatedEvalLoop m_evalLoop;
 
   public:
+
+    // CONSTEXPR CAPABILITIES
+    // Verilated with --trace?
+    static constexpr bool traceCapable = true;
 
     // PORTS
     // The application code writes and reads these signals to
@@ -48,12 +56,12 @@ class alignas(VL_CACHE_LINE_BYTES) Valu_tb VL_NOT_FINAL : public VerilatedModel 
   public:
     // API METHODS
     /// Evaluate the model.  Application must call when inputs change.
-    void eval() { eval_step(); }
+    void eval() { eval_step(); eval_end_step(); }
     /// Evaluate when calling multiple units/models per time step.
     void eval_step();
     /// Evaluate at end of a timestep for tracing, when using eval_step().
     /// Application must call after all eval() and before time changes.
-    void eval_end_step() {}
+    void eval_end_step();
     /// Simulation complete, run final blocks.  Application must call on completion.
     void final();
     /// Are there scheduled events to handle?
@@ -61,7 +69,7 @@ class alignas(VL_CACHE_LINE_BYTES) Valu_tb VL_NOT_FINAL : public VerilatedModel 
     /// Returns time at next time slot. Aborts if !eventsPending()
     uint64_t nextTimeSlot();
     /// Trace signals in the model; called by application code
-    void trace(VerilatedVcdC* tfp, int levels, int options = 0);
+    void trace(VerilatedTraceBaseC* tfp, int levels, int options = 0) { contextp()->trace(tfp, levels, options); }
     /// Retrieve name of this model instance (as passed to constructor).
     const char* name() const;
 
@@ -75,6 +83,33 @@ class alignas(VL_CACHE_LINE_BYTES) Valu_tb VL_NOT_FINAL : public VerilatedModel 
     /// Re-init after cloning the model at the process level (e.g. fork in Linux)
     /// Re-allocate necessary resources. Called after cloning.
     void atClone() const;
+    std::unique_ptr<VerilatedTraceConfig> traceConfig() const override final;
+  private:
+
+    // Internal functions - the model's evaluation entry points
+    void evalBegin() override final;
+    void evalEnd() override final;
+    void evalStatic() override final;
+    void evalInitial() override final;
+    bool evalStl(bool firstIteration) override final;
+    void evalSample() override final;
+    bool evalIco(bool firstIteration) override final;
+    bool evalAct() override final;
+    bool evalInact() override final;
+    bool evalNba() override final;
+    bool evalObs() override final;
+    bool evalReact() override final;
+    void evalPostponed() override final;
+    void evalFinal() override final;
+    void dumpTriggersStl() override final;
+    void dumpTriggersIco() override final;
+    void dumpTriggersAct() override final;
+    void dumpTriggersNba() override final;
+    void dumpTriggersObs() override final;
+    void dumpTriggersReact() override final;
+
+    // Internal functions - trace registration
+    void traceBaseModel(VerilatedTraceBaseC* tfp, int levels, int options);
 };
 
 #endif  // guard

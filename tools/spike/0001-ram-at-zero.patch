@@ -1,0 +1,54 @@
+From f56283978fddb254d523e3388d95e5ed499867ab Mon Sep 17 00:00:00 2001
+From: caliand000 <acali@purdue.edu>
+Date: Sat, 17 Oct 2026 21:11:10 -0500
+Subject: [PATCH] Start bare-metal simulations at RAM address zero
+
+Do not register the debug module or boot ROM, and reset harts at address zero while preserving register reset.
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+---
+ riscv/platform.h | 2 +-
+ riscv/sim.cc     | 7 +------
+ 2 files changed, 2 insertions(+), 7 deletions(-)
+
+diff --git a/riscv/platform.h b/riscv/platform.h
+index 4d14c1ce..bb7b9edf 100644
+--- a/riscv/platform.h
++++ b/riscv/platform.h
+@@ -3,7 +3,7 @@
+ #define _RISCV_PLATFORM_H
+ 
+ #define DEFAULT_KERNEL_BOOTARGS "console=ttyS0 earlycon"
+-#define DEFAULT_RSTVEC     0x00001000
++#define DEFAULT_RSTVEC     0x00000000
+ #define DEFAULT_ISA        "rv64imafdc_zicntr_zihpm"
+ #define DEFAULT_PRIV       "MSU"
+ #define CLINT_BASE         0x02000000
+diff --git a/riscv/sim.cc b/riscv/sim.cc
+index 5d258b2e..786ff4e6 100644
+--- a/riscv/sim.cc
++++ b/riscv/sim.cc
+@@ -73,8 +73,6 @@ sim_t::sim_t(const cfg_t *cfg, bool halted,
+ 
+   sout_.rdbuf(std::cerr.rdbuf()); // debug output goes to stderr by default
+ 
+-  bus.add_device(DEBUG_START, &debug_module);
+-
+   socketif = NULL;
+ #ifdef HAVE_BOOST_ASIO
+   if (socket_enabled) {
+@@ -520,10 +518,7 @@ const char* sim_t::get_symbol(uint64_t paddr)
+ 
+ void sim_t::reset()
+ {
+-  if (dtb_enabled)
+-    set_rom();
+-  else
+-    set_pc_to_entry_point();
++  set_pc_to_entry_point();
+ }
+ 
+ void sim_t::idle()
+-- 
+2.43.0
+

@@ -1,6 +1,7 @@
 # Verilator & Compiler build artifacts
 obj_dir/
 .build/
+build/
 build_*/
 work/
 asm_test_outputs/
@@ -28,3 +29,8 @@ temp.txt
 # Inspection scratch files
 inspect_*.txt
 current_changes.txt
+
+*_rfwrites.log
+spike*.log
+*.elf
+source/ghtoken/

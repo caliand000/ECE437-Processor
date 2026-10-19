@@ -47,18 +47,28 @@ module register_file_tb;
 
   // DUT
 `ifndef MAPPED
-  register_file DUT(CLK, nRST, rfif);
+  register_file DUT(
+    .CLK(CLK),
+    .nRST(nRST),
+    .WEN(rfif.WEN),
+    .wsel(rfif.wsel),
+    .rsel1(rfif.rsel1),
+    .rsel2(rfif.rsel2),
+    .wdat(rfif.wdat),
+    .rdat1(rfif.rdat1),
+    .rdat2(rfif.rdat2)
+  );
 `else
   register_file DUT(
-    .\rfif.rdat2 (rfif.rdat2),
-    .\rfif.rdat1 (rfif.rdat1),
-    .\rfif.wdat (rfif.wdat),
-    .\rfif.rsel2 (rfif.rsel2),
-    .\rfif.rsel1 (rfif.rsel1),
-    .\rfif.wsel (rfif.wsel),
-    .\rfif.WEN (rfif.WEN),
-    .\nRST (nRST),
-    .\CLK (CLK)
+    .rdat2(rfif.rdat2),
+    .rdat1(rfif.rdat1),
+    .wdat(rfif.wdat),
+    .rsel2(rfif.rsel2),
+    .rsel1(rfif.rsel1),
+    .wsel(rfif.wsel),
+    .WEN(rfif.WEN),
+    .nRST(nRST),
+    .CLK(CLK)
   );
 `endif
 

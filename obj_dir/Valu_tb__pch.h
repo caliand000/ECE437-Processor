@@ -5,7 +5,6 @@
 // unless using verilator public meta comments.
 // Suggest use Valu_tb.h instead.
 
-
 #ifndef VERILATED_VALU_TB__PCH_H_
 #define VERILATED_VALU_TB__PCH_H_  // guard
 
@@ -22,5 +21,7 @@
 
 #include "Valu_tb__Syms.h"
 #include "Valu_tb.h"
+
+// Additional include files added using '--compiler-include'
 
 #endif  // guard

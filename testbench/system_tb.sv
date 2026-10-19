@@ -36,6 +36,15 @@ module system_tb;
 `ifndef MAPPED
   system                              DUT (CLK,nRST,syif);
 
+  rf_monitor #(.FILE("cpu0_rfwrites.log")) RF_MONITOR (
+    .CLK(DUT.CPU.DP.CLK),
+    .WEN(DUT.CPU.DP.WB_STAGE.rf_WEN),
+    .wsel(DUT.CPU.DP.WB_STAGE.rf_wsel),
+    .wdat(DUT.CPU.DP.WB_STAGE.rf_wdat),
+    .retire(DUT.CPU.DP.advance),
+    .pchalt(DUT.CPU.DP.mem_wb_q.pchalt)
+  );
+
   // CPU Tracker. Uncomment and change signal names to enable.
   // NOTE: All of these signals MUST be passed all the way through
   // to the write back stage and sampled in the WRITEBACK stage.
@@ -73,7 +82,7 @@ module system_tb;
     // upper 20 bits as used by U-Type instructions (LUI, AUIPC), brought to WB stage. Can be the upper 20 bits of your decoded imm32 if your pipeline does this already.
     .utype_upper20(DUT.CPU.DP.imm_WB[31:12]),
     // 32-bit wdat to register file
-    .reg_file_wdat(DUT.CPU.DP.rfif.wdat),
+    .reg_file_wdat(DUT.CPU.DP.rf_wdat),
     // 32-bit data memory address, brought to WB stage
     .data_mem_addr(DUT.CPU.DP.dmemaddr_WB),
     // 32-bit data memory store value, brought to WB stage

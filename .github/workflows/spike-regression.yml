@@ -1,0 +1,75 @@
+name: spike-regression
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "source/**"
+      - "testbench/**"
+      - "scripts/**"
+      - "**/*.asm"
+      - ".github/workflows/spike-regression.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: spike-regression-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Pin to a Spike release tag or commit once it works locally. Changing this
+  # value invalidates the cached build. Find the one you tested with:
+  #   git -C ~/src/riscv-isa-sim rev-parse HEAD
+  SPIKE_REF: 5a760667bf0d0ab893173b9eeff9c109c8d7dd9a
+  RISCV: /home/runner/riscv
+
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y verilator binutils-riscv64-unknown-elf \
+            python3 device-tree-compiler libboost-regex-dev libboost-system-dev \
+            build-essential git
+
+      - name: Cache Spike
+        id: spike-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.RISCV }}
+          key: spike-${{ runner.os }}-${{ env.SPIKE_REF }}-${{ hashFiles('tools/spike/0001-ram-at-zero.patch') }}
+
+      - name: Build Spike (cache miss only)
+        if: steps.spike-cache.outputs.cache-hit != 'true'
+        run: SKIP_APT=1 bash scripts/setup_spike.sh
+
+      - name: Add Spike to PATH
+        run: echo "$RISCV/bin" >> "$GITHUB_PATH"
+
+      - name: Versions
+        run: |
+          verilator --version
+          spike --help 2>&1 | head -n 3 || true
+          riscv64-unknown-elf-as --version | head -n 1
+
+      # run_all_asm_tests.sh must honor SPIKE_CHECK=1: for each test, build the
+      # ELF, run scripts/spike_ref.sh, run the sim with rf_monitor, run
+      # scripts/compare_rf_trace.py, and exit nonzero if ANY test fails.
+      - name: Full regression with Spike diff
+        env:
+          SPIKE_CHECK: "1"
+        run: bash run_all_asm_tests.sh
+
+      - name: Upload logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: spike-regression-logs
+          path: |
+            build/
+          if-no-files-found: ignore
+          retention-days: 7

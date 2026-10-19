@@ -1,11 +1,13 @@
-verilated.o: /usr/share/verilator/include/verilated.cpp \
- /usr/share/verilator/include/verilated_config.h \
- /usr/share/verilator/include/verilatedos.h \
- /usr/share/verilator/include/verilated_imp.h \
- /usr/share/verilator/include/verilated.h \
- /usr/share/verilator/include/verilated_types.h \
- /usr/share/verilator/include/verilated_funcs.h \
- /usr/share/verilator/include/verilated_syms.h \
- /usr/share/verilator/include/verilated_sym_props.h \
- /usr/share/verilator/include/verilated_threads.h \
- /usr/share/verilator/include/verilated_trace.h
+verilated.o: \
+ /home/calia/.local/opt/oss-cad-suite/share/verilator/include/verilated.cpp \
+ /home/calia/.local/opt/oss-cad-suite/share/verilator/include/verilated_config.h \
+ /home/calia/.local/opt/oss-cad-suite/share/verilator/include/verilatedos.h \
+ /home/calia/.local/opt/oss-cad-suite/share/verilator/include/verilated.h \
+ /home/calia/.local/opt/oss-cad-suite/share/verilator/include/verilated_types.h \
+ /home/calia/.local/opt/oss-cad-suite/share/verilator/include/verilated_funcs.h \
+ /home/calia/.local/opt/oss-cad-suite/share/verilator/include/verilated_imp.h \
+ /home/calia/.local/opt/oss-cad-suite/share/verilator/include/verilated_syms.h \
+ /home/calia/.local/opt/oss-cad-suite/share/verilator/include/verilated_sym_props.h \
+ /home/calia/.local/opt/oss-cad-suite/share/verilator/include/verilated_threads.h \
+ /home/calia/.local/opt/oss-cad-suite/share/verilator/include/verilated_trace.h \
+ /home/calia/.local/opt/oss-cad-suite/share/verilator/include/verilatedos_c.h

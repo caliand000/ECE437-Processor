@@ -14,14 +14,14 @@ interface decider_if;
   // import types
   import cpu_types_pkg::*;
 
-  logic     Zero,Negative;
+  logic     Zero,Negative,Overflow;
   
   logic [7:0] typ;
   logic [1:0] PCsrc;
 
   // ALU ports
   modport de (
-    input   Zero,Negative,typ,
+    input   Zero,Negative,Overflow,typ,
     output  PCsrc
   );
   // ALU tb
