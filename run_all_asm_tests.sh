@@ -5,6 +5,7 @@ ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 ASM_DIR="$ROOT_DIR/asmFiles"
 BUILD_DIR="$ROOT_DIR/build"
 OUT_DIR="$BUILD_DIR/tests"
+SIM_OBJ_DIR="$OUT_DIR/obj_dir"
 RESULTS_FILE="$BUILD_DIR/results.tsv"
 REPORT_FILE="$BUILD_DIR/regression_report_$(date +"%Y_%m_%d_%I_%M_%p").txt"
 SIMULATE=0
@@ -90,9 +91,9 @@ echo "Executing $count assembly test files..."
 echo "" >> "$REPORT_FILE"
 
 if (( SIMULATE )); then
-  if (( SPIKE_CHECK )) || [[ ! -x "$ROOT_DIR/obj_dir/Vsystem_tb" ]]; then
+  if (( SPIKE_CHECK )) || [[ ! -x "$SIM_OBJ_DIR/Vsystem_tb" ]]; then
     echo "Compiling system testbench with Verilator..."
-    if ! (cd "$ROOT_DIR" && verilator --binary --timing --Wno-fatal -Iinclude --top-module system_tb testbench/system_tb.sv testbench/rf_monitor.sv source/*.sv > "$OUT_DIR/verilator_compile.log" 2>&1); then
+    if ! (cd "$ROOT_DIR" && verilator --binary --timing --Wno-fatal -Iinclude --top-module system_tb --Mdir "$SIM_OBJ_DIR" testbench/system_tb.sv testbench/rf_monitor.sv source/*.sv > "$OUT_DIR/verilator_compile.log" 2>&1); then
       echo -e "${RED}FAIL${NC}: Verilator testbench compilation failed (see $OUT_DIR/verilator_compile.log)"
       echo "VERILATOR COMPILE FAILED" >> "$REPORT_FILE"
       for asm_file in "${asm_files[@]}"; do
@@ -156,9 +157,9 @@ for i in "${!asm_files[@]}"; do
 
   if (( SIMULATE )); then
     if (( SPIKE_CHECK )); then
-      sim_command=("$ROOT_DIR/obj_dir/Vsystem_tb" "+RF_LOG=$dut_log")
+      sim_command=("$SIM_OBJ_DIR/Vsystem_tb" "+RF_LOG=$dut_log")
     else
-      sim_command=("$ROOT_DIR/obj_dir/Vsystem_tb")
+      sim_command=("$SIM_OBJ_DIR/Vsystem_tb")
     fi
     if ! (cd "$ROOT_DIR" && "${sim_command[@]}" > "$out_subdir/system_run.log" 2>&1); then
       echo -e "${RED}FAIL${NC}: $rel_path (Simulation Run Failed)"
